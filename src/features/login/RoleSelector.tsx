@@ -10,7 +10,6 @@ interface roleTypes {
 }
 
 function RoleSelector({ role, setRole, roleError }: roleTypes) {
-  console.log(roleError);
   function handleClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     value: string,
