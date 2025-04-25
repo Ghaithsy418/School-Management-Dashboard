@@ -70,7 +70,7 @@ function LoginForm() {
 
 const variants = {
   hidden: { opacity: 0, x: "75%" },
-  visible: { opacity: 1, x: 0, transition: { duration: 1.5, delay: 0.6 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 1.5, delay: 0.5 } },
 };
 
 export default LoginForm;
