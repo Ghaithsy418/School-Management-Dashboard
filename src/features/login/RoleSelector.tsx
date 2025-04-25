@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import { GiTeacher } from "react-icons/gi";
 import { GrUserManager } from "react-icons/gr";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
@@ -6,10 +7,11 @@ import { MdOutlineSupervisorAccount } from "react-icons/md";
 interface roleTypes {
   role: string;
   setRole: Dispatch<SetStateAction<string>>;
-  roleError: boolean;
+  register: UseFormRegister<FieldValues>;
 }
 
-function RoleSelector({ role, setRole, roleError }: roleTypes) {
+function RoleSelector({ role, setRole, register }: roleTypes) {
+  console.log(role);
   function handleClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     value: string,
@@ -19,7 +21,16 @@ function RoleSelector({ role, setRole, roleError }: roleTypes) {
   }
 
   return (
-    <div className="relative mb-2 flex w-96 items-center justify-between gap-5">
+    <div className="mb-2 flex w-96 items-center justify-between gap-5">
+      <input
+        type="hidden"
+        value={role}
+        {...register("role", {
+          validate: {
+            hasPattern: () => role !== "" || "You should choose a role!",
+          },
+        })}
+      />
       {options.map((option) => (
         <button
           key={option.value}
@@ -29,11 +40,6 @@ function RoleSelector({ role, setRole, roleError }: roleTypes) {
           <span className="text-indigo-700">{option.icon}</span> {option.name}
         </button>
       ))}
-      {roleError && (
-        <p className="absolute bottom-[-30px] left-[50%] translate-x-[-50%] text-sm text-red-600">
-          * You should select a role!
-        </p>
-      )}
     </div>
   );
 }
