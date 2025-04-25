@@ -55,11 +55,7 @@ function LoginForm() {
           error={passwordError?.message?.toString() || ""}
         />
         <RoleSelector role={role} setRole={setRole} roleError={roleError} />
-        {/* <select className="role-select mb-3 w-96 rounded-md px-2 py-3 outline-1 outline-gray-700/20">
-          {options.map((option) => (
-            <option value={option.value}>{option.name}</option>
-          ))}
-        </select> */}
+
         <button className="w-96 cursor-pointer rounded-md bg-gradient-to-tr from-indigo-500 to-violet-600 py-2 text-lg tracking-wide text-gray-50 transition-all duration-300 hover:from-indigo-500/90 hover:to-violet-600/90">
           Login
         </button>
