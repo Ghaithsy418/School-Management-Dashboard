@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: National Park;
-  src: url("/font/NationalPark-VariableFont_wght.ttf");
+  src: url("/fonts/NationalPark-VariableFont_wght.ttf");
   font-display: swap;
 }
 
@@ -197,6 +197,13 @@
     to {
       stroke-dashoffset: 439.82;
       transform: translate(100px, 100px) rotate(112deg);
+    }
+  }
+
+  .hover-icons:hover {
+    svg {
+      transform: scale(1.08);
+      transition: all 0.4s;
     }
   }
 }

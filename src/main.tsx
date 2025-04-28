@@ -1,10 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+import { ErrorBoundary } from "react-error-boundary";
+import Error from "./ui/Error.tsx";
+import { UserProvider } from "./context/UserContext.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary
+      FallbackComponent={Error}
+      onReset={() => window.location.replace("/")}
+    >
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </ErrorBoundary>
   </StrictMode>,
-)
+);
