@@ -1,6 +1,6 @@
 import { TbLogout2 } from "react-icons/tb";
 import { useUser } from "../context/UserContext";
-import ManagerLinks from "../features/manager/managerLinks";
+import ManagerLinks from "../features/manager/ManagerLinks";
 import SupervisorsLinks from "../features/supervisors/SupervisorsLinks";
 import TeachersLinks from "../features/teachers/TeachersLinks";
 
