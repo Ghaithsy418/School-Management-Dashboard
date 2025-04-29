@@ -1,4 +1,3 @@
-import { HiDotsVertical } from "react-icons/hi";
 import Table from "../../ui/Table";
 
 function StudentsTable() {
