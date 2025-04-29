@@ -7,6 +7,7 @@ import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import { useUser } from "./context/UserContext";
+import AddStudents from "./features/Students/AddStudents";
 
 function App() {
   const { role } = useUser();
@@ -21,7 +22,10 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="teachers" element={<Teachers />} />
               <Route path="supervisors" element={<Supervisors />} />
-              <Route path="students" element={<Students />} />
+              <Route path="students">
+                <Route index element={<Students />} />
+                <Route path="add-a-student" element={<AddStudents />} />
+              </Route>
             </Route>
           )}
           {role === "supervisors" && (

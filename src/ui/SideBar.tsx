@@ -7,7 +7,7 @@ import TeachersLinks from "../features/teachers/TeachersLinks";
 function SideBar() {
   const { role } = useUser();
   return (
-    <nav className="row-start-1 row-end-3 flex flex-col justify-between border-r-1 border-r-indigo-200/30 bg-indigo-100 px-4 py-8 font-semibold">
+    <nav className="row-start-1 row-end-3 flex flex-col justify-between border-r-1 border-r-indigo-200/30 bg-indigo-100 px-4 pt-10 pb-8 font-semibold">
       <div className="space-y-10">
         <h1 className="text-center text-2xl">School Dashboard</h1>
         {role === "manager" && <ManagerLinks />}
