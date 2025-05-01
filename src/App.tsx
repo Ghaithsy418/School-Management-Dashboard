@@ -11,6 +11,7 @@ import AddStudents from "./features/Students/AddStudents";
 import AddTeachers from "./features/teachers/AddTeachers";
 import AddSupervisors from "./features/supervisors/AddSupervisors";
 
+//nothing scary just defining the entire App's routes
 function App() {
   const { role } = useUser();
   return (

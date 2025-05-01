@@ -3,6 +3,7 @@ import Controls from "../ui/Controls";
 import MainContainer from "../ui/MainContainer";
 import MainPageHeader from "../ui/MainPageHeader";
 
+//Responsible: for the teachers routes operators
 function Teachers() {
   return (
     <MainContainer title="Teachers">

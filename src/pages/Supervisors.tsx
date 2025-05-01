@@ -3,6 +3,7 @@ import Controls from "../ui/Controls";
 import MainContainer from "../ui/MainContainer";
 import MainPageHeader from "../ui/MainPageHeader";
 
+//Responsible: for the supervisors routes operators
 function Supervisors() {
   return (
     <MainContainer title="Supervisors">
