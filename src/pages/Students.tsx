@@ -1,14 +1,27 @@
-import StudentsHeader from "../features/Students/StudentsHeader";
 import StudentsTable from "../features/Students/StudentsTable";
+import Controls from "../ui/Controls";
+import MainContainer from "../ui/MainContainer";
+import MainPageHeader from "../ui/MainPageHeader";
 
 function Students() {
   return (
-    <div className="flex flex-col justify-center gap-6 px-10">
-      <h2 className="text-4xl font-bold">Students</h2>
-      <StudentsHeader />
+    <MainContainer title="Students">
+      <MainPageHeader>
+        <Controls
+          options={options}
+          linkTo="add-a-student"
+          linkTitle="Add a Student"
+        />
+      </MainPageHeader>
       <StudentsTable />
-    </div>
+    </MainContainer>
   );
 }
+
+const options = [
+  { title: "Sort by", value: "" },
+  { title: "Ascending (A-Z)", value: "asc" },
+  { title: "Descending (Z-A)", value: "desc" },
+];
 
 export default Students;

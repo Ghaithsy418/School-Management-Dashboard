@@ -8,6 +8,8 @@ import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import { useUser } from "./context/UserContext";
 import AddStudents from "./features/Students/AddStudents";
+import AddTeachers from "./features/teachers/AddTeachers";
+import AddSupervisors from "./features/supervisors/AddSupervisors";
 
 function App() {
   const { role } = useUser();
@@ -20,8 +22,14 @@ function App() {
             <Route path="manager">
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="teachers" element={<Teachers />} />
-              <Route path="supervisors" element={<Supervisors />} />
+              <Route path="teachers">
+                <Route index element={<Teachers />} />
+                <Route path="add-a-teacher" element={<AddTeachers />} />
+              </Route>
+              <Route path="supervisors">
+                <Route index element={<Supervisors />} />
+                <Route path="add-a-supervisor" element={<AddSupervisors />} />
+              </Route>
               <Route path="students">
                 <Route index element={<Students />} />
                 <Route path="add-a-student" element={<AddStudents />} />

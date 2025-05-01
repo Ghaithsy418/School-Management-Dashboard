@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 
 function AppLayout() {
   return (
-    <div className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[6rem_1fr]">
+    <div className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[5rem_1fr]">
       <SideBar />
       <NavBar />
       <main className="row-start-2 row-end-3 overflow-auto">
