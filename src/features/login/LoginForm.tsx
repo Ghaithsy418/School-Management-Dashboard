@@ -1,23 +1,14 @@
-import { useState } from "react";
-import InputField from "../../ui/InputField";
-import RoleSelector from "./RoleSelector";
-import ShowPassword from "./ShowPassword";
-import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import InputField from "../../ui/InputField";
+import ShowPassword from "./ShowPassword";
 
 function LoginForm() {
-  const [role, setRole] = useState("");
-  const [roleError, setRoleError] = useState(false);
   const { register, handleSubmit, formState } = useForm();
   const { email: emailError, password: passwordError } = formState.errors;
 
   function onSubmit(data: { email?: string; password?: string }) {
-    if (!role) {
-      setRoleError(true);
-      return;
-    }
-    setRoleError(false);
-    console.log({ ...data, role });
+    console.log({ ...data });
   }
 
   return (
@@ -27,7 +18,7 @@ function LoginForm() {
       animate="visible"
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="flex flex-col items-center justify-center gap-3">
         <motion.h1
           whileHover={{
             scale: 1.1,
@@ -54,7 +45,6 @@ function LoginForm() {
           register={register}
           error={passwordError?.message?.toString() || ""}
         />
-        <RoleSelector role={role} setRole={setRole} roleError={roleError} />
 
         <button className="w-96 cursor-pointer rounded-md bg-gradient-to-tr from-indigo-500 to-violet-600 py-2 text-lg tracking-wide text-gray-50 transition-all duration-300 hover:from-indigo-500/90 hover:to-violet-600/90">
           Login
