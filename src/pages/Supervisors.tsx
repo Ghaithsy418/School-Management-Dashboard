@@ -1,4 +1,4 @@
-import SupervisorsList from "../features/Supervisors/SupervisorsList";
+import SupervisorsList from "../features/supervisors/SupervisorsList";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the supervisors routes operators

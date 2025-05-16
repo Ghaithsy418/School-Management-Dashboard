@@ -1,4 +1,4 @@
-import StudentsTable from "../features/Students/StudentsTable";
+import StudentsTable from "../features/students/StudentsTable";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the students routes operators

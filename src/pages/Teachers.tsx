@@ -1,4 +1,4 @@
-import TeachersList from "../features/Teachers/TeachersList";
+import TeachersList from "../features/teachers/TeachersList";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the teachers routes operators

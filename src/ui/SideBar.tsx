@@ -1,8 +1,8 @@
 import { TbLogout2 } from "react-icons/tb";
 import { useUser } from "../context/UserContext";
-import ManagerLinks from "../features/Manager/ManagerLinks";
-import SupervisorsLinks from "../features/Supervisors/SupervisorsLinks";
-import TeachersLinks from "../features/Teachers/TeachersLinks";
+import ManagerLinks from "../features/manager/ManagerLinks";
+import SupervisorsLinks from "../features/supervisors/SupervisorsLinks";
+import TeachersLinks from "../features/teachers/TeachersLinks";
 
 function SideBar() {
   const { role } = useUser();
