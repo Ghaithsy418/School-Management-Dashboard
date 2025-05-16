@@ -34,7 +34,7 @@ function Row({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`grid w-full items-center justify-center gap-8 bg-indigo-100/40 px-8 py-3`}
+      className={`grid w-full items-center justify-center gap-8 bg-indigo-100/40 px-8 py-3 font-light`}
       style={{ gridTemplateColumns: columns }}
     >
       {children}

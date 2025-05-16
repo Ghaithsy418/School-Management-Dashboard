@@ -8,8 +8,8 @@ import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import { useUser } from "./context/UserContext";
 import AddStudents from "./features/Students/AddStudents";
-import AddTeachers from "./features/teachers/AddTeachers";
-import AddSupervisors from "./features/supervisors/AddSupervisors";
+import AddTeachers from "./features/Teachers/AddTeachers";
+import AddSupervisors from "./features/Supervisors/AddSupervisors";
 
 //nothing scary just defining the entire App's routes
 function App() {

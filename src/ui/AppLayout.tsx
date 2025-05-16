@@ -7,10 +7,8 @@ function AppLayout() {
     <div className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[5rem_1fr]">
       <SideBar />
       <NavBar />
-      <main className="row-start-2 row-end-3 overflow-auto">
-        <div>
-          <Outlet />
-        </div>
+      <main className="row-start-2 row-end-3 overflow-auto py-2">
+        <Outlet />
       </main>
     </div>
   );

@@ -1,19 +1,17 @@
-import SupervisorsList from "../features/supervisors/SupervisorsList";
-import Controls from "../ui/Controls";
+import SupervisorsList from "../features/Supervisors/SupervisorsList";
 import MainContainer from "../ui/MainContainer";
-import MainPageHeader from "../ui/MainPageHeader";
 
 //Responsible: for the supervisors routes operators
 function Supervisors() {
   return (
     <MainContainer title="Supervisors">
-      <MainPageHeader>
-        <Controls
+      <MainContainer.MainPageHeader>
+        <MainContainer.Controls
           options={options}
           linkTo="add-a-supervisor"
           linkTitle="Add a Supervisor"
         />
-      </MainPageHeader>
+      </MainContainer.MainPageHeader>
       <SupervisorsList />
     </MainContainer>
   );

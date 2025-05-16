@@ -1,19 +1,17 @@
-import TeachersList from "../features/teachers/TeachersList";
-import Controls from "../ui/Controls";
+import TeachersList from "../features/Teachers/TeachersList";
 import MainContainer from "../ui/MainContainer";
-import MainPageHeader from "../ui/MainPageHeader";
 
 //Responsible: for the teachers routes operators
 function Teachers() {
   return (
     <MainContainer title="Teachers">
-      <MainPageHeader>
-        <Controls
+      <MainContainer.MainPageHeader>
+        <MainContainer.Controls
           options={options}
           linkTo="add-a-teacher"
           linkTitle="Add a Teacher"
         />
-      </MainPageHeader>
+      </MainContainer.MainPageHeader>
       <TeachersList />
     </MainContainer>
   );

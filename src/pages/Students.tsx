@@ -1,19 +1,17 @@
 import StudentsTable from "../features/Students/StudentsTable";
-import Controls from "../ui/Controls";
 import MainContainer from "../ui/MainContainer";
-import MainPageHeader from "../ui/MainPageHeader";
 
 //Responsible: for the students routes operators
 function Students() {
   return (
     <MainContainer title="Students">
-      <MainPageHeader>
-        <Controls
+      <MainContainer.MainPageHeader>
+        <MainContainer.Controls
           options={options}
           linkTo="add-a-student"
           linkTitle="Add a Student"
         />
-      </MainPageHeader>
+      </MainContainer.MainPageHeader>
       <StudentsTable />
     </MainContainer>
   );
