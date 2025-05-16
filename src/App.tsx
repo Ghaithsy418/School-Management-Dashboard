@@ -7,9 +7,9 @@ import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import { useUser } from "./context/UserContext";
-import AddStudents from "./features/students/AddStudents";
 import AddTeachers from "./features/teachers/AddTeachers";
 import AddSupervisors from "./features/supervisors/AddSupervisors";
+import AddStudents from "./features/students/AddStudents";
 
 //nothing scary just defining the entire App's routes
 function App() {
