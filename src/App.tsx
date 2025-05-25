@@ -10,6 +10,7 @@ import { useUser } from "./context/UserContext";
 import AddTeachers from "./features/teachers/AddTeachers";
 import AddSupervisors from "./features/supervisors/AddSupervisors";
 import AddStudents from "./features/students/AddStudents";
+import Student from "./pages/Student";
 
 //nothing scary just defining the entire App's routes
 function App() {
@@ -35,6 +36,7 @@ function App() {
                 <Route index element={<Students />} />
                 <Route path="add-a-student" element={<AddStudents />} />
               </Route>
+              <Route path="student/:id" element={<Student />} />
             </Route>
           )}
           {role === "supervisors" && (
@@ -43,6 +45,7 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="teachers" element={<Teachers />} />
               <Route path="students" element={<Students />} />
+              <Route path="student/:id" element={<Student />} />
             </Route>
           )}
           {role === "teachers" && (
@@ -50,6 +53,7 @@ function App() {
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="students" element={<Students />} />
+              <Route path="student/:id" element={<Student />} />
             </Route>
           )}
         </Route>

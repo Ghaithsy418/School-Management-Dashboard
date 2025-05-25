@@ -1,40 +1,39 @@
-import { HiMiniEllipsisVertical } from "react-icons/hi2";
-import AvatarGenerator from "../../ui/AvatarGenerator";
 import Table from "../../ui/Table";
-import Contact from "../../ui/Contact";
+import { StudentTypes } from "../../utils/types";
+import StudentsRow from "./StudentsRow";
 
 function StudentsTable() {
   return (
     <Table columns="0.8fr 0.4fr 0.7fr 0.4fr 0.4fr 0.3fr 0.3fr">
       <Table.Header>
-        <div>Name</div>
-        <div>ID</div>
-        <div>Address</div>
-        <div>Contact</div>
-        <div>Class</div>
-        <div>GPA</div>
-        <div></div>
+        {HeaderTitles.map((title) => (
+          <div key={title}>{title}</div>
+        ))}
       </Table.Header>
-      <Table.Row>
-        <div className="flex items-center gap-4">
-          <span>
-            <AvatarGenerator name="Ahmad" size={35} />
-          </span>{" "}
-          Ahmad Mohamad Syria
-        </div>
-        <div>100200333</div>
-        <div>Damascus, Mazzeh</div>
-        <div>
-          <Contact />
-        </div>
-        <div>1/10</div>
-        <div>4.6</div>
-        <div className="flex cursor-pointer items-center justify-center">
-          <HiMiniEllipsisVertical className="h-5 w-5" />
-        </div>
-      </Table.Row>
+      <Table.Body
+        data={FakeStudents}
+        render={(student: StudentTypes) => (
+          <Table.Row>
+            <StudentsRow student={student} />
+          </Table.Row>
+        )}
+      />
     </Table>
   );
 }
+
+const FakeStudents = [
+  {
+    name: "Ahmad Mohamad Syria",
+    id: "100200322",
+    address: "Damascus, Syria",
+    grade: "10/1",
+    GPA: 4.6,
+    email: "ghaithsy418@gmail.com",
+    phoneNumber: "+963996240804",
+  },
+];
+
+const HeaderTitles = ["Name", "ID", "Address", "Class", "GPA", "Contact"];
 
 export default StudentsTable;
