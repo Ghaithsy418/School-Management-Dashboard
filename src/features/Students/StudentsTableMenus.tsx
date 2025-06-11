@@ -2,10 +2,10 @@ import { HiMiniEllipsisVertical } from "react-icons/hi2";
 import Menus from "../../ui/Menus";
 import { CgProfile } from "react-icons/cg";
 import { TbTrash } from "react-icons/tb";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 
-function TableMenus() {
+function StudentsTableMenus() {
   const { role } = useUser();
   return (
     <Menus>
@@ -28,4 +28,4 @@ function TableMenus() {
   );
 }
 
-export default TableMenus;
+export default StudentsTableMenus;

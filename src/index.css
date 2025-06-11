@@ -6,6 +6,10 @@
   font-display: swap;
 }
 
+* {
+  scrollbar-width: thin;
+}
+
 @theme {
   --font-national-park: National Park, "sans-serif";
 }

@@ -1,5 +1,5 @@
 import { FaRegUser } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import AvatarGenerator from "./AvatarGenerator";
 
 function Card() {

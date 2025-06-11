@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import LoginForm from "../features/login/LoginForm";
+import LoginForm from "../features/auth/LoginForm";
 import LoginIcons from "../ui/LoginIcons";
 import loginPhoto from "/images/login-photo.jpg";
 

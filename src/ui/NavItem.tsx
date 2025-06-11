@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 interface buttonsTypes {
   title: string;

@@ -1,7 +1,7 @@
 import AvatarGenerator from "../../ui/AvatarGenerator";
 import Contact from "../../ui/Contact";
 import { StudentTypes } from "../../utils/types";
-import TableMenus from "./TableMenus";
+import StudentsTableMenus from "./StudentsTableMenus";
 
 function StudentsRow({ student }: { student: StudentTypes }) {
   const { name, id, address, GPA, grade } = student;
@@ -18,7 +18,7 @@ function StudentsRow({ student }: { student: StudentTypes }) {
       <p>{grade}</p>
       <p>{GPA}</p>
       <Contact />
-      <TableMenus />
+      <StudentsTableMenus />
     </>
   );
 }

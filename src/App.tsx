@@ -1,16 +1,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { useUser } from "./context/UserContext";
+import AddStudents from "./features/manager/AddStudents";
+import AddSupervisors from "./features/manager/AddSupervisors";
+import AddTeachers from "./features/manager/AddTeachers";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Student from "./pages/Student";
 import Students from "./pages/Students";
 import Supervisors from "./pages/Supervisors";
 import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
-import { useUser } from "./context/UserContext";
-import AddTeachers from "./features/teachers/AddTeachers";
-import AddSupervisors from "./features/supervisors/AddSupervisors";
-import AddStudents from "./features/students/AddStudents";
-import Student from "./pages/Student";
 
 //nothing scary just defining the entire App's routes
 function App() {

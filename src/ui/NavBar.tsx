@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import ThemeButton from "./ThemeButton";
 import { HiUser } from "react-icons/hi2";

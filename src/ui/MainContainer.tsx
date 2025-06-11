@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Search from "./Search";
 import { useUser } from "../context/UserContext";
 import Filter from "./Filter";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 function MainContainer({ children, title }: MainContainerTypes) {
   return (
