@@ -14,7 +14,7 @@ function SideBar() {
         {role === "supervisors" && <SupervisorsLinks />}
         {role === "teachers" && <TeachersLinks />}
       </div>
-      <button className="flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 text-rose-500 transition-all duration-300 hover:bg-rose-200/50">
+      <button className="flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 text-rose-500 transition-all duration-300 hover:bg-rose-300/50 hover:text-rose-600">
         <TbLogout2 className="h-7 w-7" /> Logout
       </button>
     </nav>

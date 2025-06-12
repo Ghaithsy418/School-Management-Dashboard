@@ -1,5 +1,12 @@
+import MainContainer from "../../ui/MainContainer";
+import AddingTemplate from "./AddingTemplate";
+
 function AddSupervisors() {
-  return <div>AddSupervisors</div>;
+  return (
+    <MainContainer title="Add Supervisors">
+      <AddingTemplate />
+    </MainContainer>
+  );
 }
 
 export default AddSupervisors;

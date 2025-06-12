@@ -13,7 +13,7 @@ function StudentsTable() {
       <Table.Body
         data={FakeStudents}
         render={(student: StudentTypes) => (
-          <Table.Row>
+          <Table.Row key={student.id}>
             <StudentsRow student={student} />
           </Table.Row>
         )}

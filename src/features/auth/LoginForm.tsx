@@ -46,7 +46,7 @@ function LoginForm() {
           error={passwordError?.message?.toString() || ""}
         />
 
-        <button className="w-96 cursor-pointer rounded-md bg-gradient-to-tr from-indigo-500 to-violet-600 py-2 text-lg tracking-wide text-gray-50 transition-all duration-300 hover:from-indigo-500/90 hover:to-violet-600/90">
+        <button className="w-96 cursor-pointer rounded-md bg-gradient-to-tr from-indigo-500 to-violet-600 py-2 text-lg tracking-wide text-gray-50 hover:from-indigo-500/90 hover:to-violet-600/90">
           Login
         </button>
       </form>
