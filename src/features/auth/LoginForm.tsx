@@ -2,13 +2,18 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import InputField from "../../ui/InputField";
 import ShowPassword from "./ShowPassword";
+import { useLogin } from "./useLogin";
+import Title from "../../ui/Title";
+import SubmitButton from "../../ui/SubmitButton";
 
 function LoginForm() {
   const { register, handleSubmit, formState } = useForm();
   const { email: emailError, password: passwordError } = formState.errors;
+  const { loginMutation } = useLogin();
 
   function onSubmit(data: { email?: string; password?: string }) {
-    console.log({ ...data });
+    if (data.email && data.password)
+      loginMutation({ email: data.email, password: data.password });
   }
 
   return (
@@ -18,21 +23,12 @@ function LoginForm() {
       animate="visible"
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
-      <div className="flex flex-col items-center justify-center gap-3">
-        <motion.h1
-          whileHover={{
-            scale: 1.1,
-            transition: { type: "spring", stiffness: 110, damping: 6 },
-          }}
-          className="bg-gradient-to-br from-indigo-600/80 via-indigo-700/90 to-violet-900/90 bg-clip-text text-7xl font-bold text-transparent"
-        >
-          Welcome!
-        </motion.h1>
-        <p className="text-gray-950/90">Please login to start using the App</p>
-      </div>
+      <Title secondaryTitle="Please login to start using the App">
+        Welcome!
+      </Title>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center gap-9"
+        className="flex flex-col items-center justify-center gap-8"
       >
         <InputField
           name="email"
@@ -45,10 +41,7 @@ function LoginForm() {
           register={register}
           error={passwordError?.message?.toString() || ""}
         />
-
-        <button className="w-96 cursor-pointer rounded-md bg-gradient-to-tr from-indigo-500 to-violet-600 py-2 text-lg tracking-wide text-gray-50 hover:from-indigo-500/90 hover:to-violet-600/90">
-          Login
-        </button>
+        <SubmitButton marginTop="mt-3">Login</SubmitButton>
       </form>
     </motion.div>
   );

@@ -1,7 +1,8 @@
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import InputField from "../../ui/InputField";
 import { useState } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import InputField from "../../ui/InputField";
+import ResetPasswordButton from "./ResetPassword/ResetPasswordButton";
 
 function ShowPassword({
   register,
@@ -31,6 +32,7 @@ function ShowPassword({
           <IoEyeOffOutline className="h-5 w-5" />
         )}
       </span>
+      <ResetPasswordButton />
     </div>
   );
 }

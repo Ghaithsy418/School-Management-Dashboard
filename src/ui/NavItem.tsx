@@ -18,10 +18,12 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
       <NavLink
         to={`/${role}/${button.title.toLowerCase()}`}
         className={({ isActive }) =>
-          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 ${isActive ? "bg-indigo-300/70" : ""}`
+          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 ${isActive ? "bg-indigo-200/50" : ""}`
         }
       >
-        <span className="transition-transform duration-200 group-hover:scale-[1.08]">
+        <span
+          className={`transition-transform duration-200 group-hover:scale-[1.08] ${button.title === "Settings" ? "duration-500 group-hover:rotate-180" : ""}`}
+        >
           {button.icon}
         </span>
         {button.title}

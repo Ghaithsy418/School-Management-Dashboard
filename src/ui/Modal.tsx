@@ -48,7 +48,7 @@ function Window({ children, name, icon }: WindowOpenTypes) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute top-0 left-0 flex h-[100vh] w-[100vw] items-center justify-center bg-gray-950/80 backdrop-blur-xs backdrop:blur-md"
+      className="absolute top-0 left-0 z-50 flex h-[100vh] w-[100vw] items-center justify-center bg-gray-950/80 backdrop-blur-xs backdrop:blur-md"
     >
       <motion.div
         variants={variants}
