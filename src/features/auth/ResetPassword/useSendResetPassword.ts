@@ -5,7 +5,7 @@ import { useLoginUi } from "../../../context/LoginUIs";
 
 export function useSendResetPassword() {
   const { dispatch } = useLoginUi();
-  const { mutate: resetMutation, isPending } = useMutation({
+  const { mutate: resetMutation, isPending: isResending } = useMutation({
     mutationFn: ({ email }: { email: string }) => sendResetPassword({ email }),
     onSuccess: () => {
       toast.success("Verification code is sent successfully");
@@ -14,11 +14,8 @@ export function useSendResetPassword() {
         payload: 3,
       });
     },
-    onError: (err: Error) => {
-      toast.error(err.message);
-      console.error(err);
-    },
+    onError: (err: Error) => toast.error(err.message),
   });
 
-  return { resetMutation, isPending };
+  return { resetMutation, isResending };
 }

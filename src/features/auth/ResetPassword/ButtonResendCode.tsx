@@ -3,7 +3,7 @@ import { useSendResetPassword } from "./useSendResetPassword";
 import { useTimer } from "@/hooks/useTimer";
 
 function ButtonResendCode() {
-  const { resetMutation, isPending: isResending } = useSendResetPassword();
+  const { resetMutation, isResending } = useSendResetPassword();
   const { email } = useLoginUi();
   const { setStart, result } = useTimer(150);
 

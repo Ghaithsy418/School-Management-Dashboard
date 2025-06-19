@@ -21,6 +21,7 @@ function LoginForm() {
       variants={variants}
       initial="hidden"
       animate="visible"
+      exit="exit"
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
       <Title secondaryTitle="Please login to start using the App">
@@ -49,7 +50,8 @@ function LoginForm() {
 
 const variants = {
   hidden: { opacity: 0, x: "75%" },
-  visible: { opacity: 1, x: 0, transition: { duration: 1.5, delay: 0.5 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 1.5 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 };
 
 export default LoginForm;

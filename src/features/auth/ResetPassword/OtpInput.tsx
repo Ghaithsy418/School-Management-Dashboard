@@ -9,22 +9,31 @@ import Title from "@/ui/Title";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { Controller, useForm } from "react-hook-form";
 import ButtonResendCode from "./ButtonResendCode";
+import { useConfirmValidationCode } from "./useConfirmValidationCode";
+import SmallSpinner from "@/ui/SmallSpinner";
+import { motion } from "framer-motion";
+import { regularOpacityVariants } from "@/utils/variants";
 
 function OtpInput() {
   const { control, handleSubmit, formState } = useForm();
+  const { confirmMutation, isConfirming } = useConfirmValidationCode();
   const { email } = useLoginUi();
   const className =
     "border-gray-400 ring-gray-700 h-13 w-13 text-md text-inherit";
   const { otp: otpError } = formState.errors;
 
-  function onSubmit(data: unknown) {
-    console.log(data);
+  function onSubmit(data: { otp?: number }) {
+    if (data.otp) confirmMutation({ verificationCode: data.otp, email });
   }
 
   return (
-    <form
+    <motion.form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center justify-center gap-11"
+      variants={regularOpacityVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
       <Title
         size="text-5xl"
@@ -40,7 +49,12 @@ function OtpInput() {
           defaultValue=""
           rules={rulesObject}
           render={({ field }) => (
-            <InputOTP maxLength={5} {...field} pattern={REGEXP_ONLY_DIGITS}>
+            <InputOTP
+              maxLength={5}
+              {...field}
+              autoFocus
+              pattern={REGEXP_ONLY_DIGITS}
+            >
               <InputOTPGroup>
                 <InputOTPSlot index={0} className={className} />
                 <InputOTPSlot index={1} className={className} />
@@ -58,10 +72,12 @@ function OtpInput() {
         )}
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
-        <SubmitButton size="w-90">Check Verification Code</SubmitButton>
+        <SubmitButton size="w-90">
+          {isConfirming ? <SmallSpinner /> : "Check Verification Code"}
+        </SubmitButton>
         <ButtonResendCode />
       </div>
-    </form>
+    </motion.form>
   );
 }
 

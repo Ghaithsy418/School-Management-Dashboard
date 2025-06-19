@@ -4,6 +4,7 @@ function InputField({
   name,
   type,
   label,
+  id = "",
   placeholder = "",
   autoComplete = "on",
   error,
@@ -42,11 +43,11 @@ function InputField({
   return (
     <div className="relative">
       <input
-        id={name}
+        id={id || name}
         type={type}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        {...register(name, getValidationMessage())}
+        {...register(id || name, getValidationMessage())}
         className="peer w-96 rounded-md px-4 py-2 text-lg outline-1 outline-offset-2 outline-gray-700/20 transition-all duration-100 focus:border-0 focus:outline-3 focus:outline-offset-2 focus:outline-violet-300/60"
       />
       <label
@@ -72,6 +73,7 @@ interface inputTypes {
   autoComplete?: string;
   error: string;
   register: UseFormRegister<FieldValues>;
+  id?: string;
 }
 
 export default InputField;
