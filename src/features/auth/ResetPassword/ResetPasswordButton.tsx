@@ -4,6 +4,7 @@ function ResetPasswordButton() {
   const { dispatch } = useLoginUi();
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.preventDefault();
         dispatch({

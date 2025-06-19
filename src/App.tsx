@@ -1,19 +1,19 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { useUser } from "./context/UserContext";
-import AddStudents from "./features/manager/AddStudents";
-import AddSupervisors from "./features/manager/AddSupervisors";
-import AddTeachers from "./features/manager/AddTeachers";
+import AddStudents from "./features/dean/AddStudents";
+import AddSupervisors from "./features/dean/AddSupervisors";
+import AddTeachers from "./features/dean/AddTeachers";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Settings from "./pages/Settings";
 import Student from "./pages/Student";
 import Students from "./pages/Students";
 import Supervisors from "./pages/Supervisors";
 import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
-import Settings from "./pages/Settings";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,15 +25,18 @@ const queryClient = new QueryClient({
 
 //nothing scary just defining the entire App's routes
 function App() {
-  const { role } = useUser();
+  const {
+    user: { role },
+  } = useUser();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to={`${role}`} />} />
-            {role === "manager" && (
-              <Route path="manager">
+            {role === "dean" && (
+              <Route path="dean">
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="teachers">
@@ -52,8 +55,8 @@ function App() {
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}
-            {role === "supervisors" && (
-              <Route path="supervisors">
+            {role === "supervisor" && (
+              <Route path="supervisor">
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="teachers" element={<Teachers />} />
@@ -62,8 +65,8 @@ function App() {
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}
-            {role === "teachers" && (
-              <Route path="teachers">
+            {role === "teacher" && (
+              <Route path="teacher">
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="students" element={<Students />} />

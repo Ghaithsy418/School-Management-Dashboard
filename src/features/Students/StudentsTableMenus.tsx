@@ -10,7 +10,9 @@ import Menus from "../../ui/Menus";
 import Modal from "../../ui/Modal";
 
 function StudentsTableMenus() {
-  const { role } = useUser();
+  const {
+    user: { role },
+  } = useUser();
   const [isHover, setIsHover] = useState(false);
   return (
     <Modal>
@@ -25,23 +27,27 @@ function StudentsTableMenus() {
                 Profile
               </Menus.Button>
             </Link>
-            <Modal.Open name="delete">
-              <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
-                Delete
-              </Menus.Button>
-            </Modal.Open>
+            {role === "dean" && (
+              <Modal.Open name="delete">
+                <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
+                  Delete
+                </Menus.Button>
+              </Modal.Open>
+            )}
           </Menus.List>
         </Menus.Menu>
-        <Modal.Window
-          name="delete"
-          icon={
-            <MdDeleteOutline
-              className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
-            />
-          }
-        >
-          <DeleteWarning setIsHover={setIsHover} />
-        </Modal.Window>
+        {role === "dean" && (
+          <Modal.Window
+            name="delete"
+            icon={
+              <MdDeleteOutline
+                className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
+              />
+            }
+          >
+            <DeleteWarning setIsHover={setIsHover} />
+          </Modal.Window>
+        )}
       </Menus>
     </Modal>
   );

@@ -4,7 +4,7 @@ import NavList from "../../ui/NavList";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 
 function SupervisorsLinks() {
-  return <NavList buttons={buttons} role="supervisors" />;
+  return <NavList buttons={buttons} role="supervisor" />;
 }
 
 const buttons = [

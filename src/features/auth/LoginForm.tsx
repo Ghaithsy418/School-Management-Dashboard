@@ -5,11 +5,12 @@ import ShowPassword from "./ShowPassword";
 import { useLogin } from "./useLogin";
 import Title from "../../ui/Title";
 import SubmitButton from "../../ui/SubmitButton";
+import SmallSpinner from "@/ui/SmallSpinner";
 
 function LoginForm() {
   const { register, handleSubmit, formState } = useForm();
   const { email: emailError, password: passwordError } = formState.errors;
-  const { loginMutation } = useLogin();
+  const { loginMutation, isLoggingIn } = useLogin();
 
   function onSubmit(data: { email?: string; password?: string }) {
     if (data.email && data.password)
@@ -42,7 +43,9 @@ function LoginForm() {
           register={register}
           error={passwordError?.message?.toString() || ""}
         />
-        <SubmitButton marginTop="mt-3">Login</SubmitButton>
+        <SubmitButton marginTop="mt-3">
+          {isLoggingIn ? <SmallSpinner /> : "Login"}
+        </SubmitButton>
       </form>
     </motion.div>
   );

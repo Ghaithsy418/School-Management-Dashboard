@@ -23,11 +23,13 @@ function MainPageHeader({ children }: { children: ReactNode }) {
 }
 
 function Controls({ options, linkTo, linkTitle }: ControlsTypes) {
-  const { role } = useUser();
+  const {
+    user: { role },
+  } = useUser();
   return (
     <div className="flex items-center justify-center gap-5">
       <Filter options={Array.isArray(options) ? options : []} />
-      {role === "manager" && (
+      {role === "dean" && (
         <Link
           to={linkTo}
           className="rounded-md bg-indigo-700 px-4 py-2 text-indigo-50 transition-all duration-300 hover:bg-indigo-800"

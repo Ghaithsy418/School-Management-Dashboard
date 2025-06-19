@@ -4,8 +4,8 @@ import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 
-function ManagerLinks() {
-  return <NavList buttons={buttons} role="manager" />;
+function DeanLinks() {
+  return <NavList buttons={buttons} role="dean" />;
 }
 
 const buttons = [
@@ -22,4 +22,4 @@ const buttons = [
   },
 ];
 
-export default ManagerLinks;
+export default DeanLinks;

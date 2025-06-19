@@ -3,7 +3,7 @@ import NavList from "../../ui/NavList";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 
 function TeachersLinks() {
-  return <NavList buttons={buttons} role="teachers" />;
+  return <NavList buttons={buttons} role="teacher" />;
 }
 
 const buttons = [

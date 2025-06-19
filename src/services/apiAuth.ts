@@ -5,7 +5,7 @@ export async function login(body: { email: string; password: string }) {
     body: JSON.stringify({ ...body, deviceType: "web" }),
   });
 
-  if (!res.ok) throw new Error("Something went wrong with the Login!");
+  if (!res.ok) throw new Error("Something went wrong with logging in!");
   const data = await res.json();
 
   return data;
@@ -22,7 +22,9 @@ export async function sendResetPassword(body: { email: string }) {
   );
 
   if (!res.ok)
-    throw new Error("Something went wrong with reseting the password!");
+    throw new Error(
+      "Something went wrong with sending reset password request ",
+    );
   const data = await res.json();
 
   return data;
@@ -40,10 +42,10 @@ export async function confirmVerificationCode(body: {
       body: JSON.stringify({ otp: body.verificationCode, email: body.email }),
     },
   );
-  console.log(res);
+
   if (!res.ok)
     throw new Error(
-      "Something went wrong with confirming the Verification Code!",
+      "Something went wrong with confirming the verification code!",
     );
   const data = await res.json();
 
@@ -57,7 +59,7 @@ export async function newPassword(body: { password: string; email: string }) {
   });
 
   if (!res.ok)
-    throw new Error("Something went wrong with Setting new Password!");
+    throw new Error("Something went wrong with setting the new password!");
   const data = await res.json();
 
   return data;
