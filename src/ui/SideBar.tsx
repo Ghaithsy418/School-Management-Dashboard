@@ -1,4 +1,4 @@
-import { TbLogout2 } from "react-icons/tb";
+import Logout from "@/features/auth/Logout";
 import { useUser } from "../context/UserContext";
 import DeanLinks from "../features/dean/DeanLinks";
 import SupervisorsLinks from "../features/supervisors/SupervisorsLinks";
@@ -16,9 +16,7 @@ function SideBar() {
         {role === "supervisor" && <SupervisorsLinks />}
         {role === "teacher" && <TeachersLinks />}
       </div>
-      <button className="flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 text-rose-500 transition-all duration-300 hover:bg-rose-200/50">
-        <TbLogout2 className="h-7 w-7" /> Logout
-      </button>
+      <Logout />
     </nav>
   );
 }

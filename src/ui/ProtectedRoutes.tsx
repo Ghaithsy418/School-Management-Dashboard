@@ -1,14 +1,20 @@
 import { useUser } from "@/context/UserContext";
-import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import { ReactNode, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProtectedRoutes({ children }: { children: ReactNode }) {
   const {
     user: { role },
     token,
   } = useUser();
+  const navigate = useNavigate();
 
-  if (!role || !token) return <Navigate replace to="/login" />;
+  useEffect(
+    function () {
+      if (!role || !token) navigate("/login");
+    },
+    [role, token, navigate],
+  );
 
   return <>{children}</>;
 }

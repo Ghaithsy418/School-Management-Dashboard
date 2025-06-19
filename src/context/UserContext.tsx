@@ -11,7 +11,7 @@ import {
 
 interface UserDataTypes {
   token: string;
-  user: UserTypes;
+  user?: UserTypes;
 }
 
 interface contextTypes {
@@ -45,6 +45,12 @@ const reducer = function (
         ...state,
         token: action.payload.token,
         user: action.payload.user,
+      };
+    case "clearAll":
+      return {
+        ...state,
+        token: "",
+        user: initialState.user,
       };
     default:
       throw new Error("something went wrong!");

@@ -3,6 +3,8 @@ import LoginIcons from "../ui/LoginIcons";
 import loginPhoto from "/images/login-photo.jpg";
 import LoginContainer from "../features/auth/LoginContainer";
 import LoginProvider from "../context/LoginUIs";
+import { motion } from "framer-motion";
+import { regularOpacityVariants } from "@/utils/variants";
 
 function Login() {
   useEffect(function () {
@@ -10,7 +12,13 @@ function Login() {
   }, []);
 
   return (
-    <div className="flex h-[100vh] items-center justify-center">
+    <motion.div
+      variants={regularOpacityVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="flex h-[100vh] items-center justify-center"
+    >
       <LoginProvider>
         <LoginContainer />
       </LoginProvider>
@@ -22,7 +30,7 @@ function Login() {
         />
         <LoginIcons />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

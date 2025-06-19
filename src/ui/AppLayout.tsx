@@ -1,19 +1,25 @@
+import { regularOpacityVariants } from "@/utils/variants";
+import { AnimatePresence, motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
-import SideBar from "./SideBar";
 import NavBar from "./NavBar";
-import ProtectedRoutes from "./ProtectedRoutes";
+import SideBar from "./SideBar";
 
 function AppLayout() {
   return (
-    <ProtectedRoutes>
-      <div className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[4.5rem_1fr]">
-        <SideBar />
-        <NavBar />
-        <main className="row-start-2 row-end-3 overflow-auto px-4 py-8">
+    <motion.div
+      variants={regularOpacityVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[4.5rem_1fr]"
+    >
+      <SideBar />
+      <NavBar />
+      <main className="row-start-2 row-end-3 overflow-auto px-4 py-8">
+        <AnimatePresence mode="wait">
           <Outlet />
-        </main>
-      </div>
-    </ProtectedRoutes>
+        </AnimatePresence>
+      </main>
+    </motion.div>
   );
 }
 

@@ -55,7 +55,7 @@ function Window({ children, name, icon }: WindowOpenTypes) {
         initial="hidden"
         animate="visible"
         ref={ref}
-        className="fixed mb-20 flex min-w-[21rem] flex-1 flex-col gap-5 rounded-lg border-2 border-indigo-300/20 bg-indigo-50 p-5 shadow-lg shadow-indigo-100/10 sm:min-w-[30rem]"
+        className="fixed mb-20 flex min-w-[36rem] flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-6 py-5 shadow-lg shadow-indigo-100/10"
       >
         <div className="flex items-center justify-between">
           <span>{icon}</span>

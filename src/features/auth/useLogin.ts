@@ -4,9 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { login } from "../../services/apiAuth";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
   const { dispatch } = useUser();
+  const navigate = useNavigate();
   const { mutate: loginMutation, isPending: isLoggingIn } = useMutation({
     mutationFn: ({ email, password }: mutateFnTypes) =>
       login({ email, password }),
@@ -24,6 +26,7 @@ export function useLogin() {
         },
       });
       toast.success("You have loged in Successfully!");
+      navigate("/", { replace: true });
     },
     onError: (err: Error) => {
       toast.error(err.message);

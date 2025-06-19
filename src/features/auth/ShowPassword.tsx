@@ -21,7 +21,7 @@ function ShowPassword({
 }: ShowPasswordTypes) {
   const [isShown, setIsShown] = useState(false);
   return (
-    <div className="relative">
+    <div className="relative w-96">
       <InputField
         name="password"
         type={isShown ? "text" : "password"}
