@@ -34,7 +34,10 @@ function ClearAllUi({ onCloseModal, clearFunction, setIsHover }: ClearUi) {
         <Button
           primary={false}
           setIsHover={setIsHover}
-          onClick={() => clearFunction()}
+          onClick={() => {
+            clearFunction();
+            onCloseModal?.();
+          }}
         >
           Yes, sure!
         </Button>

@@ -28,6 +28,7 @@ function OtpInput() {
 
   return (
     <motion.form
+      method="post"
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center justify-center gap-11"
       variants={regularOpacityVariants}

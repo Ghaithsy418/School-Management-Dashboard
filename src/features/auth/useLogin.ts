@@ -13,9 +13,9 @@ export function useLogin() {
     mutationFn: ({ email, password }: mutateFnTypes) =>
       login({ email, password }),
     onSuccess: ({ token, data }: LoginResponse) => {
-      Cookies.set("token", token, { ...cookieConfig, sameSite: "strict" });
+      Cookies.set("token", token, { secure: true, sameSite: "strict" });
       Cookies.set("userData", JSON.stringify(data.user), {
-        ...cookieConfig,
+        secure: true,
         sameSite: "strict",
       });
       dispatch({
@@ -35,11 +35,6 @@ export function useLogin() {
 
   return { loginMutation, isLoggingIn };
 }
-
-const cookieConfig = {
-  secure: true,
-  expires: 30,
-};
 
 interface LoginResponse {
   token: string;

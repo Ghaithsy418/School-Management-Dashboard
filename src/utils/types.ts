@@ -17,3 +17,35 @@ export interface UserTypes {
   phoneNumber: string;
   role: string;
 }
+
+export interface TeacherSupervisorTypes {
+  name: string;
+  lastName: string;
+  middleName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  certification: FileList;
+  photo: FileList;
+  subject: string;
+  salary?: number;
+}
+
+export interface StudentTypes {
+  email: string;
+  password: string;
+  name: string;
+  middleName: string;
+  lastName: string;
+  phoneNumber: string;
+  previousCertification: FileList;
+  photo: FileList;
+  class: string;
+  parentName: string;
+  parentMiddleName: string;
+  parentLastName: string;
+  parentPhoneNumber: string;
+  parentEmail: string;
+  parentPassword: string;
+  parentJob: string;
+}

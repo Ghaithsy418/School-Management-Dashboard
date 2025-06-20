@@ -25,6 +25,7 @@ function ResetPasswordForm() {
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
       variants={regularOpacityVariants}
+      method="post"
       initial="hidden"
       animate="visible"
       exit="exit"

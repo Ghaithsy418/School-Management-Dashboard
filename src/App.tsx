@@ -2,9 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { useUser } from "./context/UserContext";
-import AddStudents from "./features/dean/AddStudents";
-import AddSupervisors from "./features/dean/AddSupervisors";
-import AddTeachers from "./features/dean/AddTeachers";
+import AddStudents from "./features/dean/addStudents/AddStudents";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Settings from "./pages/Settings";
@@ -15,6 +13,8 @@ import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import AddTeachers from "./features/dean/AddTeachers";
+import AddSupervisors from "./features/dean/AddSupervisors";
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,7 +1,21 @@
+import { useUser } from "@/context/UserContext";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NotFound() {
   const navigate = useNavigate();
+  const {
+    user: { role },
+    token,
+  } = useUser();
+
+  useEffect(
+    function () {
+      if (!role || !token) navigate("/login", { replace: true });
+    },
+    [role, token, navigate],
+  );
+
   return (
     <div className="flex h-[100vh] items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-5 rounded-md bg-indigo-100 p-9 shadow-md shadow-gray-800/20">

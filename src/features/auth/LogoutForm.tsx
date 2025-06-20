@@ -21,6 +21,7 @@ function LogoutForm({ setIsHover, onCloseModal }: LogoutTypes) {
 
   return (
     <form
+      method="delete"
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col justify-center gap-8"
     >
@@ -37,8 +38,8 @@ function LogoutForm({ setIsHover, onCloseModal }: LogoutTypes) {
           type="S"
           setIsHover={setIsHover}
           color="text-red-50"
-          backgroundColor="bg-red-600"
-          backgroundHover="bg-red-700"
+          backgroundColor="bg-red-700"
+          backgroundHover="hover:bg-red-800"
         >
           {isLoggingOut ? <SmallSpinner /> : "Log out"}
         </Button>

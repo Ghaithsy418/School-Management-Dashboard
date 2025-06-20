@@ -1,10 +1,12 @@
-import MainContainer from "../../ui/MainContainer";
-import AddingTemplate from "./AddingTemplate";
+import MainContainer from "@/ui/MainContainer";
+import AddByCSV from "./AddByCSV";
+import AddTeachersSupervisorsForm from "./AddTeachersSupervisorsForm";
 
 function AddSupervisors() {
   return (
     <MainContainer title="Add Supervisors">
-      <AddingTemplate />
+      <AddByCSV />
+      <AddTeachersSupervisorsForm role="supervisor" />
     </MainContainer>
   );
 }
