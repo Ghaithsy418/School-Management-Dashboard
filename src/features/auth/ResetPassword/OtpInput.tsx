@@ -13,11 +13,13 @@ import { useConfirmValidationCode } from "./useConfirmValidationCode";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
+import { useTranslation } from "react-i18next";
 
 function OtpInput() {
   const { control, handleSubmit, formState } = useForm();
   const { confirmMutation, isConfirming } = useConfirmValidationCode();
   const { email } = useLoginUi();
+  const { t } = useTranslation("auth");
   const className =
     "border-gray-400 ring-gray-700 h-13 w-13 text-md text-inherit";
   const { otp: otpError } = formState.errors;
@@ -38,10 +40,10 @@ function OtpInput() {
     >
       <Title
         size="text-5xl"
-        secondaryTitle="We have sent a verification code to your email:"
+        secondaryTitle={t("confirmCode.subTitle")}
         importantWord={email}
       >
-        Email Confirmation
+        {t("confirmCode.title")}
       </Title>
       <div className="relative">
         <Controller
@@ -50,20 +52,22 @@ function OtpInput() {
           defaultValue=""
           rules={rulesObject}
           render={({ field }) => (
-            <InputOTP
-              maxLength={5}
-              {...field}
-              autoFocus
-              pattern={REGEXP_ONLY_DIGITS}
-            >
-              <InputOTPGroup>
-                <InputOTPSlot index={0} className={className} />
-                <InputOTPSlot index={1} className={className} />
-                <InputOTPSlot index={2} className={className} />
-                <InputOTPSlot index={3} className={className} />
-                <InputOTPSlot index={4} className={className} />
-              </InputOTPGroup>
-            </InputOTP>
+            <div dir="ltr">
+              <InputOTP
+                maxLength={5}
+                {...field}
+                autoFocus
+                pattern={REGEXP_ONLY_DIGITS}
+              >
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} className={className} />
+                  <InputOTPSlot index={1} className={className} />
+                  <InputOTPSlot index={2} className={className} />
+                  <InputOTPSlot index={3} className={className} />
+                  <InputOTPSlot index={4} className={className} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
           )}
         />
         {otpError?.message && (
@@ -74,7 +78,7 @@ function OtpInput() {
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
         <SubmitButton size="w-90">
-          {isConfirming ? <SmallSpinner /> : "Check Verification Code"}
+          {isConfirming ? <SmallSpinner /> : t("confirmCode.button")}
         </SubmitButton>
         <ButtonResendCode />
       </div>

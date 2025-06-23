@@ -1,4 +1,5 @@
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface inputTypes<T extends FieldValues> {
   name: Path<T>;
@@ -27,6 +28,7 @@ function InputField<T extends FieldValues>({
   inputValidation = null,
   className = "",
 }: inputTypes<T>) {
+  const { t } = useTranslation("auth");
   const validation =
     name === "email"
       ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -35,26 +37,27 @@ function InputField<T extends FieldValues>({
   function getValidationMessage() {
     if (name === "email")
       return {
-        required: "Email is Required",
+        required: t("login.emailError"),
         pattern: {
           value: validation,
-          message: "Please enter a valid email address",
+          message: t("login.emailValidation"),
         },
       };
 
     if (name === "password")
       return {
-        required: "Password is Required",
+        required: t("login.passwordError"),
         validate: {
           minLength: (value: string) =>
-            value.length >= 8 || "Password must be at least 8 characters",
+            value.length >= 8 || t("login.passwordAtLeast"),
           hasPattern: (value: string) =>
-            validation.test(value) ||
-            "Password must contain both letters and numbers",
+            validation.test(value) || t("login.passwordValidation"),
         },
       };
 
-    return inputValidation || { required: `${label} is Required` };
+    return (
+      inputValidation || { required: `${label} ${t("login.generalError")}` }
+    );
   }
 
   return (
@@ -70,12 +73,12 @@ function InputField<T extends FieldValues>({
       />
       <label
         htmlFor={name}
-        className="absolute top-2.5 left-3 transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-gray-950/80 peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-950/80"
+        className="absolute top-2.5 transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-gray-950/80 peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-950/80 ltr:left-3 rtl:right-3"
       >
         {label}
       </label>
       {error && (
-        <p className="absolute right-2 bottom-[-25px] text-xs text-red-600">
+        <p className="absolute bottom-[-25px] text-xs text-red-600 ltr:right-2 rtl:left-2">
           * {error}
         </p>
       )}

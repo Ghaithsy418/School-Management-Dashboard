@@ -4,6 +4,7 @@ import NavItem from "./NavItem";
 interface buttonsTypes {
   title: string;
   icon: ReactNode;
+  value: string;
 }
 
 //Responsible: for rendering all the sidebar links

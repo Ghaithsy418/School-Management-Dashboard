@@ -9,11 +9,13 @@ import { useLoginUi } from "@/context/LoginUIs";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
+import { useTranslation } from "react-i18next";
 
 function NewPasswordForm() {
   const { register, handleSubmit, formState } = useForm();
   const { email } = useLoginUi();
   const { newPasswordMutation, isChangingPassword } = useNewPassword();
+  const { t } = useTranslation("auth");
   const { newPassword: passwordError, confirmPassword: confirmPasswordError } =
     formState.errors;
 
@@ -39,29 +41,26 @@ function NewPasswordForm() {
       animate="visible"
       exit={{ opacity: 0, x: "-60%", transition: { duration: 1 } }}
     >
-      <Title
-        size="text-5xl"
-        secondaryTitle="choose your new password (make sure to be strong)"
-      >
-        Set New Password
+      <Title size="text-5xl" secondaryTitle={t("newPassword.subTitle")}>
+        {t("newPassword.title")}
       </Title>
 
       <ShowPassword
         error={passwordError?.message?.toString() || ""}
         register={register}
-        label="New Password"
+        label={t("newPassword.newPassword")}
         forgotPassword={false}
         id="newPassword"
       />
       <ShowPassword
         error={confirmPasswordError?.message?.toString() || ""}
         register={register}
-        label="Confirm Password"
+        label={t("newPassword.confirmPassword")}
         forgotPassword={false}
         id="confirmPassword"
       />
       <SubmitButton marginTop="-mt-2">
-        {isChangingPassword ? <SmallSpinner /> : "Submit Password"}
+        {isChangingPassword ? <SmallSpinner /> : t("newPassword.button")}
       </SubmitButton>
     </motion.form>
   );

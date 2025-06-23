@@ -1,0 +1,14 @@
+{
+  "sidebar": {
+    "title": "لوحة تحكم المدرسة",
+    "dashboard": "لوحة التحكم",
+    "students": "الطلاب",
+    "teachers": "الأساتذة",
+    "supervisors": "الموجهين",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج"
+  },
+  "settings": {
+    "title": "الإعدادات"
+  }
+}

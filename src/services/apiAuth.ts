@@ -1,98 +1,151 @@
 import { StudentTypes, TeacherSupervisorTypes } from "@/utils/types";
 
 export async function login(body: { email: string; password: string }) {
-  const res = await fetch(import.meta.env.VITE_APP_URL + "/api/login", {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ ...body, deviceType: "web" }),
-  });
+  try {
+    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/login", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ ...body, deviceType: "web" }),
+    });
 
-  if (!res.ok) throw new Error("Something went wrong with logging in!");
-  const data = await res.json();
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(errorData?.message || "Something went wrong with Login!");
+    }
 
-  return data;
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-export async function logout(body: { password: string }, token: string) {
-  const res = await fetch(import.meta.env.VITE_APP_URL + "/api/logout", {
-    method: "DELETE",
-    headers: { ...headers, Authorization: `Bearer ${token}` },
-    body: JSON.stringify(body),
-  });
+export async function logout(token: string) {
+  try {
+    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/logout", {
+      method: "DELETE",
+      headers: { ...headers, Authorization: `Bearer ${token}` },
+    });
 
-  if (!res.ok) throw new Error("Something went wrong with logout!");
-  const data = await res.json();
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message || "Something went wrong with Logout!",
+      );
+    }
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function sendResetPassword(body: { email: string }) {
-  const res = await fetch(
-    import.meta.env.VITE_APP_URL + "/api/sendForgetPasswordOtp",
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-    },
-  );
-
-  if (!res.ok)
-    throw new Error(
-      "Something went wrong with sending reset password request ",
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/sendForgetPasswordOtp",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify(body),
+      },
     );
-  const data = await res.json();
 
-  return data;
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message ||
+          "Something went wrong with Sending a reset password request!",
+      );
+    }
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function confirmVerificationCode(body: {
   verificationCode: number;
   email: string;
 }) {
-  const res = await fetch(
-    import.meta.env.VITE_APP_URL + "/api/confirmForgetPasswordOtp",
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ otp: body.verificationCode, email: body.email }),
-    },
-  );
-
-  if (!res.ok)
-    throw new Error(
-      "Something went wrong with confirming the verification code!",
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/confirmForgetPasswordOtp",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ otp: body.verificationCode, email: body.email }),
+      },
     );
-  const data = await res.json();
 
-  return data;
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message ||
+          "Something went wrong with confirming the verification code!",
+      );
+    }
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function newPassword(body: { password: string; email: string }) {
-  const res = await fetch(import.meta.env.VITE_APP_URL + "/api/resetPassword", {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ email: body.email, password: body.password }),
-  });
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/resetPassword",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ email: body.email, password: body.password }),
+      },
+    );
 
-  if (!res.ok)
-    throw new Error("Something went wrong with setting the new password!");
-  const data = await res.json();
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message ||
+          "Something went wrong with Setting a new password!",
+      );
+    }
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
   const formData = new FormData();
+  const bodyData = [
+    "name",
+    "middleName",
+    "lastName",
+    "email",
+    "password",
+    "phoneNumber",
+    "subject",
+    "salary",
+  ];
 
-  formData.append("name", body.name);
-  formData.append("middleName", body.middleName || "");
-  formData.append("lastName", body.lastName);
-  formData.append("email", body.email);
-  formData.append("password", body.password);
-  formData.append("phoneNumber", body.phoneNumber);
+  bodyData.forEach((bd) => {
+    if (bd as keyof TeacherSupervisorTypes)
+      formData.append(bd, body[bd as keyof TeacherSupervisorTypes] as string);
+  });
   formData.append("role", "teacher");
-  formData.append("subject", body.subject);
-  formData.append("salary", String(body.salary));
 
   // Files
   if (body.certification?.[0]) {
@@ -102,18 +155,31 @@ export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
     formData.append("photo", body.photo[0]);
   }
 
-  const res = await fetch(import.meta.env.VITE_APP_URL + "/api/createTeacher", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  });
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/createTeacher",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      },
+    );
 
-  if (!res.ok) throw new Error("Something went wrong with adding the teacher!");
-  const data = await res.json();
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message || "Something went wrong with adding a Teacher",
+      );
+    }
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function addSupervisor(
@@ -121,15 +187,22 @@ export async function addSupervisor(
   token: string,
 ) {
   const formData = new FormData();
+  const bodyData = [
+    "name",
+    "middleName",
+    "lastName",
+    "email",
+    "password",
+    "phoneNumber",
+    "salary",
+  ];
 
-  formData.append("name", body.name);
-  formData.append("middleName", body.middleName || "");
-  formData.append("lastName", body.lastName);
-  formData.append("email", body.email);
-  formData.append("password", body.password);
-  formData.append("phoneNumber", body.phoneNumber);
+  bodyData.forEach((bd) => {
+    if (body[bd as keyof TeacherSupervisorTypes]) {
+      formData.append(bd, body[bd as keyof TeacherSupervisorTypes] as string);
+    }
+  });
   formData.append("role", "supervisor");
-  formData.append("salary", String(body.salary));
 
   // Files
   if (body.certification?.[0]) {
@@ -139,42 +212,57 @@ export async function addSupervisor(
     formData.append("photo", body.photo[0]);
   }
 
-  const res = await fetch(
-    import.meta.env.VITE_APP_URL + "/api/createSupervisor",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/createSupervisor",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
       },
-      body: formData,
-    },
-  );
+    );
 
-  if (!res.ok)
-    throw new Error("Something went wrong with adding the supervisor!");
-  const data = await res.json();
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message || "Something went wrong with Adding a Supervisor!",
+      );
+    }
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function addStudent(body: StudentTypes, token: string) {
   const formData = new FormData();
+  const bodyData = [
+    "name",
+    "middleName",
+    "lastName",
+    "email",
+    "password",
+    "phoneNumber",
+    "class",
+    "parentName",
+    "parentMiddleName",
+    "parentLastName",
+    "parentPhoneNumber",
+    "parentEmail",
+    "parentPassword",
+    "parentJob",
+  ];
 
-  formData.append("name", body.name);
-  formData.append("middleName", body.middleName || "");
-  formData.append("lastName", body.lastName);
-  formData.append("email", body.email);
-  formData.append("password", body.password);
-  formData.append("phoneNumber", body.phoneNumber);
+  bodyData.forEach((bd) => {
+    if (bd as keyof StudentTypes)
+      formData.append(bd, body[bd as keyof StudentTypes] as string);
+  });
   formData.append("role", "student");
-  formData.append("class", body.class);
-  formData.append("parentName", body.parentName);
-  formData.append("parentMiddleName", body.parentMiddleName);
-  formData.append("parentLastName", body.parentLastName);
-  formData.append("parentPhoneNumber", body.parentPhoneNumber);
-  formData.append("parentEmail", body.parentEmail);
-  formData.append("parentPassword", body.parentPassword);
-  formData.append("parentJob", body.parentJob);
 
   // Files
   if (body.previousCertification?.[0]) {
@@ -184,16 +272,26 @@ export async function addStudent(body: StudentTypes, token: string) {
     formData.append("photo", body.photo[0]);
   }
 
-  const res = await fetch(import.meta.env.VITE_APP_URL + "/api/createUser", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${token}` },
-    body: formData,
-  });
+  try {
+    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/createUser", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
 
-  // if (!res.ok) throw new Error("Something went wrong with adding the student!");
-  const data = await res.json();
-  console.log(data);
-  return data;
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message || "Something went wrong with adding a Student",
+      );
+    }
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 const headers = {

@@ -6,11 +6,13 @@ import { useLogin } from "./useLogin";
 import Title from "../../ui/Title";
 import SubmitButton from "../../ui/SubmitButton";
 import SmallSpinner from "@/ui/SmallSpinner";
+import { useTranslation } from "react-i18next";
 
 function LoginForm() {
   const { register, handleSubmit, formState } = useForm();
   const { email: emailError, password: passwordError } = formState.errors;
   const { loginMutation, isLoggingIn } = useLogin();
+  const { t } = useTranslation("auth");
 
   function onSubmit(data: { email?: string; password?: string }) {
     if (data.email && data.password)
@@ -25,9 +27,7 @@ function LoginForm() {
       exit="exit"
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
-      <Title secondaryTitle="Please login to start using the App">
-        Welcome!
-      </Title>
+      <Title secondaryTitle={t("login.subTitle")}>{t("login.title")}</Title>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center justify-center gap-8"
@@ -35,7 +35,7 @@ function LoginForm() {
         <InputField
           name="email"
           type="text"
-          label="Email"
+          label={t("login.email")}
           error={emailError?.message?.toString() || ""}
           register={register}
         />
@@ -44,7 +44,7 @@ function LoginForm() {
           error={passwordError?.message?.toString() || ""}
         />
         <SubmitButton marginTop="mt-3">
-          {isLoggingIn ? <SmallSpinner /> : "Login"}
+          {isLoggingIn ? <SmallSpinner /> : t("login.button")}
         </SubmitButton>
       </form>
     </motion.div>

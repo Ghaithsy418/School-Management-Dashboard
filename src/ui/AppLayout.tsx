@@ -3,8 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
+import { useDirection } from "@/hooks/useDirection";
 
 function AppLayout() {
+  useDirection();
   return (
     <motion.div
       variants={regularOpacityVariants}

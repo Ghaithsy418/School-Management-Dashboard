@@ -1,9 +1,9 @@
 import { AnimatePresence } from "framer-motion";
-import { useLoginUi } from "../../context/LoginUIs";
 import LoginForm from "./LoginForm";
 import NewPasswordForm from "./ResetPassword/NewPasswordForm";
 import OtpInput from "./ResetPassword/OtpInput";
 import ResetPasswordForm from "./ResetPassword/ResetPasswordForm";
+import { useLoginUi } from "@/context/LoginUIs";
 
 function LoginContainer() {
   const { ui } = useLoginUi();

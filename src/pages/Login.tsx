@@ -5,8 +5,10 @@ import LoginContainer from "../features/auth/LoginContainer";
 import LoginProvider from "../context/LoginUIs";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
+import { useDirection } from "@/hooks/useDirection";
 
 function Login() {
+  useDirection();
   useEffect(function () {
     document.title = "Login";
   }, []);

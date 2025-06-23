@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 interface buttonsTypes {
   title: string;
+  value: string;
   icon: ReactNode;
 }
 
@@ -16,7 +17,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
       onMouseLeave={() => setIsHover(false)}
     >
       <NavLink
-        to={`/${role}/${button.title.toLowerCase()}`}
+        to={`/${role}/${button.value.toLowerCase()}`}
         className={({ isActive }) =>
           `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 ${isActive ? "bg-indigo-200/50" : ""}`
         }

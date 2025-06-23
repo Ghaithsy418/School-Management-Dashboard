@@ -1,13 +1,24 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, SetStateAction, Dispatch } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface optionsTypes {
+interface OptionsTypes {
   title: string;
   value: string;
 }
 
-function Filter({ options }: { options: optionsTypes[] }) {
-  const [selectedOption, setSelectedOption] = useState("");
+interface FilterTypes {
+  options: OptionsTypes[];
+  selectedOption: string;
+  setSelectedOption: Dispatch<SetStateAction<string>>;
+  width?: string;
+}
+
+function Filter({
+  options,
+  selectedOption,
+  setSelectedOption,
+  width = "w-45",
+}: FilterTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +40,7 @@ function Filter({ options }: { options: optionsTypes[] }) {
     options.find((opt) => opt.value === selectedOption)?.title || "Select";
 
   return (
-    <div className="relative w-45" ref={dropdownRef}>
+    <div className={`relative ${width}`} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full cursor-pointer rounded-md px-3 py-2 text-left outline-1 outline-gray-300 hover:outline-violet-400"

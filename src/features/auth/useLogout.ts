@@ -9,12 +9,11 @@ export const useLogout = function () {
   const { token, dispatch } = useUser();
   const navigate = useNavigate();
   const { mutate: logoutMutation, isPending: isLoggingOut } = useMutation({
-    mutationFn: ({ password }: { password: string }) =>
-      logout({ password }, token),
+    mutationFn: () => logout(token),
     onSuccess: () => {
       navigate("/login", { replace: true });
       setTimeout(function () {
-        toast.success("You have logged out Successfully!");
+        toast.success("You have loged out Successfully!");
         Cookies.remove("token");
         Cookies.remove("userData");
         dispatch({ type: "clearAll", payload: { token: "" } });

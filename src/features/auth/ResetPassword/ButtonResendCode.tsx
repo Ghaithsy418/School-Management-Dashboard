@@ -1,11 +1,13 @@
 import { useLoginUi } from "@/context/LoginUIs";
 import { useSendResetPassword } from "./useSendResetPassword";
 import { useTimer } from "@/hooks/useTimer";
+import { useTranslation } from "react-i18next";
 
 function ButtonResendCode() {
   const { resetMutation, isResending } = useSendResetPassword();
   const { email } = useLoginUi();
   const { setStart, result } = useTimer(150);
+  const { t } = useTranslation("auth");
 
   if (result !== "")
     return (
@@ -23,7 +25,9 @@ function ButtonResendCode() {
       }}
       className="flex cursor-pointer items-center justify-center text-sm text-gray-700 underline transition-all duration-300 hover:text-gray-800 hover:no-underline"
     >
-      {isResending ? "Sending the Code..." : "Didn't receive the code?"}
+      {isResending
+        ? t("confirmCode.resendCodeLoading")
+        : t("confirmCode.resendCode")}
     </button>
   );
 }
