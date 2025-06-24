@@ -6,7 +6,8 @@
     "teachers": "Teachers",
     "supervisors": "Supervisors",
     "settings": "Settings",
-    "logout": "Log out"
+    "logout": "Log out",
+    "classes": "Classes"
   },
   "settings": {
     "title": "Settings"

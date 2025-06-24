@@ -6,7 +6,8 @@
     "teachers": "الأساتذة",
     "supervisors": "الموجهين",
     "settings": "الإعدادات",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "classes": "الصفوف المدرسية"
   },
   "settings": {
     "title": "الإعدادات"

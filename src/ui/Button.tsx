@@ -18,7 +18,7 @@ function PrimaryButton({
         onClick={() => onClick?.()}
         onMouseEnter={() => setIsHover?.(true)}
         onMouseLeave={() => setIsHover?.(false)}
-        className={`flex cursor-pointer items-center justify-center transition-all duration-300 ${color ?? "text-indigo-50"} ${backgroundColor ?? "bg-indigo-600"} ${backgroundHover ?? "hover:bg-indigo-700/90"} rounded-md ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"}`}
+        className={`flex cursor-pointer items-center justify-center shadow-md shadow-gray-600/40 transition-all duration-300 hover:shadow-lg active:shadow-sm ${color ?? "text-indigo-50"} ${backgroundColor ?? "bg-indigo-600"} ${backgroundHover ?? "hover:bg-indigo-700/90"} rounded-md ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"}`}
       >
         {children}
       </button>
@@ -30,7 +30,7 @@ function PrimaryButton({
         onClick={() => onClick?.()}
         onMouseEnter={() => setIsHover?.(true)}
         onMouseLeave={() => setIsHover?.(false)}
-        className={`flex cursor-pointer items-center justify-center rounded-md bg-transparent ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"} outline-1 outline-gray-400 transition-all duration-300 hover:bg-indigo-100`}
+        className={`flex cursor-pointer items-center justify-center rounded-md bg-transparent shadow-md shadow-gray-600/40 hover:shadow-lg active:shadow-sm ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"} outline-1 outline-gray-400 transition-all duration-300 hover:bg-indigo-100`}
       >
         {children}
       </button>

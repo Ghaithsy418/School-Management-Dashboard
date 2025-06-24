@@ -113,6 +113,14 @@ function AddTeachersSupervisorsForm({ role }: { role: string }) {
           name="salary"
           label="Salary"
           type="number"
+          inputValidation={{
+            required: "Salary is required",
+            pattern: {
+              value: /^\d{1,5}(\.\d{1,2})?$/,
+              message:
+                "Salary should be positive and equal or less than 99999.99$",
+            },
+          }}
           register={register}
           error={errors.salary?.message || ""}
         />

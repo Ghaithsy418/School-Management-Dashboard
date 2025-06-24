@@ -1,9 +1,10 @@
-import { GiTeacher } from "react-icons/gi";
-import { PiHouseLineBold, PiStudent } from "react-icons/pi";
-import NavList from "../../ui/NavList";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { PiHouseLineBold, PiStudent } from "react-icons/pi";
+import NavList from "../../ui/NavList";
+import classIcon from "/images/classIcon.svg";
+import teacherIcon from "/images/teacherIcon.svg";
 
 function SupervisorsLinks() {
   const { t } = useTranslation();
@@ -22,7 +23,12 @@ function SupervisorsLinks() {
       {
         title: t("sidebar.teachers"),
         value: "teachers",
-        icon: <GiTeacher className="h-7 w-7" />,
+        icon: <img src={teacherIcon} className="h-7 w-7" alt="teacher icon" />,
+      },
+      {
+        title: t("sidebar.classes"),
+        value: "classes",
+        icon: <img src={classIcon} className="h-9 w-7" alt="class icon" />,
       },
       {
         title: t("sidebar.settings"),

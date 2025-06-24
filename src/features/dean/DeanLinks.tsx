@@ -1,10 +1,10 @@
-import { GiTeacher } from "react-icons/gi";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import teacherIcon from "/images/teacherIcon.svg";
 
 function DeanLinks() {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ function DeanLinks() {
       {
         title: t("sidebar.teachers"),
         value: "teachers",
-        icon: <GiTeacher className="h-7 w-7" />,
+        icon: <img src={teacherIcon} className="h-7 w-7" alt="teacher icon" />,
       },
       {
         title: t("sidebar.supervisors"),

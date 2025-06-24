@@ -15,6 +15,7 @@ import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import AddTeachers from "./features/dean/AddTeachers";
 import AddSupervisors from "./features/dean/AddSupervisors";
+import ClassManagment from "./pages/ClassManagment";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -70,6 +71,7 @@ function App() {
                 <Route path="students" element={<Students />} />
                 <Route path="student/:id" element={<Student />} />
                 <Route path="settings" element={<Settings />} />
+                <Route path="classes" element={<ClassManagment />} />
               </Route>
             )}
             {role === "teacher" && (

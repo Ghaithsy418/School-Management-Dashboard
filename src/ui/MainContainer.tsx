@@ -32,7 +32,7 @@ function Controls({ options, linkTo, linkTitle }: ControlsTypes) {
       {role === "dean" && (
         <Link
           to={linkTo}
-          className="rounded-md bg-indigo-700 px-4 py-2 text-indigo-50 transition-all duration-300 hover:bg-indigo-800"
+          className="rounded-md bg-violet-700 px-4 py-2 text-violet-50 transition-all duration-300 hover:bg-violet-800"
         >
           {linkTitle}
         </Link>

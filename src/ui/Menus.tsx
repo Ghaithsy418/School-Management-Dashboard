@@ -83,7 +83,7 @@ function List({ children, id }: toggleAndListTypes) {
           initial={{ opacity: 0, transition: { duration: 0.6 }, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, transition: { duartion: 0.6 }, y: -5 }}
-          className={`absolute flex flex-col divide-y-1 divide-gray-300 rounded-md bg-indigo-100/80 shadow-md`}
+          className={`absolute flex flex-col divide-y-1 divide-gray-300 rounded-md bg-indigo-100 shadow-md`}
           style={{ top: `${position.y}px`, right: `${position.x - 5}px` }}
         >
           {children}
@@ -98,7 +98,7 @@ function Button({ onClick, icon, children }: buttonTypes) {
   return (
     <button
       onClick={onClick}
-      className="flex h-10 cursor-pointer items-center justify-between gap-2 bg-inherit px-5 py-4 text-sm transition-all duration-300 first:rounded-t-md last:rounded-b-md hover:bg-indigo-300/50"
+      className="flex h-10 cursor-pointer items-center justify-between gap-2 bg-inherit px-5 py-4 text-sm transition-all duration-300 first:rounded-t-md first:rounded-b-none last:rounded-b-md hover:bg-indigo-300/50"
     >
       {icon}
       <span>{children}</span>
