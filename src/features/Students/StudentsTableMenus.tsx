@@ -8,6 +8,11 @@ import { useUser } from "../../context/UserContext";
 import DeleteWarning from "../../ui/DeleteWarning";
 import Menus from "../../ui/Menus";
 import Modal from "../../ui/Modal";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 function StudentsTableMenus() {
   const {
@@ -19,7 +24,14 @@ function StudentsTableMenus() {
       <Menus>
         <Menus.Menu>
           <Menus.Toggle id="studentMenu">
-            <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Options</p>
+              </TooltipContent>
+            </Tooltip>
           </Menus.Toggle>
           <Menus.List id="studentMenu">
             <Link to={`/${role}/student/100`}>

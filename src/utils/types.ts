@@ -49,3 +49,10 @@ export interface StudentTypes {
   parentPassword: string;
   parentJob: string;
 }
+
+export interface ClassTypes {
+  id: number;
+  className: string;
+  studentsNum: number;
+  currentStudentNumber: number;
+}

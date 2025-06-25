@@ -1,10 +1,10 @@
 function Spinner({ size }: { size?: string }) {
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height={`${size ? size : "120"}px`}
-        width={`${size ? size : "120"}px`}
+        height={`${size ? size : "100"}px`}
+        width={`${size ? size : "100"}px`}
         viewBox="0 0 200 200"
         className="pencil"
       >

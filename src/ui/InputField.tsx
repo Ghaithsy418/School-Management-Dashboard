@@ -13,6 +13,7 @@ interface inputTypes<T extends FieldValues> {
   inputValidation?: unknown;
   accept?: string;
   className?: string;
+  initialValue?: string;
 }
 
 function InputField<T extends FieldValues>({
@@ -27,6 +28,7 @@ function InputField<T extends FieldValues>({
   accept = "",
   inputValidation = null,
   className = "",
+  initialValue = "",
 }: inputTypes<T>) {
   const { t } = useTranslation("auth");
   const validation =
@@ -68,6 +70,7 @@ function InputField<T extends FieldValues>({
         placeholder={placeholder}
         autoComplete={autoComplete}
         accept={accept}
+        defaultValue={initialValue}
         {...register(id || name, getValidationMessage())}
         className={`peer w-96 ${className} rounded-md px-4 py-2 text-lg outline-1 outline-offset-2 outline-gray-700/20 transition-all duration-100 focus:border-0 focus:outline-3 focus:outline-offset-2 focus:outline-violet-300/60`}
       />

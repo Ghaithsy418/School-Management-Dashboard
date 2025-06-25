@@ -1,5 +1,12 @@
+import Classes from "@/features/supervisors/classesManagement/Classes";
+import MainContainer from "@/ui/MainContainer";
+
 function ClassManagment() {
-  return <div>ClassManagment</div>;
+  return (
+    <MainContainer title="Classes Management">
+      <Classes />
+    </MainContainer>
+  );
 }
 
 export default ClassManagment;

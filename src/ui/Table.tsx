@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, ReactNode, useContext } from "react";
-import { StudentTypes } from "../utils/types";
 
 const tableContext = createContext<{ columns: string }>({ columns: "" });
 function Table({
@@ -50,13 +50,22 @@ function Body({ data, render }: BodyTypes) {
   );
 }
 
+function Tail({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex w-full items-center justify-between bg-indigo-100 px-5 py-3 text-sm">
+      {children}
+    </div>
+  );
+}
+
 interface BodyTypes {
   data: unknown;
-  render: (array: StudentTypes) => ReactNode;
+  render: (obj: any) => ReactNode;
 }
 
 Table.Header = Header;
 Table.Row = Row;
 Table.Body = Body;
+Table.Tail = Tail;
 
 export default Table;
