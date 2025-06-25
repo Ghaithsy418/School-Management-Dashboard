@@ -9,7 +9,7 @@ export async function showClasses(token: string) {
       const errorData = await res.json().catch(() => null);
       throw new Error(
         errorData?.message ||
-          "Something went wrong while getting classes data!",
+          "Something went wrong while getting Classes data!",
       );
     }
     const data = await res.json();
@@ -43,6 +43,40 @@ export async function editClass(
         errorData?.message?.className ||
           errorData?.message?.studentsNum ||
           "Something went wrong with editing the class!",
+      );
+    }
+    const data = await res.json();
+    console.log(data, res);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function createClass(
+  body: {
+    studentsNum: number;
+    className: string;
+  },
+  token: string,
+) {
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_APP_URL}/api/createClasses`,
+      {
+        method: "PUT",
+        headers: { ...headers, Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ ...body, currentStudentNumber: 0 }),
+      },
+    );
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(
+        errorData?.message?.className ||
+          errorData?.message?.studentsNum ||
+          "Something went wrong with creating a class!",
       );
     }
     const data = await res.json();

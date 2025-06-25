@@ -12,7 +12,7 @@ function ClassesStatistics() {
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-lg text-gray-500">Total Classes</h3>
           <p className="text-lg font-semibold">
-            {isGettingClasses ? "-" : classes.length}
+            {isGettingClasses || !classes ? "-" : classes?.length}
           </p>
         </div>
       </div>
@@ -21,9 +21,9 @@ function ClassesStatistics() {
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-lg text-gray-500">Full Classes</h3>
           <p className="text-lg font-semibold">
-            {isGettingClasses
+            {isGettingClasses || !classes
               ? "-"
-              : classes.filter(
+              : classes?.filter(
                   (classData: ClassTypes) =>
                     classData.currentStudentNumber === classData.studentsNum,
                 ).length}

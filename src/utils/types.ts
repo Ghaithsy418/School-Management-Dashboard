@@ -1,11 +1,12 @@
 export interface StudentTypes {
-  name: string;
-  id: string;
-  address: string;
-  grade: string;
-  GPA: number;
+  full_name: string;
+  student_id: string;
+  class_name: string;
+  class_id: number;
+  gpa: number;
   email: string;
-  phoneNumber: string;
+  phone: string;
+  photo: string;
 }
 
 export interface UserTypes {
@@ -31,7 +32,7 @@ export interface TeacherSupervisorTypes {
   salary?: number;
 }
 
-export interface StudentTypes {
+export interface AddStudentTypes {
   email: string;
   password: string;
   name: string;

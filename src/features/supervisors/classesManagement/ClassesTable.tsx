@@ -11,7 +11,7 @@ function ClassesTable() {
   const filteredData = usePaginate(classes, 7);
 
   if (isGettingClasses) return <Spinner />;
-  if (classes.length === 0)
+  if (!classes || classes?.length === 0)
     return <Empty className="text-center" resource="Class" />;
 
   return (
@@ -20,13 +20,13 @@ function ClassesTable() {
         <span>Name</span>
         <span>Max Size</span>
         <span>Current Size</span>
-        <span>Edit</span>
+        <span>Options</span>
       </Table.Header>
       <Table.Body
         data={filteredData}
         render={(classData) => (
           <Table.Row>
-            <ClassesRow classData={classData} />
+            <ClassesRow classData={classData} key={classData.id} />
           </Table.Row>
         )}
       />

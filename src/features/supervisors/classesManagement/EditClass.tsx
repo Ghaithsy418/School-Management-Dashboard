@@ -1,35 +1,22 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import Modal from "@/ui/Modal";
 import { ClassTypes } from "@/utils/types";
+import { useState } from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import EditClassForm from "./EditClassForm";
 
 function EditClass({ classData }: { classData: ClassTypes }) {
+  const [isHover, setIsHover] = useState(false);
   return (
-    <Modal>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Modal.Open name="editClass">
-            <button className="flex h-6 w-6 items-center justify-center">
-              <MdOutlineModeEdit className="h-5 w-5 cursor-pointer" />
-            </button>
-          </Modal.Open>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Edit Class</p>
-        </TooltipContent>
-      </Tooltip>
-      <Modal.Window
-        name="editClass"
-        icon={<MdOutlineModeEdit className="h-8 w-8" />}
-      >
-        <EditClassForm classData={classData} />
-      </Modal.Window>
-    </Modal>
+    <Modal.Window
+      name="editClass"
+      icon={
+        <MdOutlineModeEdit
+          className={`h-7 w-7 transition-all duration-300 ${isHover ? "h-9 w-9 text-indigo-600" : ""}`}
+        />
+      }
+    >
+      <EditClassForm classData={classData} setIsHover={setIsHover} />
+    </Modal.Window>
   );
 }
 

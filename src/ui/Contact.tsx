@@ -1,16 +1,21 @@
 import { HiMiniPhone, HiOutlineEnvelope } from "react-icons/hi2";
 
-function Contact() {
+interface ContactTypes {
+  phone: string;
+  email: string;
+}
+
+function Contact({ phone, email }: ContactTypes) {
   return (
     <div className="flex items-center gap-2 text-indigo-50">
       <a
-        href="tel:+963996240804"
+        href={`tel:${phone}`}
         className={`${LinkClassName} bg-green-600 hover:bg-green-700/90`}
       >
         <HiMiniPhone />
       </a>
       <a
-        href="mailto:ghaithsy418@gmail.com"
+        href={`mailto:${email}`}
         className={`${LinkClassName} bg-amber-600 hover:bg-amber-700/90`}
       >
         <HiOutlineEnvelope />

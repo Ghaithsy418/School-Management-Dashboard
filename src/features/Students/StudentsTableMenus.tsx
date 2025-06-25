@@ -14,54 +14,52 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-function StudentsTableMenus() {
+function StudentsTableMenus({ name }: { name: string }) {
   const {
     user: { role },
   } = useUser();
   const [isHover, setIsHover] = useState(false);
   return (
-    <Modal>
-      <Menus>
-        <Menus.Menu>
-          <Menus.Toggle id="studentMenu">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Options</p>
-              </TooltipContent>
-            </Tooltip>
-          </Menus.Toggle>
-          <Menus.List id="studentMenu">
-            <Link to={`/${role}/student/100`}>
-              <Menus.Button icon={<CgProfile className="h-5 w-5" />}>
-                Profile
+    <>
+      <Menus.Menu>
+        <Menus.Toggle id={name}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Options</p>
+            </TooltipContent>
+          </Tooltip>
+        </Menus.Toggle>
+        <Menus.List id={name}>
+          <Link to={`/${role}/student/100`}>
+            <Menus.Button icon={<CgProfile className="h-5 w-5" />}>
+              Profile
+            </Menus.Button>
+          </Link>
+          {role === "dean" && (
+            <Modal.Open name="delete">
+              <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
+                Delete
               </Menus.Button>
-            </Link>
-            {role === "dean" && (
-              <Modal.Open name="delete">
-                <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
-                  Delete
-                </Menus.Button>
-              </Modal.Open>
-            )}
-          </Menus.List>
-        </Menus.Menu>
-        {role === "dean" && (
-          <Modal.Window
-            name="delete"
-            icon={
-              <MdDeleteOutline
-                className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
-              />
-            }
-          >
-            <DeleteWarning setIsHover={setIsHover} />
-          </Modal.Window>
-        )}
-      </Menus>
-    </Modal>
+            </Modal.Open>
+          )}
+        </Menus.List>
+      </Menus.Menu>
+      {role === "dean" && (
+        <Modal.Window
+          name="delete"
+          icon={
+            <MdDeleteOutline
+              className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
+            />
+          }
+        >
+          <DeleteWarning setIsHover={setIsHover} />
+        </Modal.Window>
+      )}
+    </>
   );
 }
 

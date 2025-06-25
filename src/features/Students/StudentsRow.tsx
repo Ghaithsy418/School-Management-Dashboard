@@ -4,21 +4,20 @@ import { StudentTypes } from "../../utils/types";
 import StudentsTableMenus from "./StudentsTableMenus";
 
 function StudentsRow({ student }: { student: StudentTypes }) {
-  const { name, id, address, GPA, grade } = student;
+  const { full_name, student_id, gpa, class_name, phone, email } = student;
   return (
     <>
       <h3 className="flex items-center gap-3">
         <span>
-          <AvatarGenerator name={name} />
+          <AvatarGenerator name={full_name} />
         </span>
-        {name}
+        {full_name}
       </h3>
-      <p>{id}</p>
-      <p>{address}</p>
-      <p>{grade}</p>
-      <p>{GPA}</p>
-      <Contact />
-      <StudentsTableMenus />
+      <p>{student_id}</p>
+      <p>{class_name}</p>
+      <p>{gpa}</p>
+      <Contact phone={phone} email={email} />
+      <StudentsTableMenus name={full_name} />
     </>
   );
 }

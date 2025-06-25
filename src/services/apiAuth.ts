@@ -1,4 +1,4 @@
-import { StudentTypes, TeacherSupervisorTypes } from "@/utils/types";
+import { AddStudentTypes, TeacherSupervisorTypes } from "@/utils/types";
 
 export async function login(body: { email: string; password: string }) {
   try {
@@ -239,7 +239,7 @@ export async function addSupervisor(
   }
 }
 
-export async function addStudent(body: StudentTypes, token: string) {
+export async function addStudent(body: AddStudentTypes, token: string) {
   const formData = new FormData();
   const bodyData = [
     "name",
@@ -259,8 +259,8 @@ export async function addStudent(body: StudentTypes, token: string) {
   ];
 
   bodyData.forEach((bd) => {
-    if (bd as keyof StudentTypes)
-      formData.append(bd, body[bd as keyof StudentTypes] as string);
+    if (bd as keyof AddStudentTypes)
+      formData.append(bd, body[bd as keyof AddStudentTypes] as string);
   });
   formData.append("role", "student");
 

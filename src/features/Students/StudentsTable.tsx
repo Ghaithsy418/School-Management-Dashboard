@@ -1,39 +1,43 @@
+import Pagination from "@/ui/Pagination";
 import Table from "../../ui/Table";
 import { StudentTypes } from "../../utils/types";
 import StudentsRow from "./StudentsRow";
+import { useGetStudents } from "./useGetStudents";
+import Spinner from "@/ui/Spinner";
+import Modal from "@/ui/Modal";
+import Menus from "@/ui/Menus";
 
 function StudentsTable() {
+  const { students, isGettingStudents, total } = useGetStudents();
+
+  if (isGettingStudents) return <Spinner />;
+
   return (
-    <Table columns="0.8fr 0.4fr 0.7fr 0.4fr 0.4fr 0.3fr 0.3fr">
+    <Table columns="0.8fr 0.4fr 0.4fr 0.4fr 0.3fr 0.3fr">
       <Table.Header>
         {HeaderTitles.map((title) => (
           <div key={title}>{title}</div>
         ))}
       </Table.Header>
-      <Table.Body
-        data={FakeStudents}
-        render={(student: StudentTypes) => (
-          <Table.Row key={student.id}>
-            <StudentsRow student={student} />
-          </Table.Row>
-        )}
-      />
+      <Modal>
+        <Menus>
+          <Table.Body
+            data={students}
+            render={(student: StudentTypes) => (
+              <Table.Row key={student.student_id}>
+                <StudentsRow student={student} />
+              </Table.Row>
+            )}
+          />
+        </Menus>
+      </Modal>
+      <Table.Tail>
+        <Pagination dataLength={total} numberOfElements={10} />
+      </Table.Tail>
     </Table>
   );
 }
 
-const FakeStudents = [
-  {
-    name: "Ahmad Mohamad Syria",
-    id: "100200322",
-    address: "Damascus, Syria",
-    grade: "10/1",
-    GPA: 4.6,
-    email: "ghaithsy418@gmail.com",
-    phoneNumber: "+963996240804",
-  },
-];
-
-const HeaderTitles = ["Name", "ID", "Address", "Class", "GPA", "Contact"];
+const HeaderTitles = ["Name", "ID", "Class", "GPA", "Contact"];
 
 export default StudentsTable;

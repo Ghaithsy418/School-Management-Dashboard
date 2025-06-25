@@ -6,13 +6,15 @@ import { useEditClass } from "./useEditClass";
 import SmallSpinner from "@/ui/SmallSpinner";
 import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
+import { Dispatch, SetStateAction } from "react";
 
 interface EditFormTypes {
   classData: ClassTypes;
   onCloseModal?: () => void;
+  setIsHover: Dispatch<SetStateAction<boolean>>;
 }
 
-function EditClassForm({ classData, onCloseModal }: EditFormTypes) {
+function EditClassForm({ classData, onCloseModal, setIsHover }: EditFormTypes) {
   const { register, formState, handleSubmit } = useForm<ClassTypes>();
   const { editClassMutation, isEditingClass } = useEditClass();
   const queryClient = useQueryClient();
@@ -68,6 +70,7 @@ function EditClassForm({ classData, onCloseModal }: EditFormTypes) {
           color="text-violet-50"
           backgroundColor="bg-violet-600"
           backgroundHover="hover:bg-violet-700"
+          setIsHover={setIsHover}
         >
           {isEditingClass ? <SmallSpinner /> : "Edit"}
         </Button>
