@@ -7,9 +7,11 @@ import Spinner from "@/ui/Spinner";
 import Modal from "@/ui/Modal";
 import Menus from "@/ui/Menus";
 import Empty from "@/ui/Empty";
+import { usePaginate } from "@/hooks/usePaginate";
 
 function StudentsTable() {
-  const { students, isGettingStudents, total } = useGetStudents();
+  const { students, isGettingStudents } = useGetStudents();
+  const filteredStudents = usePaginate(students, 10);
 
   if (isGettingStudents) return <Spinner />;
   if (!students?.length) return <Empty resource="students" />;
@@ -24,7 +26,7 @@ function StudentsTable() {
       <Modal>
         <Menus>
           <Table.Body
-            data={students}
+            data={filteredStudents}
             render={(student: StudentTypes) => (
               <Table.Row key={student.student_id}>
                 <StudentsRow student={student} />
@@ -34,7 +36,7 @@ function StudentsTable() {
         </Menus>
       </Modal>
       <Table.Tail>
-        <Pagination dataLength={total} numberOfElements={10} />
+        <Pagination dataLength={students?.length} numberOfElements={10} />
       </Table.Tail>
     </Table>
   );

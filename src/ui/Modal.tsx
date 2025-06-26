@@ -36,7 +36,7 @@ function Open({ children, name }: WindowOpenTypes) {
   );
 }
 
-function Window({ children, name, icon }: WindowOpenTypes) {
+function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
   const context = useContext(modalContext);
   if (!context) throw new Error("Modal.Window shouldn't be used here");
   const { isOpen, close } = context;
@@ -51,11 +51,11 @@ function Window({ children, name, icon }: WindowOpenTypes) {
       className="absolute top-0 left-0 z-50 flex h-[100vh] w-[100vw] items-center justify-center bg-gray-950/80 backdrop-blur-xs backdrop:blur-md"
     >
       <motion.div
-        variants={variants}
+        variants={mode === "sheet" ? sheetVariants : variants}
         initial="hidden"
         animate="visible"
         ref={ref}
-        className="fixed mb-20 flex min-w-[36rem] flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-7 py-5 shadow-lg shadow-indigo-100/10"
+        className={`fixed mb-20 flex flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-7 py-5 shadow-lg shadow-indigo-100/10 ${mode === "sheet" ? "absolute top-0 right-0 h-[100vh] w-[28rem] rounded-none" : "w-[34rem]"}`}
       >
         <div className="flex items-center justify-between">
           <span>{icon}</span>
@@ -66,7 +66,7 @@ function Window({ children, name, icon }: WindowOpenTypes) {
             <HiX />
           </button>
         </div>
-        <div>
+        <div className="h-full">
           {cloneElement(
             children as React.ReactElement<{ onCloseModal: () => void }>,
             {
@@ -93,6 +93,7 @@ interface WindowOpenTypes {
   children: ReactNode;
   name: string;
   icon?: ReactNode;
+  mode?: string;
 }
 
 const variants = {
@@ -105,6 +106,20 @@ const variants = {
     opacity: 1,
     y: 0,
     scale: 1,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const sheetVariants = {
+  hidden: {
+    x: "100%",
+    opacity: 0.5,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
     transition: {
       duration: 0.6,
     },

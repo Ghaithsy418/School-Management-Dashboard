@@ -1,4 +1,4 @@
-import AssignStudentToClass from "./AssignStudentToClass";
+import AssignStudentToClass from "./AssignStudentAndTeacher/AssignStudentToClass";
 import ClassesStatistics from "./ClassesStatistics";
 import ClassesTable from "./ClassesTable";
 import CreateNewClass from "./CreateNewClass";

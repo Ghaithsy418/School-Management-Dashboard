@@ -2,8 +2,8 @@ import { useClassesUi } from "@/context/ClassesUi";
 import { useEffect, useState } from "react";
 
 function ChooseClass({ className }: { className: string }) {
-  const [isChecked, setIsChecked] = useState(false);
   const { className: choosenClassName, dispatch } = useClassesUi();
+  const [isChecked, setIsChecked] = useState(choosenClassName === className);
 
   useEffect(
     function () {

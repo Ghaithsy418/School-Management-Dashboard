@@ -1,30 +1,15 @@
-import { useClassesUi } from "@/context/ClassesUi";
-import { useEffect } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom";
 
 interface PaginationTypes {
   dataLength: number;
   numberOfElements?: number;
-  name?: string;
 }
 
-function Pagination({
-  dataLength,
-  numberOfElements = 7,
-  name = "",
-}: PaginationTypes) {
+function Pagination({ dataLength, numberOfElements = 7 }: PaginationTypes) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { dispatch } = useClassesUi();
-  const page = Number(searchParams.get("page")) || 1;
 
-  useEffect(
-    function () {
-      if (page && name === "classes")
-        dispatch({ type: "resetAll", payload: "" });
-    },
-    [page, dispatch, name],
-  );
+  const page = Number(searchParams.get("page")) || 1;
 
   const firstNumber = page * numberOfElements - numberOfElements + 1;
   const secondNumber =

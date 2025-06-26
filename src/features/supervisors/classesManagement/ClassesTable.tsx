@@ -31,11 +31,7 @@ function ClassesTable() {
         )}
       />
       <Table.Tail>
-        <Pagination
-          dataLength={classes?.length}
-          numberOfElements={7}
-          name="classes"
-        />
+        <Pagination dataLength={classes?.length} numberOfElements={7} />
       </Table.Tail>
     </Table>
   );

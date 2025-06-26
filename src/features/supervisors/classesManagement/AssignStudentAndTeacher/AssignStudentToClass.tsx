@@ -1,7 +1,9 @@
 import { useClassesUi } from "@/context/ClassesUi";
 import { regularOpacityVariants } from "@/utils/variants";
 import { motion } from "framer-motion";
-import { useGetClasses } from "./useGetClasses";
+import { useGetClasses } from "../useGetClasses";
+import Modal from "@/ui/Modal";
+import ChooseStudentToAssign from "./ChooseStudentToAssign";
 
 function AssignStudentToClass() {
   const { ui } = useClassesUi();
@@ -75,20 +77,27 @@ function ThridUi() {
   function handleClick() {}
 
   return (
-    <motion.h3
-      variants={regularOpacityVariants}
-      initial="hidden"
-      animate="visible"
-      className="font-semibold text-rose-600"
-    >
-      Class ({className}) has been selected now choose a{" "}
-      <button
-        onClick={handleClick}
-        className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
+    <Modal>
+      <motion.h3
+        variants={regularOpacityVariants}
+        initial="hidden"
+        animate="visible"
+        className="font-semibold text-rose-600"
       >
-        Student
-      </button>
-    </motion.h3>
+        Class ({className}) has been selected now choose a{" "}
+        <Modal.Open name="assignStudent">
+          <button
+            onClick={handleClick}
+            className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
+          >
+            Student
+          </button>
+        </Modal.Open>
+      </motion.h3>
+      <Modal.Window mode="sheet" name="assignStudent">
+        <ChooseStudentToAssign />
+      </Modal.Window>
+    </Modal>
   );
 }
 

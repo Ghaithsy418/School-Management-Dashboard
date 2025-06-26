@@ -2,7 +2,7 @@ import { ClassTypes } from "@/utils/types";
 import ClassesTableMenus from "./ClassesTableMenus";
 import CurrentStudentNum from "./CurrentStudentNum";
 import { useClassesUi } from "@/context/ClassesUi";
-import ChooseClass from "./ChooseClass";
+import ChooseClass from "./AssignStudentAndTeacher/ChooseClass";
 
 function ClassesRow({ classData }: { classData: ClassTypes }) {
   const { className, studentsNum, currentStudentNumber } = classData;

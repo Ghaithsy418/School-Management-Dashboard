@@ -4,20 +4,26 @@ import { useSearchParams } from "react-router-dom";
 
 export const useGetStudents = function () {
   const [searchParams] = useSearchParams();
-
   const {
-    data: students,
+    data,
     isLoading: isGettingStudents,
     error: studentsError,
   } = useQuery({
-    queryKey: ["students", searchParams.get("page") || 1],
+    queryKey: ["students"],
     queryFn: () => showStudents(),
   });
 
+  const searchQuery = searchParams.get("search") || "";
+  const searchedStudents =
+    searchQuery === ""
+      ? data?.data
+      : data?.data?.filter((student: { full_name: string }) =>
+          student?.full_name.toLowerCase().includes(searchQuery),
+        );
+
   return {
-    students: students?.data?.items,
+    students: searchedStudents,
     isGettingStudents,
     studentsError,
-    total: students?.data?.total,
   };
 };

@@ -28,3 +28,14 @@ export async function createClass(body: {
     body: { ...body, currentStudentNumber: 0 },
   });
 }
+
+export async function getStudentsForClasses() {
+  return fetcher({ url: "/api/getAllStudents", method: "GET" });
+}
+
+export async function assignStudentToClass(body: {
+  studentId: number;
+  className: string;
+}) {
+  return fetcher({ url: "/api/assignStudentToClass", method: "POST", body });
+}
