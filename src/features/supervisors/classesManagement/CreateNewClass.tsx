@@ -18,7 +18,7 @@ function CreateNewClass() {
             name="createClass"
             icon={
               <MdOutlineAddCircleOutline
-                className={`h-7 w-7 transition-all duration-300 ${isHover ? "h-9 w-9 text-indigo-600" : ""}`}
+                className={`h-8 w-8 transition-all duration-300 ${isHover ? "h-10 w-10 text-indigo-600" : ""}`}
               />
             }
           >

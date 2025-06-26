@@ -6,10 +6,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export const useLogout = function () {
-  const { token, dispatch } = useUser();
+  const { dispatch } = useUser();
   const navigate = useNavigate();
   const { mutate: logoutMutation, isPending: isLoggingOut } = useMutation({
-    mutationFn: () => logout(token),
+    mutationFn: () => logout(),
     onSuccess: () => {
       navigate("/login", { replace: true });
       setTimeout(function () {

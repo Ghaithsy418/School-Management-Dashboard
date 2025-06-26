@@ -1,131 +1,47 @@
 import { AddStudentTypes, TeacherSupervisorTypes } from "@/utils/types";
+import { fetcher } from "./fetcher";
+import Cookies from "js-cookie";
 
 export async function login(body: { email: string; password: string }) {
-  try {
-    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/login", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ ...body, deviceType: "web" }),
-    });
-
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
-      throw new Error(errorData?.message || "Something went wrong with Login!");
-    }
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return fetcher({
+    url: "/api/login",
+    method: "POST",
+    body: { ...body, deviceType: "web" },
+  });
 }
 
-export async function logout(token: string) {
-  try {
-    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/logout", {
-      method: "DELETE",
-      headers: { ...headers, Authorization: `Bearer ${token}` },
-    });
-
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message || "Something went wrong with Logout!",
-      );
-    }
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+export async function logout() {
+  return fetcher({
+    url: "/api/logout",
+    method: "DELETE",
+  });
 }
 
 export async function sendResetPassword(body: { email: string }) {
-  try {
-    const res = await fetch(
-      import.meta.env.VITE_APP_URL + "/api/sendForgetPasswordOtp",
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify(body),
-      },
-    );
-
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message ||
-          "Something went wrong with Sending a reset password request!",
-      );
-    }
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return fetcher({
+    url: "/api/sendForgetPasswordOtp",
+    method: "POST",
+    body,
+  });
 }
 
 export async function confirmVerificationCode(body: {
   verificationCode: number;
   email: string;
 }) {
-  try {
-    const res = await fetch(
-      import.meta.env.VITE_APP_URL + "/api/confirmForgetPasswordOtp",
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ otp: body.verificationCode, email: body.email }),
-      },
-    );
-
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message ||
-          "Something went wrong with confirming the verification code!",
-      );
-    }
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return fetcher({
+    url: "/api/confirmForgetPasswordOtp",
+    method: "POST",
+    body: { otp: body.verificationCode, email: body.email },
+  });
 }
 
 export async function newPassword(body: { password: string; email: string }) {
-  try {
-    const res = await fetch(
-      import.meta.env.VITE_APP_URL + "/api/resetPassword",
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ email: body.email, password: body.password }),
-      },
-    );
-
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message ||
-          "Something went wrong with Setting a new password!",
-      );
-    }
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return fetcher({
+    url: "/api/resetPassword",
+    method: "POST",
+    body: { email: body.email, password: body.password },
+  });
 }
 
 export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
@@ -169,9 +85,16 @@ export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message || "Something went wrong with adding a Teacher",
-      );
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message || "Something went wrong with adding a Teacher",
+        );
+      }
     }
     const data = await res.json();
 
@@ -226,9 +149,17 @@ export async function addSupervisor(
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message || "Something went wrong with Adding a Supervisor!",
-      );
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message ||
+            "Something went wrong with Adding a Supervisor!",
+        );
+      }
     }
     const data = await res.json();
 
@@ -281,20 +212,22 @@ export async function addStudent(body: AddStudentTypes, token: string) {
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => null);
-      throw new Error(
-        errorData?.message || "Something went wrong with adding a Student",
-      );
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message || "Something went wrong with adding a Student",
+        );
+      }
     }
+
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
-
-const headers = {
-  "Content-Type": "application/json",
-  Accept: "application/json",
-};

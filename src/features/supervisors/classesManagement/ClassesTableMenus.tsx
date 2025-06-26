@@ -15,13 +15,13 @@ function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
         <Menus.List id="classesMenus">
           <Modal.Open name="editClass">
             <Menus.Button icon={<MdOutlineModeEdit className="h-5 w-5" />}>
-              <button className="flex h-6 w-6 cursor-pointer items-center justify-center">
+              <span className="flex h-6 w-6 cursor-pointer items-center justify-center">
                 Edit
-              </button>
+              </span>
             </Menus.Button>
           </Modal.Open>
-          <EditClass classData={classData} />
         </Menus.List>
+        <EditClass classData={classData} />
       </Menus>
     </Modal>
   );

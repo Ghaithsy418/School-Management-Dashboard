@@ -6,11 +6,13 @@ import { useGetStudents } from "./useGetStudents";
 import Spinner from "@/ui/Spinner";
 import Modal from "@/ui/Modal";
 import Menus from "@/ui/Menus";
+import Empty from "@/ui/Empty";
 
 function StudentsTable() {
   const { students, isGettingStudents, total } = useGetStudents();
 
   if (isGettingStudents) return <Spinner />;
+  if (!students?.length) return <Empty resource="students" />;
 
   return (
     <Table columns="0.8fr 0.4fr 0.4fr 0.4fr 0.3fr 0.3fr">

@@ -25,13 +25,17 @@ function ClassesTable() {
       <Table.Body
         data={filteredData}
         render={(classData) => (
-          <Table.Row>
-            <ClassesRow classData={classData} key={classData.id} />
+          <Table.Row key={classData.id}>
+            <ClassesRow classData={classData} />
           </Table.Row>
         )}
       />
       <Table.Tail>
-        <Pagination dataLength={classes?.length} numberOfElements={7} />
+        <Pagination
+          dataLength={classes?.length}
+          numberOfElements={7}
+          name="classes"
+        />
       </Table.Tail>
     </Table>
   );
