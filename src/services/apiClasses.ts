@@ -41,3 +41,7 @@ export async function assignStudentToClass(body: {
     body: { ...body, new_class_id: body.classId },
   });
 }
+
+export async function deleteClass(body: { classId: number }) {
+  return fetcher({ url: "/api/deleteClass", method: "DELETE", body });
+}

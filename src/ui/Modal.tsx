@@ -55,7 +55,7 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
         initial="hidden"
         animate="visible"
         ref={ref}
-        className={`fixed mb-20 flex flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-7 py-5 shadow-lg shadow-indigo-100/10 ${mode === "sheet" ? "absolute top-0 right-0 h-[100vh] w-[28rem] rounded-none" : "w-[34rem]"}`}
+        className={`fixed mb-20 flex flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-7 py-5 shadow-lg shadow-indigo-100/10 ${mode === "sheet" ? "no-scrollbar absolute top-0 right-0 h-[100vh] w-[28rem] overflow-y-auto rounded-none" : "w-[34rem]"}`}
       >
         <div className="flex items-center justify-between">
           <span>{icon}</span>

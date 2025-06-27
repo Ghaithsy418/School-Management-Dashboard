@@ -26,7 +26,9 @@ function StudentClassesRow({
   return (
     <div className="flex w-full items-center justify-between gap-4 py-2">
       <div className="flex items-center justify-center gap-3">
-        <span className="font-semibold">{class_name}</span>
+        <span className="font-semibold">
+          {class_name === "" ? "-" : class_name}
+        </span>
         <p>{full_name}</p>
       </div>
       <Checkbox handleChange={handleChange} isChecked={isChecked} />

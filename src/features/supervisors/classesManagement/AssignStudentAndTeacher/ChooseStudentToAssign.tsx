@@ -31,7 +31,7 @@ function ChooseStudentToAssign({
     );
 
   return (
-    <div className="no-scrollbar flex h-full w-full flex-col items-center justify-between gap-8 overflow-y-auto px-2 pb-12">
+    <div className="flex h-full w-full flex-col items-center justify-between gap-8 px-2 pb-12">
       <div className="flex w-full flex-col gap-8">
         <h3 className="place-self-start text-2xl font-semibold">
           Choose a Student:

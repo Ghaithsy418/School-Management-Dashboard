@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useGetClasses } from "../useGetClasses";
 import Modal from "@/ui/Modal";
 import ChooseStudentToAssign from "./ChooseStudentToAssign";
+import { useSearchParams } from "react-router-dom";
 
 function AssignStudentToClass() {
   const { ui } = useClassesUi();
@@ -13,7 +14,7 @@ function AssignStudentToClass() {
       <div className="flex items-center justify-around rounded-md border-1 border-gray-500/50 px-4 py-4">
         {ui === "" && <FirstUi />}
         {ui === "chooseClass" && <SecondUi />}
-        {ui === "chooseStudent" && <ThridUi />}
+        {ui === "chooseStudent" && <ThirdUi />}
       </div>
     </div>
   );
@@ -48,9 +49,11 @@ function FirstUi() {
 
 function SecondUi() {
   const { dispatch } = useClassesUi();
+  const [, setSearchParams] = useSearchParams();
 
   function handleBack() {
     dispatch({ type: "resetAll", payload: "" });
+    setSearchParams({});
   }
 
   return (
@@ -71,7 +74,7 @@ function SecondUi() {
   );
 }
 
-function ThridUi() {
+function ThirdUi() {
   const { className } = useClassesUi();
 
   function handleClick() {}

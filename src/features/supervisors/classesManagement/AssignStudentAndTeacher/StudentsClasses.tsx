@@ -1,7 +1,7 @@
 import Pagination from "@/ui/Pagination";
 import Search from "@/ui/Search";
-import { useSearchParams } from "react-router-dom";
 import StudentsList from "./StudentsList";
+import Empty from "@/ui/Empty";
 
 interface StudentsClassesTypes {
   full_name: string;
@@ -10,21 +10,13 @@ interface StudentsClassesTypes {
 }
 
 function StudentsClasses({ students }: { students: StudentsClassesTypes[] }) {
-  const [searchParams] = useSearchParams();
-
-  const searchResult = searchParams.get("search") || "";
-
-  const searchedStudents = !searchResult
-    ? students
-    : students.filter((student) =>
-        student.full_name.toLowerCase().includes(searchResult),
-      );
+  if (!students?.length) return <Empty resource="students" />;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex h-full w-full flex-col items-start gap-8 px-2 pb-12">
       <Search size="w-68" />
-      <StudentsList students={searchedStudents} />
-      <div className="flex items-center justify-between">
+      <StudentsList students={students} />
+      <div className="flex w-full items-center justify-between">
         <Pagination
           dataLength={students?.length}
           numberOfElements={15}

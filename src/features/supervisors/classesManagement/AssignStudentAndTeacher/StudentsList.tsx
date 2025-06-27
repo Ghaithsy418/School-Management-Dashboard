@@ -1,6 +1,5 @@
-import Empty from "@/ui/Empty";
-import StudentClassesRow from "./StudentClassesRow";
 import { usePaginate } from "@/hooks/usePaginate";
+import StudentClassesRow from "./StudentClassesRow";
 
 interface StudentsClassesTypes {
   full_name: string;
@@ -11,15 +10,11 @@ interface StudentsClassesTypes {
 function StudentsList({ students }: { students: StudentsClassesTypes[] }) {
   const studentsPaginated = usePaginate(students, 15, "studentsPage");
 
-  if (!students?.length) return <Empty resource="students" />;
-
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center gap-1 divide-y-1 divide-gray-600/30">
-        {studentsPaginated?.map((student) => (
-          <StudentClassesRow student={student} key={student.student_id} />
-        ))}
-      </div>
+    <div className="flex w-full flex-col items-center justify-center gap-3 divide-y-1 divide-gray-600/30">
+      {studentsPaginated?.map((student) => (
+        <StudentClassesRow student={student} key={student.student_id} />
+      ))}
     </div>
   );
 }

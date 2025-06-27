@@ -14,7 +14,7 @@ function StudentsRow({ student }: { student: StudentTypes }) {
         {full_name}
       </h3>
       <p>{student_id}</p>
-      <p>{class_name ?? "-"}</p>
+      <p>{class_name === "" ? "-" : class_name}</p>
       <p>{gpa ?? "-"}</p>
       <Contact phone={phone} email={email} />
       <StudentsTableMenus name={full_name} />

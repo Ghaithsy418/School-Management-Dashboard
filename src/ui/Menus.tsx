@@ -98,7 +98,7 @@ function Button({ onClick, icon, children }: buttonTypes) {
   return (
     <button
       onClick={onClick}
-      className="flex h-10 cursor-pointer items-center justify-between gap-2 bg-inherit px-5 py-4 text-sm transition-all duration-300 first:rounded-t-md first:rounded-b-none last:rounded-b-md hover:bg-indigo-300/50"
+      className="flex h-10 cursor-pointer items-center justify-start gap-2 bg-inherit px-5 py-4 text-sm transition-all duration-300 first:rounded-t-md first:rounded-b-none last:rounded-b-md hover:bg-indigo-300/50"
     >
       {icon}
       <span>{children}</span>
