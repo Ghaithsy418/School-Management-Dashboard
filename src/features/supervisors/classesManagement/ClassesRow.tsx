@@ -16,7 +16,7 @@ function ClassesRow({ classData }: { classData: ClassTypes }) {
         size={studentsNum}
       />
       {ui === "chooseClass" || ui === "chooseStudent" ? (
-        <ChooseClass className={classData.className} />
+        <ChooseClass className={classData.className} classId={classData.id} />
       ) : (
         <ClassesTableMenus classData={classData} />
       )}

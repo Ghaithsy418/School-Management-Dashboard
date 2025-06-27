@@ -45,7 +45,7 @@ function Row({ children }: { children: ReactNode }) {
 function Body({ data, render }: BodyTypes) {
   return (
     <div className="w-full divide-y-1 divide-gray-300/50">
-      {Array.isArray(data) && data.map(render)}
+      {data.map(render)}
     </div>
   );
 }
@@ -59,7 +59,7 @@ function Tail({ children }: { children: ReactNode }) {
 }
 
 interface BodyTypes {
-  data: unknown;
+  data: unknown[];
   render: (obj: any) => ReactNode;
 }
 

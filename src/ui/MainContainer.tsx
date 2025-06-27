@@ -2,12 +2,26 @@ import { ReactNode } from "react";
 import Search from "./Search";
 import { useUser } from "../context/UserContext";
 import Filter from "./Filter";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
-function MainContainer({ children, title }: MainContainerTypes) {
+function MainContainer({
+  children,
+  title,
+  needsBackArrow = false,
+}: MainContainerTypes) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col justify-center gap-7 px-10 pb-6">
-      <h2 className="text-4xl font-bold">{title}</h2>
+      <div className="flex items-center justify-start gap-5">
+        {needsBackArrow && (
+          <button onClick={() => navigate(-1)}>
+            <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+          </button>
+        )}
+        <h2 className="text-4xl font-bold">{title}</h2>
+      </div>
       {children}
     </div>
   );
@@ -47,6 +61,7 @@ MainContainer.Controls = Controls;
 interface MainContainerTypes {
   children: ReactNode;
   title: string;
+  needsBackArrow?: boolean;
 }
 
 interface ControlsTypes {

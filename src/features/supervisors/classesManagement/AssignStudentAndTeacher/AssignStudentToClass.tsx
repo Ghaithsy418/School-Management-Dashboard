@@ -50,7 +50,7 @@ function SecondUi() {
   const { dispatch } = useClassesUi();
 
   function handleBack() {
-    dispatch({ type: "changeUi", payload: "" });
+    dispatch({ type: "resetAll", payload: "" });
   }
 
   return (

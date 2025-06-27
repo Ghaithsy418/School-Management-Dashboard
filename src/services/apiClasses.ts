@@ -7,13 +7,11 @@ export async function showClasses() {
 export async function editClass(body: {
   studentsNum: number;
   classId: number;
-  currentStudentNumber: number;
-  className: string;
 }) {
   return fetcher({
     url: "/api/editClass",
     method: "POST",
-    body,
+    body: { ...body, class_id: body.classId },
     errorName: "className",
   });
 }
@@ -35,7 +33,11 @@ export async function getStudentsForClasses() {
 
 export async function assignStudentToClass(body: {
   studentId: number;
-  className: string;
+  classId: number;
 }) {
-  return fetcher({ url: "/api/assignStudentToClass", method: "POST", body });
+  return fetcher({
+    url: "/api/assignStudentToClass",
+    method: "POST",
+    body: { ...body, new_class_id: body.classId },
+  });
 }

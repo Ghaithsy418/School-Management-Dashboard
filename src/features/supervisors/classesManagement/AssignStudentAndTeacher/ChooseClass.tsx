@@ -1,7 +1,14 @@
 import { useClassesUi } from "@/context/ClassesUi";
+import Checkbox from "@/ui/Checkbox";
 import { useEffect, useState } from "react";
 
-function ChooseClass({ className }: { className: string }) {
+function ChooseClass({
+  className,
+  classId,
+}: {
+  className: string;
+  classId: number;
+}) {
   const { className: choosenClassName, dispatch } = useClassesUi();
   const [isChecked, setIsChecked] = useState(choosenClassName === className);
 
@@ -18,21 +25,10 @@ function ChooseClass({ className }: { className: string }) {
     if (!isChecked) dispatch({ type: "changeUi", payload: "chooseStudent" });
     if (isChecked) dispatch({ type: "changeUi", payload: "chooseClass" });
     dispatch({ type: "changeClassName", payload: className });
+    dispatch({ type: "changeClassId", payload: classId });
   }
 
-  return (
-    <div>
-      <label className="custom-checkbox">
-        <input
-          onChange={handleChange}
-          checked={isChecked}
-          name="dummy"
-          type="checkbox"
-        />
-        <span className="checkmark"></span>
-      </label>
-    </div>
-  );
+  return <Checkbox isChecked={isChecked} handleChange={handleChange} />;
 }
 
 export default ChooseClass;

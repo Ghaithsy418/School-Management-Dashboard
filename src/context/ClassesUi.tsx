@@ -10,6 +10,7 @@ import {
 const initialState = {
   ui: "",
   className: "",
+  classId: 0,
   studentId: 0,
   teacherId: 0,
 };
@@ -17,6 +18,7 @@ const initialState = {
 interface StateTypes {
   ui: string;
   className: string;
+  classId: number;
   studentId: number;
   teacherId: number;
 }
@@ -24,6 +26,7 @@ interface StateTypes {
 interface ContextTypes {
   ui: string;
   className: string;
+  classId: number;
   studentId: number;
   teacherId: number;
   dispatch: ActionDispatch<
@@ -51,6 +54,11 @@ function reducer(
         ...state,
         className: action.payload as string,
       };
+    case "changeClassId":
+      return {
+        ...state,
+        classId: action.payload as number,
+      };
     case "changeStudentId":
       return {
         ...state,
@@ -66,6 +74,7 @@ function reducer(
         ...state,
         ui: "",
         className: "",
+        classId: 0,
         studentId: 0,
         teacherId: 0,
       };
@@ -80,15 +89,14 @@ const classesContext = createContext<ContextTypes>({
 });
 
 function ClassesProvider({ children }: { children: ReactNode }) {
-  const [{ ui, className, studentId, teacherId }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [{ ui, className, classId, studentId, teacherId }, dispatch] =
+    useReducer(reducer, initialState);
   return (
     <classesContext.Provider
       value={{
         ui,
         className,
+        classId,
         studentId,
         teacherId,
         dispatch,

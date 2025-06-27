@@ -5,7 +5,7 @@ import AddByCSV from "./AddByCSV";
 function AddTeachers() {
   return (
     <>
-      <MainContainer title="Add Teachers">
+      <MainContainer title="Add Teachers" needsBackArrow={true}>
         <AddByCSV />
         <AddTeachersSupervisorsForm role="teacher" />
       </MainContainer>

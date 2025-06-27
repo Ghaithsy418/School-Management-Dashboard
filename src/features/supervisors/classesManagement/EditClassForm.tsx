@@ -30,7 +30,6 @@ function EditClassForm({ classData, onCloseModal, setIsHover }: EditFormTypes) {
       {
         ...data,
         classId: classData.id,
-        currentStudentNumber: classData.currentStudentNumber,
       },
       {
         onSuccess: () => {

@@ -1,28 +1,13 @@
-import Card from "./Card";
+import { ReactNode } from "react";
 
-function Cards() {
-  return (
-    <div className="grid grid-cols-4 gap-8">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </div>
-  );
+/* eslint-disable @typescript-eslint/no-explicit-any */
+interface CardsTypes {
+  data: unknown[];
+  render: (obj: any) => ReactNode;
+}
+
+function Cards({ data, render }: CardsTypes) {
+  return <div className="grid grid-cols-4 gap-8">{data.map(render)}</div>;
 }
 
 export default Cards;

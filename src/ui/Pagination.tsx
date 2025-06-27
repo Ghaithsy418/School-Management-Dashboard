@@ -4,24 +4,29 @@ import { useSearchParams } from "react-router-dom";
 interface PaginationTypes {
   dataLength: number;
   numberOfElements?: number;
+  pageName?: string;
 }
 
-function Pagination({ dataLength, numberOfElements = 7 }: PaginationTypes) {
+function Pagination({
+  dataLength,
+  numberOfElements = 7,
+  pageName = "page",
+}: PaginationTypes) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = Number(searchParams.get("page")) || 1;
+  const page = Number(searchParams.get(pageName)) || 1;
 
   const firstNumber = page * numberOfElements - numberOfElements + 1;
   const secondNumber =
     page * numberOfElements > dataLength ? dataLength : page * numberOfElements;
 
   function handlePrevious() {
-    searchParams.set("page", String(page - 1));
+    searchParams.set(pageName, String(page - 1));
     setSearchParams(searchParams);
   }
 
   function handleNext() {
-    searchParams.set("page", String(page + 1));
+    searchParams.set(pageName, String(page + 1));
     setSearchParams(searchParams);
   }
 

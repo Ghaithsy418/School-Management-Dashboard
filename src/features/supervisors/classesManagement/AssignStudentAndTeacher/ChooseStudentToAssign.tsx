@@ -16,10 +16,6 @@ function ChooseStudentToAssign({
   const { assignStudentMutation, isAssigningStudent } =
     useAssignStudentToClass();
 
-  const filteredStudents = students?.filter(
-    (student: { class_name: string }) => student.class_name === null,
-  );
-
   function handleClick() {
     assignStudentMutation(undefined, {
       onSuccess: () => onCloseModal?.(),
@@ -35,20 +31,22 @@ function ChooseStudentToAssign({
     );
 
   return (
-    <div className="no-scrollbar flex h-full w-full flex-col items-center justify-between gap-8 overflow-y-auto px-2 pb-16">
+    <div className="no-scrollbar flex h-full w-full flex-col items-center justify-between gap-8 overflow-y-auto px-2 pb-12">
       <div className="flex w-full flex-col gap-8">
         <h3 className="place-self-start text-2xl font-semibold">
           Choose a Student:
         </h3>
-        <StudentsClasses students={filteredStudents} />
+        <StudentsClasses students={students} />
       </div>
-      <SubmitButton onClick={handleClick}>
-        {isAssigningStudent ? (
-          <SmallSpinner />
-        ) : (
-          `Assign the Student to class ${className}`
-        )}
-      </SubmitButton>
+      <div className="sticky bottom-0">
+        <SubmitButton onClick={handleClick}>
+          {isAssigningStudent ? (
+            <SmallSpinner />
+          ) : (
+            `Assign the Student to class ${className}`
+          )}
+        </SubmitButton>
+      </div>
     </div>
   );
 }

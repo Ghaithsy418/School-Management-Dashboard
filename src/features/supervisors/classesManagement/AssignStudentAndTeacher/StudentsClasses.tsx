@@ -1,15 +1,17 @@
+import Pagination from "@/ui/Pagination";
 import Search from "@/ui/Search";
-import StudentClassesRow from "./StudentClassesRow";
 import { useSearchParams } from "react-router-dom";
-import Empty from "@/ui/Empty";
+import StudentsList from "./StudentsList";
 
 interface StudentsClassesTypes {
   full_name: string;
+  class_name: string;
   student_id: number;
 }
 
 function StudentsClasses({ students }: { students: StudentsClassesTypes[] }) {
   const [searchParams] = useSearchParams();
+
   const searchResult = searchParams.get("search") || "";
 
   const searchedStudents = !searchResult
@@ -20,23 +22,15 @@ function StudentsClasses({ students }: { students: StudentsClassesTypes[] }) {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex items-end justify-between">
-        <Search size="w-68" />
-        {searchedStudents?.length && (
-          <span className="text-sm text-violet-900">
-            results: {searchedStudents?.length}
-          </span>
-        )}
+      <Search size="w-68" />
+      <StudentsList students={searchedStudents} />
+      <div className="flex items-center justify-between">
+        <Pagination
+          dataLength={students?.length}
+          numberOfElements={15}
+          pageName="studentsPage"
+        />
       </div>
-      {searchedStudents?.length ? (
-        <div className="flex flex-col items-center justify-center gap-1 divide-y-1 divide-gray-600/30">
-          {searchedStudents?.map((student) => (
-            <StudentClassesRow student={student} key={student.student_id} />
-          ))}
-        </div>
-      ) : (
-        <Empty resource="students" />
-      )}
     </div>
   );
 }

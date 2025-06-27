@@ -3,7 +3,7 @@ import AddStudentsForm from "./AddStudentsForm";
 
 function AddStudents() {
   return (
-    <MainContainer title="Add Students">
+    <MainContainer title="Add Students" needsBackArrow={true}>
       <AddStudentsForm />
     </MainContainer>
   );

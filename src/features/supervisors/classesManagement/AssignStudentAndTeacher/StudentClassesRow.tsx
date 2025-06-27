@@ -1,20 +1,21 @@
 import { useClassesUi } from "@/context/ClassesUi";
+import Checkbox from "@/ui/Checkbox";
 import { useEffect, useState } from "react";
 
 function StudentClassesRow({
   student,
 }: {
-  student: { full_name: string; student_id: number };
+  student: { full_name: string; student_id: number; class_name: string };
 }) {
+  const { full_name, student_id: id, class_name } = student;
   const { dispatch, studentId } = useClassesUi();
-  const [isChecked, setIsChecked] = useState(studentId === student?.student_id);
+  const [isChecked, setIsChecked] = useState(studentId === id);
 
   useEffect(
     function () {
-      if (student?.student_id !== 0 && student?.student_id !== studentId)
-        setIsChecked(false);
+      if (id !== 0 && id !== studentId) setIsChecked(false);
     },
-    [studentId, student?.student_id],
+    [studentId, id],
   );
 
   function handleChange() {
@@ -25,22 +26,10 @@ function StudentClassesRow({
   return (
     <div className="flex w-full items-center justify-between gap-4 py-2">
       <div className="flex items-center justify-center gap-3">
-        <span className="font-semibold">
-          {student.student_id < 10
-            ? "0" + student.student_id
-            : student.student_id}
-        </span>
-        <p>{student.full_name}</p>
+        <span className="font-semibold">{class_name}</span>
+        <p>{full_name}</p>
       </div>
-      <label className="custom-checkbox">
-        <input
-          onChange={handleChange}
-          checked={isChecked}
-          name="dummy"
-          type="checkbox"
-        />
-        <span className="checkmark"></span>
-      </label>
+      <Checkbox handleChange={handleChange} isChecked={isChecked} />
     </div>
   );
 }
