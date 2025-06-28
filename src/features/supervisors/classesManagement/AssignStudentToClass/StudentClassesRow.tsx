@@ -1,6 +1,5 @@
 import { useClassesUi } from "@/context/ClassesUi";
 import Checkbox from "@/ui/Checkbox";
-import { useEffect, useState } from "react";
 
 function StudentClassesRow({
   student,
@@ -9,18 +8,15 @@ function StudentClassesRow({
 }) {
   const { full_name, student_id: id, class_name } = student;
   const { dispatch, studentId } = useClassesUi();
-  const [isChecked, setIsChecked] = useState(studentId === id);
 
-  useEffect(
-    function () {
-      if (id !== 0 && id !== studentId) setIsChecked(false);
-    },
-    [studentId, id],
-  );
+  const isChecked = id === studentId;
 
   function handleChange() {
-    setIsChecked((c) => !c);
-    dispatch({ type: "changeStudentId", payload: student.student_id });
+    if (isChecked) {
+      dispatch({ type: "changeStudentId", payload: null });
+    } else {
+      dispatch({ type: "changeStudentId", payload: id });
+    }
   }
 
   return (

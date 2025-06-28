@@ -1,13 +1,14 @@
-import { useUser } from "@/context/UserContext";
+import { setUserData } from "@/slices/userSlice";
 import { UserTypes } from "@/utils/types";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { login } from "../../services/apiAuth";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../services/apiAuth";
 
 export function useLogin() {
-  const { dispatch } = useUser();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mutate: loginMutation, isPending: isLoggingIn } = useMutation({
     mutationFn: ({ email, password }: mutateFnTypes) =>
@@ -18,13 +19,7 @@ export function useLogin() {
         secure: true,
         sameSite: "strict",
       });
-      dispatch({
-        type: "setUserData",
-        payload: {
-          user: data.user,
-          token: token,
-        },
-      });
+      dispatch(setUserData({ user: data.user, token }));
       toast.success("You have loged in Successfully!");
       navigate("/", { replace: true });
     },

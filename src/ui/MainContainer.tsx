@@ -4,6 +4,8 @@ import { useUser } from "../context/UserContext";
 import Filter from "./Filter";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 function MainContainer({
   children,
@@ -37,9 +39,7 @@ function MainPageHeader({ children }: { children: ReactNode }) {
 }
 
 function Controls({ options, linkTo, linkTitle }: ControlsTypes) {
-  const {
-    user: { role },
-  } = useUser();
+  const role = useSelector((state: RootState) => state.user.user.role);
   return (
     <div className="flex items-center justify-center gap-5">
       <Filter options={Array.isArray(options) ? options : []} />

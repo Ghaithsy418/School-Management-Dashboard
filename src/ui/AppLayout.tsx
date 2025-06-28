@@ -7,6 +7,7 @@ import { useDirection } from "@/hooks/useDirection";
 
 function AppLayout() {
   useDirection();
+  
   return (
     <motion.div
       variants={regularOpacityVariants}

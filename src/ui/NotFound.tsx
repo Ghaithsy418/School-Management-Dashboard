@@ -1,13 +1,14 @@
-import { useUser } from "@/context/UserContext";
+import { RootState } from "@/store";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function NotFound() {
   const navigate = useNavigate();
   const {
-    user: { role },
     token,
-  } = useUser();
+    user: { role },
+  } = useSelector((state: RootState) => state.user);
 
   useEffect(
     function () {

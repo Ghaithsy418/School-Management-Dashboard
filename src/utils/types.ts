@@ -1,6 +1,7 @@
 export interface StudentTypes {
   full_name: string;
-  student_id: string;
+  user_id: number;
+  student_id: number;
   class_name: string;
   class_id: number;
   gpa: number;

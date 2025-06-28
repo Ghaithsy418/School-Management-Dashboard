@@ -12,7 +12,7 @@ function AssignStudentToClass() {
   return (
     <div className="col-start-2 col-end-3 row-start-3 row-end-4 w-[28rem] place-self-center">
       <div className="flex items-center justify-around rounded-md border-1 border-gray-500/50 px-4 py-4">
-        {ui === "" && <FirstUi />}
+        {ui !== "chooseClass" && ui !== "chooseStudent" && <FirstUi />}
         {ui === "chooseClass" && <SecondUi />}
         {ui === "chooseStudent" && <ThirdUi />}
       </div>
@@ -24,6 +24,7 @@ function FirstUi() {
   const { dispatch } = useClassesUi();
   const { classes, isGettingClasses } = useGetClasses();
   function handleClick() {
+    dispatch({ type: "resetAll", payload: "" });
     dispatch({ type: "changeUi", payload: "chooseClass" });
   }
 
@@ -42,7 +43,7 @@ function FirstUi() {
       >
         Assign
       </button>{" "}
-      a Student to a Class
+      a Student to a Class <span className="text-2xl">🧑‍🎓</span>
     </motion.h3>
   );
 }
@@ -77,8 +78,6 @@ function SecondUi() {
 function ThirdUi() {
   const { className } = useClassesUi();
 
-  function handleClick() {}
-
   return (
     <Modal>
       <motion.h3
@@ -89,10 +88,7 @@ function ThirdUi() {
       >
         Class ({className}) has been selected now choose a{" "}
         <Modal.Open name="assignStudent">
-          <button
-            onClick={handleClick}
-            className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
-          >
+          <button className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed">
             Student
           </button>
         </Modal.Open>

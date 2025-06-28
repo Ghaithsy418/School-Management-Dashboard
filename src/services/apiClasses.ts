@@ -42,6 +42,13 @@ export async function assignStudentToClass(body: {
   });
 }
 
+export async function assignTeacherToClass(body: {
+  className: string;
+  teacherId: number;
+}) {
+  return fetcher({ url: "/api/assignTeacherToClass", method: "POST", body });
+}
+
 export async function deleteClass(body: { classId: number }) {
   return fetcher({ url: "/api/deleteClass", method: "DELETE", body });
 }

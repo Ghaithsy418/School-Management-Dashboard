@@ -20,7 +20,7 @@ export const fetcher = async ({
     const errorData = await res.json().catch(() => null);
     if (errorData?.error === "Unauthorized") {
       Cookies.remove("token");
-      Cookies.remove("userData");
+      Cookies.remove("role");
       window.location.href = "/login";
       throw new Error("Unauthorized");
     } else {

@@ -1,28 +1,27 @@
 import { useClassesUi } from "@/context/ClassesUi";
-import SmallSpinner from "@/ui/SmallSpinner";
-import Spinner from "@/ui/Spinner";
+import { useGetTeachers } from "@/features/teachers/useGetTeachers";
 import SubmitButton from "@/ui/SubmitButton";
-import StudentsClasses from "./StudentsClasses";
-import { useAssignStudentToClass } from "./useAssignStudentToClass";
-import { useGetStudents } from "@/features/students/useGetStudents";
+import { useAssignTeacherToClass } from "./useAssignTeacherToClass";
+import Spinner from "@/ui/Spinner";
+import SmallSpinner from "@/ui/SmallSpinner";
+import TeachersClasses from "./TeachersClasses";
 
-function ChooseStudentToAssign({
+function ChooseTeacherToAssign({
   onCloseModal,
 }: {
   onCloseModal?: () => void;
 }) {
   const { className } = useClassesUi();
-  const { students, isGettingStudents } = useGetStudents();
-  const { assignStudentMutation, isAssigningStudent } =
-    useAssignStudentToClass();
+  const { teachers, isGettingTeachers } = useGetTeachers();
+  const { assignTeacherMutation, isAssigningTeacher } =
+    useAssignTeacherToClass();
 
   function handleClick() {
-    assignStudentMutation(undefined, {
+    assignTeacherMutation(undefined, {
       onSuccess: () => onCloseModal?.(),
     });
   }
-
-  if (isGettingStudents)
+  if (isGettingTeachers)
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3">
         <Spinner />
@@ -34,13 +33,13 @@ function ChooseStudentToAssign({
     <div className="flex h-full w-full flex-col items-center justify-between gap-8 px-2 pb-12">
       <div className="flex w-full flex-col gap-8">
         <h3 className="place-self-start text-2xl font-semibold">
-          Choose a Student:
+          Choose a Teacher:
         </h3>
-        <StudentsClasses students={students} />
+        <TeachersClasses teachers={teachers} />
       </div>
       <div className="sticky bottom-0">
         <SubmitButton onClick={handleClick}>
-          {isAssigningStudent ? (
+          {isAssigningTeacher ? (
             <SmallSpinner />
           ) : (
             `Assign the Student to class ${className}`
@@ -51,4 +50,4 @@ function ChooseStudentToAssign({
   );
 }
 
-export default ChooseStudentToAssign;
+export default ChooseTeacherToAssign;

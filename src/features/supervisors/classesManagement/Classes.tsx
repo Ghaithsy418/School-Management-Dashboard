@@ -1,4 +1,5 @@
-import AssignStudentToClass from "./AssignStudentAndTeacher/AssignStudentToClass";
+import AssignStudentToClass from "./AssignStudentToClass/AssignStudentToClass";
+import AssignTeacherToClasses from "./AssignTeacherToClasses/AssignTeacherToClasses";
 import ClassesStatistics from "./ClassesStatistics";
 import ClassesTable from "./ClassesTable";
 import CreateNewClass from "./CreateNewClass";
@@ -10,6 +11,7 @@ function Classes() {
       <ClassesStatistics />
       <CreateNewClass />
       <AssignStudentToClass />
+      <AssignTeacherToClasses />
     </div>
   );
 }

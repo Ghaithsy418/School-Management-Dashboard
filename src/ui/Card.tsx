@@ -7,7 +7,7 @@ interface DataTypes {
   full_name: string;
   salary: number;
   email: string;
-  subject?: { subject_name: string }[];
+  subject?: string;
 }
 
 function Card({ data }: { data: DataTypes }) {
@@ -23,11 +23,11 @@ function Card({ data }: { data: DataTypes }) {
         </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-3">
-        {subject?.map((sub) => (
+        {subject !== "" && (
           <span className="rounded-md bg-green-200 px-3 py-1 text-[10px] font-bold text-green-700 capitalize">
-            {sub.subject_name}
+            {subject}
           </span>
-        ))}
+        )}
       </div>
       <Link
         to=""

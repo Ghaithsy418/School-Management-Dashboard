@@ -18,8 +18,8 @@ function ClassesTable() {
     <Table columns="2fr 2fr 2fr 1fr">
       <Table.Header>
         <span>Name</span>
-        <span>Max Size</span>
-        <span>Current Size</span>
+        <span>Max Students</span>
+        <span>Current Students</span>
         <span>Options</span>
       </Table.Header>
       <Table.Body

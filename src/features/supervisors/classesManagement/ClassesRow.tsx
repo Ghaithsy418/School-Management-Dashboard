@@ -2,7 +2,7 @@ import { ClassTypes } from "@/utils/types";
 import ClassesTableMenus from "./ClassesTableMenus";
 import CurrentStudentNum from "./CurrentStudentNum";
 import { useClassesUi } from "@/context/ClassesUi";
-import ChooseClass from "./AssignStudentAndTeacher/ChooseClass";
+import ChooseClass from "./ChooseClass";
 
 function ClassesRow({ classData }: { classData: ClassTypes }) {
   const { className, studentsNum, currentStudentNumber } = classData;
@@ -15,7 +15,10 @@ function ClassesRow({ classData }: { classData: ClassTypes }) {
         currentStudentNumber={currentStudentNumber}
         size={studentsNum}
       />
-      {ui === "chooseClass" || ui === "chooseStudent" ? (
+      {ui === "chooseClass" ||
+      ui === "chooseStudent" ||
+      ui === "chooseTeacher" ||
+      ui === "chooseClassForTeacher" ? (
         <ChooseClass className={classData.className} classId={classData.id} />
       ) : (
         <ClassesTableMenus classData={classData} />

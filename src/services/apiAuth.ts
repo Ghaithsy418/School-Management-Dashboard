@@ -231,3 +231,11 @@ export async function addStudent(body: AddStudentTypes, token: string) {
     throw error;
   }
 }
+
+export async function deleteUser(body: { user_id: number }) {
+  return fetcher({ url: "/api/deleteUser", method: "DELETE", body });
+}
+
+export async function getCurrentUser() {
+  return fetcher({ url: "/api/getUserInfo", method: "GET" });
+}

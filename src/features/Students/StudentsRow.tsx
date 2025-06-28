@@ -4,7 +4,8 @@ import { StudentTypes } from "../../utils/types";
 import StudentsTableMenus from "./StudentsTableMenus";
 
 function StudentsRow({ student }: { student: StudentTypes }) {
-  const { full_name, student_id, gpa, class_name, phone, email } = student;
+  const { full_name, student_id, gpa, class_name, phone, email, user_id } =
+    student;
   return (
     <>
       <h3 className="flex items-center gap-3">
@@ -17,7 +18,7 @@ function StudentsRow({ student }: { student: StudentTypes }) {
       <p>{class_name === "" ? "-" : class_name}</p>
       <p>{gpa ?? "-"}</p>
       <Contact phone={phone} email={email} />
-      <StudentsTableMenus name={full_name} />
+      <StudentsTableMenus name={full_name} user_id={user_id} />
     </>
   );
 }

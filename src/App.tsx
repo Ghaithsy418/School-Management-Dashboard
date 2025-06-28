@@ -1,9 +1,11 @@
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import { useUser } from "./context/UserContext";
 import AddStudents from "./features/dean/addStudents/AddStudents";
+import AddSupervisors from "./features/dean/AddSupervisors";
+import AddTeachers from "./features/dean/AddTeachers";
+import ClassManagment from "./pages/ClassManagment";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Settings from "./pages/Settings";
@@ -14,9 +16,8 @@ import Teachers from "./pages/Teachers";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import AddTeachers from "./features/dean/AddTeachers";
-import AddSupervisors from "./features/dean/AddSupervisors";
-import ClassManagment from "./pages/ClassManagment";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,10 +29,8 @@ const queryClient = new QueryClient({
 
 //nothing scary just defining the entire App's routes
 function App() {
-  const {
-    user: { role },
-  } = useUser();
-
+  const role = useSelector((state: RootState) => state.user.user.role);
+  console.log(role);
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
