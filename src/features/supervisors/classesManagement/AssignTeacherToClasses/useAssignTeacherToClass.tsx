@@ -1,5 +1,5 @@
-import { useClassesUi } from "@/context/ClassesUi";
 import { assignTeacherToClass } from "@/services/apiClasses";
+import { useClassesUi } from "@/slices/classesUiSlice";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

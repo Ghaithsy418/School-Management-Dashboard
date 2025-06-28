@@ -4,22 +4,23 @@ import SmallSpinner from "../../../ui/SmallSpinner";
 import SubmitButton from "../../../ui/SubmitButton";
 import Title from "../../../ui/Title";
 import { useSendResetPassword } from "./useSendResetPassword";
-import { useLoginUi } from "@/context/LoginUIs";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { changeEmail } from "@/slices/loginUiSlice";
 
 function ResetPasswordForm() {
   const { register, handleSubmit, formState } = useForm();
   const { resetMutation, isResending } = useSendResetPassword();
-  const { dispatch } = useLoginUi();
+  const dispatch = useDispatch();
   const { t } = useTranslation("auth");
   const { email: emailError } = formState.errors;
 
   function onSubmit(data: { email?: string }) {
     if (data.email) {
       resetMutation({ email: data.email });
-      dispatch({ type: "changeEmail", payload: data.email });
+      dispatch(changeEmail(data.email));
     }
   }
 

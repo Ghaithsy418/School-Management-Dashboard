@@ -5,11 +5,11 @@ import SubmitButton from "@/ui/SubmitButton";
 import toast from "react-hot-toast";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNewPassword } from "./useNewPassword";
-import { useLoginUi } from "@/context/LoginUIs";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
 import { useTranslation } from "react-i18next";
+import { useLoginUi } from "@/slices/loginUiSlice";
 
 function NewPasswordForm() {
   const { register, handleSubmit, formState } = useForm();

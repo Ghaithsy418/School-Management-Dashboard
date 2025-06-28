@@ -1,12 +1,13 @@
 import { showStudents, showTeacherStudents } from "@/services/apiStudents";
-import { RootState } from "@/store";
+import { useUser } from "@/slices/userSlice";
 import { StudentTypes } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 export const useGetStudents = function () {
-  const role = useSelector((state: RootState) => state.user.user.role);
+  const {
+    user: { role },
+  } = useUser();
   const [searchParams] = useSearchParams();
   const {
     data,

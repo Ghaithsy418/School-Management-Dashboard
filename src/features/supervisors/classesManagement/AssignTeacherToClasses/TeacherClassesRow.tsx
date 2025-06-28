@@ -1,5 +1,6 @@
-import { useClassesUi } from "@/context/ClassesUi";
+import { changeTeacherId, useClassesUi } from "@/slices/classesUiSlice";
 import Checkbox from "@/ui/Checkbox";
+import { useDispatch } from "react-redux";
 
 interface TeacherClassesTypes {
   full_name: string;
@@ -9,15 +10,16 @@ interface TeacherClassesTypes {
 
 function TeacherClassesRow({ teacher }: { teacher: TeacherClassesTypes }) {
   const { full_name, teacher_id: id, subject } = teacher;
-  const { dispatch, teacherId } = useClassesUi();
+  const { teacherId } = useClassesUi();
+  const dispatch = useDispatch();
 
   const isChecked = id === teacherId;
 
   function handleChange() {
     if (isChecked) {
-      dispatch({ type: "changeTeacherId", payload: null });
+      dispatch(changeTeacherId(0));
     } else {
-      dispatch({ type: "changeTeacherId", payload: id });
+      dispatch(changeTeacherId(0));
     }
   }
 

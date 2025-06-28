@@ -1,10 +1,10 @@
-import { useClassesUi } from "@/context/ClassesUi";
+import { useGetStudents } from "@/features/students/useGetStudents";
+import { useClassesUi } from "@/slices/classesUiSlice";
 import SmallSpinner from "@/ui/SmallSpinner";
 import Spinner from "@/ui/Spinner";
 import SubmitButton from "@/ui/SubmitButton";
 import StudentsClasses from "./StudentsClasses";
 import { useAssignStudentToClass } from "./useAssignStudentToClass";
-import { useGetStudents } from "@/features/students/useGetStudents";
 
 function ChooseStudentToAssign({
   onCloseModal,

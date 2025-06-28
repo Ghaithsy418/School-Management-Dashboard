@@ -1,18 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { sendResetPassword } from "../../../services/apiAuth";
-import { useLoginUi } from "../../../context/LoginUIs";
+import { useDispatch } from "react-redux";
+import { changeUi } from "@/slices/loginUiSlice";
 
 export function useSendResetPassword() {
-  const { dispatch } = useLoginUi();
+  const dispatch = useDispatch();
   const { mutate: resetMutation, isPending: isResending } = useMutation({
     mutationFn: ({ email }: { email: string }) => sendResetPassword({ email }),
     onSuccess: () => {
       toast.success("Verification code is sent successfully");
-      dispatch({
-        type: "changeUi",
-        payload: 3,
-      });
+      dispatch(changeUi(3));
     },
     onError: (err: Error) => toast.error(err.message),
   });

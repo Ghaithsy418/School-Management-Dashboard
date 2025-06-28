@@ -1,6 +1,8 @@
+import { RootState } from "@/store";
 import { UserTypes } from "@/utils/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 interface UserDataTypes {
   token: string;
@@ -42,3 +44,5 @@ const userSlice = createSlice({
 export const { setUserData, clearAll } = userSlice.actions;
 
 export default userSlice.reducer;
+
+export const useUser = () => useSelector((state: RootState) => state.user);

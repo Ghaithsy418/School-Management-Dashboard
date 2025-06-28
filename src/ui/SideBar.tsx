@@ -1,13 +1,12 @@
 import Logout from "@/features/auth/Logout";
-import { RootState } from "@/store";
+import { useUser } from "@/slices/userSlice";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import DeanLinks from "../features/dean/DeanLinks";
 import SupervisorsLinks from "../features/supervisors/SupervisorsLinks";
 import TeachersLinks from "../features/teachers/TeachersLinks";
 
 function SideBar() {
-  const role = useSelector((state: RootState) => state.user.user.role);
+  const {user: {role}} = useUser()
   const { t } = useTranslation();
   return (
     <nav className="row-start-1 row-end-3 flex flex-col justify-between border-r-1 border-r-indigo-200/20 bg-indigo-100/20 px-4 pt-10 pb-8 font-semibold">

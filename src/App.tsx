@@ -13,11 +13,10 @@ import Student from "./pages/Student";
 import Students from "./pages/Students";
 import Supervisors from "./pages/Supervisors";
 import Teachers from "./pages/Teachers";
+import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import { useSelector } from "react-redux";
-import { RootState } from "./store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,8 +28,10 @@ const queryClient = new QueryClient({
 
 //nothing scary just defining the entire App's routes
 function App() {
-  const role = useSelector((state: RootState) => state.user.user.role);
-  console.log(role);
+  const {
+    user: { role },
+  } = useUser();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>

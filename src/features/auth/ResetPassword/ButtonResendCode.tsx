@@ -1,6 +1,6 @@
-import { useLoginUi } from "@/context/LoginUIs";
 import { useSendResetPassword } from "./useSendResetPassword";
 import { useTimer } from "@/hooks/useTimer";
+import { useLoginUi } from "@/slices/loginUiSlice";
 import { useTranslation } from "react-i18next";
 
 function ButtonResendCode() {

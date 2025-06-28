@@ -1,5 +1,11 @@
-import { useClassesUi } from "@/context/ClassesUi";
+import {
+  changeClassId,
+  changeClassName,
+  changeUi,
+  useClassesUi,
+} from "@/slices/classesUiSlice";
 import Checkbox from "@/ui/Checkbox";
+import { useDispatch } from "react-redux";
 
 function ChooseClass({
   className,
@@ -8,28 +14,28 @@ function ChooseClass({
   className: string;
   classId: number;
 }) {
-  const { className: choosenClassName, dispatch, ui } = useClassesUi();
+  const dispatch = useDispatch();
+  const { className: choosenClassName, ui } = useClassesUi();
 
   const isChecked = choosenClassName === className;
 
   function handleChange() {
     if (!isChecked) {
-      dispatch({ type: "changeClassName", payload: className });
-      dispatch({ type: "changeClassId", payload: classId });
+      dispatch(changeClassName(className));
+      dispatch(changeClassId(classId));
 
-      if (ui === "chooseClass")
-        dispatch({ type: "changeUi", payload: "chooseStudent" });
-      if (ui === "chooseClassForTeacher")
-        dispatch({ type: "changeUi", payload: "chooseTeacher" });
+      if (ui === "chooseClass") dispatch(changeUi("chooseStudent"));
+      if (ui === "chooseClassForTeacher") dispatch(changeUi("chooseTeacher"));
     } else {
-      dispatch({ type: "changeClassName", payload: "" });
-      dispatch({ type: "changeClassId", payload: null });
-      dispatch({
-        type: "changeUi",
-        payload: ui.includes("chooseStudent")
-          ? "chooseClass"
-          : "chooseClassForTeacher",
-      });
+      dispatch(changeClassName(""));
+      dispatch(changeClassId(0));
+      dispatch(
+        changeUi(
+          ui.includes("chooseStudent")
+            ? "chooseClass"
+            : "chooseClassForTeacher",
+        ),
+      );
     }
   }
 

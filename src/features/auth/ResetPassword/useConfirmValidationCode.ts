@@ -1,8 +1,9 @@
-import { useLoginUi } from "@/context/LoginUIs";
 import { confirmVerificationCode } from "@/services/apiAuth";
+import { changeUi } from "@/slices/loginUiSlice";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 interface confirmTypes {
   email: string;
@@ -10,18 +11,18 @@ interface confirmTypes {
 }
 
 export const useConfirmValidationCode = function () {
-  const { dispatch } = useLoginUi();
+  const dispatch = useDispatch();
   const [tryCounts, setTryCounts] = useState(0);
   const { mutate: confirmMutation, isPending: isConfirming } = useMutation({
     mutationFn: ({ email, verificationCode }: confirmTypes) =>
       confirmVerificationCode({ email, verificationCode }),
     onSuccess: () => {
       toast.success("Verification Code is true");
-      dispatch({ type: "changeUi", payload: 4 });
+      dispatch(changeUi(4));
     },
     onError: () => {
       if (tryCounts === 5) {
-        dispatch({ type: "changeUi", payload: 2 });
+        dispatch(changeUi(2));
         setTryCounts(0);
         toast.error(
           "You must enter your Email again for receiving the code :(",

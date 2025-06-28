@@ -1,10 +1,10 @@
-import { useClassesUi } from "@/context/ClassesUi";
 import { useGetTeachers } from "@/features/teachers/useGetTeachers";
 import SubmitButton from "@/ui/SubmitButton";
 import { useAssignTeacherToClass } from "./useAssignTeacherToClass";
 import Spinner from "@/ui/Spinner";
 import SmallSpinner from "@/ui/SmallSpinner";
 import TeachersClasses from "./TeachersClasses";
+import { useClassesUi } from "@/slices/classesUiSlice";
 
 function ChooseTeacherToAssign({
   onCloseModal,

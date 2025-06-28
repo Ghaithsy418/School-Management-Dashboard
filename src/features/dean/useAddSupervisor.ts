@@ -1,12 +1,11 @@
 import { addSupervisor } from "@/services/apiAuth";
-import { RootState } from "@/store";
+import { useUser } from "@/slices/userSlice";
 import { TeacherSupervisorTypes } from "@/utils/types";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
 
 export const useAddSupervisor = function () {
-  const token = useSelector((state: RootState) => state.user.token);
+  const { token } = useUser();
   const { mutate: addSupervisorMutation, isPending: isAddingSupervisor } =
     useMutation({
       mutationFn: (data: TeacherSupervisorTypes) => addSupervisor(data, token),

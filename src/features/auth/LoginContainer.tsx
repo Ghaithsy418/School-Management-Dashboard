@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import NewPasswordForm from "./ResetPassword/NewPasswordForm";
 import OtpInput from "./ResetPassword/OtpInput";
 import ResetPasswordForm from "./ResetPassword/ResetPasswordForm";
-import { useLoginUi } from "@/context/LoginUIs";
+import { useLoginUi } from "@/slices/loginUiSlice";
 
 function LoginContainer() {
   const { ui } = useLoginUi();

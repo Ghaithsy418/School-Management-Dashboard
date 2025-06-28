@@ -1,11 +1,9 @@
+import { useUser } from "@/slices/userSlice";
 import { ReactNode } from "react";
-import Search from "./Search";
-import { useUser } from "../context/UserContext";
-import Filter from "./Filter";
-import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { Link, useNavigate } from "react-router-dom";
+import Filter from "./Filter";
+import Search from "./Search";
 
 function MainContainer({
   children,
@@ -39,7 +37,9 @@ function MainPageHeader({ children }: { children: ReactNode }) {
 }
 
 function Controls({ options, linkTo, linkTitle }: ControlsTypes) {
-  const role = useSelector((state: RootState) => state.user.user.role);
+  const {
+    user: { role },
+  } = useUser();
   return (
     <div className="flex items-center justify-center gap-5">
       <Filter options={Array.isArray(options) ? options : []} />

@@ -1,13 +1,12 @@
-import { RootState } from "@/store";
+import { useUser } from "@/slices/userSlice";
 import { ReactNode, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function ProtectedRoutes({ children }: { children: ReactNode }) {
   const {
     user: { role },
     token,
-  } = useSelector((state: RootState) => state.user);
+  } = useUser();
   const navigate = useNavigate();
 
   useEffect(

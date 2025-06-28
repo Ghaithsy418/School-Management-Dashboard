@@ -1,10 +1,11 @@
-import { useClassesUi } from "@/context/ClassesUi";
 import { useGetClasses } from "../useGetClasses";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
 import { useSearchParams } from "react-router-dom";
 import Modal from "@/ui/Modal";
 import ChooseTeacherToAssign from "./ChooseTeacherToAssign";
+import { changeUi, clearAll, useClassesUi } from "@/slices/classesUiSlice";
+import { useDispatch } from "react-redux";
 
 function AssignTeacherToClasses() {
   const { ui } = useClassesUi();
@@ -23,11 +24,11 @@ function AssignTeacherToClasses() {
 
 function FirstUi() {
   const { classes, isGettingClasses } = useGetClasses();
-  const { dispatch } = useClassesUi();
+  const dispatch = useDispatch();
 
   function handleClick() {
-    dispatch({ type: "resetAll", payload: "" });
-    dispatch({ type: "changeUi", payload: "chooseClassForTeacher" });
+    dispatch(clearAll());
+    dispatch(changeUi("chooseClassForTeacher"));
   }
 
   return (
@@ -51,11 +52,11 @@ function FirstUi() {
 }
 
 function SecondUi() {
-  const { dispatch } = useClassesUi();
+  const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
 
   function handleBack() {
-    dispatch({ type: "resetAll", payload: "" });
+    dispatch(clearAll());
     setSearchParams({});
   }
 

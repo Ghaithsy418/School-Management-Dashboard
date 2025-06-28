@@ -1,11 +1,10 @@
+import { useDirection } from "@/hooks/useDirection";
+import { regularOpacityVariants } from "@/utils/variants";
+import { motion } from "framer-motion";
 import { useEffect } from "react";
+import LoginContainer from "../features/auth/LoginContainer";
 import LoginIcons from "../ui/LoginIcons";
 import loginPhoto from "/images/login-photo.jpg";
-import LoginContainer from "../features/auth/LoginContainer";
-import LoginProvider from "../context/LoginUIs";
-import { motion } from "framer-motion";
-import { regularOpacityVariants } from "@/utils/variants";
-import { useDirection } from "@/hooks/useDirection";
 
 function Login() {
   useDirection();
@@ -21,9 +20,7 @@ function Login() {
       exit="exit"
       className="flex h-[100vh] items-center justify-center"
     >
-      <LoginProvider>
-        <LoginContainer />
-      </LoginProvider>
+      <LoginContainer />
       <div className="relative z-20 flex h-full flex-3/5 items-center justify-center rounded-bl-[4rem] border-l-1 border-l-indigo-200/20 bg-indigo-100">
         <img
           src={loginPhoto}

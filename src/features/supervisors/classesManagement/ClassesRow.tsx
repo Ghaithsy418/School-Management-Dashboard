@@ -1,8 +1,8 @@
+import { useClassesUi } from "@/slices/classesUiSlice";
 import { ClassTypes } from "@/utils/types";
+import ChooseClass from "./ChooseClass";
 import ClassesTableMenus from "./ClassesTableMenus";
 import CurrentStudentNum from "./CurrentStudentNum";
-import { useClassesUi } from "@/context/ClassesUi";
-import ChooseClass from "./ChooseClass";
 
 function ClassesRow({ classData }: { classData: ClassTypes }) {
   const { className, studentsNum, currentStudentNumber } = classData;

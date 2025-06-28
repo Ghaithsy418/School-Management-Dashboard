@@ -3,7 +3,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useLoginUi } from "@/context/LoginUIs";
 import SubmitButton from "@/ui/SubmitButton";
 import Title from "@/ui/Title";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
@@ -14,6 +13,7 @@ import SmallSpinner from "@/ui/SmallSpinner";
 import { motion } from "framer-motion";
 import { regularOpacityVariants } from "@/utils/variants";
 import { useTranslation } from "react-i18next";
+import { useLoginUi } from "@/slices/loginUiSlice";
 
 function OtpInput() {
   const { control, handleSubmit, formState } = useForm();

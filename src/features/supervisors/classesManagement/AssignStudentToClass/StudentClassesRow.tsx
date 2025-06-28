@@ -1,21 +1,23 @@
-import { useClassesUi } from "@/context/ClassesUi";
+import { changeStudentId, useClassesUi } from "@/slices/classesUiSlice";
 import Checkbox from "@/ui/Checkbox";
+import { useDispatch } from "react-redux";
 
 function StudentClassesRow({
   student,
 }: {
   student: { full_name: string; student_id: number; class_name: string };
 }) {
+  const { studentId } = useClassesUi();
+  const dispatch = useDispatch();
   const { full_name, student_id: id, class_name } = student;
-  const { dispatch, studentId } = useClassesUi();
 
   const isChecked = id === studentId;
 
   function handleChange() {
     if (isChecked) {
-      dispatch({ type: "changeStudentId", payload: null });
+      dispatch(changeStudentId(0));
     } else {
-      dispatch({ type: "changeStudentId", payload: id });
+      dispatch(changeStudentId(id));
     }
   }
 
