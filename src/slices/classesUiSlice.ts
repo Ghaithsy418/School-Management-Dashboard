@@ -23,7 +23,7 @@ const classesUiSlice = createSlice({
   initialState,
   reducers: {
     changeUi(state, action: PayloadAction<string>) {
-      state.className = action.payload;
+      state.ui = action.payload;
     },
     changeClassName(state, action: PayloadAction<string>) {
       state.className = action.payload;

@@ -2,6 +2,7 @@ import { usePaginate } from "@/hooks/usePaginate";
 import Pagination from "@/ui/Pagination";
 import TeacherClassesRow from "./TeacherClassesRow";
 import Search from "@/ui/Search";
+import Empty from "@/ui/Empty";
 
 interface TeachersClassesTypes {
   full_name: string;
@@ -11,6 +12,9 @@ interface TeachersClassesTypes {
 
 function TeachersClasses({ teachers }: { teachers: TeachersClassesTypes[] }) {
   const paginatedTeachers = usePaginate(teachers, 15, "teachersPage");
+
+  if (!teachers?.length) return <Empty resource="teachers" />;
+
   return (
     <div className="flex h-full w-full flex-col items-start gap-8 pb-12">
       <Search size="w-68" />

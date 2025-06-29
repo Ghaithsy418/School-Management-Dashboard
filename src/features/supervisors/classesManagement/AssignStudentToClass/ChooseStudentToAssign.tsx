@@ -42,15 +42,17 @@ function ChooseStudentToAssign({
         </h3>
         <StudentsClasses students={filteredStudents} />
       </div>
-      <div className="sticky bottom-0">
-        <SubmitButton disabled={!studentId} onClick={handleClick}>
-          {isAssigningStudent ? (
-            <SmallSpinner />
-          ) : (
-            `Assign the Student to class ${className}`
-          )}
-        </SubmitButton>
-      </div>
+      {students?.length && (
+        <div className="sticky bottom-0">
+          <SubmitButton disabled={!studentId} onClick={handleClick}>
+            {isAssigningStudent ? (
+              <SmallSpinner />
+            ) : (
+              `Assign the Student to class ${className}`
+            )}
+          </SubmitButton>
+        </div>
+      )}
     </div>
   );
 }

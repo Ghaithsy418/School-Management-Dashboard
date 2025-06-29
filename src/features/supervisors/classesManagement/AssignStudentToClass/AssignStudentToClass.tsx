@@ -24,6 +24,7 @@ function AssignStudentToClass() {
 function FirstUi() {
   const dispatch = useDispatch();
   const { classes, isGettingClasses } = useGetClasses();
+
   function handleClick() {
     dispatch(clearAll());
     dispatch(changeUi("chooseClass"));

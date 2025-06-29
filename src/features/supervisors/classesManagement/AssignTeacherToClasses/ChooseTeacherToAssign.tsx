@@ -11,7 +11,7 @@ function ChooseTeacherToAssign({
 }: {
   onCloseModal?: () => void;
 }) {
-  const { className } = useClassesUi();
+  const { className, teacherId } = useClassesUi();
   const { teachers, isGettingTeachers } = useGetTeachers();
   const { assignTeacherMutation, isAssigningTeacher } =
     useAssignTeacherToClass();
@@ -25,7 +25,7 @@ function ChooseTeacherToAssign({
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3">
         <Spinner />
-        <p className="text-lg font-semibold">Loading Students...</p>
+        <p className="text-lg font-semibold">Loading Teachers...</p>
       </div>
     );
 
@@ -37,15 +37,17 @@ function ChooseTeacherToAssign({
         </h3>
         <TeachersClasses teachers={teachers} />
       </div>
-      <div className="sticky bottom-0">
-        <SubmitButton onClick={handleClick}>
-          {isAssigningTeacher ? (
-            <SmallSpinner />
-          ) : (
-            `Assign the Student to class ${className}`
-          )}
-        </SubmitButton>
-      </div>
+      {teachers?.length && (
+        <div className="sticky bottom-0">
+          <SubmitButton disabled={teacherId === 0} onClick={handleClick}>
+            {isAssigningTeacher ? (
+              <SmallSpinner />
+            ) : (
+              `Assign the Teacher to class ${className}`
+            )}
+          </SubmitButton>
+        </div>
+      )}
     </div>
   );
 }
