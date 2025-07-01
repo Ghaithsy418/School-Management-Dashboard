@@ -48,32 +48,121 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute top-0 left-0 z-50 flex h-[100vh] w-[100vw] items-center justify-center bg-gray-950/80 backdrop-blur-xs backdrop:blur-md"
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
     >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-indigo-900/90 to-purple-900/95 backdrop-blur-xl"
+      />
+
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-20"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -100, 0],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              left: `${10 + i * 15}%`,
+              top: `${20 + i * 10}%`,
+            }}
+          />
+        ))}
+      </div>
+
       <motion.div
         variants={mode === "sheet" ? sheetVariants : variants}
         initial="hidden"
         animate="visible"
+        exit="hidden"
         ref={ref}
-        className={`fixed mb-20 flex flex-1 flex-col gap-5 rounded-md border-2 border-indigo-300/20 bg-indigo-50 px-7 py-5 shadow-lg shadow-indigo-100/10 ${mode === "sheet" ? "no-scrollbar absolute top-0 right-0 h-[100vh] w-[28rem] overflow-y-auto rounded-none" : "w-[34rem]"}`}
+        className={`relative flex flex-col gap-6 shadow-2xl ${
+          mode === "sheet"
+            ? "no-scrollbar absolute top-0 right-0 h-full w-[42rem] overflow-y-auto rounded-l-3xl border-l-2 border-indigo-200/50 bg-gradient-to-br from-white via-slate-50 to-indigo-50"
+            : "w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-white via-slate-50 to-blue-50"
+        }`}
       >
-        <div className="flex items-center justify-between">
-          <span>{icon}</span>
-          <button
-            className="cursor-pointer place-self-end rounded-full p-2 text-[20px] transition-all duration-300 hover:bg-gray-400 hover:text-red-600 sm:text-[24px]"
-            onClick={close}
+        {/* Glass morphism overlay */}
+        <div className="absolute inset-0 rounded-3xl bg-white/60 backdrop-blur-sm" />
+
+        {/* Content container */}
+        <div className="relative z-10 p-8">
+          {/* Enhanced header with gradient and glow effects */}
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {icon && (
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  className="rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 p-3 text-white shadow-lg"
+                >
+                  {icon}
+                </motion.div>
+              )}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="h-1 w-16 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+              />
+            </div>
+
+            <motion.button
+              initial={{ scale: 0, rotate: 180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+              whileHover={{
+                scale: 1.1,
+                rotate: 90,
+                backgroundColor: "#ef4444",
+                color: "#ffffff",
+              }}
+              whileTap={{ scale: 0.9 }}
+              className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-slate-600 shadow-lg transition-all duration-300 hover:border-red-400 hover:bg-red-500 hover:text-white hover:shadow-xl"
+              onClick={close}
+            >
+              <HiX className="text-xl transition-transform duration-300 group-hover:rotate-90" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-400 to-pink-500 opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
+            </motion.button>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="relative"
           >
-            <HiX />
-          </button>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 opacity-30 blur-sm" />
+            <div className="relative rounded-2xl border border-white/50 bg-white/80 p-6 shadow-inner backdrop-blur-sm">
+              {cloneElement(
+                children as React.ReactElement<{ onCloseModal: () => void }>,
+                {
+                  onCloseModal: close,
+                },
+              )}
+            </div>
+          </motion.div>
         </div>
-        <div className="h-full">
-          {cloneElement(
-            children as React.ReactElement<{ onCloseModal: () => void }>,
-            {
-              onCloseModal: close,
-            },
-          )}
-        </div>
+
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="absolute bottom-0 left-1/2 h-1 w-24 -translate-x-1/2 transform rounded-t-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+        />
       </motion.div>
     </motion.div>,
     document.body,
@@ -99,14 +188,19 @@ interface WindowOpenTypes {
 const variants = {
   hidden: {
     opacity: 0,
-    y: "-30%",
-    scale: 0.6,
+    scale: 0.8,
+    y: -50,
+    rotateX: -15,
   },
   visible: {
     opacity: 1,
-    y: 0,
     scale: 1,
+    y: 0,
+    rotateX: 0,
     transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 30,
       duration: 0.6,
     },
   },
@@ -115,13 +209,18 @@ const variants = {
 const sheetVariants = {
   hidden: {
     x: "100%",
-    opacity: 0.5,
+    opacity: 0,
+    scale: 0.95,
   },
   visible: {
     x: 0,
     opacity: 1,
+    scale: 1,
     transition: {
-      duration: 0.6,
+      type: "spring",
+      stiffness: 300,
+      damping: 35,
+      duration: 0.7,
     },
   },
 };

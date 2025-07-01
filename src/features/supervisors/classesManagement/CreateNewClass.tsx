@@ -1,11 +1,9 @@
 import Button from "@/ui/Button";
 import Modal from "@/ui/Modal";
-import CreateClassForm from "./CreateClassForm";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { useState } from "react";
+import CreateClassForm from "./CreateClassForm";
 
 function CreateNewClass() {
-  const [isHover, setIsHover] = useState(false);
   return (
     <div className="col-start-2 col-end-3 row-start-2 row-end-3 w-[28rem] place-self-center">
       <div className="flex items-center justify-around rounded-md border-1 border-gray-500/50 px-4 py-3">
@@ -18,11 +16,11 @@ function CreateNewClass() {
             name="createClass"
             icon={
               <MdOutlineAddCircleOutline
-                className={`h-8 w-8 transition-all duration-300 ${isHover ? "h-10 w-10 text-indigo-600" : ""}`}
+                className={`h-8 w-8 transition-all duration-300`}
               />
             }
           >
-            <CreateClassForm setIsHover={setIsHover} />
+            <CreateClassForm />
           </Modal.Window>
         </Modal>
       </div>

@@ -1,8 +1,18 @@
-function AvatarGenerator({ name, size = 44 }: { name: string; size?: number }) {
+interface AvatartGeneratorTypes {
+  name: string;
+  size?: number;
+  className?: string;
+}
+
+function AvatarGenerator({
+  name,
+  size = 44,
+  className,
+}: AvatartGeneratorTypes) {
   const newName = name.split(" ");
   return (
     <div
-      className={`flex items-center ${size > 44 ? "text-2xl" : "text-base"} justify-center rounded-full bg-gray-800 text-slate-50`}
+      className={`flex items-center ${size > 44 ? "text-2xl" : "text-base"} justify-center rounded-full bg-gray-800 text-slate-50 ${className}`}
       style={{
         width: size,
         height: size,

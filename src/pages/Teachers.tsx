@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import TeachersList from "../features/teachers/TeachersList";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the teachers routes operators
 function Teachers() {
+  useEffect(function () {
+    document.title = "Teachers";
+  }, []);
+
   return (
     <MainContainer title="Teachers">
       <MainContainer.MainPageHeader>

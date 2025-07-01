@@ -19,7 +19,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
       <NavLink
         to={`/${role}/${button.value.toLowerCase()}`}
         className={({ isActive }) =>
-          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2 ${isActive ? "bg-indigo-200/50" : ""}`
+          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2.5 ${isActive ? "bg-indigo-200/50" : ""}`
         }
       >
         <span

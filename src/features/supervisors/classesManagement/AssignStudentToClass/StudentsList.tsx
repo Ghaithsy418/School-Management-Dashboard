@@ -1,4 +1,5 @@
-import { usePaginate } from "@/hooks/usePaginate";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { useRef } from "react";
 import StudentClassesRow from "./StudentClassesRow";
 
 interface StudentsClassesTypes {
@@ -8,13 +9,40 @@ interface StudentsClassesTypes {
 }
 
 function StudentsList({ students }: { students: StudentsClassesTypes[] }) {
-  const studentsPaginated = usePaginate(students, 15, "studentsPage");
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  const rowVirtualizer = useVirtualizer({
+    count: students.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 50,
+    overscan: 5,
+  });
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-3 divide-y-1 divide-gray-600/30">
-      {studentsPaginated?.map((student) => (
-        <StudentClassesRow student={student} key={student.student_id} />
-      ))}
+    <div ref={parentRef} className="h-full w-full overflow-auto">
+      <div
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualItem) => (
+          <div
+            key={students[virtualItem.index].student_id}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: `${virtualItem.size}px`,
+              transform: `translateY(${virtualItem.start}px)`,
+            }}
+          >
+            <StudentClassesRow student={students[virtualItem.index]} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

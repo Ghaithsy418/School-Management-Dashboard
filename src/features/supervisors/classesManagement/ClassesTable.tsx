@@ -1,6 +1,6 @@
 import { usePaginate } from "@/hooks/usePaginate";
 import Empty from "@/ui/Empty";
-import Pagination from "@/ui/Pagination";
+import MiniPagination from "@/ui/MiniPagination";
 import Spinner from "@/ui/Spinner";
 import Table from "@/ui/Table";
 import ClassesRow from "./ClassesRow";
@@ -31,7 +31,7 @@ function ClassesTable() {
         )}
       />
       <Table.Tail>
-        <Pagination dataLength={classes?.length} numberOfElements={7} />
+        <MiniPagination dataLength={classes?.length} numberOfElements={7} />
       </Table.Tail>
     </Table>
   );

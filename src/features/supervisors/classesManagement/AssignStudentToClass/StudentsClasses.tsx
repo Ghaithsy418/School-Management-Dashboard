@@ -1,7 +1,6 @@
-import Pagination from "@/ui/Pagination";
+import Empty from "@/ui/Empty";
 import Search from "@/ui/Search";
 import StudentsList from "./StudentsList";
-import Empty from "@/ui/Empty";
 
 interface StudentsClassesTypes {
   full_name: string;
@@ -10,19 +9,14 @@ interface StudentsClassesTypes {
 }
 
 function StudentsClasses({ students }: { students: StudentsClassesTypes[] }) {
-  if (!students?.length) return <Empty resource="students" />;
-
   return (
-    <div className="flex h-full w-full flex-col items-start gap-8 px-2 pb-12">
-      <Search size="w-68" />
-      <StudentsList students={students} />
-      <div className="flex w-full items-center justify-between">
-        <Pagination
-          dataLength={students?.length}
-          numberOfElements={15}
-          pageName="studentsPage"
-        />
-      </div>
+    <div className="flex w-full flex-col gap-4">
+      <Search size="w-56" />
+      {students && students.length > 0 ? (
+        <StudentsList students={students} />
+      ) : (
+        <Empty resource="students" />
+      )}
     </div>
   );
 }

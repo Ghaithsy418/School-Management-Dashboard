@@ -49,6 +49,28 @@ export async function assignTeacherToClass(body: {
   return fetcher({ url: "/api/assignTeacherToClass", method: "POST", body });
 }
 
+export async function unassignTeacherToClass(body: {
+  className: string;
+  teacherId: number;
+}) {
+  return fetcher({
+    url: "/api/unassignTeacherToClass",
+    method: "DELETE",
+    body,
+  });
+}
+
+export async function overwriteTeacherToClass(body: {
+  className: string;
+  teacherId: number;
+}) {
+  return fetcher({ url: "/api/overWriteTeacherToClass", method: "POST", body });
+}
+
+export async function getClassTeachers(body: { class_id: number }) {
+  return fetcher({ url: "/api/getClassTeachers", method: "POST", body });
+}
+
 export async function deleteClass(body: { classId: number }) {
   return fetcher({ url: "/api/deleteClass", method: "DELETE", body });
 }

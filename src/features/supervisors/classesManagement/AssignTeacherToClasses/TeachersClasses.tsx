@@ -1,35 +1,27 @@
-import { usePaginate } from "@/hooks/usePaginate";
-import Pagination from "@/ui/Pagination";
-import TeacherClassesRow from "./TeacherClassesRow";
-import Search from "@/ui/Search";
 import Empty from "@/ui/Empty";
+import Search from "@/ui/Search";
+import TeachersList from "./TeachersList";
 
-interface TeachersClassesTypes {
-  full_name: string;
+interface Teacher {
+  full_name?: string;
   teacher_id: number;
   subject: string;
+  user_info?: string;
 }
 
-function TeachersClasses({ teachers }: { teachers: TeachersClassesTypes[] }) {
-  const paginatedTeachers = usePaginate(teachers, 15, "teachersPage");
+interface TeachersClassesProps {
+  teachers: Teacher[];
+}
 
-  if (!teachers?.length) return <Empty resource="teachers" />;
-
+function TeachersClasses({ teachers }: TeachersClassesProps) {
   return (
-    <div className="flex h-full w-full flex-col items-start gap-8 pb-12">
-      <Search size="w-68" />
-      <div className="flex w-full flex-col items-center justify-center gap-3 divide-y-1 divide-gray-600/30">
-        {paginatedTeachers?.map((teacher) => (
-          <TeacherClassesRow teacher={teacher} key={teacher.teacher_id} />
-        ))}
-      </div>
-      <div className="flex w-full items-center justify-between">
-        <Pagination
-          dataLength={teachers?.length}
-          numberOfElements={15}
-          pageName="studentsPage"
-        />
-      </div>
+    <div className="mt-4 flex w-full flex-col gap-4">
+      <Search size="w-56" />
+      {teachers && teachers.length > 0 ? (
+        <TeachersList teachers={teachers} />
+      ) : (
+        <Empty resource="teachers" />
+      )}
     </div>
   );
 }

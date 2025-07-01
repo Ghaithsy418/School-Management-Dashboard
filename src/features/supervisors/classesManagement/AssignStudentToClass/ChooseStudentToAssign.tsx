@@ -3,6 +3,7 @@ import { useClassesUi } from "@/slices/classesUiSlice";
 import SmallSpinner from "@/ui/SmallSpinner";
 import Spinner from "@/ui/Spinner";
 import SubmitButton from "@/ui/SubmitButton";
+import { HiPlus } from "react-icons/hi2";
 import StudentsClasses from "./StudentsClasses";
 import { useAssignStudentToClass } from "./useAssignStudentToClass";
 
@@ -28,27 +29,36 @@ function ChooseStudentToAssign({
 
   if (isGettingStudents)
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-3">
+      <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
-        <p className="text-lg font-semibold">Loading Students...</p>
+        <p className="text-lg font-semibold text-slate-600">Loading...</p>
       </div>
     );
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-between gap-8 px-2 pb-12">
-      <div className="flex w-full flex-col gap-8">
-        <h3 className="place-self-start text-2xl font-semibold">
-          Choose a Student:
+    <div>
+      <div className="py-4">
+        <h3 className="text-xl font-bold text-slate-800">
+          Assign Student to: {className}
         </h3>
+      </div>
+      <div>
         <StudentsClasses students={filteredStudents} />
       </div>
-      {students?.length && (
-        <div className="sticky bottom-0">
-          <SubmitButton disabled={!studentId} onClick={handleClick}>
+      {filteredStudents && filteredStudents.length > 0 && (
+        <div className="sticky bottom-0 bg-white/90 p-3 backdrop-blur-sm">
+          <SubmitButton
+            disabled={!studentId || isAssigningStudent}
+            onClick={handleClick}
+            className="w-full justify-center text-sm"
+          >
             {isAssigningStudent ? (
               <SmallSpinner />
             ) : (
-              `Assign the Student to class ${className}`
+              <div className="flex items-center gap-2">
+                <HiPlus className="h-5 w-5" />
+                <span>Assign</span>
+              </div>
             )}
           </SubmitButton>
         </div>

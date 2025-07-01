@@ -1,10 +1,11 @@
 import { useGetTeachers } from "@/features/teachers/useGetTeachers";
-import SubmitButton from "@/ui/SubmitButton";
-import { useAssignTeacherToClass } from "./useAssignTeacherToClass";
-import Spinner from "@/ui/Spinner";
-import SmallSpinner from "@/ui/SmallSpinner";
-import TeachersClasses from "./TeachersClasses";
 import { useClassesUi } from "@/slices/classesUiSlice";
+import SmallSpinner from "@/ui/SmallSpinner";
+import Spinner from "@/ui/Spinner";
+import SubmitButton from "@/ui/SubmitButton";
+import { HiPlus } from "react-icons/hi2";
+import TeachersClasses from "./TeachersClasses";
+import { useAssignTeacherToClass } from "./useAssignTeacherToClass";
 
 function ChooseTeacherToAssign({
   onCloseModal,
@@ -21,29 +22,37 @@ function ChooseTeacherToAssign({
       onSuccess: () => onCloseModal?.(),
     });
   }
+
   if (isGettingTeachers)
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-3">
+      <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
-        <p className="text-lg font-semibold">Loading Teachers...</p>
+        <p className="text-lg font-semibold text-slate-600">
+          Loading Teachers...
+        </p>
       </div>
     );
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-between gap-8 px-2 pb-12">
-      <div className="flex w-full flex-col gap-8">
-        <h3 className="place-self-start text-2xl font-semibold">
-          Choose a Teacher:
-        </h3>
-        <TeachersClasses teachers={teachers} />
-      </div>
-      {teachers?.length && (
-        <div className="sticky bottom-0">
-          <SubmitButton disabled={teacherId === 0} onClick={handleClick}>
+    <div>
+      <h3 className="truncate text-xl font-bold text-slate-800">
+        Assign Teacher to: {className}
+      </h3>
+      <TeachersClasses teachers={teachers} />
+      {teachers && teachers.length > 0 && (
+        <div className="sticky bottom-0 bg-white/90 p-3 backdrop-blur-sm">
+          <SubmitButton
+            disabled={teacherId === 0 || isAssigningTeacher}
+            onClick={handleClick}
+            className="w-full justify-center text-sm"
+          >
             {isAssigningTeacher ? (
               <SmallSpinner />
             ) : (
-              `Assign the Teacher to class ${className}`
+              <div className="flex items-center gap-2">
+                <HiPlus className="h-5 w-5" />
+                <span>Assign Teacher</span>
+              </div>
             )}
           </SubmitButton>
         </div>

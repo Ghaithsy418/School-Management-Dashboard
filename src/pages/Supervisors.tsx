@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import SupervisorsList from "../features/supervisors/SupervisorsList";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the supervisors routes operators
 function Supervisors() {
+  useEffect(function () {
+    document.title = "Supervisors";
+  }, []);
+
   return (
     <MainContainer title="Supervisors">
       <MainContainer.MainPageHeader>

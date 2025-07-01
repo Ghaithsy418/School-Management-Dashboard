@@ -17,6 +17,7 @@ import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import Subjects from "./pages/Subjects";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,6 +74,7 @@ function App() {
                 <Route path="student/:id" element={<Student />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="classes" element={<ClassManagment />} />
+                <Route path="subjects" element={<Subjects />} />
               </Route>
             )}
             {role === "teacher" && (

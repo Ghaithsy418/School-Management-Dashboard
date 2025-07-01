@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import StudentsTable from "../features/students/StudentsTable";
 import MainContainer from "../ui/MainContainer";
 
 //Responsible: for the students routes operators
 function Students() {
+  useEffect(function () {
+    document.title = "Students";
+  }, []);
+
   return (
     <MainContainer title="Students">
       <MainContainer.MainPageHeader>

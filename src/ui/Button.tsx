@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 
 function PrimaryButton({
   children,
+  disabled = false,
+  className,
   onClick,
   size = "medium",
   color,
@@ -18,7 +20,8 @@ function PrimaryButton({
         onClick={() => onClick?.()}
         onMouseEnter={() => setIsHover?.(true)}
         onMouseLeave={() => setIsHover?.(false)}
-        className={`flex cursor-pointer items-center justify-center shadow-md shadow-gray-600/20 transition-all duration-300 hover:shadow-lg active:shadow-sm ${color ?? "text-indigo-50"} ${backgroundColor ?? "bg-indigo-600"} ${backgroundHover ?? "hover:bg-indigo-700/90"} rounded-md ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"}`}
+        disabled={disabled}
+        className={`flex cursor-pointer items-center justify-center shadow-md shadow-gray-600/20 transition-all duration-300 hover:shadow-lg active:shadow-sm ${color ?? "text-indigo-50"} ${backgroundColor ?? "bg-indigo-600"} ${backgroundHover ?? "hover:bg-indigo-700/90"} rounded-md ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : size === "small" ? "w-16 px-10 py-2 text-sm" : ""} ${className}`}
       >
         {children}
       </button>
@@ -30,7 +33,8 @@ function PrimaryButton({
         onClick={() => onClick?.()}
         onMouseEnter={() => setIsHover?.(true)}
         onMouseLeave={() => setIsHover?.(false)}
-        className={`flex cursor-pointer items-center justify-center rounded-md bg-transparent shadow-md shadow-gray-600/20 hover:shadow-lg active:shadow-sm ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : "w-16 px-2 py-1"} outline-1 outline-gray-400 transition-all duration-300 hover:bg-indigo-100`}
+        disabled={disabled}
+        className={`flex cursor-pointer items-center justify-center rounded-md bg-transparent shadow-md shadow-gray-600/20 hover:shadow-lg active:shadow-sm ${size === "big" ? "min-w-32 px-6 py-3" : size === "medium" ? "min-w-22 px-4 py-2" : size === "small" ? "w-16 px-3 py-2 text-xs" : ""} outline-1 outline-gray-400 transition-all duration-300 hover:bg-indigo-100 ${className}`}
       >
         {children}
       </button>
@@ -47,6 +51,8 @@ interface ButtonTypes {
   primary?: boolean;
   setIsHover?: React.Dispatch<React.SetStateAction<boolean>>;
   type?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
 export default PrimaryButton;

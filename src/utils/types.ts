@@ -58,3 +58,11 @@ export interface ClassTypes {
   studentsNum: number;
   currentStudentNumber: number;
 }
+
+export interface SubjectTypes {
+  id: number;
+  subjectName: string;
+  minMark: number;
+  maxMark: number;
+  grade: string;
+}

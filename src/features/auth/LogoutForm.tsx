@@ -1,44 +1,40 @@
-import Button from "@/ui/Button";
 import SmallSpinner from "@/ui/SmallSpinner";
-import { Dispatch, SetStateAction } from "react";
+import { motion } from "framer-motion";
+import { HiLogout } from "react-icons/hi";
 import { useLogout } from "./useLogout";
 
-interface LogoutTypes {
-  setIsHover: Dispatch<SetStateAction<boolean>>;
-  onCloseModal?: () => void;
-}
-
-function LogoutForm({ setIsHover, onCloseModal }: LogoutTypes) {
+function LogoutForm() {
   const { logoutMutation, isLoggingOut } = useLogout();
 
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
       method="delete"
       onSubmit={(e) => {
         e.preventDefault();
         logoutMutation();
       }}
-      className="flex flex-col justify-center gap-8"
+      className="flex flex-col items-center gap-6 p-6"
     >
-      <h3 className="text-lg font-semibold">
-        Are you sure you want to logout from your account?
-      </h3>
+      <h2 className="text-2xl font-bold text-slate-800">Confirm Logout</h2>
+      <p className="text-center leading-relaxed text-slate-600">
+        Are you sure you want to logout? You'll need to sign in again to access
+        your account.
+      </p>
 
-      <div className="flex items-center justify-center gap-5 place-self-end">
-        <Button
-          type="S"
-          setIsHover={setIsHover}
-          color="text-red-50"
-          backgroundColor="bg-red-700"
-          backgroundHover="hover:bg-red-800"
-        >
-          {isLoggingOut ? <SmallSpinner /> : "Log out"}
-        </Button>
-        <Button primary={false} onClick={() => onCloseModal?.()}>
-          Cancel
-        </Button>
-      </div>
-    </form>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        disabled={isLoggingOut}
+        type="submit"
+        className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {isLoggingOut ? <SmallSpinner /> : <HiLogout className="text-lg" />}
+        <span>{isLoggingOut ? "Logging out..." : "Logout"}</span>
+      </motion.button>
+    </motion.form>
   );
 }
 

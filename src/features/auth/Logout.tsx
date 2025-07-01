@@ -1,11 +1,9 @@
 import Modal from "@/ui/Modal";
+import { useTranslation } from "react-i18next";
 import { TbLogout2 } from "react-icons/tb";
 import LogoutForm from "./LogoutForm";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 function Logout() {
-  const [isHover, setIsHover] = useState(false);
   const { t } = useTranslation();
   return (
     <Modal>
@@ -16,13 +14,9 @@ function Logout() {
       </Modal.Open>
       <Modal.Window
         name="logout"
-        icon={
-          <TbLogout2
-            className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
-          />
-        }
+        icon={<TbLogout2 className={`h-7 w-7 transition-all duration-300`} />}
       >
-        <LogoutForm setIsHover={setIsHover} />
+        <LogoutForm />
       </Modal.Window>
     </Modal>
   );

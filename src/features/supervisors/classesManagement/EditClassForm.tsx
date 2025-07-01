@@ -1,20 +1,18 @@
-import InputField from "@/ui/InputField";
-import { ClassTypes } from "@/utils/types";
-import { useForm } from "react-hook-form";
 import Button from "@/ui/Button";
-import { useEditClass } from "./useEditClass";
+import InputField from "@/ui/InputField";
 import SmallSpinner from "@/ui/SmallSpinner";
-import toast from "react-hot-toast";
+import { ClassTypes } from "@/utils/types";
 import { useQueryClient } from "@tanstack/react-query";
-import { Dispatch, SetStateAction } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useEditClass } from "./useEditClass";
 
 interface EditFormTypes {
   classData: ClassTypes;
   onCloseModal?: () => void;
-  setIsHover: Dispatch<SetStateAction<boolean>>;
 }
 
-function EditClassForm({ classData, onCloseModal, setIsHover }: EditFormTypes) {
+function EditClassForm({ classData, onCloseModal }: EditFormTypes) {
   const { register, formState, handleSubmit } = useForm<ClassTypes>();
   const { editClassMutation, isEditingClass } = useEditClass();
   const queryClient = useQueryClient();
@@ -41,40 +39,44 @@ function EditClassForm({ classData, onCloseModal, setIsHover }: EditFormTypes) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-start justify-center gap-8"
-    >
-      <h3 className="text-lg font-semibold">Edit Class #{classData.id}</h3>
-      <InputField<ClassTypes>
-        error={errors?.className?.toString() || ""}
-        register={register}
-        name="className"
-        type="text"
-        label="Class Name"
-        initialValue={classData.className}
-      />
-      <InputField<ClassTypes>
-        error={errors?.studentsNum?.toString() || ""}
-        register={register}
-        name="studentsNum"
-        type="text"
-        label="Students Number"
-        initialValue={String(classData.studentsNum)}
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col">
+      <div className="mb-8 text-center">
+        <h3 className="text-2xl font-bold text-slate-800">
+          Edit Class
+          {/* Refined badge for a cleaner look */}
+          <span className="ml-3 inline-block rounded-lg bg-indigo-100 px-2.5 py-1.5 align-middle text-sm font-semibold text-indigo-800">
+            #{classData.id}
+          </span>
+        </h3>
+      </div>
 
-      <div className="flex items-end justify-center gap-5 place-self-end">
+      <div className="space-y-8">
+        <InputField<ClassTypes>
+          error={errors?.className?.message?.toString() || ""}
+          register={register}
+          name="className"
+          type="text"
+          label="Class Name"
+          initialValue={classData.className}
+        />
+        <InputField<ClassTypes>
+          error={errors?.studentsNum?.message?.toString() || ""}
+          register={register}
+          name="studentsNum"
+          type="number"
+          label="Maximum Students"
+          initialValue={String(classData.studentsNum)}
+        />
+      </div>
+
+      <div className="mt-8 flex justify-end">
         <Button
           type="S"
           color="text-violet-50"
           backgroundColor="bg-violet-600"
           backgroundHover="hover:bg-violet-700"
-          setIsHover={setIsHover}
         >
-          {isEditingClass ? <SmallSpinner /> : "Edit"}
-        </Button>
-        <Button onClick={() => onCloseModal?.()} primary={false}>
-          Cancel
+          {isEditingClass ? <SmallSpinner /> : "Save Changes"}
         </Button>
       </div>
     </form>

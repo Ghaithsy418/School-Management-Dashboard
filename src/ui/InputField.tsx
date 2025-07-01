@@ -1,5 +1,6 @@
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { HiExclamationCircle } from "react-icons/hi2";
 
 interface inputTypes<T extends FieldValues> {
   name: Path<T>;
@@ -21,7 +22,8 @@ function InputField<T extends FieldValues>({
   type,
   label,
   id,
-  placeholder = "",
+  // The placeholder is used to enable the floating label, so we make it a space by default.
+  placeholder = " ",
   autoComplete = "on",
   error,
   register,
@@ -31,6 +33,7 @@ function InputField<T extends FieldValues>({
   initialValue = "",
 }: inputTypes<T>) {
   const { t } = useTranslation("auth");
+  // --- All internal logic remains unchanged ---
   const validation =
     name === "email"
       ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -62,29 +65,39 @@ function InputField<T extends FieldValues>({
     );
   }
 
+  // Conditionally set border and ring colors based on error state
+  const errorRingColor = "focus:ring-red-500/40 focus:border-red-500";
+  const defaultRingColor = "focus:ring-violet-500/40 focus:border-violet-500";
+
   return (
-    <div className="relative">
-      <input
-        id={id || name}
-        type={type}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        accept={accept}
-        defaultValue={initialValue}
-        {...register(id || name, getValidationMessage())}
-        className={`peer w-96 ${className} rounded-md px-4 py-2 text-lg outline-1 outline-offset-2 outline-gray-700/20 transition-all duration-100 focus:border-0 focus:outline-3 focus:outline-offset-2 focus:outline-violet-300/60`}
-      />
-      <label
-        htmlFor={name}
-        className="absolute top-2.5 transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-gray-950/80 peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-950/80 ltr:left-3 rtl:right-3"
-      >
-        {label}
-      </label>
-      {error && (
-        <p className="absolute bottom-[-25px] text-xs text-red-600 ltr:right-2 rtl:left-2">
-          * {error}
-        </p>
-      )}
+    // The main wrapper now controls the width and contains the error message in-flow.
+    <div className={`w-full ${className}`}>
+      {/* This relative container is just for the input and its floating label */}
+      <div className="relative">
+        <input
+          id={id || name}
+          type={type}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          accept={accept}
+          defaultValue={initialValue}
+          {...register(id || name, getValidationMessage())}
+          // The new class list provides a much cleaner, modern look
+          className={`peer w-full rounded-lg border bg-transparent px-4 py-3 text-slate-800 transition-colors ${error ? "border-red-400" : "border-slate-300"} focus:ring-2 focus:outline-none ${error ? errorRingColor : defaultRingColor} `}
+        />
+        <label
+          htmlFor={name}
+          className={`absolute top-3.5 left-4 cursor-text bg-white px-1 text-slate-500 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-sm ${error ? "text-red-600 peer-focus:text-red-600" : "peer-focus:text-violet-600"} `}
+        >
+          {label}
+        </label>
+        {error && (
+          <div className="absolute right-3 -bottom-6 flex items-center gap-1 text-xs text-red-600">
+            <HiExclamationCircle className="h-4 w-4" />
+            <span>{error}</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

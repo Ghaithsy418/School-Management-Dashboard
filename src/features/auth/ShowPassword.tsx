@@ -34,7 +34,7 @@ function ShowPassword({
         id={id}
       />
       <span
-        className="absolute top-3 cursor-pointer transition-all duration-300 hover:text-amber-600/80 ltr:right-3 rtl:left-3"
+        className="absolute top-4 cursor-pointer transition-all duration-300 hover:text-amber-600/80 ltr:right-3.5 rtl:left-3.5"
         onClick={() => setIsShown((s) => !s)}
       >
         {isShown ? (

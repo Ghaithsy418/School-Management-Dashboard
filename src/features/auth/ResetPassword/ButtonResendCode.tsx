@@ -9,12 +9,13 @@ function ButtonResendCode() {
   const { setStart, result } = useTimer(150);
   const { t } = useTranslation("auth");
 
-  if (result !== "")
+  if (result !== "") {
     return (
       <p className="text-sm text-gray-500">
         you can receive the code after: {result}
       </p>
     );
+  }
 
   return (
     <button
@@ -27,7 +28,7 @@ function ButtonResendCode() {
     >
       {isResending
         ? t("confirmCode.resendCodeLoading")
-        : t("confirmCode.resendCode")}
+        : t("confirmCode.secondButton")}
     </button>
   );
 }
