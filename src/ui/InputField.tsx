@@ -22,7 +22,6 @@ function InputField<T extends FieldValues>({
   type,
   label,
   id,
-  // The placeholder is used to enable the floating label, so we make it a space by default.
   placeholder = " ",
   autoComplete = "on",
   error,
@@ -33,7 +32,6 @@ function InputField<T extends FieldValues>({
   initialValue = "",
 }: inputTypes<T>) {
   const { t } = useTranslation("auth");
-  // --- All internal logic remains unchanged ---
   const validation =
     name === "email"
       ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -65,14 +63,11 @@ function InputField<T extends FieldValues>({
     );
   }
 
-  // Conditionally set border and ring colors based on error state
   const errorRingColor = "focus:ring-red-500/40 focus:border-red-500";
   const defaultRingColor = "focus:ring-violet-500/40 focus:border-violet-500";
 
   return (
-    // The main wrapper now controls the width and contains the error message in-flow.
     <div className={`w-full ${className}`}>
-      {/* This relative container is just for the input and its floating label */}
       <div className="relative">
         <input
           id={id || name}
@@ -82,7 +77,6 @@ function InputField<T extends FieldValues>({
           accept={accept}
           defaultValue={initialValue}
           {...register(id || name, getValidationMessage())}
-          // The new class list provides a much cleaner, modern look
           className={`peer w-full rounded-lg border bg-transparent px-4 py-3 text-slate-800 transition-colors ${error ? "border-red-400" : "border-slate-300"} focus:ring-2 focus:outline-none ${error ? errorRingColor : defaultRingColor} `}
         />
         <label

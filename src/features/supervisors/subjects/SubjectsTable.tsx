@@ -3,10 +3,12 @@ import { useGetSubjects } from "./useGetSubjects";
 import SubjectsRow from "./SubjectsRow";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
+import SelectGradeFirst from "./SelectGradeFirst";
 
 function SubjectsTable() {
-  const { subjects, isGettingSubjects } = useGetSubjects();
+  const { subjects, isGettingSubjects, grade } = useGetSubjects();
 
+  if (!grade || grade > 12 || grade <= 0) return <SelectGradeFirst />;
   if (isGettingSubjects) return <Spinner />;
   if (!subjects?.length) return <Empty resource="subjects" />;
 

@@ -44,7 +44,7 @@ function TeacherClassesRow({
           {subject}
         </span>
 
-        {user_info !== "" ? (
+        {user_info ? (
           <UnassignButton
             className={className}
             classId={classId}

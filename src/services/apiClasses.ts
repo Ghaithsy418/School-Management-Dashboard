@@ -12,7 +12,6 @@ export async function editClass(body: {
     url: "/api/editClass",
     method: "POST",
     body: { ...body, class_id: body.classId },
-    errorName: "className",
   });
 }
 

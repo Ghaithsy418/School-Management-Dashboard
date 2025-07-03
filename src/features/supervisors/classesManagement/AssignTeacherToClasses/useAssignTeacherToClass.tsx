@@ -1,16 +1,19 @@
 import { assignTeacherToClass } from "@/services/apiClasses";
-import { useClassesUi } from "@/slices/classesUiSlice";
+import { clearAll, useClassesUi } from "@/slices/classesUiSlice";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import OverwriteTeacherToClass from "./OverwriteTeacherToClass";
+import { useDispatch } from "react-redux";
 
 export const useAssignTeacherToClass = function () {
   const { className, teacherId } = useClassesUi();
+  const dispatch = useDispatch();
   const { mutate: assignTeacherMutation, isPending: isAssigningTeacher } =
     useMutation({
       mutationFn: () => assignTeacherToClass({ className, teacherId }),
       onSuccess: () => {
         toast.success("Teacher has been assigned Successfully");
+        dispatch(clearAll());
       },
       onError: (err: Error) => {
         if (
@@ -19,7 +22,7 @@ export const useAssignTeacherToClass = function () {
         ) {
           toast(
             (t) => <OverwriteTeacherToClass errorMessage={err.message} t={t} />,
-            { duration: 10000 },
+            { duration: Infinity },
           );
         } else toast.error(err.message);
       },

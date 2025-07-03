@@ -1,10 +1,10 @@
+import { HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineExclamationTriangle } from "react-icons/hi2";
 import { TbEraser } from "react-icons/tb";
 import Button from "./Button";
 import Modal from "./Modal";
-import { Dispatch, SetStateAction, useState } from "react";
 
 function ClearAll({ clearFunction }: ClearTypes) {
-  const [isHover, setIsHover] = useState(false);
   return (
     <Modal>
       <Modal.Open name="clear">
@@ -14,40 +14,45 @@ function ClearAll({ clearFunction }: ClearTypes) {
       </Modal.Open>
       <Modal.Window
         name="clear"
-        icon={
-          <TbEraser
-            className={`${isHover ? "h-10 w-10 text-red-700" : "h-9 w-9"} transition-all duration-300`}
-          />
-        }
+        icon={<TbEraser className={`h-8 w-8 transition-all duration-300`} />}
       >
-        <ClearAllUi clearFunction={clearFunction} setIsHover={setIsHover} />
+        <ClearAllUi clearFunction={clearFunction} />
       </Modal.Window>
     </Modal>
   );
 }
 
-function ClearAllUi({ onCloseModal, clearFunction, setIsHover }: ClearUi) {
+function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
   return (
-    <div className="flex flex-col gap-8">
-      <h3 className="flex text-xl">Do you really want to clear all data?</h3>
-      <div className="flex items-center justify-end gap-5">
+    <div className="flex w-full flex-col items-center gap-6 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
+        <HiOutlineExclamationTriangle className="h-10 w-10 text-red-600" />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h3 className="text-xl font-bold text-slate-800">Clear All Data</h3>
+        <p className="max-w-md text-slate-500">
+          Are you sure you want to permanently clear the data
+          <br />
+          This action cannot be undone.
+        </p>
+      </div>
+
+      <div className="mt-6 w-full max-w-xs">
         <Button
-          primary={false}
-          setIsHover={setIsHover}
           onClick={() => {
             clearFunction();
             onCloseModal?.();
           }}
+          color="text-white"
+          backgroundColor="bg-red-600"
+          backgroundHover="hover:bg-red-700"
+          className="w-full justify-center"
         >
-          Yes, sure!
-        </Button>
-        <Button
-          color="text-red-50"
-          backgroundColor="bg-red-700"
-          backgroundHover="hover:bg-red-800/90"
-          onClick={() => onCloseModal?.()}
-        >
-          Cancel
+          <div className="flex items-center gap-2">
+            <HiOutlineTrash className="h-5 w-5" />
+            <span>Yes, Clear Data</span>
+          </div>
         </Button>
       </div>
     </div>
@@ -56,12 +61,7 @@ function ClearAllUi({ onCloseModal, clearFunction, setIsHover }: ClearUi) {
 
 interface ClearTypes {
   clearFunction: () => void;
-}
-
-interface ClearUi {
   onCloseModal?: () => void;
-  clearFunction: () => void;
-  setIsHover: Dispatch<SetStateAction<boolean>>;
 }
 
 export default ClearAll;

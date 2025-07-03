@@ -1,4 +1,5 @@
 import SubjectsLayout from "@/features/supervisors/subjects/SubjectsLayout";
+import MainContainer from "@/ui/MainContainer";
 import { useEffect } from "react";
 
 function Subjects() {
@@ -6,7 +7,11 @@ function Subjects() {
     document.title = "Subjects";
   }, []);
 
-  return <SubjectsLayout />;
+  return (
+    <MainContainer title="Subjects Management">
+      <SubjectsLayout />
+    </MainContainer>
+  );
 }
 
 export default Subjects;

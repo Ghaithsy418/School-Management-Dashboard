@@ -11,7 +11,7 @@ function Avatar() {
   const fullName = currentUser.full_name.split(" ");
 
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center gap-3">
       <AvatarGenerator name={currentUser.full_name} />
       <h3 className="font-semibold capitalize">
         {fullName[0] + " " + fullName[2]}

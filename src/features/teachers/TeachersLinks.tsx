@@ -3,6 +3,7 @@ import NavList from "../../ui/NavList";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { ClipboardCheck } from "lucide-react";
 
 function TeachersLinks() {
   const { t } = useTranslation();
@@ -17,6 +18,11 @@ function TeachersLinks() {
         title: t("sidebar.students"),
         value: "students",
         icon: <PiStudent className="h-7 w-7" />,
+      },
+      {
+        title: "Attendance",
+        value: "attendance",
+        icon: <ClipboardCheck className="h-7 w-7" />,
       },
       {
         title: t("sidebar.settings"),

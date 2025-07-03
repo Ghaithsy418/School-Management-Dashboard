@@ -1,14 +1,13 @@
 import { RootState } from "@/store";
-import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { HiMiniEllipsisVertical } from "react-icons/hi2";
 import { MdDeleteOutline } from "react-icons/md";
 import { TbTrash } from "react-icons/tb";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import DeleteWarning from "../../ui/DeleteWarning";
 import Menus from "../../ui/Menus";
 import Modal from "../../ui/Modal";
+import DeleteUser from "../dean/DeleteUser";
 
 function StudentsTableMenus({
   name,
@@ -18,7 +17,6 @@ function StudentsTableMenus({
   user_id: number;
 }) {
   const role = useSelector((state: RootState) => state.user.user.role);
-  const [isHover, setIsHover] = useState(false);
   return (
     <Modal>
       <Menus>
@@ -44,12 +42,10 @@ function StudentsTableMenus({
             <Modal.Window
               name="delete"
               icon={
-                <MdDeleteOutline
-                  className={`${isHover ? "h-9 w-9 text-red-700" : "h-8 w-8"} transition-all duration-300`}
-                />
+                <MdDeleteOutline className="h-8 w-8 transition-all duration-300" />
               }
             >
-              <DeleteWarning setIsHover={setIsHover} user_id={user_id} />
+              <DeleteUser role="student" user_id={user_id} name={name} />
             </Modal.Window>
           )}
         </Menus.Menu>

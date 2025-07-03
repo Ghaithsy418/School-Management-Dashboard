@@ -64,5 +64,5 @@ export interface SubjectTypes {
   subjectName: string;
   minMark: number;
   maxMark: number;
-  grade: string;
+  grade: number;
 }

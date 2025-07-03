@@ -1,20 +1,17 @@
-import Button from "@/ui/Button";
 import SmallSpinner from "@/ui/SmallSpinner";
-import { HiOutlineExclamationTriangle, HiOutlineTrash } from "react-icons/hi2";
-import { useDeleteClass } from "./useDeleteClass";
+import { HiOutlineTrash } from "react-icons/hi";
+import Button from "@/ui/Button";
+import { HiOutlineExclamationTriangle } from "react-icons/hi2";
+import { useDeleteUser } from "./useDeleteUser";
 
-interface DeleteClassTypes {
-  className: string;
-  classId: number;
-  onCloseModal?: () => void;
+interface DeleteUserTypes {
+  name: string;
+  role: string;
+  user_id: number;
 }
 
-function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
-  const { deleteClassMutation, isDeletingClass } = useDeleteClass();
-
-  const handleDelete = () => {
-    deleteClassMutation({ classId }, { onSuccess: () => onCloseModal?.() });
-  };
+function DeleteUser({ name, role, user_id }: DeleteUserTypes) {
+  const { deleteUserMutation, isDeletingUser } = useDeleteUser(role);
 
   return (
     <div className="flex w-full flex-col items-center gap-6 text-center">
@@ -23,10 +20,12 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">Delete Class</h3>
+        <h3 className="text-xl font-bold text-slate-800">
+          Delete <span className="capitalize">{role}</span>
+        </h3>
         <p className="max-w-md text-slate-500">
-          Are you sure you want to permanently delete the class{" "}
-          <strong className="font-semibold text-slate-700">{className}</strong>?
+          Are you sure you want to permanently delete the {role}{" "}
+          <strong className="font-semibold text-slate-700">{name}</strong>?
           <br />
           This action cannot be undone.
         </p>
@@ -34,19 +33,19 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
 
       <div className="mt-6 w-full max-w-xs">
         <Button
-          onClick={handleDelete}
-          disabled={isDeletingClass}
+          onClick={() => deleteUserMutation({ user_id })}
+          disabled={isDeletingUser}
           color="text-white"
           backgroundColor="bg-red-600"
           backgroundHover="hover:bg-red-700"
           className="w-full justify-center"
         >
-          {isDeletingClass ? (
+          {isDeletingUser ? (
             <SmallSpinner />
           ) : (
             <div className="flex items-center gap-2">
               <HiOutlineTrash className="h-5 w-5" />
-              <span>Yes, delete class</span>
+              <span>Yes, delete {role}</span>
             </div>
           )}
         </Button>
@@ -55,4 +54,4 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
   );
 }
 
-export default DeleteClass;
+export default DeleteUser;

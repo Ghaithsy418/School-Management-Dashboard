@@ -18,6 +18,7 @@ import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Subjects from "./pages/Subjects";
+import Attendance from "./pages/Attendance";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -83,6 +84,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="students" element={<Students />} />
                 <Route path="student/:id" element={<Student />} />
+                <Route path="attendance" element={<Attendance />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}

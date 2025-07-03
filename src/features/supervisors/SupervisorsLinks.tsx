@@ -1,7 +1,8 @@
+import { BookOpen } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
-import { PiBooks, PiHouseLineBold, PiStudent } from "react-icons/pi";
+import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
 import classIcon from "/images/classIcon.svg";
 import teacherIcon from "/images/teacherIcon.svg";
@@ -33,7 +34,7 @@ function SupervisorsLinks() {
       {
         title: "Subjects",
         value: "subjects",
-        icon: <PiBooks className="h-7 w-7" />,
+        icon: <BookOpen className="h-6.5 w-7.5" />,
       },
       {
         title: t("sidebar.settings"),
