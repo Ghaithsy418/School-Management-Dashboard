@@ -20,11 +20,9 @@ export const fetcher = async ({ url, method, body }: FetcherTypes) => {
       window.location.href = "/login";
       throw new Error("Unauthorized");
     } else {
-      console.log(errorMessage);
       let finalErrorMessage = "Something went Wrong!";
       if (typeof errorMessage === "string") finalErrorMessage = errorMessage;
       if (typeof errorMessage === "object" && errorMessage !== null) {
-        console.log("gg");
         const objectValues: string[] = Object.values(errorMessage);
         if (objectValues.length !== 0) finalErrorMessage = objectValues[0];
       }

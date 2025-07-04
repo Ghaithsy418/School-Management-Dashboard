@@ -1,22 +1,19 @@
 import InputField from "@/ui/InputField";
+import SmallSpinner from "@/ui/SmallSpinner";
 import SubmitButton from "@/ui/SubmitButton";
+import { SubjectTypes } from "@/utils/types";
 import { useForm } from "react-hook-form";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useCreateSubject } from "./useCreateSubject";
-import { SubjectTypes } from "@/utils/types";
-import { useQueryClient } from "@tanstack/react-query";
-import SmallSpinner from "@/ui/SmallSpinner";
 
 function CreateSubject() {
-  const { formState, handleSubmit, register } = useForm<SubjectTypes>();
-  const queryClient = useQueryClient();
+  const { formState, handleSubmit, register, reset } = useForm<SubjectTypes>();
   const { createSubjectMutation, isCreatingSubject } = useCreateSubject();
   const { errors } = formState;
 
   function onSubmit(data: SubjectTypes) {
     return createSubjectMutation(data, {
-      onSuccess: () =>
-        queryClient.invalidateQueries({ queryKey: ["subjects", data.grade] }),
+      onSuccess: () => reset(),
     });
   }
 
@@ -36,6 +33,7 @@ function CreateSubject() {
           name="subjectName"
           label="Subject Name"
           type="text"
+          autoComplete="off"
           register={register}
           error={errors?.subjectName?.message?.toString() || ""}
         />
@@ -43,6 +41,7 @@ function CreateSubject() {
           name="minMark"
           label="Min Mark"
           type="text"
+          autoComplete="off"
           register={register}
           error={errors?.minMark?.message?.toString() || ""}
         />
@@ -50,13 +49,15 @@ function CreateSubject() {
           name="maxMark"
           label="Max Mark"
           type="text"
+          autoComplete="off"
           register={register}
           error={errors?.maxMark?.message?.toString() || ""}
         />
         <InputField<SubjectTypes>
           name="grade"
           label="Grade"
-          type="text"
+          type="number"
+          autoComplete="off"
           register={register}
           inputValidation={{
             required: `Grade is required`,

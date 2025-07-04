@@ -7,7 +7,7 @@ import EditSubject from "./EditSubject";
 function SubjectsLayout() {
   const { ui } = useSubjectsUi();
   return (
-    <div className="grid grid-cols-[1.4fr_1fr] grid-rows-[205px_1fr] gap-6 py-6">
+    <div className="grid grid-cols-[1.4fr_1fr] grid-rows-[205px_1fr] gap-7 py-6">
       <div className="row-start-1 row-end-3">
         <SubjectsTable />
       </div>

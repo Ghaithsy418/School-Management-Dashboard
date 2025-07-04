@@ -12,3 +12,15 @@ export async function createSubject(body: {
 }) {
   return fetcher({ url: "/api/createSubject", method: "PUT", body });
 }
+
+export async function editSubject(body: {
+  id: number;
+  minMark?: number;
+  maxMark?: number;
+}) {
+  return fetcher({
+    url: "/api/updateSubject",
+    method: "POST",
+    body: { ...body, subjectId: body.id },
+  });
+}

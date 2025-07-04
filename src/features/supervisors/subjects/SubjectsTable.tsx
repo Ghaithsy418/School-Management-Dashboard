@@ -13,7 +13,7 @@ function SubjectsTable() {
   if (!subjects?.length) return <Empty resource="subjects" />;
 
   return (
-    <Table columns="1fr 1fr 1fr 1fr">
+    <Table columns="1fr 1fr 1fr 0.6fr">
       <Table.Header>
         <span>Name</span>
         <span>Max Mark</span>
@@ -21,7 +21,11 @@ function SubjectsTable() {
       </Table.Header>
       <Table.Body
         data={subjects}
-        render={(subject) => <SubjectsRow subject={subject} />}
+        render={(subject) => (
+          <Table.Row>
+            <SubjectsRow subject={subject} />
+          </Table.Row>
+        )}
       ></Table.Body>
     </Table>
   );

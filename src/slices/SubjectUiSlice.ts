@@ -8,6 +8,11 @@ import { useSelector } from "react-redux";
 
 const initialState = {
   ui: "create",
+  subject: {
+    id: 0,
+    maxMark: 0,
+    minMark: 0,
+  },
 };
 
 const subjectUiSlice = createSlice({
@@ -17,12 +22,18 @@ const subjectUiSlice = createSlice({
     changeUi(state, action: PayloadAction<string>) {
       state.ui = action.payload;
     },
+    setSubject(
+      state,
+      action: PayloadAction<{ id: number; maxMark: number; minMark: number }>,
+    ) {
+      state.subject = action.payload;
+    },
   },
 });
 
 export default subjectUiSlice.reducer;
 
-export const { changeUi } = subjectUiSlice.actions;
+export const { changeUi, setSubject } = subjectUiSlice.actions;
 
 export const useSubjectsUi = () =>
   useSelector((state: RootState) => state.subjectsUi);

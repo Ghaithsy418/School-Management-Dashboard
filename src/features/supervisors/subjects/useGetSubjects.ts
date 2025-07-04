@@ -7,7 +7,7 @@ export const useGetSubjects = function () {
   const grade = Number(searchParams.get("grade") || 0);
 
   const { data, isLoading: isGettingSubjects } = useQuery({
-    queryKey: ["subjects", grade],
+    queryKey: ["subjects"],
     queryFn: showSubjects,
   });
 
