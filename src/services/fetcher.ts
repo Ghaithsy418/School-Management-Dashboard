@@ -30,6 +30,7 @@ export const fetcher = async ({ url, method, body }: FetcherTypes) => {
     }
   }
   const data = await res.json();
+
   return data;
 };
 

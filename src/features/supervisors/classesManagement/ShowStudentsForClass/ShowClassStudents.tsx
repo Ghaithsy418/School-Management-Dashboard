@@ -1,9 +1,7 @@
 import Empty from "@/ui/Empty";
-import Pagination from "@/ui/Pagination";
 import Search from "@/ui/Search";
 import Spinner from "@/ui/Spinner";
 import { useGetStudentsForClass } from "./useGetStudentsForClass";
-import { usePaginate } from "@/hooks/usePaginate";
 
 interface StudentsClassTypes {
   student_id: number;
@@ -12,11 +10,6 @@ interface StudentsClassTypes {
 
 function ShowClassStudents({ className }: { className: string }) {
   const { students, isGettingStudents } = useGetStudentsForClass(className);
-  const paginatedStudents = usePaginate<StudentsClassTypes>(
-    students,
-    15,
-    "studentsClassPage",
-  );
 
   if (isGettingStudents) return <Spinner />;
 
@@ -27,19 +20,13 @@ function ShowClassStudents({ className }: { className: string }) {
         <div className="flex w-full flex-col gap-5">
           <Search size="w-68" />
           <div className="flex w-full flex-col items-start justify-center gap-2 divide-y-1 divide-gray-600/20">
-            {paginatedStudents.map((student) => (
-              <div className="flex w-full items-center justify-start gap-3 py-2">
+            {students.map((student: StudentsClassTypes) => (
+              <div className="flex w-full items-center justify-start gap-3 p-4">
+                <span className="font-bold">-</span>
                 <p className="font-semibold">{student.student_id}</p>
                 <p>{student.full_name}</p>
               </div>
             ))}
-          </div>
-          <div className="flex items-center justify-between">
-            <Pagination
-              dataLength={students?.length}
-              numberOfElements={15}
-              pageName="studentsClassPage"
-            />
           </div>
         </div>
       ) : (

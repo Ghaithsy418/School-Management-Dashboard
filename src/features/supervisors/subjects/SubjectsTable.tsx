@@ -16,8 +16,8 @@ function SubjectsTable() {
     <Table columns="1fr 1fr 1fr 0.6fr">
       <Table.Header>
         <span>Name</span>
-        <span>Max Mark</span>
         <span>Min Mark</span>
+        <span>Max Mark</span>
       </Table.Header>
       <Table.Body
         data={subjects}

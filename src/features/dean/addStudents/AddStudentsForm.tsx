@@ -5,9 +5,11 @@ import Button from "@/ui/Button";
 import { AddStudentTypes } from "@/utils/types";
 import { useAddStudent } from "./useAddStudent";
 import SmallSpinner from "@/ui/SmallSpinner";
+import { useQueryClient } from "@tanstack/react-query";
 
 function AddStudentsForm() {
   const { addStudentMutation, isAddingStudent } = useAddStudent();
+  const queryClient = useQueryClient();
   const {
     handleSubmit,
     register,
@@ -16,7 +18,12 @@ function AddStudentsForm() {
   } = useForm<AddStudentTypes>();
 
   function onSubmit(data: AddStudentTypes) {
-    return addStudentMutation(data);
+    return addStudentMutation(data, {
+      onSuccess: () => {
+        reset();
+        queryClient.invalidateQueries({ queryKey: ["students"] });
+      },
+    });
   }
 
   return (

@@ -1,4 +1,5 @@
 import { RootState } from "@/store";
+import { SubjectTypes } from "@/utils/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
@@ -12,6 +13,7 @@ const initialState = {
     id: 0,
     maxMark: 0,
     minMark: 0,
+    subjectName: "",
   },
 };
 
@@ -22,10 +24,7 @@ const subjectUiSlice = createSlice({
     changeUi(state, action: PayloadAction<string>) {
       state.ui = action.payload;
     },
-    setSubject(
-      state,
-      action: PayloadAction<{ id: number; maxMark: number; minMark: number }>,
-    ) {
+    setSubject(state, action: PayloadAction<SubjectTypes>) {
       state.subject = action.payload;
     },
   },

@@ -9,10 +9,8 @@ export const useAddStudent = function () {
   const { mutate: addStudentMutation, isPending: isAddingStudent } =
     useMutation({
       mutationFn: (data: AddStudentTypes) => addStudent(data, token),
-      onSuccess: (data: unknown) => {
-        toast.success("Student has been added Successfully");
-        console.log(data);
-      },
+      onSuccess: () => toast.success("Student has been added Successfully"),
+
       onError: (err: Error) => toast.error(err.message),
     });
 

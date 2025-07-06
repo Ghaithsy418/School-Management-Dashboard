@@ -24,3 +24,11 @@ export async function editSubject(body: {
     body: { ...body, subjectId: body.id },
   });
 }
+
+export async function deleteSubject(body: { id: number }) {
+  return fetcher({
+    url: "/api/deleteSubject",
+    method: "DELETE",
+    body: { subjectId: body.id },
+  });
+}

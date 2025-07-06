@@ -67,6 +67,7 @@ export async function overwriteTeacherToClass(body: {
 }
 
 export async function getClassTeachers(body: { class_id: number }) {
+  console.log(body);
   return fetcher({ url: "/api/getClassTeachers", method: "POST", body });
 }
 

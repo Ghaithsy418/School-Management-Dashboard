@@ -17,18 +17,17 @@ function EditSubject() {
     subject: { minMark, maxMark, id },
   } = useSubjectsUi();
   const { editSubjectMutation, isEditingSubject } = useEditSubject();
-  const { formState, handleSubmit, register, reset } =
-    useForm<EditSubjectTypes>({
-      values: {
-        minMark,
-        maxMark,
-      },
-    });
+  const { formState, handleSubmit, register } = useForm<EditSubjectTypes>({
+    values: {
+      minMark,
+      maxMark,
+    },
+  });
   const dispatch = useDispatch();
   const { errors } = formState;
 
   function onSubmit(data: EditSubjectTypes) {
-    editSubjectMutation({ ...data, id }, { onSuccess: () => reset() });
+    editSubjectMutation({ ...data, id });
   }
 
   return (

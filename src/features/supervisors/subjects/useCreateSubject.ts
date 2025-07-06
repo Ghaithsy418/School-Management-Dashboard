@@ -11,7 +11,11 @@ export const useCreateSubject = function () {
         minMark: number;
         maxMark: number;
         grade: number;
-      }) => createSubject(data),
+      }) =>
+        createSubject({
+          ...data,
+          subjectName: `${data.subjectName.slice(0, 1).toUpperCase()}${data.subjectName.slice(1).toLowerCase()}`,
+        }),
       onSuccess: () => {
         toast.success("Subject has been created Successfully!");
         queryClient.invalidateQueries({ queryKey: ["subjects"] });
