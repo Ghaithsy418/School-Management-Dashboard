@@ -24,8 +24,8 @@ function Supervisors() {
 
 const options = [
   { title: "Sort by", value: "" },
-  { title: "Ascending (A-Z)", value: "asc" },
-  { title: "Descending (Z-A)", value: "desc" },
+  { title: "Ascending (A-Z)", value: "asc-full_name" },
+  { title: "Descending (Z-A)", value: "desc-full_name" },
 ];
 
 export default Supervisors;

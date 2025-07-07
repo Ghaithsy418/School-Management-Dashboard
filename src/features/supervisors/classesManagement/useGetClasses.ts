@@ -1,3 +1,4 @@
+import { useClientTransform } from "@/hooks/useClientTransform";
 import { showClasses } from "@/services/apiClasses";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,5 +12,7 @@ export const useGetClasses = function () {
     queryFn: () => showClasses(),
   });
 
-  return { classes: classes?.data, isGettingClasses, classesError };
+  const finalClasses = useClientTransform(classes?.data, "className");
+
+  return { classes: finalClasses, isGettingClasses, classesError };
 };

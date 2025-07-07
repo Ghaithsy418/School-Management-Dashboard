@@ -1,6 +1,14 @@
-import { useTranslation } from "react-i18next";
-import Filter from "./Filter";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function SwitchLanguage() {
   const { i18n } = useTranslation();
@@ -18,12 +26,24 @@ function SwitchLanguage() {
   return (
     <div className="flex items-center justify-center gap-24">
       <h3 className="text-xl font-semibold">Select Language:</h3>
-      <Filter
-        options={languages}
-        selectedOption={selectedOption}
-        setSelectedOption={setSelectedOption}
-        width="w-55"
-      />
+      <Select
+        onValueChange={(e) => setSelectedOption(e)}
+        value={selectedOption}
+      >
+        <SelectTrigger className="!h-12 w-[24rem] border-gray-600/70 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">
+          <SelectValue placeholder="Click to select a grade..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Academic Level</SelectLabel>
+            {languages.map((language) => (
+              <SelectItem key={language.value} value={language.value}>
+                {language.title}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </div>
   );
 }

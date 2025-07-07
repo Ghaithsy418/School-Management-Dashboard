@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, SetStateAction, Dispatch } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 interface OptionsTypes {
   title: string;
@@ -8,19 +9,16 @@ interface OptionsTypes {
 
 interface FilterTypes {
   options: OptionsTypes[];
-  selectedOption: string;
-  setSelectedOption: Dispatch<SetStateAction<string>>;
   width?: string;
 }
 
-function Filter({
-  options,
-  selectedOption,
-  setSelectedOption,
-  width = "w-45",
-}: FilterTypes) {
+function Filter({ options, width = "w-45" }: FilterTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const filterResult = searchParams.get("filter") || "";
+  const currentFilter = options.find((option) => option.value === filterResult);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -36,8 +34,11 @@ function Filter({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const selectedTitle =
-    options.find((opt) => opt.value === selectedOption)?.title || "Select";
+  function handleClick(value: string) {
+    setIsOpen(false);
+    searchParams.set("filter", value);
+    setSearchParams(searchParams);
+  }
 
   return (
     <div className={`relative ${width}`} ref={dropdownRef}>
@@ -45,7 +46,7 @@ function Filter({
         onClick={() => setIsOpen(!isOpen)}
         className="w-full cursor-pointer rounded-md px-3 py-2 text-left outline-1 outline-gray-300 hover:outline-violet-400"
       >
-        {selectedTitle}
+        {currentFilter?.title}
         <span className="absolute top-1/2 right-2 -translate-y-1/2">
           <svg
             className={`h-4 w-4 transition-all duration-250 ${isOpen ? "rotate-180" : ""}`}
@@ -69,15 +70,8 @@ function Filter({
             {options.map((option) => (
               <li
                 key={option.value}
-                onClick={() => {
-                  setSelectedOption(option.value);
-                  setIsOpen(false);
-                }}
-                className={`cursor-pointer px-3 py-1.5 hover:bg-violet-100 ${
-                  selectedOption === option.value
-                    ? "bg-violet-50 font-medium"
-                    : ""
-                }`}
+                onClick={() => handleClick(option.value)}
+                className="cursor-pointer px-3 py-1.5 hover:bg-violet-100"
               >
                 {option.title}
               </li>

@@ -13,7 +13,7 @@ function MainContainer({
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-center gap-7 px-10 pb-6">
+    <div className="flex flex-col justify-center gap-5 px-10 pb-6">
       <div className="flex items-center justify-start gap-5">
         {needsBackArrow && (
           <button onClick={() => navigate(-1)}>
@@ -36,13 +36,18 @@ function MainPageHeader({ children }: { children: ReactNode }) {
   );
 }
 
-function Controls({ options, linkTo, linkTitle }: ControlsTypes) {
+function Controls({
+  options,
+  linkTo = "",
+  linkTitle,
+  width = "w-45",
+}: ControlsTypes) {
   const {
     user: { role },
   } = useUser();
   return (
     <div className="flex items-center justify-center gap-5">
-      <Filter options={Array.isArray(options) ? options : []} />
+      <Filter options={options} width={width} />
       {role === "dean" && (
         <Link
           to={linkTo}
@@ -64,10 +69,15 @@ interface MainContainerTypes {
   needsBackArrow?: boolean;
 }
 
+interface OptionsTypes {
+  title: string;
+  value: string;
+}
 interface ControlsTypes {
-  options: unknown;
-  linkTo: string;
-  linkTitle: string;
+  options: OptionsTypes[];
+  linkTo?: string;
+  linkTitle?: string;
+  width?: string;
 }
 
 export default MainContainer;

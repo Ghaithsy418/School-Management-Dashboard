@@ -6,10 +6,12 @@ import Table from "../../ui/Table";
 import { StudentTypes } from "../../utils/types";
 import StudentsRow from "./StudentsRow";
 import { useGetStudents } from "./useGetStudents";
+import { useClientTransform } from "@/hooks/useClientTransform";
 
 function StudentsTable() {
   const { students, isGettingStudents } = useGetStudents();
-  const filteredStudents = usePaginate(students, 10);
+  const finalStudents = useClientTransform(students, "full_name");
+  const filteredStudents = usePaginate(finalStudents, 10);
 
   if (isGettingStudents) return <Spinner />;
   if (!students?.length) return <Empty resource="students" />;
