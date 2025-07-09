@@ -41,6 +41,7 @@ function Controls({
   linkTo = "",
   linkTitle,
   width = "w-45",
+  children,
 }: ControlsTypes) {
   const {
     user: { role },
@@ -56,6 +57,7 @@ function Controls({
           {linkTitle}
         </Link>
       )}
+      {role === "supervisor" && children}
     </div>
   );
 }
@@ -78,6 +80,7 @@ interface ControlsTypes {
   linkTo?: string;
   linkTitle?: string;
   width?: string;
+  children?: ReactNode;
 }
 
 export default MainContainer;

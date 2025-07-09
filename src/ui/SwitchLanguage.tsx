@@ -31,11 +31,11 @@ function SwitchLanguage() {
         value={selectedOption}
       >
         <SelectTrigger className="!h-12 w-[24rem] border-gray-600/70 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">
-          <SelectValue placeholder="Click to select a grade..." />
+          <SelectValue placeholder="Click to select a language..." />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Academic Level</SelectLabel>
+            <SelectLabel>Languages</SelectLabel>
             {languages.map((language) => (
               <SelectItem key={language.value} value={language.value}>
                 {language.title}

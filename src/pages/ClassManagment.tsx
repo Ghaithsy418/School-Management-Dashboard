@@ -20,7 +20,7 @@ function ClassManagment() {
 }
 
 const options = [
-  { title: "Sort By :", value: "" },
+  { title: "Sort By", value: "" },
   { title: "Class Name (A-Z)", value: "asc-className" },
   { title: "Class Name (Z-A)", value: "desc-className" },
   { title: "Max Size (Low First)", value: "asc-studentsNum" },

@@ -94,12 +94,9 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
             : "w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-white via-slate-50 to-blue-50"
         }`}
       >
-        {/* Glass morphism overlay */}
         <div className="absolute inset-0 rounded-3xl bg-white/60 backdrop-blur-sm" />
 
-        {/* Content container */}
         <div className="relative z-10 p-8">
-          {/* Enhanced header with gradient and glow effects */}
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
               {icon && (

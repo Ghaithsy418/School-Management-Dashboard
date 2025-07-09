@@ -1,5 +1,12 @@
+import AttendanceLayout from "@/features/teachers/Attendance/AttendanceLayout";
+import MainContainer from "@/ui/MainContainer";
+
 function Attendance() {
-  return <div>Attendance</div>;
+  return (
+    <MainContainer title="Attendance Management">
+      <AttendanceLayout />
+    </MainContainer>
+  );
 }
 
 export default Attendance;

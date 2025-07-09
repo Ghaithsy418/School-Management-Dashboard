@@ -5,6 +5,7 @@ import { ClassTypes } from "@/utils/types";
 
 function ClassesStatistics() {
   const { classes, isGettingClasses } = useGetClasses();
+
   return (
     <div className="flex items-center justify-center gap-6">
       <div className="flex justify-center gap-5 rounded-md border-1 border-emerald-900/30 p-5">

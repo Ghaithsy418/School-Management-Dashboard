@@ -15,5 +15,5 @@ export const useGetSubjects = function () {
     (subject: { grade: string }) => subject.grade === String(grade),
   );
 
-  return { subjects, isGettingSubjects, grade };
+  return { subjects, isGettingSubjects };
 };

@@ -38,7 +38,7 @@ function ChooseTeacherToAssign({
       <h3 className="truncate text-xl font-bold text-slate-800">
         Assign Teacher to: {className}
       </h3>
-      <TeachersClasses teachers={teachers} />
+      <TeachersClasses teachers={teachers as Teacher[]} />
       {teachers && teachers.length > 0 && (
         <div className="sticky bottom-0 bg-white/90 p-3 backdrop-blur-sm">
           <SubmitButton
@@ -59,6 +59,13 @@ function ChooseTeacherToAssign({
       )}
     </div>
   );
+}
+
+interface Teacher {
+  full_name?: string;
+  teacher_id: number;
+  subject: string;
+  user_info?: string;
 }
 
 export default ChooseTeacherToAssign;

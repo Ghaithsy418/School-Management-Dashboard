@@ -1,4 +1,5 @@
 import { RootState } from "@/store";
+import { CalendarMinus, CalendarPlus } from "lucide-react";
 import { CgProfile } from "react-icons/cg";
 import { HiMiniEllipsisVertical } from "react-icons/hi2";
 import { MdDeleteOutline } from "react-icons/md";
@@ -34,6 +35,20 @@ function StudentsTableMenus({
               <Modal.Open name="delete">
                 <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
                   Delete
+                </Menus.Button>
+              </Modal.Open>
+            )}
+            {role === "supervisor" && (
+              <Modal.Open name="increaseAbsence">
+                <Menus.Button icon={<CalendarPlus className="h-5 w-5" />}>
+                  Increase Absence
+                </Menus.Button>
+              </Modal.Open>
+            )}
+            {role === "supervisor" && (
+              <Modal.Open name="decreaseAbsence">
+                <Menus.Button icon={<CalendarMinus className="h-5 w-5" />}>
+                  Decrease Absence
                 </Menus.Button>
               </Modal.Open>
             )}

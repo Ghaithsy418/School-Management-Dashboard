@@ -3,6 +3,7 @@ import userReducer from "@/slices/userSlice";
 import classesUiReducer from "@/slices/classesUiSlice";
 import loginUiReducer from "@/slices/loginUiSlice";
 import subjectsUiReducer from "@/slices/SubjectUiSlice";
+import attendanceReducer from "@/slices/AttendanceSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     classesUi: classesUiReducer,
     loginUi: loginUiReducer,
     subjectsUi: subjectsUiReducer,
+    attendance: attendanceReducer,
   },
 });
 
