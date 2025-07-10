@@ -28,13 +28,13 @@ function CurrentStudentNum({ currentStudentNumber, size }: StudentNumberTypes) {
     textColor = "text-white";
   }
 
-  if (!currentStudentNumber && currentStudentNumber !== 0) return <p>-</p>;
-
   return (
     <p
-      className={`w-14 rounded-full px-3 py-1.5 text-center text-sm font-semibold shadow-md ring-1 ring-white/20 ${color} ${textColor}`}
+      className={`w-14 rounded-full px-3 py-1 text-center text-sm font-semibold shadow-md ring-1 ring-white/20 ${color} ${textColor}`}
     >
-      {currentStudentNumber}
+      {!currentStudentNumber && currentStudentNumber !== 0
+        ? 0
+        : currentStudentNumber}
     </p>
   );
 }

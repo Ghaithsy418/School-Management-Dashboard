@@ -19,6 +19,7 @@ import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Subjects from "./pages/Subjects";
 import Attendance from "./pages/Attendance";
+import MarksManagement from "./pages/MarksManagement";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -85,6 +86,7 @@ function App() {
                 <Route path="students" element={<Students />} />
                 <Route path="student/:id" element={<Student />} />
                 <Route path="attendance" element={<Attendance />} />
+                <Route path="marks" element={<MarksManagement />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}

@@ -1,9 +1,10 @@
-import { PiHouseLineBold, PiStudent } from "react-icons/pi";
-import NavList from "../../ui/NavList";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { ClipboardCheck } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { ClipboardCheck } from "lucide-react";
+import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { PiHouseLineBold, PiStudent } from "react-icons/pi";
+import NavList from "../../ui/NavList";
+import MarksIcon from "/images/MarksIcon.svg";
 
 function TeachersLinks() {
   const { t } = useTranslation();
@@ -23,6 +24,13 @@ function TeachersLinks() {
         title: "Attendance",
         value: "attendance",
         icon: <ClipboardCheck className="h-7 w-7" />,
+      },
+      {
+        title: "Marks",
+        value: "marks",
+        icon: (
+          <img src={MarksIcon} alt="marks icon" className="h-[30px] w-[29px]" />
+        ),
       },
       {
         title: t("sidebar.settings"),

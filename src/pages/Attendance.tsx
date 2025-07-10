@@ -1,4 +1,4 @@
-import AttendanceLayout from "@/features/teachers/Attendance/AttendanceLayout";
+import AttendanceLayout from "@/features/teachers/attendance/AttendanceLayout";
 import MainContainer from "@/ui/MainContainer";
 
 function Attendance() {
