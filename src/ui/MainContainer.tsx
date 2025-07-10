@@ -67,7 +67,7 @@ MainContainer.Controls = Controls;
 
 interface MainContainerTypes {
   children: ReactNode;
-  title: string;
+  title?: string;
   needsBackArrow?: boolean;
 }
 

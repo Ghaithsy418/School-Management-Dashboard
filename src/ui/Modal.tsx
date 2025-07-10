@@ -40,7 +40,7 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
   const context = useContext(modalContext);
   if (!context) throw new Error("Modal.Window shouldn't be used here");
   const { isOpen, close } = context;
-  const ref = useClickOutside(close, true);
+  const ref = useClickOutside(close, false);
 
   if (isOpen !== name) return null;
 

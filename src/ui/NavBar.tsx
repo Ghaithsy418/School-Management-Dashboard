@@ -1,7 +1,7 @@
 import { useUser } from "@/slices/userSlice";
 import Avatar from "./Avatar";
 import NotificationButton from "./NotificationButton";
-import ThemeButton from "./ThemeButton";
+import LanguageButton from "./LanguageButton";
 
 function NavBar() {
   const {
@@ -13,7 +13,7 @@ function NavBar() {
         className={`flex items-center justify-center gap-3 ${role !== "dean" ? "border-r-1 border-r-gray-300 px-5" : ""}`}
       >
         <NotificationButton />
-        <ThemeButton />
+        <LanguageButton />
       </div>
       {role !== "dean" && <Avatar />}
     </div>
