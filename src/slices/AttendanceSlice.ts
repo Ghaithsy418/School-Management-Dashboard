@@ -10,6 +10,7 @@ const initialState = {
   students: [],
   session: 0,
   className: "",
+  selectAll: false,
 };
 
 const attendanceSlice = createSlice({
@@ -31,13 +32,21 @@ const attendanceSlice = createSlice({
     setClassName(state, action: PayloadAction<string>) {
       state.className = action.payload;
     },
+    changeSelectAll(state) {
+      state.selectAll = !state.selectAll;
+    },
   },
 });
 
 export default attendanceSlice.reducer;
 
-export const { setClassName, setSession, pushStudent, removeStudent } =
-  attendanceSlice.actions;
+export const {
+  setClassName,
+  setSession,
+  pushStudent,
+  removeStudent,
+  changeSelectAll,
+} = attendanceSlice.actions;
 
 export const useAttendance = () =>
   useSelector((state: RootState) => state.attendance);

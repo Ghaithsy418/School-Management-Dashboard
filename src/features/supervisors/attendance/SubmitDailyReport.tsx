@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/tooltip";
 import ConfirmAction from "@/ui/ConfirmAction";
 import Modal from "@/ui/Modal";
-import { MdOutlineSummarize } from "react-icons/md";
+import { UserCheck } from "lucide-react";
 import { useSubmitDailyReports } from "./useSubmitDailyReports";
 
 function SubmitDailyReport() {
@@ -16,9 +16,9 @@ function SubmitDailyReport() {
       <Tooltip>
         <TooltipTrigger>
           <Modal.Open name="submitReport">
-            <button className={buttonClassName}>
-              <MdOutlineSummarize className="h-5 w-5" />
-            </button>
+            <div className={buttonClassName}>
+              <UserCheck className="h-5 w-5" />
+            </div>
           </Modal.Open>
         </TooltipTrigger>
         <TooltipContent>
@@ -39,6 +39,6 @@ function SubmitDailyReport() {
 }
 
 const buttonClassName =
-  "flex items-center justify-center h-10 w-10 rounded-md text-violet-50 bg-violet-600 hover:bg-violet-700 cursor-pointer transition-all duration-300 shadow-sm shadow-gray-700/30 hover:shadow-md active:shadow-xs";
+  "flex items-center justify-center h-10 w-11 rounded-md text-violet-50 bg-violet-600 hover:bg-violet-700 cursor-pointer transition-all duration-300 shadow-sm shadow-gray-700/30 hover:shadow-md active:shadow-xs";
 
 export default SubmitDailyReport;
