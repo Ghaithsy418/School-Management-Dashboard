@@ -5,6 +5,7 @@ interface buttonsTypes {
   title: string;
   value: string;
   icon: ReactNode;
+  immediateLink: boolean;
 }
 
 //Responsible: for rendering a single sidebar link
@@ -17,7 +18,11 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
       onMouseLeave={() => setIsHover(false)}
     >
       <NavLink
-        to={`/${role}/${button.value.toLowerCase()}`}
+        to={
+          button.immediateLink
+            ? `${button.value}`
+            : `/${role}/${button.value.toLowerCase()}`
+        }
         className={({ isActive }) =>
           `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2.5 ${isActive ? "bg-indigo-200/50" : ""}`
         }

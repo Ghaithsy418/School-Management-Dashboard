@@ -5,6 +5,7 @@ interface buttonsTypes {
   title: string;
   icon: ReactNode;
   value: string;
+  immediateLink: boolean;
 }
 
 //Responsible: for rendering all the sidebar links

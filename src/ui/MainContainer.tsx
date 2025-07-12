@@ -42,6 +42,7 @@ function Controls({
   linkTitle,
   width = "w-45",
   children,
+  wantsLink = true,
 }: ControlsTypes) {
   const {
     user: { role },
@@ -49,7 +50,7 @@ function Controls({
   return (
     <div className="flex items-center justify-center gap-5">
       <Filter options={options} width={width} />
-      {role === "dean" && (
+      {role === "dean" && wantsLink && (
         <Link
           to={linkTo}
           className="rounded-md bg-violet-700 px-4 py-2 text-violet-50 transition-all duration-300 hover:bg-violet-800"
@@ -81,6 +82,7 @@ interface ControlsTypes {
   linkTitle?: string;
   width?: string;
   children?: ReactNode;
+  wantsLink?: boolean;
 }
 
 export default MainContainer;

@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, Newspaper } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
@@ -15,31 +15,43 @@ function SupervisorsLinks() {
         title: t("sidebar.dashboard"),
         value: "dashboard",
         icon: <PiHouseLineBold className="h-7 w-7" />,
+        immediateLink: false,
       },
       {
         title: t("sidebar.students"),
         value: "students",
         icon: <PiStudent className="h-7 w-7" />,
+        immediateLink: false,
       },
       {
         title: t("sidebar.teachers"),
         value: "teachers",
         icon: <img src={teacherIcon} className="h-7 w-7" alt="teacher icon" />,
+        immediateLink: false,
       },
       {
         title: t("sidebar.classes"),
         value: "classes",
         icon: <img src={classIcon} className="h-8 w-7" alt="class icon" />,
+        immediateLink: false,
       },
       {
         title: "Subjects",
         value: "subjects",
         icon: <BookOpen className="h-6.5 w-7.5" />,
+        immediateLink: false,
+      },
+      {
+        title: "News & Adds",
+        value: "news&adds",
+        icon: <Newspaper className="h-6.5 w-6.5" />,
+        immediateLink: true,
       },
       {
         title: t("sidebar.settings"),
         value: "settings",
         icon: <HiOutlineCog8Tooth className="h-7 w-7" />,
+        immediateLink: false,
       },
     ],
     [t],

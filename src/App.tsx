@@ -20,6 +20,7 @@ import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Subjects from "./pages/Subjects";
 import Attendance from "./pages/Attendance";
 import MarksManagement from "./pages/MarksManagement";
+import NewsAndEvents from "./pages/NewsAndEvents";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -90,6 +91,7 @@ function App() {
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}
+            <Route path="news&adds" element={<NewsAndEvents />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

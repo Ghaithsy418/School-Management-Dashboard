@@ -18,8 +18,13 @@ function AvatarGenerator({
         height: size,
       }}
     >
-      {newName[0]?.slice(0, 1).toUpperCase() +
-        newName[2]?.slice(0, 1).toUpperCase()}
+      {newName.length === 3
+        ? newName[0]?.slice(0, 1).toUpperCase() +
+          newName[2]?.slice(0, 1).toUpperCase()
+        : newName.length === 2
+          ? newName[0]?.slice(0, 1).toUpperCase() +
+            newName[1]?.slice(0, 1).toUpperCase()
+          : newName[0]?.slice(0, 1).toUpperCase()}
     </div>
   );
 }

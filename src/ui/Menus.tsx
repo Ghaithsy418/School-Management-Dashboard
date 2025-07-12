@@ -130,10 +130,8 @@ function List({ children, id }: toggleAndListTypes) {
               "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
           }}
         >
-          {/* Subtle gradient overlay */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-transparent to-purple-50/20" />
 
-          {/* Menu items container */}
           <div className="relative flex flex-col divide-y divide-gray-200/50">
             {children}
           </div>
