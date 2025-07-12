@@ -5,7 +5,7 @@ import loginUiReducer from "@/slices/loginUiSlice";
 import subjectsUiReducer from "@/slices/SubjectUiSlice";
 import attendanceReducer from "@/slices/AttendanceSlice";
 import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
-import marksReducer from "@/slices/MarksSlice";
+import marksReducer from "@/slices/MarksManagementSlice";
 
 const store = configureStore({
   reducer: {

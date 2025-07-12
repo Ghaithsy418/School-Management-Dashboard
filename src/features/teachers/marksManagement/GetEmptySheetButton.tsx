@@ -1,6 +1,6 @@
 import SubmitButton from "@/ui/SubmitButton";
 import { useGetEmptySheet } from "./useGetEmptySheet";
-import { useMarks } from "@/slices/MarksSlice";
+import { useMarks } from "@/slices/MarksManagementSlice";
 
 function GetEmptySheetButton() {
   const { classId, semester, type } = useMarks();

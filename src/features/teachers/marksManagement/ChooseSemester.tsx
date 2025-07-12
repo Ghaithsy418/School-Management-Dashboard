@@ -1,4 +1,4 @@
-import { setSemester, useMarks } from "@/slices/MarksSlice";
+import { setSemester, useMarks } from "@/slices/MarksManagementSlice";
 import { useDispatch } from "react-redux";
 
 function ChooseSemester() {

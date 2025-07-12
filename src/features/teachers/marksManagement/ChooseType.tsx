@@ -1,4 +1,4 @@
-import { setType, useMarks } from "@/slices/MarksSlice";
+import { setType, useMarks } from "@/slices/MarksManagementSlice";
 import { useDispatch } from "react-redux";
 
 function ChooseType() {

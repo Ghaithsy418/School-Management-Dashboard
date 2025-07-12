@@ -1,5 +1,5 @@
 import { getEmptySheet } from "@/services/apiMarks";
-import { useMarks } from "@/slices/MarksSlice";
+import { useMarks } from "@/slices/MarksManagementSlice";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
