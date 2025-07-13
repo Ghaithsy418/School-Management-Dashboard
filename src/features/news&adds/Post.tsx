@@ -4,7 +4,7 @@ import PostHead from "./PostHead";
 
 function Post() {
   return (
-    <div className="flex w-[36rem] flex-col bg-gray-50 px-5 py-4">
+    <div className="flex w-[40rem] flex-col bg-gray-50 pt-4">
       <PostHead />
       <PostBody />
       <PostFooter />

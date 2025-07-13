@@ -3,7 +3,7 @@ import { HiMiniEllipsisVertical } from "react-icons/hi2";
 
 function PostHead() {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between px-5">
       <div className="flex items-center justify-center gap-2">
         <AvatarGenerator name="Ghaith Shabakji" />
         <div className="flex flex-col items-start justify-center">

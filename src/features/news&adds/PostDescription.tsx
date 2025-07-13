@@ -4,7 +4,7 @@ function PostDescription({ description }: { description: string }) {
   const [showMore, setShowMore] = useState(description.length <= 400);
 
   return (
-    <div className="flex flex-col items-start justify-center gap-2">
+    <div className="flex flex-col items-start justify-center gap-2 px-4">
       <p className="px-1">
         {showMore ? description : `${description.slice(0, 250)}...`}
       </p>
