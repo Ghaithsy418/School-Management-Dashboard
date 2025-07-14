@@ -20,6 +20,8 @@ function ImagesContainer({ media }: { media: { id: number; url: string }[] }) {
               <img
                 src={image?.url}
                 alt={`photo-${image?.id}-${image?.url}`}
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale-25"
               />
               {index === 2 && media.length > 3 && (

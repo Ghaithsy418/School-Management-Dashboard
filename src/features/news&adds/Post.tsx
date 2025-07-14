@@ -2,6 +2,7 @@ import { EventTypes } from "@/utils/types";
 import PostBody from "./PostBody";
 import PostFooter from "./PostFooter";
 import PostHead from "./PostHead";
+import React from "react";
 
 interface PostTypes {
   event: EventTypes;
@@ -27,4 +28,4 @@ function Post({ event }: PostTypes) {
   );
 }
 
-export default Post;
+export default React.memo(Post);

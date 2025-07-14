@@ -1,7 +1,9 @@
+import Spinner from "@/ui/Spinner";
 import { EventTypes } from "@/utils/types";
-import Post from "./Post";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { useRef } from "react";
+import React, { Suspense, useRef } from "react";
+
+const Post = React.lazy(() => import("./Post"));
 
 function RenderEvents({ events }: { events: EventTypes[] }) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -31,9 +33,12 @@ function RenderEvents({ events }: { events: EventTypes[] }) {
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >
-            <div className="py-0.5">
-              {" "}
-              <Post event={events[virtualItem.index]} />
+            <div
+              className={virtualItem.index === events.length - 1 ? "" : "pb-1"}
+            >
+              <Suspense fallback={<Spinner />}>
+                <Post event={events[virtualItem.index]} />
+              </Suspense>
             </div>
           </div>
         ))}
