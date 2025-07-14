@@ -13,9 +13,8 @@ import { HiX } from "react-icons/hi";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 interface PhotoType {
-  imageUrl: string;
-  timestamp?: string;
-  caption?: string;
+  url: string;
+  id: number;
 }
 
 interface PhotoModalContextValue {
@@ -139,12 +138,12 @@ function Window({ children }: { children: ReactNode }) {
             <MdKeyboardArrowLeft className="h-8 w-8" />
           </motion.button>
           <motion.img
-            key={photoData.imageUrl}
+            key={`photo-${photoData.id}-${photoData.url}`}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            src={photoData.imageUrl}
-            alt={photoData.caption}
+            src={photoData.url}
+            alt={`photo-${photoData.id}-${photoData.url}`}
             className="max-h-[90vh] max-w-full object-contain"
             onClick={(e) => e.stopPropagation()}
           />

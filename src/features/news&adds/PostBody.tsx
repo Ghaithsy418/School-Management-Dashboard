@@ -1,16 +1,17 @@
 import ImagesContainer from "./ImagesContainer";
 import PostDescription from "./PostDescription";
 
-function PostBody() {
+interface PostBodyTypes {
+  event_name: string;
+  post: string;
+  media: { id: number; url: string }[];
+}
+
+function PostBody({ event_name, post, media }: PostBodyTypes) {
   return (
     <div className="flex w-full flex-col items-start justify-center space-y-3 py-3">
-      <PostDescription
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-        architecto, repudiandae asperiores adipisci ducimus veniam eaque libero
-        ad, quasi autem tempora iste quam perspiciatis optio dignissimos earum!
-        Quas, saepe quaerat"
-      />
-      <ImagesContainer />
+      <PostDescription eventTitle={event_name} description={post} />
+      <ImagesContainer media={media} />
     </div>
   );
 }

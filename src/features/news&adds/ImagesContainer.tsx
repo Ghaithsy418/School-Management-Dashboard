@@ -1,36 +1,33 @@
 import PhotoModal from "./PhotoModal";
 import PhotoModalComments from "./PhotoModalComments";
+import { motion } from "framer-motion";
 
-function ImagesContainer() {
-  const imagesList = [
-    { imageUrl: "/images/SportCar.jpg" },
-    { imageUrl: "/images/paris.jpg" },
-    { imageUrl: "/images/town.jpg" },
-    { imageUrl: "/images/paris.jpg" },
-    { imageUrl: "/images/town.jpg" },
-  ];
+function ImagesContainer({ media }: { media: { id: number; url: string }[] }) {
+  const images = media?.slice(0, 3);
 
-  const images = [imagesList?.[0], imagesList?.[1], imagesList?.[2]];
+  if (!media.length) return null;
 
   return (
-    <PhotoModal photos={imagesList}>
-      <div className="grid h-full w-full grid-cols-2 grid-rows-[200px_200px] gap-0.5 overflow-hidden">
+    <PhotoModal photos={media}>
+      <div
+        className={`grid h-full w-full ${images.length === 1 ? "" : "grid-cols-2 grid-rows-[200px_200px]"} gap-0.5 overflow-hidden`}
+      >
         {images.map((image, index) => (
-          <PhotoModal.Open index={index}>
-            <div
-              className={`group relative cursor-pointer overflow-hidden ${index === 0 ? "row-start-1 row-end-3" : ""} ${index === 1 && imagesList.length === 2 ? "row-start-1 row-end-3" : ""}`}
+          <PhotoModal.Open index={index} key={image?.url}>
+            <motion.div
+              className={`group relative cursor-pointer overflow-hidden ${index === 0 ? "row-start-1 row-end-3" : ""} ${index === 1 && media.length === 2 ? "row-start-1 row-end-3" : ""}`}
             >
               <img
-                src={image.imageUrl}
-                alt="paris"
+                src={image?.url}
+                alt={`photo-${image?.id}-${image?.url}`}
                 className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale-25"
               />
-              {index === 2 && imagesList.length > 3 && (
+              {index === 2 && media.length > 3 && (
                 <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-gray-700/60 text-3xl text-white transition-all duration-300 group-hover:scale-105 group-hover:grayscale-25">
-                  +{imagesList.length - 3}
+                  +{media.length - 3}
                 </div>
               )}
-            </div>
+            </motion.div>
           </PhotoModal.Open>
         ))}
         <PhotoModal.Window>

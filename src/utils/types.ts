@@ -66,3 +66,22 @@ export interface SubjectTypes {
   maxMark: number;
   grade: number;
 }
+
+export interface CreatePostTypes {
+  event_name: string;
+  post: string;
+  photos: FileList;
+}
+
+export interface EventTypes {
+  id: number;
+  user_id: number;
+  publisherName: string;
+  role: string;
+  media: { id: number; url: string }[];
+  event_name: string;
+  post: string;
+  created_at: string;
+  comment_number: number;
+  reaction_number: number;
+}

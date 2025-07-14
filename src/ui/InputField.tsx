@@ -15,6 +15,7 @@ interface inputTypes<T extends FieldValues> {
   accept?: string;
   className?: string;
   initialValue?: string;
+  multiple?: boolean;
 }
 
 function InputField<T extends FieldValues>({
@@ -30,6 +31,7 @@ function InputField<T extends FieldValues>({
   inputValidation = null,
   className = "",
   initialValue = "",
+  multiple,
 }: inputTypes<T>) {
   const { t } = useTranslation("auth");
   const validation =
@@ -76,6 +78,7 @@ function InputField<T extends FieldValues>({
           autoComplete={autoComplete}
           accept={accept}
           defaultValue={initialValue}
+          multiple={multiple}
           {...register(id || name, getValidationMessage())}
           className={`peer w-full rounded-lg border bg-transparent px-4 py-3 text-slate-800 transition-colors ${error ? "border-red-400" : "border-slate-300"} focus:ring-2 focus:outline-none ${error ? errorRingColor : defaultRingColor} `}
         />
