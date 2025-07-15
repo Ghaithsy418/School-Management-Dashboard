@@ -1,5 +1,5 @@
 import PhotoModal from "./PhotoModal";
-import PhotoModalComments from "./PhotoModalComments";
+import PhotoModalComments from "./comments/PhotoModalComments";
 import { motion } from "framer-motion";
 
 function ImagesContainer({ media }: { media: { id: number; url: string }[] }) {

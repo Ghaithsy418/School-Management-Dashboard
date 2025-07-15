@@ -2,6 +2,7 @@ import { EventTypes } from "@/utils/types";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React, { Suspense, useRef } from "react";
 import PostsLoading from "./PostsLoading";
+import Empty from "@/ui/Empty";
 
 const Post = React.lazy(() => import("./Post"));
 
@@ -14,6 +15,13 @@ function RenderEvents({ events }: { events: EventTypes[] }) {
     estimateSize: () => 450,
     overscan: 5,
   });
+
+  if (!events?.length)
+    return (
+      <div className="w-full bg-gray-50">
+        <Empty resource="Posts" className="rounded-none border-none" />
+      </div>
+    );
 
   return (
     <div ref={parentRef} className="w-full">
