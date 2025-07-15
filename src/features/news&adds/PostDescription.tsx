@@ -14,7 +14,7 @@ function PostDescription({
   const postLang = detectLanguage(description);
 
   return (
-    <div className="flex w-full flex-col items-start justify-center gap-2 px-4">
+    <div className="flex w-full flex-col items-start justify-center gap-2 px-5">
       <div className="flex w-full flex-col items-start justify-center">
         <div
           className="w-full"

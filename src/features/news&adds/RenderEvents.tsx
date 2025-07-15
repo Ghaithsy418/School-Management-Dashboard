@@ -1,7 +1,7 @@
-import Spinner from "@/ui/Spinner";
 import { EventTypes } from "@/utils/types";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React, { Suspense, useRef } from "react";
+import PostsLoading from "./PostsLoading";
 
 const Post = React.lazy(() => import("./Post"));
 
@@ -18,7 +18,7 @@ function RenderEvents({ events }: { events: EventTypes[] }) {
   return (
     <div ref={parentRef} className="w-full">
       <div
-        className="relative w-full"
+        className="relative w-full overflow-visible"
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
         }}
@@ -36,7 +36,7 @@ function RenderEvents({ events }: { events: EventTypes[] }) {
             <div
               className={virtualItem.index === events.length - 1 ? "" : "pb-1"}
             >
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<PostsLoading />}>
                 <Post event={events[virtualItem.index]} />
               </Suspense>
             </div>

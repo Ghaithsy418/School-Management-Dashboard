@@ -1,3 +1,4 @@
+import { useClientTransform } from "@/hooks/useClientTransform";
 import { getAllEvents } from "@/services/apiEvents";
 import { EventTypes } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
@@ -10,5 +11,10 @@ export const useGetAllEvents = function () {
     queryFn: getAllEvents,
   });
 
-  return { events: data?.events, isGettingEvents };
+  const finalEvents = useClientTransform<EventTypes>(
+    data?.events ?? [],
+    "event_name",
+  );
+
+  return { events: finalEvents, isGettingEvents };
 };

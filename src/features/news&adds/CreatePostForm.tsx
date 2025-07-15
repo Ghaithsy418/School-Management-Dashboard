@@ -7,12 +7,13 @@ import SmallSpinner from "@/ui/SmallSpinner";
 import { CreatePostTypes } from "@/utils/types";
 
 function CreatePostForm() {
-  const { register, handleSubmit, formState } = useForm<CreatePostTypes>();
+  const { register, handleSubmit, formState, reset } =
+    useForm<CreatePostTypes>();
   const { createPostMutation, isCreatingPost } = useCreatePost();
   const { errors } = formState;
 
   function onSubmit(data: CreatePostTypes) {
-    return createPostMutation(data);
+    return createPostMutation(data, { onSuccess: () => reset() });
   }
 
   return (
@@ -42,6 +43,7 @@ function CreatePostForm() {
           register={register}
           multiple={true}
           error={errors?.photos?.message?.toString() || ""}
+          inputValidation={() => {}}
         />
         <SubmitButton size="w-full">
           {isCreatingPost ? <SmallSpinner /> : "Create New Post"}

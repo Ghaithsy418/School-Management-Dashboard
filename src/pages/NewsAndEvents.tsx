@@ -12,6 +12,10 @@ function NewsAndEvents() {
   );
 }
 
-const options = [{ title: "Sort by", value: "" }];
+const options = [
+  { title: "Sort by", value: "" },
+  { title: "Time (Oldest first)", value: "asc-created_at" },
+  { title: "Time (Most recent)", value: "desc-created_at" },
+];
 
 export default NewsAndEvents;

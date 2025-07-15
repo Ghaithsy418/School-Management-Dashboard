@@ -1,8 +1,8 @@
 import { BiLike } from "react-icons/bi";
-import { HiLink } from "react-icons/hi";
 import { LuMessageCircle } from "react-icons/lu";
+import CopyButton from "./CopyButton";
 
-function PostButtons() {
+function PostButtons({ eventId }: { eventId: number }) {
   return (
     <div className="flex w-full items-center justify-between px-5 pb-2">
       <button className={buttonClassName}>
@@ -11,9 +11,7 @@ function PostButtons() {
       <button className={buttonClassName}>
         <LuMessageCircle className="h-6 w-6" /> <span>Comment</span>
       </button>
-      <button className={buttonClassName}>
-        <HiLink className="h-6 w-6" /> <span>Copy Link</span>
-      </button>
+      <CopyButton eventId={eventId} />
     </div>
   );
 }

@@ -1,19 +1,20 @@
 import AvatarGenerator from "@/ui/AvatarGenerator";
+import { EventTypes } from "@/utils/types";
 import { formatDistanceToNowStrict } from "date-fns";
 import { enUS } from "date-fns/locale";
-import PostMenus from "./PostMenus";
-import { EventTypes } from "@/utils/types";
+import EditPostForm from "./EditPostForm";
 
-interface PostHeadTypes {
+interface EditPostTypes {
   event: EventTypes;
 }
 
-function PostHead({ event }: PostHeadTypes) {
+function EditPost({ event }: EditPostTypes) {
   const { publisherName, created_at } = event;
+
   return (
-    <div className="flex items-center justify-between px-5">
+    <div className="flex w-full flex-col items-start justify-center gap-5">
       <div className="flex items-center justify-center gap-2">
-        <AvatarGenerator name={publisherName} />
+        <AvatarGenerator name="Ghaith Shabakji" />
         <div className="flex flex-col items-start justify-center leading-6">
           <h5 className="cursor-pointer font-semibold">{publisherName}</h5>
           <div>
@@ -28,9 +29,9 @@ function PostHead({ event }: PostHeadTypes) {
           </div>
         </div>
       </div>
-      <PostMenus event={event} />
+      <EditPostForm event={event} />
     </div>
   );
 }
 
-export default PostHead;
+export default EditPost;

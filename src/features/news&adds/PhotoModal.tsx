@@ -1,16 +1,16 @@
+import PhotosSlider from "@/ui/PhotosSlider";
 import { motion } from "framer-motion";
 import {
   cloneElement,
   createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
   ReactElement,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 import { createPortal } from "react-dom";
 import { HiX } from "react-icons/hi";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 interface PhotoType {
   url: string;
@@ -24,6 +24,7 @@ interface PhotoModalContextValue {
   previous: () => void;
   currentPhotoIndex: number | null;
   photoData: PhotoType | null;
+  photosLength: number;
 }
 
 interface PhotoModalProps {
@@ -68,6 +69,7 @@ function PhotoModal({ children, photos }: PhotoModalProps) {
     currentPhotoIndex,
     photoData:
       photos && currentPhotoIndex !== null ? photos[currentPhotoIndex] : null,
+    photosLength: photos.length,
   };
 
   return (
@@ -92,7 +94,7 @@ function Window({ children }: { children: ReactNode }) {
   if (!context)
     throw new Error("PhotoModal.Window Provider mustn't be used here!");
 
-  const { close, next, previous, photoData } = context;
+  const { close, next, previous, photoData, photosLength } = context;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -125,40 +127,12 @@ function Window({ children }: { children: ReactNode }) {
         >
           <HiX className="h-10 w-10" />
         </motion.button>
-        <div className="relative flex h-full w-2/3 items-center justify-center p-4">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              previous();
-            }}
-            className="absolute left-5 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gray-900/40 p-2 text-gray-400"
-          >
-            <MdKeyboardArrowLeft className="h-8 w-8" />
-          </motion.button>
-          <motion.img
-            key={`photo-${photoData.id}-${photoData.url}`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            src={photoData.url}
-            alt={`photo-${photoData.id}-${photoData.url}`}
-            className="max-h-[90vh] max-w-full object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              next();
-            }}
-            className="absolute right-5 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gray-900/40 p-2 text-3xl text-gray-400"
-          >
-            <MdKeyboardArrowRight className="h-8 w-8" />
-          </motion.button>
-        </div>
+        <PhotosSlider
+          photosLength={photosLength}
+          next={next}
+          previous={previous}
+          photoData={photoData}
+        />
         <motion.div
           initial={{ x: "100%" }}
           animate={{ x: 0 }}

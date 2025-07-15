@@ -6,9 +6,11 @@ function Search({ size }: { size?: string }) {
   const [isFocused, setIsFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const page = searchParams.get("page") || "";
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     searchParams.set("search", e.target.value.toLowerCase());
-    searchParams.set("page", "1");
+    if (page) searchParams.set("page", "1");
     setSearchParams(searchParams);
   }
 
