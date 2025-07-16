@@ -1,8 +1,15 @@
 import PhotoModal from "./PhotoModal";
+import AddComment from "./comments/AddComment";
 import PhotoModalComments from "./comments/PhotoModalComments";
 import { motion } from "framer-motion";
 
-function ImagesContainer({ media }: { media: { id: number; url: string }[] }) {
+interface ImageContainerTypes {
+  media: { id: number; url: string }[];
+  createdAt: string;
+  id: number;
+}
+
+function ImagesContainer({ media, createdAt, id }: ImageContainerTypes) {
   const images = media?.slice(0, 3);
 
   if (!media.length) return null;
@@ -32,8 +39,11 @@ function ImagesContainer({ media }: { media: { id: number; url: string }[] }) {
             </motion.div>
           </PhotoModal.Open>
         ))}
-        <PhotoModal.Window>
-          <PhotoModalComments />
+        <PhotoModal.Window
+          createdAt={createdAt}
+          addComment={<AddComment event_id={id} />}
+        >
+          <PhotoModalComments id={id} />
         </PhotoModal.Window>
       </div>
     </PhotoModal>

@@ -85,3 +85,17 @@ export interface EventTypes {
   comment_number: number;
   reaction_number: number;
 }
+
+export interface CommentsTypes {
+  id: number;
+  user_id: number;
+  parent_id?: number;
+  name: string;
+  middle_name: string;
+  last_name: string;
+  role: string;
+  content: string;
+  reaction_number: number;
+  created_at: string;
+  replies: CommentsTypes[];
+}

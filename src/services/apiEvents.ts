@@ -14,6 +14,18 @@ export async function deleteEvent(id: number) {
   return fetcher({ url: `/api/deleteEvent/${id}`, method: "DELETE" });
 }
 
+export async function getEventComments(id: number) {
+  return fetcher({ url: `/api/getEventComments/${id}`, method: "GET" });
+}
+
+export async function addComment(body: {
+  content: string;
+  event_id: number;
+  parent_id?: number;
+}) {
+  return fetcher({ url: "/api/addComment", method: "POST", body });
+}
+
 export async function createPost(body: {
   event_name: string;
   post: string;

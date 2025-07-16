@@ -2,7 +2,7 @@ import { createPost } from "@/services/apiEvents";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useCreatePost = function () {
+export const useCreateEvent = function () {
   const queryClient = useQueryClient();
   const { mutate: createPostMutation, isPending: isCreatingPost } = useMutation(
     {

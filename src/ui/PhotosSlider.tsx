@@ -33,7 +33,7 @@ function PhotosSlider({
             e.stopPropagation();
             previous();
           }}
-          className={`absolute left-5 z-10 flex ${buttonsSize} items-center justify-center rounded-full bg-gray-900/40 p-2 text-gray-400`}
+          className={`absolute left-5 z-10 flex ${buttonsSize} items-center justify-center rounded-full bg-gray-800/40 p-2 text-gray-200`}
         >
           <MdKeyboardArrowLeft className="h-8 w-8" />
         </motion.button>
@@ -57,7 +57,7 @@ function PhotosSlider({
             e.stopPropagation();
             next();
           }}
-          className={`absolute right-5 z-10 flex ${buttonsSize} items-center justify-center rounded-full bg-gray-900/40 p-2 text-3xl text-gray-400`}
+          className={`absolute right-5 z-10 flex ${buttonsSize} items-center justify-center rounded-full bg-gray-800/40 p-2 text-3xl text-gray-200`}
         >
           <MdKeyboardArrowRight className="h-8 w-8" />
         </motion.button>

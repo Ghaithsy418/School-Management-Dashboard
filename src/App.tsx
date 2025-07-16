@@ -113,7 +113,11 @@ function App() {
           },
         }}
       />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools
+        initialIsOpen={false}
+        buttonPosition="bottom-left"
+        position="bottom"
+      />
     </QueryClientProvider>
   );
 }

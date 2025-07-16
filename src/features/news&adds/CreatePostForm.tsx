@@ -2,14 +2,14 @@ import InputField from "@/ui/InputField";
 import SubmitButton from "@/ui/SubmitButton";
 import Textarea from "@/ui/Textarea";
 import { useForm } from "react-hook-form";
-import { useCreatePost } from "./useCreatePost";
+import { useCreateEvent } from "./useCreateEvent";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { CreatePostTypes } from "@/utils/types";
 
 function CreatePostForm() {
   const { register, handleSubmit, formState, reset } =
     useForm<CreatePostTypes>();
-  const { createPostMutation, isCreatingPost } = useCreatePost();
+  const { createPostMutation, isCreatingPost } = useCreateEvent();
   const { errors } = formState;
 
   function onSubmit(data: CreatePostTypes) {

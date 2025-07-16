@@ -9,13 +9,12 @@ interface PostTypes {
 }
 
 function Post({ event }: PostTypes) {
-  const { media, post, event_name, reaction_number, comment_number, id } =
-    event;
+  const { reaction_number, comment_number, id } = event;
 
   return (
     <div className="flex w-[38rem] flex-col bg-gray-50 pt-4">
       <PostHead event={event} />
-      <PostBody media={media} post={post} event_name={event_name} />
+      <PostBody event={event} />
       <PostFooter
         commentsNum={comment_number}
         reactionsNum={reaction_number}

@@ -47,7 +47,6 @@ function EditPostForm({ event }: EditFormTypes) {
     });
   }
 
-  console.log(optMedia);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
