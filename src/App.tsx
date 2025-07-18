@@ -21,6 +21,8 @@ import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import Event from "./pages/Event";
+import UserEvents from "./pages/UserEvents";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -91,7 +93,11 @@ function App() {
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}
-            <Route path="news&adds" element={<NewsAndEvents />} />
+            <Route path="news&adds">
+              <Route index element={<NewsAndEvents />} />
+              <Route path=":postId" element={<Event />} />
+              <Route path="user_events/:userId" element={<UserEvents />} />
+            </Route>
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

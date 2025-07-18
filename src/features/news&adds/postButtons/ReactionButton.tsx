@@ -4,6 +4,7 @@ import ReactionsList from "../reactions/ReactionsList";
 import { AnimatePresence } from "framer-motion";
 import { useMakeReact } from "../reactions/useMakeReact";
 import { detectReactionType } from "@/utils/detectReactionType";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface ReactionButtonTypes {
   eventId: number;
@@ -28,7 +29,8 @@ function ReactionButton({
   setReactionObjState,
   reactionObjState,
 }: ReactionButtonTypes) {
-  const { makeReactMutation } = useMakeReact(setReactionObjState);
+  const queryClient = useQueryClient();
+  const { makeReactMutation } = useMakeReact(["events"], setReactionObjState);
   const [isShown, setIsShown] = useState(false);
 
   const { isReactedState, userReactionState } = reactionObjState;
@@ -60,22 +62,34 @@ function ReactionButton({
         userReactionState: "",
         currentReactionNumber: prevState.currentReactionNumber - 1,
       }));
-      makeReactMutation({
-        reaction: userReactionState ?? userReactionType,
-        reactable_id: eventId,
-        reactable_type: "event",
-      });
+      makeReactMutation(
+        {
+          reaction: userReactionState ?? userReactionType,
+          reactable_id: eventId,
+          reactable_type: "event",
+        },
+        {
+          onSuccess: () =>
+            queryClient.invalidateQueries({ queryKey: ["reactions", eventId] }),
+        },
+      );
     } else {
       setReactionObjState((prevState) => ({
         isReactedState: true,
         userReactionState: "like",
         currentReactionNumber: prevState.currentReactionNumber + 1,
       }));
-      makeReactMutation({
-        reaction: "like",
-        reactable_id: eventId,
-        reactable_type: "event",
-      });
+      makeReactMutation(
+        {
+          reaction: "like",
+          reactable_id: eventId,
+          reactable_type: "event",
+        },
+        {
+          onSuccess: () =>
+            queryClient.invalidateQueries({ queryKey: ["reactions", eventId] }),
+        },
+      );
     }
   }
 
@@ -101,6 +115,7 @@ function ReactionButton({
       <AnimatePresence mode="wait">
         {isShown && (
           <ReactionsList
+            reactable_type="event"
             id={eventId}
             setReactionObjState={setReactionObjState}
             reactionObjState={reactionObjState}

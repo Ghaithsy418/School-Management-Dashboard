@@ -19,7 +19,7 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
   const [showReplies, setShowReplies] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const { ui } = useComments();
-  const { id, name, last_name, content, created_at, replies, user_id } =
+  const { id, name, last_name, content, created_at, replies, user_id, role } =
     comment;
   const fullName = `${name} ${last_name}`;
 
@@ -45,12 +45,15 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
         <div className="flex flex-col items-start justify-center gap-1">
           <div className="flex flex-col items-start justify-center gap-1 rounded-md bg-gray-200 px-3 py-2 shadow-sm">
             <div className="flex w-full items-center justify-between gap-3">
-              <p
-                dir={fullNameLang === "English" ? "ltr" : "rtl"}
-                className="w-full text-sm font-bold"
-              >
-                {fullName}
-              </p>
+              <div className="flex items-end justify-center gap-1">
+                <p
+                  dir={fullNameLang === "English" ? "ltr" : "rtl"}
+                  className="w-full text-sm font-bold"
+                >
+                  {fullName}
+                </p>
+                <span className="text-[9px] font-light">{role}</span>
+              </div>
               <CommentMenus
                 eventId={eventId}
                 commentId={id}
@@ -69,9 +72,11 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
             )}
           </div>
           <CommentButtons
+            eventId={eventId}
             commentTime={commentTime}
             comment={comment}
             setIsReplying={setIsReplying}
+            commentId={id}
           />
           {hasReplies && (
             <button

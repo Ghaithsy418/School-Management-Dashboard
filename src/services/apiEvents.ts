@@ -56,8 +56,23 @@ export async function reportComment(body: {
   comment_id: number;
   reason: string;
 }) {
-  console.log(body);
   return fetcher({ url: "/api/reportComment", method: "POST", body });
+}
+
+export async function shareEvent(body: { event_id: number }) {
+  return fetcher({ url: "/api/shareEvent", method: "POST", body });
+}
+
+export async function getUserEvents(body: { user_id: number }) {
+  return fetcher({ url: "/api/getUserEvents", method: "POST", body });
+}
+
+export async function getReactionedUsers(body: { reactable_id: number }) {
+  return fetcher({
+    url: "/api/getReactions",
+    method: "POST",
+    body: { ...body, reactable_type: "event" },
+  });
 }
 
 export async function createPost(body: {

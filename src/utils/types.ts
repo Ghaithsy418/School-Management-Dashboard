@@ -102,5 +102,10 @@ export interface CommentsTypes {
   content: string;
   created_at: string;
   replies: CommentsTypes[];
-  reaction_number: number;
+  reactions: {
+    reaction_number: number;
+    types: string[];
+  };
+  is_reacted: boolean;
+  user_reaction_type: string;
 }

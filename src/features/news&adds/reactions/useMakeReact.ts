@@ -10,6 +10,7 @@ interface DataTypes {
 }
 
 export const useMakeReact = function (
+  queryKey: unknown[],
   setReactionObjState?: Dispatch<
     SetStateAction<{
       isReactedState: boolean;
@@ -21,7 +22,7 @@ export const useMakeReact = function (
   const queryClient = useQueryClient();
   const { mutate: makeReactMutation } = useMutation({
     mutationFn: (data: DataTypes) => makeReact(data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["events"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
     onError: (_err: Error, context) => {
       if (!context.reaction) {
         setReactionObjState?.((prevState) => ({

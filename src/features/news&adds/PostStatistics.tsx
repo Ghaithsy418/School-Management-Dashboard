@@ -9,6 +9,7 @@ import { LuMessageCircle } from "react-icons/lu";
 import CommentList from "./comments/CommentList";
 import { useComments } from "@/slices/commentsSlice";
 import ReportCommentForm from "./comments/ReportCommentForm";
+import ReactionedUsers from "./reactions/ReactionedUsers";
 
 interface PostStatisticsTypes {
   event: EventTypes;
@@ -64,28 +65,35 @@ function PostStatistics({ event, reactionObjState }: PostStatisticsTypes) {
         } px-5`}
       >
         {currentReactionNumber !== 0 && (
-          <div className="flex items-center justify-center gap-2">
-            <div className="flex items-center justify-center -space-x-1">
-              {reactions.map((reaction, index) =>
-                reaction?.icon ? (
-                  <span
-                    key={reaction.value || index}
-                    style={{ zIndex: reactions.length - (index + 1) }}
-                    className={`items-center justify-center rounded-full ${reaction.bgColor} p-1 ${reaction.color}`}
-                  >
-                    <reaction.icon className="h-3 w-3" />
-                  </span>
-                ) : null,
-              )}
-            </div>
-            <span>
-              {isReactedState &&
-                currentReactionNumber - 1 !== 0 &&
-                `you & ${currentReactionNumber - 1}`}
-              {isReactedState && currentReactionNumber - 1 === 0 && `you`}
-              {!isReactedState && currentReactionNumber}
-            </span>
-          </div>
+          <>
+            <Modal.Open name="reactionsModal">
+              <div className="flex cursor-pointer items-center justify-center gap-2 hover:text-indigo-600">
+                <div className="flex items-center justify-center -space-x-1">
+                  {reactions.map((reaction, index) =>
+                    reaction?.icon ? (
+                      <span
+                        key={reaction.value || index}
+                        style={{ zIndex: reactions.length - (index + 1) }}
+                        className={`items-center justify-center rounded-full ${reaction.bgColor} p-1 ${reaction.color}`}
+                      >
+                        <reaction.icon className="h-3 w-3" />
+                      </span>
+                    ) : null,
+                  )}
+                </div>
+                <span>
+                  {isReactedState &&
+                    currentReactionNumber - 1 !== 0 &&
+                    `you & ${currentReactionNumber - 1}`}
+                  {isReactedState && currentReactionNumber - 1 === 0 && `you`}
+                  {!isReactedState && currentReactionNumber}
+                </span>
+              </div>
+            </Modal.Open>
+            <Modal.Window name="reactionsModal">
+              <ReactionedUsers eventId={eventId} />
+            </Modal.Window>
+          </>
         )}
         {commentsNum !== 0 && (
           <>

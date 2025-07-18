@@ -1,7 +1,12 @@
 import NewsLayout from "@/features/news&adds/NewsLayout";
 import MainContainer from "@/ui/MainContainer";
+import { useEffect } from "react";
 
 function NewsAndEvents() {
+  useEffect(function () {
+    document.title = "News & Adds";
+  }, []);
+
   return (
     <MainContainer title="News & Adds">
       <MainContainer.MainPageHeader>

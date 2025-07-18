@@ -9,6 +9,7 @@ function MainContainer({
   children,
   title,
   needsBackArrow = false,
+  toPage = "",
 }: MainContainerTypes) {
   const navigate = useNavigate();
 
@@ -16,7 +17,9 @@ function MainContainer({
     <div className="flex flex-col justify-center gap-5 px-10 pb-6">
       <div className="flex items-center justify-start gap-5">
         {needsBackArrow && (
-          <button onClick={() => navigate(-1)}>
+          <button
+            onClick={() => (toPage !== "" ? navigate(toPage) : navigate(-1))}
+          >
             <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
           </button>
         )}
@@ -70,6 +73,7 @@ interface MainContainerTypes {
   children: ReactNode;
   title?: string;
   needsBackArrow?: boolean;
+  toPage?: string;
 }
 
 interface OptionsTypes {

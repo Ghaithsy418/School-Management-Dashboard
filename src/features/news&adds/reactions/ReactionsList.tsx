@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { BiDislike, BiHeart, BiLaugh, BiLike } from "react-icons/bi";
 import { FaRegFaceAngry } from "react-icons/fa6";
 import { HiOutlineEmojiSad } from "react-icons/hi";
-import { UseMutateFunction } from "@tanstack/react-query";
+import { UseMutateFunction, useQueryClient } from "@tanstack/react-query";
 
 import {
   Tooltip,
@@ -38,6 +38,8 @@ interface DataTypes {
 }
 
 interface ReactionsListTypes {
+  reactable_type: string;
+  iconSize?: string;
   makeReactMutation: UseMutateFunction<unknown, Error, DataTypes, unknown>;
   setReactionObjState: Dispatch<
     SetStateAction<{
@@ -55,11 +57,14 @@ interface ReactionsListTypes {
 }
 
 function ReactionsList({
+  reactable_type,
+  iconSize = "h-6 w-6",
   makeReactMutation,
   id,
   setReactionObjState,
   reactionObjState,
 }: ReactionsListTypes) {
+  const queryClient = useQueryClient();
   const { isReactedState, userReactionState } = reactionObjState;
   function handleClick(value: string) {
     if (isReactedState && userReactionState === value) return;
@@ -71,11 +76,19 @@ function ReactionsList({
         ? prevState.currentReactionNumber
         : prevState.currentReactionNumber + 1,
     }));
-    makeReactMutation({
-      reactable_id: id,
-      reaction: value,
-      reactable_type: "event",
-    });
+    makeReactMutation(
+      {
+        reactable_id: id,
+        reaction: value,
+        reactable_type,
+      },
+      {
+        onSuccess: () => {
+          if (reactable_type === "event")
+            queryClient.invalidateQueries({ queryKey: ["reactions", id] });
+        },
+      },
+    );
   }
 
   return (
@@ -101,7 +114,7 @@ function ReactionsList({
                   className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 ${iconData.bgColor} ${iconData.bgHoverColor}`}
                 >
                   {React.cloneElement(iconData.icon, {
-                    className: `h-6 w-6 transition-colors duration-300 ${iconData.color}`,
+                    className: `${iconSize} transition-colors duration-300 ${iconData.color}`,
                   })}
                 </button>
               </motion.div>

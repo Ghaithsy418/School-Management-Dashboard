@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { BiLike } from "react-icons/bi";
-import ReactionsList from "../reactions/ReactionsList";
-import { AnimatePresence } from "framer-motion";
-import { useMakeReact } from "../reactions/useMakeReact";
 import { detectReactionType } from "@/utils/detectReactionType";
+import { AnimatePresence } from "framer-motion";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
+import ReactionsList from "../reactions/ReactionsList";
+import { useMakeReact } from "../reactions/useMakeReact";
 
 interface ReactionButtonTypes {
   eventId: number;
+  commentId: number;
   reactionObjState: {
     isReactedState: boolean;
     userReactionState: string;
@@ -24,11 +24,15 @@ interface ReactionButtonTypes {
 
 function CommentReactionButton({
   eventId,
+  commentId,
   userReactionType,
   setReactionObjState,
   reactionObjState,
 }: ReactionButtonTypes) {
-  const { makeReactMutation } = useMakeReact(setReactionObjState);
+  const { makeReactMutation } = useMakeReact(
+    ["comments", eventId],
+    setReactionObjState,
+  );
   const [isShown, setIsShown] = useState(false);
 
   const { isReactedState, userReactionState } = reactionObjState;
@@ -37,7 +41,6 @@ function CommentReactionButton({
   const hideTimeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const reactionType = detectReactionType(userReactionState);
-  const Icon = reactionType?.icon || BiLike;
 
   function handleHover() {
     if (hideTimeRef.current) clearTimeout(hideTimeRef.current);
@@ -62,8 +65,8 @@ function CommentReactionButton({
       }));
       makeReactMutation({
         reaction: userReactionState ?? userReactionType,
-        reactable_id: eventId,
-        reactable_type: "event",
+        reactable_id: commentId,
+        reactable_type: "comment",
       });
     } else {
       setReactionObjState((prevState) => ({
@@ -73,8 +76,8 @@ function CommentReactionButton({
       }));
       makeReactMutation({
         reaction: "like",
-        reactable_id: eventId,
-        reactable_type: "event",
+        reactable_id: commentId,
+        reactable_type: "comment",
       });
     }
   }
@@ -87,21 +90,16 @@ function CommentReactionButton({
     >
       <button
         onClick={handleClick}
-        className="flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-sm px-4 py-2 transition-all duration-300 hover:bg-gray-300/50"
+        className={`cursor-pointer capitalize hover:underline ${reactionType?.color}`}
       >
-        {!isReactedState && !reactionType ? (
-          <BiLike className="h-6 w-6" />
-        ) : (
-          <Icon className={`h-6 w-6 ${reactionType?.color}`} />
-        )}{" "}
-        <span className={`capitalize ${reactionType?.color}`}>
-          {!isReactedState && !reactionType ? "Like" : userReactionState}
-        </span>
+        {!isReactedState && !reactionType ? "Like" : userReactionState}
       </button>
       <AnimatePresence mode="wait">
         {isShown && (
           <ReactionsList
-            id={eventId}
+            reactable_type="comment"
+            iconSize="h-5 w-5"
+            id={commentId}
             setReactionObjState={setReactionObjState}
             reactionObjState={reactionObjState}
             makeReactMutation={makeReactMutation}
