@@ -41,7 +41,12 @@ export const useAddComment = function (id: number, parentId?: number) {
             last_name: user.lastName,
             role: user.role,
             created_at: new Date().toISOString(),
-            reaction_number: 0,
+            reactions: {
+              reaction_number: 0,
+              types: [],
+            },
+            is_reacted: false,
+            user_reaction_type: "",
             replies: [],
           };
 
