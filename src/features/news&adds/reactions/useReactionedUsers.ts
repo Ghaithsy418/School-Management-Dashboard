@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 type User = {
   id: number;
   name: string;
-  last_name: string;
+  lastName: string;
   email: string;
 };
 
 type Reaction = {
-  user: User[];
+  user: User;
   reaction_id: number;
   reaction_type: string;
 };

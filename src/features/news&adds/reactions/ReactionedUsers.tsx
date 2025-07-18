@@ -18,7 +18,7 @@ function ReactionedUsers({ eventId }: { eventId: number }) {
 
   const reactionTypes = reactions?.map((r) => r.reaction_type);
   const detectedReactions = detectReactionsArray(reactionTypes || []);
-  console.log(reactions);
+
   if (isGettingReactions) return <Spinner />;
   if (!reactions?.length) return <Empty resource="reactions" />;
 
@@ -37,7 +37,7 @@ function ReactionedUsers({ eventId }: { eventId: number }) {
 
             return (
               <motion.li
-                key={`${reaction.reaction_id}-${reaction.user[0].id}`}
+                key={`${reaction.reaction_id}-${reaction.user.id}`}
                 className="flex items-center space-x-4 py-4"
                 variants={listItemVariants}
                 initial="hidden"
@@ -45,15 +45,16 @@ function ReactionedUsers({ eventId }: { eventId: number }) {
                 custom={i}
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 font-bold text-indigo-700 shadow-inner">
-                  {reaction.user[0].name.charAt(0).toUpperCase()}
-                  {reaction.user[0].last_name.charAt(0).toUpperCase()}
+                  {reaction.user.name.charAt(0).toUpperCase()}
+                  {reaction.user.lastName.charAt(0).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-semibold text-slate-800">
-                    {reaction.user[0].name} {reaction.user[0].last_name}
+                    {/* ✅ UPDATED: Using camelCase properties */}
+                    {reaction.user.name} {reaction.user.lastName}
                   </p>
                   <p className="truncate text-sm text-slate-500">
-                    {reaction.user[0].email}
+                    {reaction.user.email}
                   </p>
                 </div>
 
