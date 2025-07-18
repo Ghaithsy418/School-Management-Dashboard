@@ -22,7 +22,6 @@ export const useClientTransform = function <S extends Record<string, any>>(
     const filterValue = searchParams.get("filter");
     if (filterValue) {
       const [direction, key] = filterValue.split("-");
-
       const sortedData = [...data];
 
       if (direction === "asc") {
@@ -31,6 +30,7 @@ export const useClientTransform = function <S extends Record<string, any>>(
       if (direction === "desc") {
         sortedData.sort((a, b) => String(b[key]).localeCompare(String(a[key])));
       }
+
       return sortedData;
     }
     return data;

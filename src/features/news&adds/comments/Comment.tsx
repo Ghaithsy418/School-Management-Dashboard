@@ -2,9 +2,12 @@ import AvatarGenerator from "@/ui/AvatarGenerator";
 import { detectLanguage } from "@/utils/detectLanguage";
 import { CommentsTypes } from "@/utils/types";
 import { formatDistanceToNowStrict } from "date-fns";
-import { BiSolidLike } from "react-icons/bi";
 import { useState } from "react";
+import CommentButtons from "./CommentButtons";
 import Reply from "./Reply";
+import CommentMenus from "./CommentMenus";
+import { useComments } from "@/slices/commentsSlice";
+import EditComment from "./EditComment";
 
 interface CommentProps {
   comment: CommentsTypes;
@@ -15,8 +18,8 @@ interface CommentProps {
 function Comment({ comment, depth = 0, eventId }: CommentProps) {
   const [showReplies, setShowReplies] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
-
-  const { id, name, last_name, content, created_at, reaction_number, replies } =
+  const { ui } = useComments();
+  const { id, name, last_name, content, created_at, replies, user_id } =
     comment;
   const fullName = `${name} ${last_name}`;
 
@@ -34,58 +37,57 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
   };
 
   const renderComment = () => (
-    <div className="flex items-start justify-start gap-2">
-      <div>
-        <AvatarGenerator size={isNested ? 32 : 36} name={fullName} />
-      </div>
-      <div className="flex flex-col items-start justify-center gap-1">
-        <div className="flex flex-col items-start justify-center gap-1 rounded-md bg-gray-200 px-3 py-2 shadow-sm">
-          <p
-            dir={fullNameLang === "English" ? "ltr" : "rtl"}
-            className="w-full text-sm font-bold"
-          >
-            {fullName}
-          </p>
-          <p dir={contentLang === "English" ? "ltr" : "rtl"} className="w-full">
-            {content}
-          </p>
+    <>
+      <div className="flex items-start justify-start gap-2">
+        <div>
+          <AvatarGenerator size={isNested ? 32 : 36} name={fullName} />
         </div>
-
-        <div className="ml-2 flex items-center justify-center gap-4 text-[13px] font-light">
-          <span>{commentTime?.[0] + commentTime?.[1]?.slice(0, 1)}</span>
-          <button className="cursor-pointer hover:text-indigo-600 hover:underline">
-            Like
-          </button>
-          <button
-            onClick={() => setIsReplying(true)}
-            className="cursor-pointer hover:text-indigo-600 hover:underline"
-          >
-            Reply
-          </button>
-          {reaction_number !== 0 && (
-            <div className="flex items-center justify-center gap-1">
-              <span className="items-center justify-center rounded-full bg-indigo-600 p-0.5 text-indigo-50">
-                <BiSolidLike className="h-2 w-2" />
-              </span>
-              <span>{reaction_number}</span>
+        <div className="flex flex-col items-start justify-center gap-1">
+          <div className="flex flex-col items-start justify-center gap-1 rounded-md bg-gray-200 px-3 py-2 shadow-sm">
+            <div className="flex w-full items-center justify-between gap-3">
+              <p
+                dir={fullNameLang === "English" ? "ltr" : "rtl"}
+                className="w-full text-sm font-bold"
+              >
+                {fullName}
+              </p>
+              <CommentMenus
+                eventId={eventId}
+                commentId={id}
+                user_id={user_id}
+              />
             </div>
+            {ui === `edit${id}` ? (
+              <EditComment eventId={eventId} content={content} commentId={id} />
+            ) : (
+              <p
+                dir={contentLang === "English" ? "ltr" : "rtl"}
+                className="w-full"
+              >
+                {content}
+              </p>
+            )}
+          </div>
+          <CommentButtons
+            commentTime={commentTime}
+            comment={comment}
+            setIsReplying={setIsReplying}
+          />
+          {hasReplies && (
+            <button
+              onClick={toggleReplies}
+              className="mt-1 ml-2 flex cursor-pointer items-center gap-1 text-[13px] font-light text-indigo-600 hover:text-indigo-800 hover:underline"
+            >
+              <span>{showReplies ? "▼" : "▶"}</span>
+              <span>
+                {showReplies ? "Hide" : "Show"} {replies.length}{" "}
+                {replies.length === 1 ? "reply" : "replies"}
+              </span>
+            </button>
           )}
         </div>
-
-        {hasReplies && (
-          <button
-            onClick={toggleReplies}
-            className="mt-1 ml-2 flex cursor-pointer items-center gap-1 text-[13px] font-light text-indigo-600 hover:text-indigo-800 hover:underline"
-          >
-            <span>{showReplies ? "▼" : "▶"}</span>
-            <span>
-              {showReplies ? "Hide" : "Show"} {replies.length}{" "}
-              {replies.length === 1 ? "reply" : "replies"}
-            </span>
-          </button>
-        )}
       </div>
-    </div>
+    </>
   );
 
   return (

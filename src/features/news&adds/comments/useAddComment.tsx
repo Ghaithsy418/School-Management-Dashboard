@@ -57,8 +57,10 @@ export const useAddComment = function (id: number, parentId?: number) {
 
         return { previousComments };
       },
-      onSettled: () =>
-        queryClient.invalidateQueries({ queryKey: ["comments", id] }),
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: ["comments", id] });
+        queryClient.invalidateQueries({ queryKey: ["events"] });
+      },
       onError: (err: Error, _newComment, context) => {
         toast.error(err.message);
         if (context?.previousComments) {

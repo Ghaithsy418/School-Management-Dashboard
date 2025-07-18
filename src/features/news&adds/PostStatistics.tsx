@@ -1,32 +1,116 @@
-import { BiSolidLike } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import Modal from "@/ui/Modal";
+import {
+  detectReactionsArray,
+  detectReactionType,
+} from "@/utils/detectReactionType";
+import { EventTypes } from "@/utils/types";
+import { LuMessageCircle } from "react-icons/lu";
+import CommentList from "./comments/CommentList";
+import { useComments } from "@/slices/commentsSlice";
+import ReportCommentForm from "./comments/ReportCommentForm";
 
 interface PostStatisticsTypes {
-  commentsNum: number;
-  reactionsNum: number;
+  event: EventTypes;
+  reactionObjState: {
+    isReactedState: boolean;
+    userReactionState: string;
+    currentReactionNumber: number;
+  };
 }
 
-function PostStatistics({ reactionsNum, commentsNum }: PostStatisticsTypes) {
-  if (!commentsNum && !reactionsNum) return null;
+function PostStatistics({ event, reactionObjState }: PostStatisticsTypes) {
+  const {
+    comment_number: commentsNum,
+    reactions: { types },
+    id: eventId,
+  } = event;
+  const { ui, commentId } = useComments();
+  const { isReactedState, userReactionState, currentReactionNumber } =
+    reactionObjState;
+
+  const [reactions, setReactions] = useState(() =>
+    detectReactionsArray(Object.keys(types)),
+  );
+
+  useEffect(() => {
+    const baseReactions = detectReactionsArray(Object.keys(types));
+
+    const isUserReactionInBase = baseReactions.some(
+      (r) => r?.value === userReactionState,
+    );
+
+    if (userReactionState && !isUserReactionInBase) {
+      const userReactionDetails = detectReactionType(userReactionState);
+      if (userReactionDetails) {
+        setReactions([userReactionDetails, ...baseReactions]);
+      } else {
+        setReactions(baseReactions);
+      }
+    } else {
+      setReactions(baseReactions);
+    }
+  }, [userReactionState, types]);
+
+  if (!commentsNum && !currentReactionNumber) return null;
 
   return (
-    <div
-      className={`flex w-full items-center ${!reactionsNum && commentsNum !== 0 ? "justify-end" : "justify-between"} px-5`}
-    >
-      {reactionsNum !== 0 && (
-        <div className="flex items-center justify-center gap-1">
-          <span className="items-center justify-center rounded-full bg-indigo-600 p-1 text-indigo-50">
-            <BiSolidLike className="h-3 w-3" />
-          </span>
-          <span>{reactionsNum}</span>
-        </div>
-      )}
-      {commentsNum && (
-        <button className="flex cursor-pointer items-center justify-center gap-1 place-self-end font-light hover:text-indigo-700">
-          <span className="transition-all duration-300">{commentsNum}</span>
-          <span className="transition-all duration-300">Comments</span>
-        </button>
-      )}
-    </div>
+    <Modal>
+      <div
+        className={`flex w-full items-center ${
+          !currentReactionNumber && commentsNum !== 0
+            ? "justify-end"
+            : "justify-between"
+        } px-5`}
+      >
+        {currentReactionNumber !== 0 && (
+          <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center -space-x-1">
+              {reactions.map((reaction, index) =>
+                reaction?.icon ? (
+                  <span
+                    key={reaction.value || index}
+                    style={{ zIndex: reactions.length - (index + 1) }}
+                    className={`items-center justify-center rounded-full ${reaction.bgColor} p-1 ${reaction.color}`}
+                  >
+                    <reaction.icon className="h-3 w-3" />
+                  </span>
+                ) : null,
+              )}
+            </div>
+            <span>
+              {isReactedState &&
+                currentReactionNumber - 1 !== 0 &&
+                `you & ${currentReactionNumber - 1}`}
+              {isReactedState && currentReactionNumber - 1 === 0 && `you`}
+              {!isReactedState && currentReactionNumber}
+            </span>
+          </div>
+        )}
+        {commentsNum !== 0 && (
+          <>
+            <Modal.Open name="secondCommentButton">
+              <button className="flex cursor-pointer items-center justify-center gap-1 place-self-end font-light hover:text-indigo-700">
+                <span className="transition-all duration-300">
+                  {commentsNum}
+                </span>
+                <span className="transition-all duration-300">Comments</span>
+              </button>
+            </Modal.Open>
+            <Modal.Window
+              icon={<LuMessageCircle className="h-6 w-6" />}
+              name="secondCommentButton"
+            >
+              {ui === "report" ? (
+                <ReportCommentForm commentId={commentId} />
+              ) : (
+                <CommentList id={eventId} />
+              )}
+            </Modal.Window>
+          </>
+        )}
+      </div>
+    </Modal>
   );
 }
 

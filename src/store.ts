@@ -6,6 +6,7 @@ import subjectsUiReducer from "@/slices/SubjectUiSlice";
 import attendanceReducer from "@/slices/AttendanceSlice";
 import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
 import marksReducer from "@/slices/MarksManagementSlice";
+import commentsReducer from "@/slices/commentsSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     attendance: attendanceReducer,
     supervisorAttendace: supervisorAttendanceReducer,
     marks: marksReducer,
+    comments: commentsReducer,
   },
 });
 

@@ -26,6 +26,40 @@ export async function addComment(body: {
   return fetcher({ url: "/api/addComment", method: "POST", body });
 }
 
+export async function editComment(body: {
+  commentId: number;
+  content: string;
+}) {
+  return fetcher({
+    url: `/api/editComment/${body.commentId}`,
+    method: "POST",
+    body: { content: body.content },
+  });
+}
+
+export async function deleteComment(body: { commentId: number }) {
+  return fetcher({
+    url: `/api/deleteComment/${body.commentId}`,
+    method: "DELETE",
+  });
+}
+
+export async function makeReact(body: {
+  reaction: string;
+  reactable_id: number;
+  reactable_type: string;
+}) {
+  return fetcher({ url: "/api/react", method: "POST", body });
+}
+
+export async function reportComment(body: {
+  comment_id: number;
+  reason: string;
+}) {
+  console.log(body);
+  return fetcher({ url: "/api/reportComment", method: "POST", body });
+}
+
 export async function createPost(body: {
   event_name: string;
   post: string;

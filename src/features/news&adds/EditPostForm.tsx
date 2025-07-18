@@ -11,6 +11,7 @@ import SmallSpinner from "@/ui/SmallSpinner";
 
 interface EditFormTypes {
   event: EventTypes;
+  onCloseModal?: () => void;
 }
 
 interface DataTypes {
@@ -19,7 +20,7 @@ interface DataTypes {
   photos: FileList;
 }
 
-function EditPostForm({ event }: EditFormTypes) {
+function EditPostForm({ event, onCloseModal }: EditFormTypes) {
   const { event_name, post, media } = event;
   const { editEventMutation, isEditingEvent } = useEditEvent();
   const { handleSubmit, register, formState } = useForm<DataTypes>();
@@ -40,11 +41,14 @@ function EditPostForm({ event }: EditFormTypes) {
   }
 
   function onSubmit(data: DataTypes) {
-    return editEventMutation({
-      ...data,
-      deleted_media_ids: deletedPhotos,
-      id: event.id,
-    });
+    return editEventMutation(
+      {
+        ...data,
+        deleted_media_ids: deletedPhotos,
+        id: event.id,
+      },
+      { onSuccess: () => onCloseModal?.() },
+    );
   }
 
   return (

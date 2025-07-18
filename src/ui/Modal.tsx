@@ -12,7 +12,8 @@ import { createPortal } from "react-dom";
 import { HiX } from "react-icons/hi";
 import { useClickOutside } from "../hooks/useClickOutside";
 
-const modalContext = createContext<ModalTypes | null>(null);
+// eslint-disable-next-line react-refresh/only-export-components
+export const modalContext = createContext<ModalTypes | null>(null);
 
 function Modal({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState("");

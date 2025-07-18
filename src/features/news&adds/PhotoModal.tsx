@@ -1,3 +1,4 @@
+import { useComments } from "@/slices/commentsSlice";
 import PhotosSlider from "@/ui/PhotosSlider";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
@@ -99,6 +100,7 @@ function Window({
   createdAt: string;
   addComment: ReactNode;
 }) {
+  const { ui } = useComments();
   const context = useContext(PhotoModalContext);
   if (!context)
     throw new Error("PhotoModal.Window Provider mustn't be used here!");
@@ -155,7 +157,9 @@ function Window({
                 </p>
               </div>
             </div>
-            <h3 className="mb-4 text-2xl font-bold">Comments:</h3>
+            {ui !== "report" && (
+              <h3 className="mb-4 text-2xl font-bold">Comments:</h3>
+            )}
             {children}
           </div>
           {addComment}

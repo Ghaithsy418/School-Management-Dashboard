@@ -6,9 +6,10 @@ import EditPostForm from "./EditPostForm";
 
 interface EditPostTypes {
   event: EventTypes;
+  onCloseModal?: () => void;
 }
 
-function EditPost({ event }: EditPostTypes) {
+function EditPost({ event, onCloseModal }: EditPostTypes) {
   const { publisherName, created_at } = event;
 
   return (
@@ -29,7 +30,7 @@ function EditPost({ event }: EditPostTypes) {
           </div>
         </div>
       </div>
-      <EditPostForm event={event} />
+      <EditPostForm event={event} onCloseModal={onCloseModal} />
     </div>
   );
 }

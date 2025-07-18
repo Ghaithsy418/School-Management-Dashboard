@@ -83,7 +83,12 @@ export interface EventTypes {
   post: string;
   created_at: string;
   comment_number: number;
-  reaction_number: number;
+  reactions: {
+    reaction_number: number;
+    types: string[];
+  };
+  is_reacted: boolean;
+  user_reaction_type: string;
 }
 
 export interface CommentsTypes {
@@ -95,7 +100,7 @@ export interface CommentsTypes {
   last_name: string;
   role: string;
   content: string;
-  reaction_number: number;
   created_at: string;
   replies: CommentsTypes[];
+  reaction_number: number;
 }

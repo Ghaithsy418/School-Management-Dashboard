@@ -39,6 +39,8 @@ function PhotosSlider({
         </motion.button>
       )}
       <motion.img
+        loading="lazy"
+        decoding="async"
         key={`photo-${photoData.id}-${photoData.url}`}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

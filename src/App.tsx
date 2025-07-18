@@ -5,22 +5,22 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import AddStudents from "./features/dean/addStudents/AddStudents";
 import AddSupervisors from "./features/dean/AddSupervisors";
 import AddTeachers from "./features/dean/AddTeachers";
+import Attendance from "./pages/Attendance";
 import ClassManagment from "./pages/ClassManagment";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import MarksManagement from "./pages/MarksManagement";
+import NewsAndEvents from "./pages/NewsAndEvents";
 import Settings from "./pages/Settings";
 import Student from "./pages/Student";
 import Students from "./pages/Students";
+import Subjects from "./pages/Subjects";
 import Supervisors from "./pages/Supervisors";
 import Teachers from "./pages/Teachers";
 import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import Subjects from "./pages/Subjects";
-import Attendance from "./pages/Attendance";
-import MarksManagement from "./pages/MarksManagement";
-import NewsAndEvents from "./pages/NewsAndEvents";
 
 const queryClient = new QueryClient({
   defaultOptions: {

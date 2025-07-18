@@ -2,7 +2,23 @@ import { useForm } from "react-hook-form";
 import { GrSend } from "react-icons/gr";
 import { useAddComment } from "./useAddComment";
 
-function AddComment({ event_id }: { event_id: number }) {
+interface AddCommentTypes {
+  event_id: number;
+  bgColor: string;
+  inputBgColor: string;
+  hoverInputBgColor: string;
+  borderColor: string;
+  isRounded?: boolean;
+}
+
+function AddComment({
+  event_id,
+  bgColor,
+  inputBgColor,
+  hoverInputBgColor,
+  borderColor,
+  isRounded = false,
+}: AddCommentTypes) {
   const { handleSubmit, register, reset } = useForm<{ content: string }>();
   const { addCommentMutation, isAddingComment } = useAddComment(event_id);
 
@@ -16,7 +32,7 @@ function AddComment({ event_id }: { event_id: number }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex items-center justify-center gap-3 border-t border-gray-400 bg-gray-300 p-4"
+      className={`flex items-center justify-center ${isRounded ? "rounded-md" : ""} gap-3 border-t ${borderColor} ${bgColor} p-4`}
     >
       <input
         {...register("content", { required: "don't let it empty" })}
@@ -24,11 +40,11 @@ function AddComment({ event_id }: { event_id: number }) {
           isAddingComment ? "Sending the Comment..." : "Write a comment..."
         }
         autoComplete="off"
-        className={`h-10 w-full resize-none rounded-full bg-gray-400/40 px-4 py-2 transition-all duration-300 outline-none hover:bg-gray-400/60 hover:ring hover:ring-gray-800 focus:ring focus:ring-gray-800 ${isAddingComment ? "cursor-progress" : ""}`}
+        className={`h-10 w-full resize-none rounded-full ${inputBgColor} px-4 py-2 transition-all duration-300 outline-none ${hoverInputBgColor} hover:ring hover:ring-gray-800 focus:ring focus:ring-gray-800 ${isAddingComment ? "cursor-progress" : ""}`}
       />
       <button
         type="submit"
-        className={`flex cursor-pointer items-center justify-center rounded-full bg-gray-400/40 p-2.5 text-gray-800 transition-all duration-300 hover:bg-gray-400/80 ${isAddingComment ? "cursor-progress" : ""}`}
+        className={`flex cursor-pointer items-center justify-center rounded-full ${inputBgColor} p-2.5 text-gray-800 transition-all duration-300 ${hoverInputBgColor} ${isAddingComment ? "cursor-progress" : ""}`}
       >
         <GrSend className="h-5 w-5" />
       </button>

@@ -1,22 +1,43 @@
-import { BiLike } from "react-icons/bi";
-import { LuMessageCircle } from "react-icons/lu";
+import { EventTypes } from "@/utils/types";
+import CommentButton from "./CommentButton";
 import CopyButton from "./CopyButton";
+import ReactionButton from "./ReactionButton";
+import { Dispatch, SetStateAction } from "react";
 
-function PostButtons({ eventId }: { eventId: number }) {
+interface PostButtonsTypes {
+  event: EventTypes;
+  reactionObjState: {
+    isReactedState: boolean;
+    userReactionState: string;
+    currentReactionNumber: number;
+  };
+  setReactionObjState: Dispatch<
+    SetStateAction<{
+      isReactedState: boolean;
+      userReactionState: string;
+      currentReactionNumber: number;
+    }>
+  >;
+}
+
+function PostButtons({
+  event,
+  reactionObjState,
+  setReactionObjState,
+}: PostButtonsTypes) {
+  const { id: eventId, user_reaction_type } = event;
   return (
     <div className="flex w-full items-center justify-between px-5 pb-2">
-      <button className={buttonClassName}>
-        <BiLike className="h-6 w-6" /> <span>Like</span>
-      </button>
-      <button className={buttonClassName}>
-        <LuMessageCircle className="h-6 w-6" /> <span>Comment</span>
-      </button>
+      <ReactionButton
+        eventId={eventId}
+        reactionObjState={reactionObjState}
+        setReactionObjState={setReactionObjState}
+        userReactionType={user_reaction_type}
+      />
+      <CommentButton eventId={eventId} />
       <CopyButton eventId={eventId} />
     </div>
   );
 }
-
-const buttonClassName =
-  "cursor-pointer flex items-center justify-center gap-1 rounded-sm px-4 py-2 transition-all duration-300 hover:bg-gray-300/50 w-full";
 
 export default PostButtons;

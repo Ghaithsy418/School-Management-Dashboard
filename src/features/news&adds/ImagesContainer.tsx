@@ -1,7 +1,9 @@
+import { useComments } from "@/slices/commentsSlice";
 import PhotoModal from "./PhotoModal";
 import AddComment from "./comments/AddComment";
 import PhotoModalComments from "./comments/PhotoModalComments";
 import { motion } from "framer-motion";
+import ReportCommentForm from "./comments/ReportCommentForm";
 
 interface ImageContainerTypes {
   media: { id: number; url: string }[];
@@ -11,6 +13,7 @@ interface ImageContainerTypes {
 
 function ImagesContainer({ media, createdAt, id }: ImageContainerTypes) {
   const images = media?.slice(0, 3);
+  const { ui, commentId } = useComments();
 
   if (!media.length) return null;
 
@@ -41,9 +44,21 @@ function ImagesContainer({ media, createdAt, id }: ImageContainerTypes) {
         ))}
         <PhotoModal.Window
           createdAt={createdAt}
-          addComment={<AddComment event_id={id} />}
+          addComment={
+            <AddComment
+              event_id={id}
+              bgColor="bg-gray-300"
+              inputBgColor="bg-gray-400/20"
+              hoverInputBgColor="hover:bg-gray-400/50"
+              borderColor="border-gray-700/40"
+            />
+          }
         >
-          <PhotoModalComments id={id} />
+          {ui === "report" ? (
+            <ReportCommentForm commentId={commentId} />
+          ) : (
+            <PhotoModalComments id={id} />
+          )}
         </PhotoModal.Window>
       </div>
     </PhotoModal>

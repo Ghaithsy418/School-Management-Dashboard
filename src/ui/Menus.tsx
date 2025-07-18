@@ -98,7 +98,9 @@ function List({ children, id }: toggleAndListTypes) {
     <AnimatePresence mode="wait">
       {isOpen === id && (
         <motion.div
+          onClick={(e) => e.stopPropagation()}
           ref={ref}
+          onPointerDown={(e) => e.preventDefault()}
           initial={{
             opacity: 0,
             scale: 0.95,
@@ -143,9 +145,16 @@ function List({ children, id }: toggleAndListTypes) {
 }
 
 function Button({ onClick, icon, children }: buttonTypes) {
+  const context = useContext(menuContext);
+  if (!context) throw new Error("Menus.List shouldn't be used out of Menus");
+  const { close } = context;
+
   return (
     <motion.button
-      onClick={onClick}
+      onClick={() => {
+        onClick?.();
+        close();
+      }}
       className="group relative flex h-12 w-full cursor-pointer items-center justify-start gap-3 bg-transparent px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-200 first:rounded-t-xl last:rounded-b-xl hover:text-gray-900"
       whileHover={{ x: 2 }}
       whileTap={{ scale: 0.99 }}
