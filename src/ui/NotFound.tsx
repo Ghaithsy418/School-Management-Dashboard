@@ -1,7 +1,7 @@
 import { useUser } from "@/slices/userSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { HiArrowLeft } from "react-icons/hi2";
 
 function NotFound() {
@@ -29,7 +29,7 @@ function NotFound() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,

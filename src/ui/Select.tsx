@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 interface OptionsTypes {
@@ -95,7 +95,7 @@ function Select({
   );
 }
 
-const variants = {
+const variants: Variants = {
   hidden: {
     opacity: 0,
     y: -20,

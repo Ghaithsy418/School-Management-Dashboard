@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   cloneElement,
   createContext,
@@ -183,7 +183,7 @@ interface WindowOpenTypes {
   mode?: string;
 }
 
-const variants = {
+const variants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.8,
@@ -204,7 +204,7 @@ const variants = {
   },
 };
 
-const sheetVariants = {
+const sheetVariants: Variants = {
   hidden: {
     x: "100%",
     opacity: 0,

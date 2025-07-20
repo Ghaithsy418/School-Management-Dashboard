@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { HiArrowPath, HiOutlineShieldExclamation } from "react-icons/hi2";
 
 function Error({
@@ -19,7 +19,7 @@ function Error({
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,

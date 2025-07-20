@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -83,7 +83,7 @@ function Filter({ options, width = "w-45" }: FilterTypes) {
   );
 }
 
-const variants = {
+const variants: Variants = {
   hidden: {
     opacity: 0,
     y: -20,

@@ -1,10 +1,10 @@
 import { detectReactionsArray } from "@/utils/detectReactionType";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useReactionedUsers } from "./useReactionedUsers";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
 
-const listItemVariants = {
+const listItemVariants: Variants = {
   hidden: { opacity: 0, x: -20 },
   visible: (i: number) => ({
     opacity: 1,
