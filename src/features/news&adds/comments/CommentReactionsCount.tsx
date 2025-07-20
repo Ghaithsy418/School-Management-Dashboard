@@ -52,7 +52,7 @@ function CommentReactionCount({
   return (
     <>
       {currentReactionNumber !== 0 && (
-        <div className="flex max-w-12 items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <div className="flex items-center justify-center -space-x-1">
             {reactions.map((reaction, index) =>
               reaction?.icon ? (
@@ -66,7 +66,7 @@ function CommentReactionCount({
               ) : null,
             )}
           </div>
-          <span>
+          <span className="w-12">
             {isReactedState &&
               currentReactionNumber - 1 !== 0 &&
               `you & ${currentReactionNumber - 1}`}

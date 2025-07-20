@@ -36,15 +36,17 @@ function ChooseTeacherClass() {
               ? "You are not teaching any class right now"
               : "Classes"}
           </SelectLabel>
-          {classes?.map((classData: { className: string; classId: number }) => (
-            <SelectItem
-              key={classData.className}
-              value={String(classData.classId)}
-              className="py-2 text-base"
-            >
-              {classData.className}
-            </SelectItem>
-          ))}
+          {classes?.map(
+            (classData: { className: string; class_id: number }) => (
+              <SelectItem
+                key={classData.className}
+                value={String(classData.class_id)}
+                className="py-2 text-base"
+              >
+                {classData.className}
+              </SelectItem>
+            ),
+          )}
         </SelectGroup>
       </SelectContent>
     </Select>

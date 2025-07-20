@@ -15,3 +15,11 @@ export async function studentsAttendanceForm(body: { className: string }) {
     body: { class: body.className },
   });
 }
+
+export async function increaseAbsence(body: { studentId: number }) {
+  return fetcher({ url: "/api/incrementStudentAbsence", method: "POST", body });
+}
+
+export async function decreaseAbsence(body: { studentId: number }) {
+  return fetcher({ url: "/api/decrementStudentAbsence", method: "POST", body });
+}

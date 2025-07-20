@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 const initialState = {
-  classId: 3,
+  classId: 0,
   semester: "",
   type: "",
 };

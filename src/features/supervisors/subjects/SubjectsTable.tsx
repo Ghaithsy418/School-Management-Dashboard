@@ -3,6 +3,7 @@ import { useGetSubjects } from "./useGetSubjects";
 import SubjectsRow from "./SubjectsRow";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
+import { SubjectTypes } from "@/utils/types";
 
 function SubjectsTable() {
   const { subjects, isGettingSubjects } = useGetSubjects();
@@ -19,8 +20,8 @@ function SubjectsTable() {
       </Table.Header>
       <Table.Body
         data={subjects}
-        render={(subject) => (
-          <Table.Row>
+        render={(subject: SubjectTypes) => (
+          <Table.Row key={subject.id}>
             <SubjectsRow subject={subject} />
           </Table.Row>
         )}
