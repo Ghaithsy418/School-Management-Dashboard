@@ -9,6 +9,7 @@ import { MessageSquareWarning } from "lucide-react";
 import StudentAttendanceRow from "./StudentAttendanceRow";
 import { useGetStudentsAttendanceForm } from "./useGetStudentsAttendanceForm";
 import { useDispatch } from "react-redux";
+import Empty from "@/ui/Empty";
 
 function StudentsAttendanceTable() {
   const { className, selectAll } = useAttendance();
@@ -16,15 +17,12 @@ function StudentsAttendanceTable() {
   const { studentsAttendanceForm, isGettingAttendanceForm } =
     useGetStudentsAttendanceForm(className);
 
-  if (isGettingAttendanceForm)
-    return (
-      <div className="col-start-1 col-end-2 row-start-1 row-end-4">
-        <Spinner />
-      </div>
-    );
+  if (isGettingAttendanceForm) return <Spinner />;
 
+  if (!studentsAttendanceForm || studentsAttendanceForm?.length === 0)
+    return <Empty resource="students" />;
   return (
-    <div className="col-start-1 col-end-2 row-start-1 row-end-4 flex flex-col items-start justify-start gap-4">
+    <div className="flex flex-col items-start justify-start gap-4">
       <h3 className="flex items-center gap-2 text-lg text-red-700">
         <MessageSquareWarning className="h-5 w-5" />
         <span>Make sure to choose the Absent Students only!!</span>

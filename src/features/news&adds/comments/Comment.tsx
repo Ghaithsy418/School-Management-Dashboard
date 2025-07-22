@@ -43,7 +43,7 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
           <AvatarGenerator size={isNested ? 32 : 36} name={fullName} />
         </div>
         <div className="flex flex-col items-start justify-center gap-1">
-          <div className="flex flex-col items-start justify-center gap-1 rounded-md bg-gray-200 px-3 py-2 shadow-sm">
+          <div className="flex flex-col items-start justify-center gap-2 rounded-md bg-gray-200 px-3 py-2 shadow-sm">
             <div className="flex w-full items-center justify-between gap-3">
               <div className="flex items-end justify-center gap-1">
                 <p

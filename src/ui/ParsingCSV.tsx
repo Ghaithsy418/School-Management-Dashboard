@@ -1,11 +1,12 @@
 import Papa from "papaparse";
-import { Ref } from "react";
+import { Dispatch, Ref, SetStateAction } from "react";
 
-interface ParsingTypes {
+interface ParsingTypes<T> {
   ref: Ref<HTMLInputElement> | null;
+  setCsvData: Dispatch<SetStateAction<T>>;
 }
 
-function ParsingCSV({ ref }: ParsingTypes) {
+function ParsingCSV<T>({ ref, setCsvData }: ParsingTypes<T>) {
   return (
     <>
       <input
@@ -19,7 +20,7 @@ function ParsingCSV({ ref }: ParsingTypes) {
             Papa.parse<File>(file[0], {
               header: true,
               complete: (results) => {
-                console.log(results.data);
+                setCsvData(results.data[results.data.length - 1] as T);
               },
               error: (error) => {
                 throw new Error(error.message);

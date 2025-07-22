@@ -10,13 +10,9 @@ function AttendanceLayout() {
 
   return (
     <div className="grid grid-cols-[0.8fr_1fr] grid-rows-[200px_200px_200px] gap-8 pt-6">
-      {!className ? (
-        <div className="col-start-1 col-end-2 row-start-1 row-end-4">
-          <SelectClassFirst />
-        </div>
-      ) : (
-        <StudentsAttendanceTable />
-      )}
+      <div className="col-start-1 col-end-2 row-start-1 row-end-4">
+        {!className ? <SelectClassFirst /> : <StudentsAttendanceTable />}
+      </div>
       <ChooseAttendanceClass />
       <ChooseSession />
       <SubmitAttendance />

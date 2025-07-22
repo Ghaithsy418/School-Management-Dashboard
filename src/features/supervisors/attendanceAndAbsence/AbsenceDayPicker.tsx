@@ -11,11 +11,11 @@ function AbsenceDayPicker() {
   const { day } = useSupervisorAttendance();
   const dispatch = useDispatch();
 
-  const selectedDate = day ? parse(day, "dd/MM/yyyy", new Date()) : undefined;
+  const selectedDate = day ? parse(day, "yyyy-MM-dd", new Date()) : undefined;
 
   function handleSelect(value: Date | undefined) {
     let formatedValue: string = "";
-    if (value) formatedValue = format(value, "dd/MM/yyyy");
+    if (value) formatedValue = format(value, "yyyy-MM-dd");
 
     return dispatch(setDay(formatedValue));
   }

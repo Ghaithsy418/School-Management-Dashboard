@@ -1,11 +1,15 @@
+import { setClassName } from "@/slices/supervisorAttendanceSlice";
 import Select from "@/ui/Select";
 import { GraduationCap } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 function AbsenceSelectGrade() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
   function handleSelect(value: string) {
+    dispatch(setClassName(""));
     searchParams.set("grade", value);
     setSearchParams(searchParams);
   }
@@ -26,11 +30,7 @@ function AbsenceSelectGrade() {
           }))}
           onSelect={(value) => handleSelect(value)}
           placeholder="Select a grade"
-          defaultValue={
-            grade && Number(grade) > 0 && Number(grade) <= 12
-              ? { title: `Grade ${grade}`, value: grade }
-              : null
-          }
+          value={grade}
           width="w-full"
         />
       </div>

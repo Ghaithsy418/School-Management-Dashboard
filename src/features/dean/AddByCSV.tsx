@@ -1,8 +1,12 @@
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import ParsingCSV from "../../ui/ParsingCSV";
 import PrimaryButton from "../../ui/Button";
 
-function AddByCSV() {
+interface AddCsvTypes<T> {
+  setCsvData: Dispatch<SetStateAction<T>>;
+}
+
+function AddByCSV<T>({ setCsvData }: AddCsvTypes<T>) {
   const ref = useRef<HTMLInputElement | null>(null);
   return (
     <div>
@@ -15,7 +19,7 @@ function AddByCSV() {
       >
         Add CSV File
       </PrimaryButton>
-      <ParsingCSV ref={ref} />
+      <ParsingCSV<T> ref={ref} setCsvData={setCsvData} />
     </div>
   );
 }

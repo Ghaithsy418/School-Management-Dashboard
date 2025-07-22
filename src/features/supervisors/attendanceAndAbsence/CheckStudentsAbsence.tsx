@@ -3,11 +3,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useSupervisorAttendance } from "@/slices/supervisorAttendanceSlice";
 import Modal from "@/ui/Modal";
 import { ListChecks } from "lucide-react";
+import AbsenceListLayout from "./AbsenceListLayout";
 import AttendanceSheet from "./AbsenceSheet";
 
 function CheckStudentsAbsence() {
+  const { ui } = useSupervisorAttendance();
   return (
     <Modal>
       <Tooltip>
@@ -23,7 +26,7 @@ function CheckStudentsAbsence() {
         </TooltipContent>
       </Tooltip>
       <Modal.Window mode="sheet" name="studentsAbsence">
-        <AttendanceSheet />
+        {ui === "StudentsAbsence" ? <AbsenceListLayout /> : <AttendanceSheet />}
       </Modal.Window>
     </Modal>
   );

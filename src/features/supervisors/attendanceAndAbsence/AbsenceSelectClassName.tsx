@@ -44,11 +44,7 @@ function AbsenceSelectClassName() {
           }
           width="w-full"
           disabled={isGettingClasses || !grade || !filteredClasses?.length}
-          defaultValue={
-            className
-              ? { title: `className ${className}`, value: className }
-              : null
-          }
+          value={className}
         />
       </div>
     </div>

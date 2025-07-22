@@ -1,21 +1,52 @@
-import InputField from "@/ui/InputField";
-import { useForm } from "react-hook-form";
+import { useEffect } from "react"; // 1. Import useEffect
 import Button from "@/ui/Button";
 import ClearAll from "@/ui/ClearAll";
+import InputField from "@/ui/InputField";
+import SmallSpinner from "@/ui/SmallSpinner";
 import { TeacherSupervisorTypes } from "@/utils/types";
+import { useForm } from "react-hook-form";
 import { useAddSupervisor } from "./useAddSupervisor";
 import { useAddTeacher } from "./useAddTeacher";
-import SmallSpinner from "@/ui/SmallSpinner";
 
-function AddTeachersSupervisorsForm({ role }: { role: string }) {
+interface CsvDataTypes {
+  name: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+}
+interface AddTypes {
+  role: string;
+  csvData: CsvDataTypes;
+}
+
+function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
   const { addSupervisorMutation, isAddingSupervisor } = useAddSupervisor();
   const { addTeacherMutation, isAddingTeacher } = useAddTeacher();
+
+  // The 'values' option is removed from here as useEffect will handle it.
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<TeacherSupervisorTypes>();
+
+  // 2. Add the useEffect hook
+  useEffect(() => {
+    if (csvData) {
+      // 3. Call reset with the new data from the prop
+      reset({
+        ...csvData, // Spread the new data from the prop
+        // Also include default values for fields not in csvData
+        password: "",
+        salary: 0,
+        subject: "",
+        certification: null as unknown as FileList,
+        photo: null as unknown as FileList,
+      });
+    }
+  }, [csvData, reset]); // Dependency array ensures this runs when csvData or reset changes
 
   function onSubmit(data: TeacherSupervisorTypes) {
     if (role === "teacher")
@@ -30,6 +61,7 @@ function AddTeachersSupervisorsForm({ role }: { role: string }) {
       method="post"
       className="mt-6 flex flex-col justify-center gap-10"
     >
+      {/* ... The rest of your form JSX remains the same ... */}
       <div className="grid grid-cols-3 grid-rows-4 items-center justify-center gap-12">
         <InputField<TeacherSupervisorTypes>
           name="name"
@@ -76,7 +108,7 @@ function AddTeachersSupervisorsForm({ role }: { role: string }) {
             required: "Phone number is required",
             min: {
               value: 10,
-              message: "Phone number can't be lower than 10 number",
+              message: "Phone number can't be shorter than 10 digits",
             },
           }}
           type="number"

@@ -23,3 +23,14 @@ export async function increaseAbsence(body: { studentId: number }) {
 export async function decreaseAbsence(body: { studentId: number }) {
   return fetcher({ url: "/api/decrementStudentAbsence", method: "POST", body });
 }
+
+export async function checkStudentsAbsence(body: {
+  class: string;
+  date: string;
+}) {
+  return fetcher({
+    url: "/api/checkStudentAbsenceReport",
+    method: "POST",
+    body,
+  });
+}

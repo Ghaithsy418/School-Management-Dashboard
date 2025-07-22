@@ -21,12 +21,17 @@ const supervisorAttendanceSlice = createSlice({
     setClassName(state, action: PayloadAction<string>) {
       state.className = action.payload;
     },
+    clearAll(state) {
+      state.className = "";
+      state.day = "";
+      state.ui = "";
+    },
   },
 });
 
 export default supervisorAttendanceSlice.reducer;
 
-export const { changeUi, setDay, setClassName } =
+export const { changeUi, setDay, setClassName, clearAll } =
   supervisorAttendanceSlice.actions;
 
 export const useSupervisorAttendance = () =>
