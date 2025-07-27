@@ -14,7 +14,13 @@ function SupervisorsList() {
     <div>
       <Cards
         data={supervisors}
-        render={(supervisor) => <Card data={supervisor} />}
+        render={(supervisor) => (
+          <Card
+            key={supervisor.supervisor_id}
+            userType="supervisors"
+            data={supervisor}
+          />
+        )}
       />
     </div>
   );

@@ -23,6 +23,10 @@ import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Event from "./pages/Event";
 import UserEvents from "./pages/UserEvents";
+import Supervisor from "./pages/Supervisor";
+import Teacher from "./pages/Teacher";
+import ClassesMarks from "./pages/ClassesMarks";
+import TimeTablesManagement from "./pages/TimeTablesManagement";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,16 +61,18 @@ function App() {
                 <Route path="teachers">
                   <Route index element={<Teachers />} />
                   <Route path="add-a-teacher" element={<AddTeachers />} />
+                  <Route path=":id" element={<Teacher />} />
                 </Route>
                 <Route path="supervisors">
                   <Route index element={<Supervisors />} />
                   <Route path="add-a-supervisor" element={<AddSupervisors />} />
+                  <Route path=":id" element={<Supervisor />} />
                 </Route>
                 <Route path="students">
                   <Route index element={<Students />} />
                   <Route path="add-a-student" element={<AddStudents />} />
+                  <Route path=":id" element={<Student />} />
                 </Route>
-                <Route path="student/:id" element={<Student />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}
@@ -74,10 +80,16 @@ function App() {
               <Route path="supervisor">
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="teachers" element={<Teachers />} />
-                <Route path="students" element={<Students />} />
-                <Route path="student/:id" element={<Student />} />
+                <Route path="teachers">
+                  <Route index element={<Teachers />} />
+                  <Route path=":id" element={<Teacher />} />
+                </Route>
+                <Route path="students">
+                  <Route index element={<Students />} />
+                  <Route path=":id" element={<Student />} />
+                </Route>
                 <Route path="settings" element={<Settings />} />
+                <Route path="timetables" element={<TimeTablesManagement />} />
                 <Route path="classes" element={<ClassManagment />} />
                 <Route path="subjects" element={<Subjects />} />
               </Route>
@@ -86,10 +98,15 @@ function App() {
               <Route path="teacher">
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="students" element={<Students />} />
-                <Route path="student/:id" element={<Student />} />
+                <Route path="students">
+                  <Route index element={<Students />} />
+                  <Route path=":id" element={<Student />} />
+                </Route>
                 <Route path="attendance" element={<Attendance />} />
-                <Route path="marks" element={<MarksManagement />} />
+                <Route path="marks">
+                  <Route index element={<MarksManagement />} />
+                  <Route path="classesMarks" element={<ClassesMarks />} />
+                </Route>
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}

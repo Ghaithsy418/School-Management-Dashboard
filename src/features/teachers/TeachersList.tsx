@@ -12,7 +12,12 @@ function TeachersList() {
 
   return (
     <div>
-      <Cards data={teachers} render={(item) => <Card data={item} />} />
+      <Cards
+        data={teachers}
+        render={(item) => (
+          <Card key={item.teacher_id} userType="teachers" data={item} />
+        )}
+      />
     </div>
   );
 }

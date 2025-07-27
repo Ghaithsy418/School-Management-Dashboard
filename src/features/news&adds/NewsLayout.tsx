@@ -12,9 +12,7 @@ function NewsLayout() {
   const { events, isGettingEvents } = useGetAllEvents();
 
   return (
-    <div
-      className="my-4 flex w-[38rem] flex-col items-center justify-center gap-1 place-self-center rounded-sm bg-gray-300 outline outline-gray-700/20"
-    >
+    <div className="my-4 flex w-[38rem] flex-col items-center justify-center gap-1 place-self-center rounded-sm bg-gray-300 outline outline-gray-700/20">
       {role === "supervisor" && <CreatePost />}
       {isGettingEvents ? (
         <>

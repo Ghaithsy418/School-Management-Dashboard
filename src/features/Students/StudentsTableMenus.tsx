@@ -51,7 +51,7 @@ function StudentsTableMenus({
           </Menus.Toggle>
           <Menus.Menu>
             <Menus.List id={name}>
-              <Link to={`/${role}/student/100`}>
+              <Link to={`/${role}/students/${user_id}`}>
                 <Menus.Button icon={<CgProfile className="h-5 w-5" />}>
                   Profile
                 </Menus.Button>

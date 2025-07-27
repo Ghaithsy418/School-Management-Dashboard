@@ -1,7 +1,7 @@
 import { BookOpen, Newspaper } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { HiOutlineCalendarDays, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
 import classIcon from "/images/classIcon.svg";
@@ -27,6 +27,12 @@ function SupervisorsLinks() {
         title: t("sidebar.teachers"),
         value: "teachers",
         icon: <img src={teacherIcon} className="h-7 w-7" alt="teacher icon" />,
+        immediateLink: false,
+      },
+      {
+        title: "TimeTables",
+        value: "timetables",
+        icon: <HiOutlineCalendarDays className="h-7 w-7" />,
         immediateLink: false,
       },
       {

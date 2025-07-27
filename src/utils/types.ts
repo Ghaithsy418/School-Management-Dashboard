@@ -10,6 +10,16 @@ export interface StudentTypes {
   photo: string;
 }
 
+export interface SpecificStudentTypes {
+  full_name: string;
+  student_id: number;
+  email: string;
+  phone: string;
+  school_graduated_from: string;
+  gpa: number;
+  class_name: string;
+}
+
 export interface UserTypes {
   email: string;
   id: number;

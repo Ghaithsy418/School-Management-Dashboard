@@ -25,8 +25,8 @@ const options = [
   { title: "Class Name (Z-A)", value: "desc-className" },
   { title: "Max Size (Low First)", value: "asc-studentsNum" },
   { title: "Max Size (Many First)", value: "desc-studentsNum" },
-  { title: "Students No. (Low First)", value: "asc-currentStudentNum" },
-  { title: "Students No. (Many First)", value: "desc-currentStudentNum" },
+  { title: "Students No. (Low First)", value: "desc-currentStudentNumber" },
+  { title: "Students No. (Many First)", value: "asc-currentStudentNumber" },
 ];
 
 export default ClassManagment;

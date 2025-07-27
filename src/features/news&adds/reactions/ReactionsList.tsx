@@ -98,7 +98,7 @@ function ReactionsList({
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="absolute -top-14 flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-xl dark:border-slate-700 dark:bg-slate-800"
+        className="absolute -top-14 z-20 flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-xl dark:border-slate-700 dark:bg-slate-800"
       >
         {icons.map((iconData) => (
           <Tooltip key={iconData.value}>
