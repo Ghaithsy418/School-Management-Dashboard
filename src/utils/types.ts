@@ -119,3 +119,15 @@ export interface CommentsTypes {
   is_reacted: boolean;
   user_reaction_type: string;
 }
+
+export interface StudentMarkTypes {
+  subject_name: string;
+  min_mark: 60;
+  max_mark: 100;
+  mark: 80;
+}
+
+export interface StudentMarksBranchesTypes {
+  "mid-term": StudentMarkTypes[];
+  final: StudentMarkTypes[];
+}

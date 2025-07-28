@@ -109,6 +109,7 @@ function AddStudentsForm() {
           type="text"
           register={register}
           error={errors.class?.message?.toString() || ""}
+          inputValidation={() => {}}
         />
         <h3 className="text-3xl font-semibold">Parents Data:</h3>
       </div>

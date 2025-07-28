@@ -34,17 +34,14 @@ function InputField<T extends FieldValues>({
   multiple,
 }: inputTypes<T>) {
   const { t } = useTranslation("auth");
-  const validation =
-    name === "email"
-      ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-      : /^(?=.*[A-Za-z])(?=.*\d)/;
+  const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   function getValidationMessage() {
     if (name === "email")
       return {
         required: t("login.emailError"),
         pattern: {
-          value: validation,
+          value: emailValidation,
           message: t("login.emailValidation"),
         },
       };
@@ -55,8 +52,6 @@ function InputField<T extends FieldValues>({
         validate: {
           minLength: (value: string) =>
             value.length >= 8 || t("login.passwordAtLeast"),
-          hasPattern: (value: string) =>
-            validation.test(value) || t("login.passwordValidation"),
         },
       };
 

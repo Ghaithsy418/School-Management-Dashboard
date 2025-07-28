@@ -67,12 +67,12 @@ function Location({
 }) {
   return (
     <div className="group transition-all duration-300">
-      <button
+      <span
         onClick={() => onClick?.()}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-teal-600 p-3 text-violet-50 shadow-lg shadow-indigo-500/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-indigo-500/50"
       >
         {icon}
-      </button>
+      </span>
     </div>
   );
 }

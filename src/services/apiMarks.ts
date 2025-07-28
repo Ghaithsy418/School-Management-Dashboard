@@ -11,3 +11,10 @@ export async function getEmptySheet(body: {
     body: { ...body, classID: body.classId },
   });
 }
+
+export async function getMarksProfile(body: {
+  student_id: number;
+  semester: string;
+}) {
+  return fetcher({ url: "/api/getMarksProfile", method: "POST", body });
+}

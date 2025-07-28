@@ -1,6 +1,7 @@
-export const calculateAverage = (subjects: { marks: number }[]) => {
+export const calculateAverage = (subjects: { mark: number }[]) => {
+  console.log(subjects);
   if (!subjects || subjects.length === 0) return 0;
-  const total = subjects.reduce((sum, subject) => sum + subject.marks, 0);
+  const total = subjects.reduce((sum, subject) => sum + subject.mark, 0);
   return (total / subjects.length).toFixed(1);
 };
 
@@ -22,6 +23,11 @@ export const gpaLevel = (gpa: number) => {
     };
   } else if (gpa >= 2.5) {
     gpaLevel = { message: "Good", className: "bg-blue-100 text-blue-700" };
+  } else if (parseInt(String(gpa)) === 0) {
+    gpaLevel = {
+      message: "",
+      className: "",
+    };
   } else {
     gpaLevel = {
       message: "Needs Improvement",
