@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import StudentsTable from "../features/students/StudentsTable";
-import MainContainer from "../ui/MainContainer";
+import StudentsTable from "@/features/students/StudentsTable";
+import MainContainer from "@/ui/MainContainer";
 import AttendanceStudentsButtons from "@/features/supervisors/attendanceAndAbsence/AttendanceStudentsButtons";
 
 //Responsible: for the students routes operators

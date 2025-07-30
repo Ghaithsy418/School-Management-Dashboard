@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import { setClassId, setClassName } from "@/slices/MarksManagementSlice";
 import { useDispatch } from "react-redux";
-import { useGetTeacherClasses } from "../attendance/useGetTeacherClasses";
+import { useGetTeacherClasses } from "@/features/teachers/attendance/useGetTeacherClasses";
 
 function ChooseTeacherClass() {
   const { classes, isGettingClasses } = useGetTeacherClasses();

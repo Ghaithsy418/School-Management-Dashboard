@@ -1,6 +1,6 @@
 import { useUser } from "@/slices/userSlice";
-import StudentDetails from "../features/students/StudentDetails";
-import MainContainer from "../ui/MainContainer";
+import StudentDetails from "@/features/students/StudentDetails";
+import MainContainer from "@/ui/MainContainer";
 
 function Student() {
   const {
