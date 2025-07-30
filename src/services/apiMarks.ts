@@ -18,3 +18,10 @@ export async function getMarksProfile(body: {
 }) {
   return fetcher({ url: "/api/getMarksProfile", method: "POST", body });
 }
+
+export async function getClassMarks(body: {
+  semester: string;
+  class_id: number;
+}) {
+  return fetcher({ url: "/api/getClassMarks", method: "POST", body });
+}

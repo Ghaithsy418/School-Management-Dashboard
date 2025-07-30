@@ -5,11 +5,13 @@ import { useGetStudent } from "./useGetStudent";
 import Empty from "@/ui/Empty";
 import Spinner from "@/ui/Spinner";
 import MarksProfile from "./MarksProfile";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import GetStudentMarks from "./GetStudentMarks";
 
 function StudentDetails() {
   const { id } = useParams();
   const { student, isGettingStudent, isError } = useGetStudent(Number(id));
+  const [selectedSemester, setSelectedSemester] = useState("");
   const informationsRef = useRef<HTMLDivElement | null>(null);
   const marksRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,7 +26,13 @@ function StudentDetails() {
   return (
     <div className="grid grid-cols-[1fr_80px] grid-rows-[70vh_1fr_1fr] gap-x-5 gap-y-16 py-2">
       <StudentProfile informationsRef={informationsRef} student={student} />
-      <MarksProfile marksRef={marksRef} />
+      <MarksProfile
+        marksRef={marksRef}
+        selectedSemester={selectedSemester}
+        setSelectedSemester={setSelectedSemester}
+      >
+        <GetStudentMarks selectedSemester={selectedSemester} />
+      </MarksProfile>
       <ProfileMap informationsRef={informationsRef} marksRef={marksRef} />
     </div>
   );

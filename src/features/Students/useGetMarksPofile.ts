@@ -1,9 +1,9 @@
 import { getMarksProfile } from "@/services/apiMarks";
-import { StudentMarksBranchesTypes } from "@/utils/types";
+import { StudentMarksBranchesTypes, StudentMarkTypes } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
 
 interface GetMarkProfileTypes {
-  message: StudentMarksBranchesTypes;
+  message: StudentMarksBranchesTypes<StudentMarkTypes>;
 }
 
 export const useGetMarksProfile = function (

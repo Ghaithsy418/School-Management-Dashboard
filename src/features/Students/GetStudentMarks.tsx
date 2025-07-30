@@ -12,7 +12,7 @@ interface StudentMarksTypes {
 
 function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
   const { marks, isGettingMarks } = useGetMarksProfile(1, selectedSemester);
-  const [activeTab, setActiveTab] = useState("midterm");
+  const [activeTab, setActiveTab] = useState("mid-term");
 
   if (isGettingMarks)
     return (
@@ -29,7 +29,7 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
       <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-4">
         <div className="flex items-center justify-between">
           <span className="text-lg font-medium text-indigo-800">
-            {activeTab === "midterm" ? "Mid-term" : "Final"} Average
+            {activeTab === "mid-term" ? "Mid-term" : "Final"} Average
           </span>
           <span className="text-2xl font-bold text-indigo-600">
             {calculateAverage(marks?.[activeTab as keyof typeof marks])}%
@@ -40,9 +40,9 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
       <div className="border-b border-gray-200">
         <nav className="flex space-x-8">
           <button
-            onClick={() => setActiveTab("midterm")}
+            onClick={() => setActiveTab("mid-term")}
             className={`border-b-2 px-1 py-2 text-sm font-medium transition-colors ${
-              activeTab === "midterm"
+              activeTab === "mid-term"
                 ? "border-indigo-500 text-indigo-600"
                 : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
             }`}

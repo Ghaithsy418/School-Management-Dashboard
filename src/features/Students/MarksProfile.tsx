@@ -1,25 +1,34 @@
 import { Award, BookOpen } from "lucide-react";
-import React, { useState } from "react";
-import GetStudentMarks from "./GetStudentMarks";
+import React, { Dispatch, ReactNode, SetStateAction } from "react";
 
 interface MarksProfile {
-  marksRef: React.RefObject<HTMLDivElement | null>;
+  marksRef?: React.RefObject<HTMLDivElement | null>;
+  children: ReactNode;
+  setSelectedSemester: Dispatch<SetStateAction<string>>;
+  selectedSemester: string;
+  needTitle?: boolean;
 }
 
-function MarksProfile({ marksRef }: MarksProfile) {
-  const [selectedSemester, setSelectedSemester] = useState("");
-
+function MarksProfile({
+  marksRef,
+  children,
+  selectedSemester,
+  setSelectedSemester,
+  needTitle = true,
+}: MarksProfile) {
   return (
     <div
       ref={marksRef}
       className="no-scrollbar w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md"
     >
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 px-10 py-6">
-        <div className="flex items-center space-x-3">
-          <Award className="h-10 w-10 text-white" />
-          <h1 className="text-3xl font-semibold text-white">Student Marks</h1>
+      {needTitle && (
+        <div className="bg-gradient-to-r from-slate-800 to-slate-900 px-10 py-6">
+          <div className="flex items-center space-x-3">
+            <Award className="h-10 w-10 text-white" />
+            <h1 className="text-3xl font-semibold text-white">Student Marks</h1>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="space-y-6 p-6">
         <div>
@@ -60,7 +69,7 @@ function MarksProfile({ marksRef }: MarksProfile) {
             </p>
           </div>
         ) : (
-          <GetStudentMarks selectedSemester={selectedSemester} />
+          children
         )}
       </div>
     </div>

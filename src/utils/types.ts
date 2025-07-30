@@ -127,7 +127,15 @@ export interface StudentMarkTypes {
   mark: 80;
 }
 
-export interface StudentMarksBranchesTypes {
-  "mid-term": StudentMarkTypes[];
-  final: StudentMarkTypes[];
+export interface ClassMarkTypes {
+  full_name: string;
+  subject_name: string;
+  min_mark: 60;
+  max_mark: 100;
+  mark: 80;
+}
+
+export interface StudentMarksBranchesTypes<T> {
+  "mid-term": T[];
+  final: T[];
 }
