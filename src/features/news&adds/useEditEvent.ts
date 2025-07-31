@@ -18,7 +18,7 @@ export const useEditEvent = function () {
       toast.success("Post has been edited Successfully!");
       queryClient.invalidateQueries({ queryKey: ["events"] });
     },
-    onError: (err: Error) => err.message,
+    onError: (err: Error) => toast.error(err.message),
   });
 
   return { editEventMutation, isEditingEvent };

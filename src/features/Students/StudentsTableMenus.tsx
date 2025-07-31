@@ -12,6 +12,7 @@ import DeleteUser from "../dean/DeleteUser";
 import { useIncreaseAbsence } from "../supervisors/attendanceAndAbsence/useIncreaseAbsence";
 import { useDecreaseAbsence } from "../supervisors/attendanceAndAbsence/useDeacreseAbsence";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 function StudentsTableMenus({
   name,
@@ -20,6 +21,7 @@ function StudentsTableMenus({
   name: string;
   user_id: number;
 }) {
+  const { t } = useTranslation();
   const role = useSelector((state: RootState) => state.user.user.role);
   const { increaseAbsenceMutation } = useIncreaseAbsence();
   const { decreaseAbsenceMutation } = useDecreaseAbsence();
@@ -53,13 +55,13 @@ function StudentsTableMenus({
             <Menus.List id={name}>
               <Link to={`/${role}/students/${user_id}`}>
                 <Menus.Button icon={<CgProfile className="h-5 w-5" />}>
-                  Profile
+                  {t("menuButtons.profile")}
                 </Menus.Button>
               </Link>
               {role === "dean" && (
                 <Modal.Open name="delete">
                   <Menus.Button icon={<TbTrash className="h-5 w-5" />}>
-                    Delete
+                    {t("menuButtons.delete")}
                   </Menus.Button>
                 </Modal.Open>
               )}
@@ -68,7 +70,7 @@ function StudentsTableMenus({
                   onClick={handleIncreaseAbsence}
                   icon={<CalendarPlus className="h-5 w-5" />}
                 >
-                  Increase Absence
+                  {t("menuButtons.increaseAbsence")}
                 </Menus.Button>
               )}
               {role === "supervisor" && (
@@ -76,7 +78,7 @@ function StudentsTableMenus({
                   onClick={handleDecreaseAbsence}
                   icon={<CalendarMinus className="h-5 w-5" />}
                 >
-                  Decrease Absence
+                  {t("menuButtons.decreaseAbsence")}
                 </Menus.Button>
               )}
             </Menus.List>

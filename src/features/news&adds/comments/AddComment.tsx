@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { GrSend } from "react-icons/gr";
 import { useAddComment } from "./useAddComment";
+import { useTranslation } from "react-i18next";
 
 interface AddCommentTypes {
   event_id: number;
@@ -21,6 +22,7 @@ function AddComment({
 }: AddCommentTypes) {
   const { handleSubmit, register, reset } = useForm<{ content: string }>();
   const { addCommentMutation, isAddingComment } = useAddComment(event_id);
+  const { t } = useTranslation("newsAndAdds");
 
   function onSubmit(data: { content: string }) {
     return addCommentMutation(
@@ -37,7 +39,7 @@ function AddComment({
       <input
         {...register("content", { required: "don't let it empty" })}
         placeholder={
-          isAddingComment ? "Sending the Comment..." : "Write a comment..."
+          isAddingComment ? t("main.loadingComment") : t("main.addComment")
         }
         autoComplete="off"
         className={`h-10 w-full resize-none rounded-full ${inputBgColor} px-4 py-2 transition-all duration-300 outline-none ${hoverInputBgColor} hover:ring hover:ring-gray-800 focus:ring focus:ring-gray-800 ${isAddingComment ? "cursor-progress" : ""}`}

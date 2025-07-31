@@ -7,11 +7,21 @@ import { StudentTypes } from "../../utils/types";
 import StudentsRow from "./StudentsRow";
 import { useGetStudents } from "./useGetStudents";
 import { useClientTransform } from "@/hooks/useClientTransform";
+import { useTranslation } from "react-i18next";
 
 function StudentsTable() {
+  const { t } = useTranslation("students");
   const { students, isGettingStudents } = useGetStudents();
   const finalStudents = useClientTransform(students, "full_name");
   const filteredStudents = usePaginate(finalStudents, 10);
+
+  const HeaderTitles = [
+    t("main.name"),
+    t("main.id"),
+    t("main.class"),
+    t("main.gpa"),
+    t("main.contact"),
+  ];
 
   if (isGettingStudents) return <Spinner />;
   if (!students?.length) return <Empty resource="students" />;
@@ -39,7 +49,5 @@ function StudentsTable() {
     </Table>
   );
 }
-
-const HeaderTitles = ["Name", "ID", "Class", "GPA", "Contact"];
 
 export default StudentsTable;

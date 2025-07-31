@@ -7,9 +7,11 @@ import ConfirmAction from "@/ui/ConfirmAction";
 import Modal from "@/ui/Modal";
 import { UserCheck } from "lucide-react";
 import { useSubmitDailyReports } from "./useSubmitDailyReports";
+import { useTranslation } from "react-i18next";
 
 function SubmitDailyReport() {
   const { submitReportsMutation, isSubmitingReports } = useSubmitDailyReports();
+  const { t } = useTranslation("students");
 
   return (
     <Modal>
@@ -22,7 +24,7 @@ function SubmitDailyReport() {
           </Modal.Open>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Submit Daily Attendance Report</p>
+          <p>{t("attendance.tooltipDailyReport")}</p>
         </TooltipContent>
       </Tooltip>
       <Modal.Window name="submitReport">

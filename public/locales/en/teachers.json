@@ -1,0 +1,18 @@
+{
+  "main": {
+    "mainTitle": "Teachers",
+    "sortBy": "Sort by",
+    "asc": "Ascending (A-Z)",
+    "desc": "Descending (Z-A)",
+    "addTeacher": "Add a Teacher"
+  },
+  "profile": {
+    "title": "Teacher Informations",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "salary": "Salary",
+    "studyingClasses": "Studying Classes",
+    "noClasses": "No Classes Currently!"
+  }
+}

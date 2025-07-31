@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { useMakeReact } from "../reactions/useMakeReact";
 import { detectReactionType } from "@/utils/detectReactionType";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 interface ReactionButtonTypes {
   eventId: number;
@@ -29,6 +30,7 @@ function ReactionButton({
   setReactionObjState,
   reactionObjState,
 }: ReactionButtonTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const queryClient = useQueryClient();
   const { makeReactMutation } = useMakeReact(["events"], setReactionObjState);
   const [isShown, setIsShown] = useState(false);
@@ -109,7 +111,9 @@ function ReactionButton({
           <Icon className={`h-6 w-6 ${reactionType?.color}`} />
         )}{" "}
         <span className={`capitalize ${reactionType?.color}`}>
-          {!isReactedState && !reactionType ? "Like" : userReactionState}
+          {!isReactedState && !reactionType
+            ? t("reactions.like")
+            : t(`reactions.${userReactionState}`)}
         </span>
       </button>
       <AnimatePresence mode="wait">

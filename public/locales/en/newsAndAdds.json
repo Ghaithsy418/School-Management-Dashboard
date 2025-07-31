@@ -1,0 +1,72 @@
+{
+  "main": {
+    "title": "News & Adds",
+    "sortBy": "Sort by",
+    "ascTime": "Time (Oldest first)",
+    "descTime": "Time (Most recent)",
+    "you": "you &",
+    "justYou": "you",
+    "comments": "Comments",
+    "comment": "One Comment",
+    "commentButton": "Comment",
+    "addComment": "Write a comment...",
+    "loadingComment": "Sending the Comment...",
+    "copyButton": "Copy Link",
+    "whenCopy": "Copied!",
+    "noMoreEvents": "No more events to show!",
+    "reply": "Reply",
+    "edit": "Edit",
+    "loadingEdit": "Editing..."
+  },
+  "createPost": {
+    "message": "New news? Try posting them here😊",
+    "title": "Create New Post",
+    "eventTitle": "Event Title",
+    "eventDescription": "Event Description",
+    "eventPhotos": "Event Photos (You can choose multiple files)"
+  },
+  "editPost": {
+    "editButton": "Edit this Post",
+    "morePhotos": "You can add more photos if you want!"
+  },
+  "deletePost": {
+    "title": "Delete Post",
+    "warning": "Are you sure you want to permanently delete the event",
+    "undoneAction": "This action cannot be undone",
+    "yesButton": "Yes, delete post",
+    "question": "?"
+  },
+  "roles": {
+    "dean": "Dean",
+    "teacher": "Teacher",
+    "supervisor": "Supervisor"
+  },
+  "reactions": {
+    "like": "Like",
+    "love": "Love",
+    "dislike": "Dislike",
+    "haha": "Haha",
+    "wow": "Wow",
+    "sad": "Sad",
+    "angry": "Angry"
+  },
+  "reply": {
+    "replyNow": "reply now...",
+    "postReply": "Post Reply",
+    "loadingReply": "Posting Reply...",
+    "cancel": "Cancel"
+  },
+  "reportForm": {
+    "title": "Report Comment",
+    "description": "Help us understand the problem. What is wrong with this comment?",
+    "spam": "Spam or Misleading",
+    "harassment": "Harassment or Hateful Speech",
+    "violence": "Violence or Dangerous Content",
+    "intellectual": "Intellectual Property Infringement",
+    "other": "Other",
+    "additional": "Provide additional information (optional)...",
+    "submitButton": "Submit Report",
+    "reporting": "Reporting...",
+    "cancel": "Cancel"
+  }
+}

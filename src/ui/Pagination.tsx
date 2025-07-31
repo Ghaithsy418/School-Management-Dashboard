@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function Pagination({
   pageName = "page",
 }: PaginationTypes) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t, i18n } = useTranslation();
 
   const page = Number(searchParams.get(pageName)) || 1;
   const totalPages = Math.ceil(dataLength / numberOfElements);
@@ -75,9 +77,9 @@ function Pagination({
           <span className="font-semibold text-indigo-600">{firstNumber}</span>
           {" - "}
           <span className="font-semibold text-indigo-600">{secondNumber}</span>
-          {" of "}
+          {` ${t("pagination.of")} `}
           <span className="font-semibold text-gray-900">{dataLength}</span>
-          {" results"}
+          {` ${t("pagination.results")} `}
         </p>
       </div>
 
@@ -87,8 +89,12 @@ function Pagination({
           onClick={handlePrevious}
           className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm"
         >
-          <HiChevronLeft className="h-4 w-4" />
-          <span className="hidden sm:inline">Previous</span>
+          {i18n.language === "en" ? (
+            <HiChevronLeft className="h-4 w-4" />
+          ) : (
+            <HiChevronRight className="h-4 w-4" />
+          )}
+          <span className="hidden sm:inline">{t("pagination.previous")}</span>
         </button>
 
         {totalPages > 1 && (
@@ -134,8 +140,12 @@ function Pagination({
           onClick={handleNext}
           className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm"
         >
-          <span className="hidden sm:inline">Next</span>
-          <HiChevronRight className="h-4 w-4" />
+          <span className="hidden sm:inline">{t("pagination.next")}</span>
+          {i18n.language === "en" ? (
+            <HiChevronRight className="h-4 w-4" />
+          ) : (
+            <HiChevronLeft className="h-4 w-4" />
+          )}
         </button>
       </div>
     </div>

@@ -6,14 +6,7 @@ import { HiOutlineFlag } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { useReportComment } from "./useReportComment";
 import { useForm } from "react-hook-form";
-
-const reportReasons = [
-  "Spam or Misleading",
-  "Harassment or Hateful Speech",
-  "Violence or Dangerous Content",
-  "Intellectual Property Infringement",
-  "Other",
-];
+import { useTranslation } from "react-i18next";
 
 interface ReportFormTypes {
   commentId: number;
@@ -24,6 +17,7 @@ interface DataTypes {
 }
 
 function ReportCommentForm({ commentId }: ReportFormTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const [selectedReason, setSelectedReason] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
   const { reportCommentMutation, isReporting } = useReportComment();
@@ -47,15 +41,25 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
     );
   }
 
+  const reportReasons = [
+    t("reportForm.spam"),
+    t("reportForm.harassment"),
+    t("reportForm.violence"),
+    t("reportForm.intellectual"),
+    t("reportForm.other"),
+  ];
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-12 text-slate-700"
+      className="flex flex-col gap-8 text-slate-700"
     >
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-slate-800">Report Comment</h3>
+        <h3 className="text-2xl font-bold text-slate-800">
+          {t("reportForm.title")}
+        </h3>
         <p className="mt-1 text-sm text-slate-500">
-          Help us understand the problem. What is wrong with this comment?
+          {t("reportForm.description")}
         </p>
       </div>
 
@@ -78,10 +82,10 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
 
       <textarea
         {...register("additional")}
-        placeholder="Provide additional information (optional)..."
+        placeholder={t("reportForm.additional")}
         value={additionalInfo}
         onChange={(e) => setAdditionalInfo(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300"
+        className="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300"
         rows={3}
       />
 
@@ -94,7 +98,7 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
           }}
           className="rounded-lg bg-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition-colors hover:bg-slate-300"
         >
-          Cancel
+          {t("reportForm.cancel")}
         </button>
         <button
           disabled={!selectedReason}
@@ -103,7 +107,9 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
         >
           <span className="flex items-center gap-2">
             <HiOutlineFlag />
-            {isReporting ? "Reporting..." : "Submit Report"}
+            {isReporting
+              ? t("reportForm.reporting")
+              : t("reportForm.submitButton")}
           </span>
         </button>
       </div>

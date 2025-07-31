@@ -4,6 +4,7 @@ import {
 } from "@/utils/detectReactionType";
 import { CommentsTypes } from "@/utils/types";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface CommentReactionTypes {
   comment: CommentsTypes;
@@ -18,6 +19,7 @@ function CommentReactionCount({
   comment,
   reactionObjState,
 }: CommentReactionTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const {
     reactions: { types },
   } = comment;
@@ -69,8 +71,10 @@ function CommentReactionCount({
           <span className="w-12">
             {isReactedState &&
               currentReactionNumber - 1 !== 0 &&
-              `you & ${currentReactionNumber - 1}`}
-            {isReactedState && currentReactionNumber - 1 === 0 && `you`}
+              `${t("main.you")} ${currentReactionNumber - 1}`}
+            {isReactedState &&
+              currentReactionNumber - 1 === 0 &&
+              t("main.justYou")}
             {!isReactedState && currentReactionNumber}
           </span>
         </div>

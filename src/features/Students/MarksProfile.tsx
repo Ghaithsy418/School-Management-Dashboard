@@ -1,5 +1,6 @@
 import { Award, BookOpen } from "lucide-react";
 import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 interface MarksProfile {
   marksRef?: React.RefObject<HTMLDivElement | null>;
@@ -16,6 +17,8 @@ function MarksProfile({
   setSelectedSemester,
   needTitle = true,
 }: MarksProfile) {
+  const { t } = useTranslation("students");
+
   return (
     <div
       ref={marksRef}
@@ -25,7 +28,9 @@ function MarksProfile({
         <div className="bg-gradient-to-r from-slate-800 to-slate-900 px-10 py-6">
           <div className="flex items-center space-x-3">
             <Award className="h-10 w-10 text-white" />
-            <h1 className="text-3xl font-semibold text-white">Student Marks</h1>
+            <h1 className="text-3xl font-semibold text-white">
+              {t("profileMarks.title")}
+            </h1>
           </div>
         </div>
       )}
@@ -33,7 +38,7 @@ function MarksProfile({
       <div className="space-y-6 p-6">
         <div>
           <label className="mb-3 block text-xl font-medium">
-            Select Semester
+            {t("profileMarks.selectSemester")}
           </label>
           <div className="flex space-x-3">
             <button
@@ -44,7 +49,7 @@ function MarksProfile({
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
-              First Semester
+              {t("profileMarks.firstSemester")}
             </button>
             <button
               onClick={() => setSelectedSemester("Second")}
@@ -54,7 +59,7 @@ function MarksProfile({
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
-              Second Semester
+              {t("profileMarks.secondSemester")}
             </button>
           </div>
         </div>
@@ -62,11 +67,9 @@ function MarksProfile({
           <div className="py-12 text-center">
             <BookOpen className="mx-auto mb-4 h-12 w-12 text-gray-300" />
             <h3 className="mb-2 text-lg font-medium text-gray-900">
-              No Semester Selected
+              {t("profileMarks.noSemester")}
             </h3>
-            <p className="text-gray-500">
-              Choose a semester to view your academic performance
-            </p>
+            <p className="text-gray-500">{t("profileMarks.chooseSemester")}</p>
           </div>
         ) : (
           children

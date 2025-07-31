@@ -6,8 +6,10 @@ import AddStudents from "./features/dean/addStudents/AddStudents";
 import AddSupervisors from "./features/dean/AddSupervisors";
 import AddTeachers from "./features/dean/AddTeachers";
 import Attendance from "./pages/Attendance";
+import ClassesMarks from "./pages/ClassesMarks";
 import ClassManagment from "./pages/ClassManagment";
 import Dashboard from "./pages/Dashboard";
+import Event from "./pages/Event";
 import Login from "./pages/Login";
 import MarksManagement from "./pages/MarksManagement";
 import NewsAndEvents from "./pages/NewsAndEvents";
@@ -15,18 +17,16 @@ import Settings from "./pages/Settings";
 import Student from "./pages/Student";
 import Students from "./pages/Students";
 import Subjects from "./pages/Subjects";
+import Supervisor from "./pages/Supervisor";
 import Supervisors from "./pages/Supervisors";
+import Teacher from "./pages/Teacher";
 import Teachers from "./pages/Teachers";
+import TimeTablesManagement from "./pages/TimeTablesManagement";
+import UserEvents from "./pages/UserEvents";
 import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import Event from "./pages/Event";
-import UserEvents from "./pages/UserEvents";
-import Supervisor from "./pages/Supervisor";
-import Teacher from "./pages/Teacher";
-import ClassesMarks from "./pages/ClassesMarks";
-import TimeTablesManagement from "./pages/TimeTablesManagement";
 
 const queryClient = new QueryClient({
   defaultOptions: {

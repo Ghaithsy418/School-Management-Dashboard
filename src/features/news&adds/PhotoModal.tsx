@@ -12,6 +12,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import { HiX } from "react-icons/hi";
 
 interface PhotoType {
@@ -100,6 +101,7 @@ function Window({
   createdAt: string;
   addComment: ReactNode;
 }) {
+  const { t } = useTranslation("newsAndAdds");
   const { ui } = useComments();
   const context = useContext(PhotoModalContext);
   if (!context)
@@ -132,7 +134,7 @@ function Window({
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           onClick={close}
-          className="absolute top-4 right-4 z-20 text-gray-800 hover:opacity-70"
+          className="absolute top-4 z-20 text-gray-800 hover:opacity-70 ltr:right-4 rtl:left-4"
         >
           <HiX className="h-10 w-10" />
         </motion.button>
@@ -158,7 +160,7 @@ function Window({
               </div>
             </div>
             {ui !== "report" && (
-              <h3 className="mb-4 text-2xl font-bold">Comments:</h3>
+              <h3 className="mb-4 text-2xl font-bold">{t("main.comments")}:</h3>
             )}
             {children}
           </div>

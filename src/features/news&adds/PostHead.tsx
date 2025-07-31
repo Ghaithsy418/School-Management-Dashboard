@@ -1,16 +1,19 @@
 import AvatarGenerator from "@/ui/AvatarGenerator";
 import { formatDistanceToNowStrict } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { enUS, arSA } from "date-fns/locale";
 import PostMenus from "./PostMenus";
 import { EventTypes } from "@/utils/types";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface PostHeadTypes {
   event: EventTypes;
 }
 
 function PostHead({ event }: PostHeadTypes) {
+  const { i18n } = useTranslation();
   const { publisherName, created_at, user_id } = event;
+
   return (
     <div className="flex items-center justify-between px-5">
       <div className="flex items-center justify-center gap-2">
@@ -27,7 +30,7 @@ function PostHead({ event }: PostHeadTypes) {
               -{" "}
               {formatDistanceToNowStrict(created_at, {
                 addSuffix: false,
-                locale: enUS,
+                locale: i18n.language === "en" ? enUS : arSA,
               })}{" "}
               -
             </span>

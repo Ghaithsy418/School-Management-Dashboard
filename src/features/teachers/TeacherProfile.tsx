@@ -8,10 +8,12 @@ import { BookOpen, DollarSign } from "lucide-react";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import { useGetTeacher } from "./useGetTeacher";
+import { useTranslation } from "react-i18next";
 
 function TeacherProfile() {
   const { id } = useParams();
   const { teacher, isGettingTeacher, isError } = useGetTeacher(Number(id));
+  const { t } = useTranslation("teachers");
   const {
     user: { role },
   } = useUser();
@@ -25,19 +27,6 @@ function TeacherProfile() {
   if (isError || !teacher) return <Empty resource="teacher" />;
 
   const { full_name, email, phone, salary, subject, classes } = teacher;
-
-  const listVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   return (
     <div className="flex w-full overflow-hidden rounded-md bg-slate-100 font-sans shadow-md transition-all duration-300 hover:shadow-lg">
@@ -75,7 +64,7 @@ function TeacherProfile() {
           animate="visible"
         >
           <h2 className="mb-6 text-3xl font-bold text-slate-800">
-            Teacher Information
+            {t("profile.title")}
           </h2>
 
           <motion.div
@@ -83,19 +72,19 @@ function TeacherProfile() {
             variants={itemVariants}
           >
             <div className="divide-y divide-slate-200">
-              <InfoItem icon={<HiOutlineMail />} label="Email Address">
+              <InfoItem icon={<HiOutlineMail />} label={t("profile.email")}>
                 {email}
               </InfoItem>
-              <InfoItem icon={<HiOutlinePhone />} label="Phone Number">
+              <InfoItem icon={<HiOutlinePhone />} label={t("profile.phone")}>
                 {phone}
               </InfoItem>
               <div className="capitalize">
-                <InfoItem icon={<BookOpen />} label="Subject">
+                <InfoItem icon={<BookOpen />} label={t("profile.subject")}>
                   {subject}
                 </InfoItem>
               </div>
               {role === "dean" && (
-                <InfoItem icon={<DollarSign />} label="Salary">
+                <InfoItem icon={<DollarSign />} label={t("profile.salary")}>
                   {salary}
                 </InfoItem>
               )}
@@ -114,11 +103,11 @@ function TeacherProfile() {
                     <path d="M472,296H386.75293l-3.08887-10.29688A8.00666,8.00666,0,0,0,376,280H296a8.00666,8.00666,0,0,0-7.66406,5.70312L285.24707,296H226.75293l-3.08887-10.29688A8.00666,8.00666,0,0,0,216,280H136a8.00666,8.00666,0,0,0-7.66406,5.70312L125.24707,296H40a7.99539,7.99539,0,0,0-8,8v32a7.99539,7.99539,0,0,0,8,8h8V488a7.99539,7.99539,0,0,0,8,8H72a7.99489,7.99489,0,0,0,7.95312-7.16406L95.19922,344h15.64746l-6.51074,21.70312A8.12882,8.12882,0,0,0,104,368v24a23.95073,23.95073,0,0,0,16.63135,22.72217l7.40771,74.07471A8.00132,8.00132,0,0,0,136,496h16a8.00132,8.00132,0,0,0,7.96094-7.20312L167.24072,416h17.51856l7.27978,72.79688A8.00132,8.00132,0,0,0,200,496h16a8.00132,8.00132,0,0,0,7.96094-7.20312l7.40722-74.07471A23.95008,23.95008,0,0,0,248,392V368a8.12882,8.12882,0,0,0-.33594-2.29688L241.15332,344h29.69336l-6.51074,21.70312A8.12882,8.12882,0,0,0,264,368v24a23.95073,23.95073,0,0,0,16.63135,22.72217l7.40771,74.07471A8.00132,8.00132,0,0,0,296,496h16a8.00132,8.00132,0,0,0,7.96094-7.20312L327.24072,416h17.51856l7.27978,72.79688A8.00132,8.00132,0,0,0,360,496h16a8.00132,8.00132,0,0,0,7.96094-7.20312l7.40722-74.07471A23.95008,23.95008,0,0,0,408,392V368a8.12882,8.12882,0,0,0-.33594-2.29688L401.15332,344h15.64746l15.2461,144.83594A7.99489,7.99489,0,0,0,440,496h16a7.99539,7.99539,0,0,0,8-8V344h8a7.99539,7.99539,0,0,0,8-8V304A7.99539,7.99539,0,0,0,472,296ZM64.79688,480H64V344H79.1167ZM48,328V312h72.44678L115.647,328Zm96.75781,152h-1.51562l-6.40137-64h14.31836Zm62.48438,0-6.40137-64h14.31836l-6.40137,64ZM232,392a8.00541,8.00541,0,0,1-8,8H128a8.00541,8.00541,0,0,1-8-8V369.17188L141.95312,296h68.09376L232,369.17188Zm4.353-64-4.79981-16h48.89356L275.647,328Zm68.40478,152h-1.51562l-6.40137-64h14.31836Zm62.48438,0-6.40137-64h14.31836l-6.40137,64ZM392,392a8.00541,8.00541,0,0,1-8,8H288a8.00541,8.00541,0,0,1-8-8V369.17188L301.95312,296h68.09376L392,369.17188Zm56,88h-.79688L432.8833,344H448Zm16-152H396.353l-4.79981-16H464Z" />
                   </svg>
                 }
-                label="Studying Classes"
+                label={t("profile.studyingClasses")}
               >
                 {classes?.length !== 0
                   ? classes.join(" | ")
-                  : "No Classes Currently!"}
+                  : t("profile.noClasses")}
               </InfoItem>
             </div>
           </motion.div>
@@ -127,5 +116,18 @@ function TeacherProfile() {
     </div>
   );
 }
+
+const listVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default TeacherProfile;

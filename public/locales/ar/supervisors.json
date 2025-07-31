@@ -1,0 +1,33 @@
+{
+  "main": {
+    "mainTitle": "الموجهين",
+    "addSupervisor": "إضافة موجه",
+    "sortBy": "ترتيب حسب",
+    "asc": "ترتيب الاسم تصاعدياً",
+    "desc": "ترتيب الاسم تنازلياً"
+  },
+  "addSupervisor": {
+    "title": "إضافة موجه",
+    "addCsv": "إضافة ملف CSV",
+    "firstName": "الاسم الأول",
+    "middleName": "الاسم الأوسط",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "photo": "الصورة",
+    "certification": "شهادة",
+    "subject": "المادة",
+    "salary": "الراتب",
+    "addSupervisorButton": "إضافة ",
+    "phoneValidation": "رقم الجوال مطلوب",
+    "phoneNumsValidation": "رقم الجوال لا يجب أن يكون أقل من 10 أرقام",
+    "teacher": "استاذ",
+    "supervisor": "موجه"
+  },
+  "profile": {
+    "title": "معلومات الموجه",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "salary": "الراتب"
+  }
+}

@@ -5,12 +5,14 @@ import { Award, BookOpen } from "lucide-react";
 import { useState } from "react";
 import MarkRow from "./MarkRow";
 import { useGetMarksProfile } from "./useGetMarksPofile";
+import { useTranslation } from "react-i18next";
 
 interface StudentMarksTypes {
   selectedSemester: string;
 }
 
 function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
+  const { t, i18n } = useTranslation("students");
   const { marks, isGettingMarks } = useGetMarksProfile(1, selectedSemester);
   const [activeTab, setActiveTab] = useState("mid-term");
 
@@ -18,18 +20,23 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
     return (
       <div className="flex flex-col items-center justify-center gap-3 py-12">
         <Spinner />
-        <span className="ml-3 text-gray-600">Loading marks...</span>
+        <span className="ml-3 text-gray-600">{t("profileMarks.loading")}</span>
       </div>
     );
 
-  if (!marks?.final && !marks?.["mid-term"]) return <Empty resource="marks" />;
+  if (!marks?.final && !marks?.["mid-term"])
+    return <Empty resource={t("profileMarks.emptyResourceMarks")} />;
 
   return (
     <div className="space-y-6">
       <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-4">
         <div className="flex items-center justify-between">
           <span className="text-lg font-medium text-indigo-800">
-            {activeTab === "mid-term" ? "Mid-term" : "Final"} Average
+            {i18n.language === "ar" && t("profileMarks.average")}{" "}
+            {activeTab === "mid-term"
+              ? t("profileMarks.midTerm")
+              : t("profileMarks.final")}{" "}
+            {i18n.language === "en" && t("profileMarks.average")}
           </span>
           <span className="text-2xl font-bold text-indigo-600">
             {calculateAverage(marks?.[activeTab as keyof typeof marks])}%
@@ -49,7 +56,7 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
           >
             <div className="flex items-center space-x-2">
               <BookOpen className="h-4 w-4" />
-              <span>Mid-term Exams</span>
+              <span>{t("profileMarks.midTermExams")}</span>
             </div>
           </button>
           <button
@@ -62,7 +69,7 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
           >
             <div className="flex items-center space-x-2">
               <Award className="h-4 w-4" />
-              <span>Final Exams</span>
+              <span>{t("profileMarks.finalExams")}</span>
             </div>
           </button>
         </nav>
@@ -74,7 +81,7 @@ function GetStudentMarks({ selectedSemester }: StudentMarksTypes) {
             <MarkRow subject={subject} key={index} />
           ))
         ) : (
-          <Empty resource="marks" />
+          <Empty resource={t("profileMarks.emptyResourceMarks")} />
         )}
       </div>
     </div>

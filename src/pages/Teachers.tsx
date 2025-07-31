@@ -1,31 +1,34 @@
 import { useEffect } from "react";
 import TeachersList from "../features/teachers/TeachersList";
 import MainContainer from "../ui/MainContainer";
+import { useTranslation } from "react-i18next";
 
 //Responsible: for the teachers routes operators
 function Teachers() {
+  const { t } = useTranslation("teachers");
+
   useEffect(function () {
     document.title = "Teachers";
   }, []);
 
+  const options = [
+    { title: t("main.sortBy"), value: "" },
+    { title: t("main.asc"), value: "asc-full_name" },
+    { title: t("main.desc"), value: "desc-full_name" },
+  ];
+
   return (
-    <MainContainer title="Teachers">
+    <MainContainer title={t("main.mainTitle")}>
       <MainContainer.MainPageHeader>
         <MainContainer.Controls
           options={options}
           linkTo="add-a-teacher"
-          linkTitle="Add a Teacher"
+          linkTitle={t("main.addTeacher")}
         />
       </MainContainer.MainPageHeader>
       <TeachersList />
     </MainContainer>
   );
 }
-
-const options = [
-  { title: "Sort by", value: "" },
-  { title: "Ascending (A-Z)", value: "asc-full_name" },
-  { title: "Descending (Z-A)", value: "desc-full_name" },
-];
 
 export default Teachers;

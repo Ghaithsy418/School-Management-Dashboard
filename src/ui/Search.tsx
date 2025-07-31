@@ -1,8 +1,10 @@
 import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { HiSearch } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom";
 
 function Search({ size }: { size?: string }) {
+  const { t } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -16,7 +18,7 @@ function Search({ size }: { size?: string }) {
 
   return (
     <div
-      className={`flex ${size ?? "w-[25%]"} items-center gap-2 rounded-md py-2 pl-3 outline-1 transition-all duration-300 hover:outline-violet-400 ${isFocused ? "outline-gray-500" : "outline-gray-300"}`}
+      className={`flex ${size ?? "w-[25%]"} items-center gap-2 rounded-md py-2 outline-1 transition-all duration-300 hover:outline-violet-400 ltr:pl-3 rtl:pr-3 ${isFocused ? "outline-gray-500" : "outline-gray-300"}`}
     >
       <label htmlFor="search">
         <HiSearch className="h-5 w-5 text-gray-800/90" />
@@ -25,7 +27,7 @@ function Search({ size }: { size?: string }) {
         id="search"
         type="text"
         onChange={(e) => handleChange(e)}
-        placeholder="Search..."
+        placeholder={t("controls.search")}
         className="w-full outline-0"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

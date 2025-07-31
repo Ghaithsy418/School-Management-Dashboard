@@ -7,7 +7,51 @@
     "supervisors": "Supervisors",
     "settings": "Settings",
     "logout": "Log out",
-    "classes": "Classes"
+    "classes": "Classes",
+    "timeTables": "TimeTables",
+    "subjects": "Subjects",
+    "newsAndAdds": "News & Adds",
+    "marks": "Marks",
+    "attendance": "Attendance"
+  },
+  "cards": {
+    "cardButton": "View Profile"
+  },
+  "controls": {
+    "search": "Search..."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "of": "of",
+    "results": "results"
+  },
+  "menuButtons": {
+    "profile": "Profile",
+    "delete": "Delete",
+    "increaseAbsence": "Increase Absence",
+    "decreaseAbsence": "Decrease Absence",
+    "report": "Report",
+    "edit": "Edit"
+  },
+  "empty": {
+    "no": "No",
+    "message": "could be found."
+  },
+  "error": {
+    "message": "Something went wrong!",
+    "tryAgain": "Try Again"
+  },
+  "notFound": {
+    "message": "Oops! The page you're looking for has vanished.",
+    "goBack": "Go Back"
+  },
+  "clearAll": {
+    "clearAllButton": "Clear All",
+    "title": "Clear All Data",
+    "warning": "Are you sure you want to permanently clear the data?",
+    "undoneAction": "This action cannot be undone",
+    "yesButton": "Yes, Clear Data"
   },
   "settings": {
     "title": "Settings"

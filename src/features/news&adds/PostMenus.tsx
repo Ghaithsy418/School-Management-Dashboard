@@ -6,6 +6,7 @@ import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import DeletePostCaution from "./DeletePostCaution";
 import EditPost from "./EditPost";
 import { EventTypes } from "@/utils/types";
+import { useTranslation } from "react-i18next";
 
 interface PostMenusTypes {
   event: EventTypes;
@@ -15,6 +16,7 @@ function PostMenus({ event }: PostMenusTypes) {
   const {
     user: { role, id },
   } = useUser();
+  const { t } = useTranslation();
 
   const { user_id: userId, id: eventId } = event;
 
@@ -31,12 +33,12 @@ function PostMenus({ event }: PostMenusTypes) {
         <Menus.List id="postMenu">
           <Modal.Open name="editPost">
             <Menus.Button icon={<MdOutlineModeEdit className="h-5.5 w-5.5" />}>
-              Edit
+              {t("menuButtons.edit")}
             </Menus.Button>
           </Modal.Open>
           <Modal.Open name="deletePost">
             <Menus.Button icon={<MdDeleteOutline className="h-5.5 w-5.5" />}>
-              Delete
+              {t("menuButtons.delete")}
             </Menus.Button>
           </Modal.Open>
         </Menus.List>

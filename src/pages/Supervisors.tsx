@@ -1,31 +1,34 @@
 import { useEffect } from "react";
 import SupervisorsList from "../features/supervisors/SupervisorsList";
 import MainContainer from "../ui/MainContainer";
+import { useTranslation } from "react-i18next";
 
 //Responsible: for the supervisors routes operators
 function Supervisors() {
+  const { t } = useTranslation("supervisors");
+
   useEffect(function () {
     document.title = "Supervisors";
   }, []);
 
+  const options = [
+    { title: t("main.sortBy"), value: "" },
+    { title: t("main.asc"), value: "asc-full_name" },
+    { title: t("main.desc"), value: "desc-full_name" },
+  ];
+
   return (
-    <MainContainer title="Supervisors">
+    <MainContainer title={t("main.mainTitle")}>
       <MainContainer.MainPageHeader>
         <MainContainer.Controls
           options={options}
           linkTo="add-a-supervisor"
-          linkTitle="Add a Supervisor"
+          linkTitle={t("main.addSupervisor")}
         />
       </MainContainer.MainPageHeader>
       <SupervisorsList />
     </MainContainer>
   );
 }
-
-const options = [
-  { title: "Sort by", value: "" },
-  { title: "Ascending (A-Z)", value: "asc-full_name" },
-  { title: "Descending (Z-A)", value: "desc-full_name" },
-];
 
 export default Supervisors;

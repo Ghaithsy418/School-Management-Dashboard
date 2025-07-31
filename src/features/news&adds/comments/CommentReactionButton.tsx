@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import ReactionsList from "../reactions/ReactionsList";
 import { useMakeReact } from "../reactions/useMakeReact";
+import { useTranslation } from "react-i18next";
 
 interface ReactionButtonTypes {
   eventId: number;
@@ -29,6 +30,7 @@ function CommentReactionButton({
   setReactionObjState,
   reactionObjState,
 }: ReactionButtonTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const { makeReactMutation } = useMakeReact(
     ["comments", eventId],
     setReactionObjState,
@@ -92,7 +94,9 @@ function CommentReactionButton({
         onClick={handleClick}
         className={`cursor-pointer capitalize hover:underline ${reactionType?.color}`}
       >
-        {!isReactedState && !reactionType ? "Like" : userReactionState}
+        {!isReactedState && !reactionType
+          ? t("reactions.like")
+          : t(`reactions.${userReactionState}`)}
       </button>
       <AnimatePresence mode="wait">
         {isShown && (

@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useAddComment } from "./useAddComment";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 interface ReplyTypes {
   setIsReplying: Dispatch<SetStateAction<boolean>>;
@@ -10,6 +11,7 @@ interface ReplyTypes {
 }
 
 function Reply({ setIsReplying, eventId, parentId }: ReplyTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const { handleSubmit, register, reset } = useForm<{ content: string }>();
   const { addCommentMutation, isAddingComment } = useAddComment(
     eventId,
@@ -41,7 +43,7 @@ function Reply({ setIsReplying, eventId, parentId }: ReplyTypes) {
     >
       <input
         {...register("content", { required: "don't let it empty" })}
-        placeholder="Reply now.."
+        placeholder={t("reply.replyNow")}
         className="mb-2 w-full text-sm text-gray-900 focus:outline-0"
         autoComplete="off"
       />
@@ -51,13 +53,13 @@ function Reply({ setIsReplying, eventId, parentId }: ReplyTypes) {
           onClick={() => setIsReplying(false)}
           className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400"
         >
-          Cancel
+          {t("reply.cancel")}
         </button>
         <button
           type="submit"
           className="rounded bg-indigo-600 px-3 py-1 text-[13px] text-white transition-colors hover:bg-indigo-700"
         >
-          {isAddingComment ? "Posting Reply" : "Post Reply"}
+          {isAddingComment ? t("reply.loadingReply") : t("reply.postReply")}
         </button>
       </div>
     </form>

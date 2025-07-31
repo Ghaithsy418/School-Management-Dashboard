@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AvatarGenerator from "./AvatarGenerator";
 import { motion } from "framer-motion";
 import { useUser } from "@/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
 interface DataTypes {
   teacher_id?: number;
@@ -20,6 +21,7 @@ interface CardTypes {
 }
 
 function Card({ data, userType }: CardTypes) {
+  const { t } = useTranslation();
   const { full_name, email, subject, user_id } = data;
   const {
     user: { role },
@@ -59,7 +61,7 @@ function Card({ data, userType }: CardTypes) {
           className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors duration-200 group-hover:border-indigo-400 hover:bg-slate-100 hover:text-slate-900"
         >
           <FaRegUser className="h-4 w-4" />
-          View Profile
+          {t("cards.cardButton")}
         </Link>
       </div>
     </motion.div>

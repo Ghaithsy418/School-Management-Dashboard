@@ -48,12 +48,12 @@ function Textarea<T extends FieldValues>({
       />
       <label
         htmlFor={name}
-        className={`absolute top-3.5 left-4 cursor-text bg-white px-1 text-slate-500 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-sm ${error ? "text-red-600 peer-focus:text-red-600" : "peer-focus:text-violet-600"} `}
+        className={`absolute top-3.5 cursor-text bg-white px-1 text-slate-500 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-sm ltr:left-4 rtl:right-4 ${error ? "text-red-600 peer-focus:text-red-600" : "peer-focus:text-violet-600"} `}
       >
         {label}
       </label>
       {error && (
-        <div className="absolute right-3 -bottom-6 flex items-center gap-1 text-xs text-red-600">
+        <div className="absolute -bottom-6 flex items-center gap-1 text-xs text-red-600 ltr:right-3 rtl:left-3">
           <HiExclamationCircle className="h-4 w-4" />
           <span>{error}</span>
         </div>

@@ -6,8 +6,10 @@ import { AddStudentTypes } from "@/utils/types";
 import { useAddStudent } from "./useAddStudent";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 function AddStudentsForm() {
+  const { t } = useTranslation("students");
   const { addStudentMutation, isAddingStudent } = useAddStudent();
   const queryClient = useQueryClient();
   const {
@@ -32,25 +34,25 @@ function AddStudentsForm() {
       method="post"
       className="mt-6 flex flex-col justify-center gap-8"
     >
-      <h3 className="text-3xl font-semibold">Student Data:</h3>
+      <h3 className="text-3xl font-semibold">{t("addStudents.studentData")}</h3>
       <div className="grid grid-cols-3 grid-rows-4 items-center justify-center gap-12">
         <InputField<AddStudentTypes>
           name="name"
-          label="First Name"
+          label={t("addStudents.firstName")}
           type="text"
           register={register}
           error={errors.name?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="middleName"
-          label="Middle Name"
+          label={t("addStudents.middleName")}
           type="text"
           register={register}
           error={errors.middleName?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="lastName"
-          label="Last Name"
+          label={t("addStudents.lastName")}
           type="text"
           register={register}
           error={errors.lastName?.message?.toString() || ""}
@@ -58,7 +60,7 @@ function AddStudentsForm() {
 
         <InputField<AddStudentTypes>
           name="email"
-          label="Email"
+          label={t("addStudents.email")}
           type="email"
           register={register}
           error={errors.email?.message?.toString() || ""}
@@ -74,12 +76,12 @@ function AddStudentsForm() {
 
         <InputField<AddStudentTypes>
           name="phoneNumber"
-          label="Phone Number"
+          label={t("addStudents.phone")}
           inputValidation={{
-            required: "Phone number is required",
+            required: t("addStudents.phoneValidation"),
             min: {
               value: 10,
-              message: "Phone number can't be lower than 10 number",
+              message: t("addStudents.phoneNumsValidation"),
             },
           }}
           type="number"
@@ -89,7 +91,7 @@ function AddStudentsForm() {
         />
         <InputField<AddStudentTypes>
           name="previousCertification"
-          label="Previous Certification"
+          label={t("addStudents.previousCertification")}
           type="file"
           accept=".pdf"
           register={register}
@@ -97,7 +99,7 @@ function AddStudentsForm() {
         />
         <InputField<AddStudentTypes>
           name="photo"
-          label="Photo"
+          label={t("addStudents.photo")}
           type="file"
           accept=".png"
           register={register}
@@ -105,39 +107,41 @@ function AddStudentsForm() {
         />
         <InputField<AddStudentTypes>
           name="class"
-          label="Class"
+          label={t("addStudents.class")}
           type="text"
           register={register}
           error={errors.class?.message?.toString() || ""}
           inputValidation={() => {}}
         />
-        <h3 className="text-3xl font-semibold">Parents Data:</h3>
+        <h3 className="text-3xl font-semibold">
+          {t("addStudents.parentData")}
+        </h3>
       </div>
       <div className="grid grid-cols-3 grid-rows-4 items-center justify-center gap-12">
         <InputField<AddStudentTypes>
           name="parentName"
-          label="Parent First Name"
+          label={t("addStudents.parentFirstName")}
           type="text"
           register={register}
           error={errors.parentName?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="parentMiddleName"
-          label="Parent Middle Name"
+          label={t("addStudents.parentMiddleName")}
           type="text"
           register={register}
           error={errors.parentMiddleName?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="parentLastName"
-          label="Parent Last Name"
+          label={t("addStudents.parentLastName")}
           type="text"
           register={register}
           error={errors.parentLastName?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="parentPhoneNumber"
-          label="Parent Phone Number"
+          label={t("addStudents.parentPhone")}
           type="number"
           register={register}
           error={errors.parentPhoneNumber?.message?.toString() || ""}
@@ -145,7 +149,7 @@ function AddStudentsForm() {
         <InputField<AddStudentTypes>
           name="email"
           id="parentEmail"
-          label="Parent Email"
+          label={t("addStudents.parentEmail")}
           type="email"
           register={register}
           error={errors.parentEmail?.message?.toString() || ""}
@@ -161,7 +165,7 @@ function AddStudentsForm() {
         />
         <InputField<AddStudentTypes>
           name="parentJob"
-          label="Parent Job"
+          label={t("addStudents.parentJob")}
           type="text"
           register={register}
           error={errors.parentJob?.message?.toString() || ""}
@@ -175,7 +179,11 @@ function AddStudentsForm() {
           backgroundColor="bg-violet-600"
           backgroundHover="hover:bg-violet-700"
         >
-          {isAddingStudent ? <SmallSpinner /> : "Add the Student"}
+          {isAddingStudent ? (
+            <SmallSpinner />
+          ) : (
+            t("addStudents.addStudentButton")
+          )}
         </Button>
         <ClearAll clearFunction={reset} />
       </div>

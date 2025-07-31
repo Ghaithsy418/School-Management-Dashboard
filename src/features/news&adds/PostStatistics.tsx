@@ -10,6 +10,7 @@ import CommentList from "./comments/CommentList";
 import { useComments } from "@/slices/commentsSlice";
 import ReportCommentForm from "./comments/ReportCommentForm";
 import ReactionedUsers from "./reactions/ReactionedUsers";
+import { useTranslation } from "react-i18next";
 
 interface PostStatisticsTypes {
   event: EventTypes;
@@ -27,6 +28,7 @@ function PostStatistics({ event, reactionObjState }: PostStatisticsTypes) {
     id: eventId,
   } = event;
   const { ui, commentId } = useComments();
+  const { t } = useTranslation("newsAndAdds");
   const { isReactedState, userReactionState, currentReactionNumber } =
     reactionObjState;
 
@@ -84,7 +86,7 @@ function PostStatistics({ event, reactionObjState }: PostStatisticsTypes) {
                 <span>
                   {isReactedState &&
                     currentReactionNumber - 1 !== 0 &&
-                    `you & ${currentReactionNumber - 1}`}
+                    `${t("main.you")} ${currentReactionNumber - 1}`}
                   {isReactedState && currentReactionNumber - 1 === 0 && `you`}
                   {!isReactedState && currentReactionNumber}
                 </span>
@@ -100,9 +102,11 @@ function PostStatistics({ event, reactionObjState }: PostStatisticsTypes) {
             <Modal.Open name="secondCommentButton">
               <button className="flex cursor-pointer items-center justify-center gap-1 place-self-end font-light hover:text-indigo-700">
                 <span className="transition-all duration-300">
-                  {commentsNum}
+                  {commentsNum === 1 ? null : commentsNum}
                 </span>
-                <span className="transition-all duration-300">Comments</span>
+                <span className="transition-all duration-300">
+                  {commentsNum === 1 ? t("main.comment") : t("main.comments")}
+                </span>
               </button>
             </Modal.Open>
             <Modal.Window

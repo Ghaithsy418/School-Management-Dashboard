@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useRef } from "react";
 import ParsingCSV from "../../ui/ParsingCSV";
 import PrimaryButton from "../../ui/Button";
+import { useTranslation } from "react-i18next";
 
 interface AddCsvTypes<T> {
   setCsvData: Dispatch<SetStateAction<T>>;
@@ -8,6 +9,8 @@ interface AddCsvTypes<T> {
 
 function AddByCSV<T>({ setCsvData }: AddCsvTypes<T>) {
   const ref = useRef<HTMLInputElement | null>(null);
+  const { t } = useTranslation("supervisors");
+
   return (
     <div>
       <PrimaryButton
@@ -17,7 +20,7 @@ function AddByCSV<T>({ setCsvData }: AddCsvTypes<T>) {
         size="big"
         onClick={() => ref.current?.click()}
       >
-        Add CSV File
+        {t("addSupervisor.addCsv")}
       </PrimaryButton>
       <ParsingCSV<T> ref={ref} setCsvData={setCsvData} />
     </div>

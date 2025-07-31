@@ -23,7 +23,7 @@ function LanguageButton() {
       }
     >
       {selectedLanguage === "ar" ? (
-        <motion.span>Ar</motion.span>
+        <motion.span>ع</motion.span>
       ) : (
         <motion.span>En</motion.span>
       )}

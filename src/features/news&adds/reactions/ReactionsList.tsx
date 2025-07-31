@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { FaRegSurprise } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -65,6 +66,7 @@ function ReactionsList({
   reactionObjState,
 }: ReactionsListTypes) {
   const queryClient = useQueryClient();
+  const { t } = useTranslation("newsAndAdds");
   const { isReactedState, userReactionState } = reactionObjState;
   function handleClick(value: string) {
     if (isReactedState && userReactionState === value) return;
@@ -120,7 +122,7 @@ function ReactionsList({
               </motion.div>
             </TooltipTrigger>
             <TooltipContent>
-              <p className="capitalize">{iconData.value}</p>
+              <p className="capitalize">{t(`reactions.${iconData.value}`)}</p>
             </TooltipContent>
           </Tooltip>
         ))}

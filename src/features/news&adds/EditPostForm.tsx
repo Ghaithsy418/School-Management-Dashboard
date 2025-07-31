@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { useEditEvent } from "./useEditEvent";
 import SmallSpinner from "@/ui/SmallSpinner";
+import { useTranslation } from "react-i18next";
 
 interface EditFormTypes {
   event: EventTypes;
@@ -21,6 +22,7 @@ interface DataTypes {
 }
 
 function EditPostForm({ event, onCloseModal }: EditFormTypes) {
+  const { t } = useTranslation("newsAndAdds");
   const { event_name, post, media } = event;
   const { editEventMutation, isEditingEvent } = useEditEvent();
   const { handleSubmit, register, formState } = useForm<DataTypes>();
@@ -100,7 +102,7 @@ function EditPostForm({ event, onCloseModal }: EditFormTypes) {
       <div className="mb-3 w-full">
         <InputField<DataTypes>
           name="photos"
-          label="Add more photos if you want!"
+          label={t("editPost.morePhotos")}
           type="file"
           register={register}
           multiple={true}
@@ -109,7 +111,7 @@ function EditPostForm({ event, onCloseModal }: EditFormTypes) {
         />
       </div>
       <SubmitButton size="w-full">
-        {isEditingEvent ? <SmallSpinner /> : "Edit this Post"}
+        {isEditingEvent ? <SmallSpinner /> : t("editPost.editButton")}
       </SubmitButton>
     </form>
   );

@@ -1,0 +1,33 @@
+{
+  "main": {
+    "mainTitle": "Supervisors",
+    "addSupervisor": "Add a Supervisor",
+    "sortBy": "Sort by",
+    "asc": "Ascending (A-Z)",
+    "desc": "Descending (Z-A)"
+  },
+  "addSupervisor": {
+    "title": "Add Supervisor",
+    "addCsv": "Add CSV File",
+    "firstName": "First Name",
+    "middleName": "Middle Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "photo": "Photo",
+    "certification": "Certification",
+    "subject": "Subject",
+    "salary": "Salary",
+    "addSupervisorButton": "Add ",
+    "phoneValidation": "Phone Number is required",
+    "phoneNumsValidation": "Phone number can't be lower than 10 number",
+    "teacher": "Teacher",
+    "supervisor": "Supervisor"
+  },
+  "profile": {
+    "title": "Supervisor Informations",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "salary": "Salary"
+  }
+}

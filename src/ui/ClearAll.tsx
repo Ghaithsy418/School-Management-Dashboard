@@ -3,13 +3,15 @@ import { HiOutlineExclamationTriangle } from "react-icons/hi2";
 import { TbEraser } from "react-icons/tb";
 import Button from "./Button";
 import Modal from "./Modal";
+import { useTranslation } from "react-i18next";
 
 function ClearAll({ clearFunction }: ClearTypes) {
+  const { t } = useTranslation();
   return (
     <Modal>
       <Modal.Open name="clear">
         <Button size="big" primary={false}>
-          Clear all
+          {t("clearAll.clearAllButton")}
         </Button>
       </Modal.Open>
       <Modal.Window
@@ -23,6 +25,7 @@ function ClearAll({ clearFunction }: ClearTypes) {
 }
 
 function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
+  const { t } = useTranslation();
   return (
     <div className="flex w-full flex-col items-center gap-6 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
@@ -30,11 +33,13 @@ function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">Clear All Data</h3>
+        <h3 className="text-xl font-bold text-slate-800">
+          {t("clearAll.title")}
+        </h3>
         <p className="max-w-md text-slate-500">
-          Are you sure you want to permanently clear the data
+          {t("clearAll.warning")}
           <br />
-          This action cannot be undone.
+          {t("clearAll.undoneAction")}
         </p>
       </div>
 
@@ -51,7 +56,7 @@ function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
         >
           <div className="flex items-center gap-2">
             <HiOutlineTrash className="h-5 w-5" />
-            <span>Yes, Clear Data</span>
+            <span>{t("clearAll.yesButton")}</span>
           </div>
         </Button>
       </div>

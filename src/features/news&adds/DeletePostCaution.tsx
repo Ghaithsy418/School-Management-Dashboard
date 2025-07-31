@@ -4,6 +4,7 @@ import SmallSpinner from "@/ui/SmallSpinner";
 import { HiOutlineTrash } from "react-icons/hi";
 import Button from "@/ui/Button";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 function DeletePostCaution({
   eventId,
@@ -13,6 +14,7 @@ function DeletePostCaution({
   onCloseModal?: () => void;
 }) {
   const queryClient = useQueryClient();
+  const { t } = useTranslation("newsAndAdds");
   const { deleteEventMutation, isDeletingEvent } = useDeleteEvent();
 
   return (
@@ -22,12 +24,15 @@ function DeletePostCaution({
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">Delete Event</h3>
+        <h3 className="text-xl font-bold text-slate-800">
+          {t("deletePost.title")}
+        </h3>
         <p className="max-w-md text-slate-500">
-          Are you sure you want to permanently delete the event{" "}
-          <strong className="font-semibold text-slate-700">#{eventId}</strong>?
+          {t("deletePost.warning")}{" "}
+          <strong className="font-semibold text-slate-700">#{eventId}</strong>
+          {t("deletePost.question")}
           <br />
-          This action cannot be undone.
+          {t("deletePost.undoneAction")}
         </p>
       </div>
 
@@ -52,7 +57,7 @@ function DeletePostCaution({
           ) : (
             <div className="flex items-center gap-2">
               <HiOutlineTrash className="h-5 w-5" />
-              <span>Yes, delete class</span>
+              <span>{t("deletePost.yesButton")}</span>
             </div>
           )}
         </Button>

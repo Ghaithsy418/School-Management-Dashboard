@@ -23,13 +23,13 @@ function TeachersLinks() {
         immediateLink: false,
       },
       {
-        title: "Attendance",
+        title: t("sidebar.attendance"),
         value: "attendance",
         icon: <ClipboardCheck className="h-7 w-7" />,
         immediateLink: false,
       },
       {
-        title: "Marks",
+        title: t("sidebar.marks"),
         value: "marks",
         icon: (
           <img src={MarksIcon} alt="marks icon" className="h-[30px] w-[29px]" />
@@ -37,7 +37,7 @@ function TeachersLinks() {
         immediateLink: false,
       },
       {
-        title: "News & Adds",
+        title: t("sidebar.newsAndAdds"),
         value: "news&adds",
         icon: <Newspaper className="h-6.5 w-6.5" />,
         immediateLink: true,

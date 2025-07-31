@@ -8,6 +8,8 @@ import Reply from "./Reply";
 import CommentMenus from "./CommentMenus";
 import { useComments } from "@/slices/commentsSlice";
 import EditComment from "./EditComment";
+import { useTranslation } from "react-i18next";
+import { arSA, enUS } from "date-fns/locale";
 
 interface CommentProps {
   comment: CommentsTypes;
@@ -16,6 +18,7 @@ interface CommentProps {
 }
 
 function Comment({ comment, depth = 0, eventId }: CommentProps) {
+  const { i18n, t } = useTranslation("newsAndAdds");
   const [showReplies, setShowReplies] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const { ui } = useComments();
@@ -27,7 +30,8 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
   const fullNameLang = detectLanguage(fullName);
   const commentTime = formatDistanceToNowStrict(new Date(created_at), {
     addSuffix: false,
-  }).split(" ");
+    locale: i18n.language === "en" ? enUS : arSA,
+  });
 
   const hasReplies = replies && replies.length > 0;
   const isNested = depth > 0;
@@ -52,7 +56,9 @@ function Comment({ comment, depth = 0, eventId }: CommentProps) {
                 >
                   {fullName}
                 </p>
-                <span className="text-[9px] font-light">{role}</span>
+                <span className="text-[9px] font-light">
+                  {t(`roles.${role}`)}
+                </span>
               </div>
               <CommentMenus
                 eventId={eventId}

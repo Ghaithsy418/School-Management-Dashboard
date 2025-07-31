@@ -7,9 +7,11 @@ import { DollarSign } from "lucide-react";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import { useGetSupervisor } from "./useGetSupervisor";
+import { useTranslation } from "react-i18next";
 
 function SupervisorProfile() {
   const { id } = useParams();
+  const { t } = useTranslation("supervisors");
   const { supervisor, isGettingSupervisor, isError } = useGetSupervisor(
     Number(id),
   );
@@ -23,19 +25,6 @@ function SupervisorProfile() {
   if (isError || !supervisor) return <Empty resource="supervisor" />;
 
   const { full_name, email, phone, salary } = supervisor;
-
-  const listVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   return (
     <div className="flex w-full overflow-hidden rounded-md bg-slate-100 font-sans shadow-md transition-all duration-300 hover:shadow-lg">
@@ -73,7 +62,7 @@ function SupervisorProfile() {
           animate="visible"
         >
           <h2 className="mb-6 text-3xl font-bold text-slate-800">
-            Supervisor Information
+            {t("profile.title")}
           </h2>
 
           <motion.div
@@ -81,13 +70,13 @@ function SupervisorProfile() {
             variants={itemVariants}
           >
             <div className="divide-y divide-slate-200">
-              <InfoItem icon={<HiOutlineMail />} label="Email Address">
+              <InfoItem icon={<HiOutlineMail />} label={t("profile.email")}>
                 {email}
               </InfoItem>
-              <InfoItem icon={<HiOutlinePhone />} label="Phone Number">
+              <InfoItem icon={<HiOutlinePhone />} label={t("profile.phone")}>
                 {phone}
               </InfoItem>
-              <InfoItem icon={<DollarSign />} label="Salary">
+              <InfoItem icon={<DollarSign />} label={t("profile.salary")}>
                 {salary}
               </InfoItem>
             </div>
@@ -97,5 +86,18 @@ function SupervisorProfile() {
     </div>
   );
 }
+
+const listVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default SupervisorProfile;

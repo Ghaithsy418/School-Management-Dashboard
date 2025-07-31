@@ -7,6 +7,7 @@ import { TbMessageReport } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { useDeleteComment } from "./useDeleteComment";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 function CommentMenus({
   commentId,
@@ -19,6 +20,7 @@ function CommentMenus({
 }) {
   const { deleteCommentMutation } = useDeleteComment(eventId);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const {
     user: { id },
   } = useUser();
@@ -49,7 +51,7 @@ function CommentMenus({
             }}
             icon={<TbMessageReport className="h-5 w-5 text-inherit" />}
           >
-            Report
+            {t("menuButtons.report")}
           </Menus.Button>
         )}
         {id === user_id && (
@@ -58,13 +60,13 @@ function CommentMenus({
               onClick={() => dispatch(changeUi(`edit${commentId}`))}
               icon={<MdOutlineModeEdit className="h-5 w-5" />}
             >
-              Edit
+              {t("menuButtons.edit")}
             </Menus.Button>
             <Menus.Button
               onClick={handleDelete}
               icon={<MdDeleteOutline className="h-5 w-5" />}
             >
-              Delete
+              {t("menuButtons.delete")}
             </Menus.Button>
           </>
         )}

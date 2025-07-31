@@ -7,6 +7,7 @@ import { TeacherSupervisorTypes } from "@/utils/types";
 import { useForm } from "react-hook-form";
 import { useAddSupervisor } from "./useAddSupervisor";
 import { useAddTeacher } from "./useAddTeacher";
+import { useTranslation } from "react-i18next";
 
 interface CsvDataTypes {
   name: string;
@@ -21,10 +22,10 @@ interface AddTypes {
 }
 
 function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
+  const { t } = useTranslation("supervisors");
   const { addSupervisorMutation, isAddingSupervisor } = useAddSupervisor();
   const { addTeacherMutation, isAddingTeacher } = useAddTeacher();
 
-  // The 'values' option is removed from here as useEffect will handle it.
   const {
     register,
     formState: { errors },
@@ -32,13 +33,10 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
     reset,
   } = useForm<TeacherSupervisorTypes>();
 
-  // 2. Add the useEffect hook
   useEffect(() => {
     if (csvData) {
-      // 3. Call reset with the new data from the prop
       reset({
-        ...csvData, // Spread the new data from the prop
-        // Also include default values for fields not in csvData
+        ...csvData,
         password: "",
         salary: 0,
         subject: "",
@@ -46,7 +44,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         photo: null as unknown as FileList,
       });
     }
-  }, [csvData, reset]); // Dependency array ensures this runs when csvData or reset changes
+  }, [csvData, reset]);
 
   function onSubmit(data: TeacherSupervisorTypes) {
     if (role === "teacher")
@@ -61,25 +59,24 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
       method="post"
       className="mt-6 flex flex-col justify-center gap-10"
     >
-      {/* ... The rest of your form JSX remains the same ... */}
       <div className="grid grid-cols-3 grid-rows-4 items-center justify-center gap-12">
         <InputField<TeacherSupervisorTypes>
           name="name"
-          label="First Name"
+          label={t("addSupervisor.firstName")}
           type="text"
           register={register}
           error={errors.name?.message || ""}
         />
         <InputField<TeacherSupervisorTypes>
           name="middleName"
-          label="Middle Name"
+          label={t("addSupervisor.middleName")}
           type="text"
           register={register}
           error={errors.middleName?.message || ""}
         />
         <InputField<TeacherSupervisorTypes>
           name="lastName"
-          label="Last Name"
+          label={t("addSupervisor.lastName")}
           type="text"
           register={register}
           error={errors.lastName?.message || ""}
@@ -87,7 +84,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
 
         <InputField<TeacherSupervisorTypes>
           name="email"
-          label="Email"
+          label={t("addSupervisor.email")}
           type="email"
           register={register}
           error={errors.email?.message || ""}
@@ -103,12 +100,12 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
 
         <InputField<TeacherSupervisorTypes>
           name="phoneNumber"
-          label="Phone Number"
+          label={t("addSupervisor.phone")}
           inputValidation={{
-            required: "Phone number is required",
+            required: t("addSupervisor.phoneValidation"),
             min: {
               value: 10,
-              message: "Phone number can't be shorter than 10 digits",
+              message: t("addSupervisor.phoneNumsValidation"),
             },
           }}
           type="number"
@@ -118,7 +115,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         />
         <InputField<TeacherSupervisorTypes>
           name="certification"
-          label="Certification"
+          label={t("addSupervisor.certification")}
           type="file"
           accept=".pdf"
           register={register}
@@ -126,7 +123,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         />
         <InputField<TeacherSupervisorTypes>
           name="photo"
-          label="Photo"
+          label={t("addSupervisor.photo")}
           type="file"
           accept=".png"
           register={register}
@@ -135,7 +132,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         {role === "teacher" && (
           <InputField<TeacherSupervisorTypes>
             name="subject"
-            label="Subject"
+            label={t("addSupervisor.subject")}
             type="text"
             register={register}
             error={errors.subject?.message || ""}
@@ -143,7 +140,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         )}
         <InputField<TeacherSupervisorTypes>
           name="salary"
-          label="Salary"
+          label={t("addSupervisor.salary")}
           type="number"
           inputValidation={{
             required: "Salary is required",
@@ -167,8 +164,11 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
         >
           {isAddingSupervisor || isAddingTeacher ? (
             <SmallSpinner />
+          ) : role === "supervisor" ? (
+            t("addSupervisor.addSupervisorButton") +
+            t("addSupervisor.supervisor")
           ) : (
-            "Add the " + role[0].toUpperCase() + role.slice(1)
+            t("addSupervisor.addSupervisorButton") + t("addSupervisor.teacher")
           )}
         </Button>
         <ClearAll clearFunction={reset} />

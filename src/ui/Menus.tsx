@@ -160,21 +160,17 @@ function Button({ onClick, icon, children }: buttonTypes) {
       whileTap={{ scale: 0.99 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
     >
-      {/* Hover background effect */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-indigo-50 to-purple-50 opacity-0 group-hover:opacity-100"
         initial={false}
         transition={{ duration: 0.2 }}
       />
-
-      {/* Active indicator bar */}
       <motion.div
         className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100"
         layoutId="activeIndicator"
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       />
 
-      {/* Icon container with animation */}
       <motion.div
         className="relative z-10 flex items-center justify-center"
         whileHover={{ scale: 1.05 }}

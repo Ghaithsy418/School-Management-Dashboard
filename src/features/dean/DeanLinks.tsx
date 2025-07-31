@@ -36,7 +36,7 @@ function DeanLinks() {
         immediateLink: false,
       },
       {
-        title: "News & Adds",
+        title: t("sidebar.newsAndAdds"),
         value: "news&adds",
         icon: <Newspaper className="h-6.5 w-6.5" />,
         immediateLink: true,

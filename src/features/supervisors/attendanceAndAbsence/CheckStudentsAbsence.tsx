@@ -8,9 +8,12 @@ import Modal from "@/ui/Modal";
 import { ListChecks } from "lucide-react";
 import AbsenceListLayout from "./AbsenceListLayout";
 import AttendanceSheet from "./AbsenceSheet";
+import { useTranslation } from "react-i18next";
 
 function CheckStudentsAbsence() {
   const { ui } = useSupervisorAttendance();
+  const { t } = useTranslation("students");
+
   return (
     <Modal>
       <Tooltip>
@@ -22,7 +25,7 @@ function CheckStudentsAbsence() {
           </Modal.Open>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Check Students Absence</p>
+          <p>{t("attendance.tooltipCheckAbsence")}</p>
         </TooltipContent>
       </Tooltip>
       <Modal.Window mode="sheet" name="studentsAbsence">

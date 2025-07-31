@@ -1,0 +1,71 @@
+{
+  "main": {
+    "mainTitle": "Students",
+    "addStudentsButton": "Add a Student",
+    "name": "Name",
+    "id": "ID",
+    "class": "Class",
+    "gpa": "GPA",
+    "contact": "Contact",
+    "sortBy": "Sort by",
+    "asc": "Ascending (A-Z)",
+    "desc": "Descending (Z-A)",
+    "gpaAsc": "GPA (Lower First)",
+    "gpaDesc": "GPA (Greater First)"
+  },
+  "addStudents": {
+    "title": "Add Students",
+    "studentsData": "Student Data:",
+    "parentData": "Parent Data:",
+    "firstName": "First Name",
+    "middleName": "Middle Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "class": "Class",
+    "photo": "Photo",
+    "previousCertification": "Previous Certification",
+    "parentFirstName": "First Name",
+    "parentMiddleName": "Middle Name",
+    "parentLastName": "Last Name",
+    "parentEmail": "Email",
+    "parentPhone": "Phone Number",
+    "parentJob": "Job",
+    "addStudentButton": "Add Student",
+    "phoneValidation": "Phone Number is required",
+    "phoneNumsValidation": "Phone number can't be lower than 10 number"
+  },
+  "profile": {
+    "title": "Student Informations",
+    "currentGpa": "Current GPA",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "excellent": "Excellent",
+    "good": "Good",
+    "needsImprovements": "Needs Improvements"
+  },
+  "profileMap": {
+    "profile": "Profile",
+    "marks": "Marks",
+    "attendance": "Attendance"
+  },
+  "profileMarks": {
+    "title": "Student Marks",
+    "selectSemester": "Select Semester",
+    "firstSemester": "First Semester",
+    "secondSemester": "Second Semester",
+    "noSemester": "No Semester Selected",
+    "chooseSemester": "Choose a semester to view the student academic performance",
+    "loading": "Loading Marks...",
+    "midTerm": "Mid-term",
+    "midTermExams": "Mid-term Exams",
+    "final": "Final",
+    "finalExams": "Final Exams",
+    "average": "Average",
+    "emptyResourceMarks": "marks"
+  },
+  "attendance": {
+    "tooltipDailyReport": "Submit Daily Attendance Report",
+    "tooltipCheckAbsence": "Check Students Absence"
+  }
+}

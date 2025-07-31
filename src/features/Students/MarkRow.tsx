@@ -30,7 +30,7 @@ function MarkRow({ subject }: { subject: StudentMarkTypes }) {
             style={{
               width: `${(subject.mark / subject.max_mark) * 100}%`,
             }}
-          ></div>
+          />
         </div>
       </div>
     </div>

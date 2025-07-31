@@ -9,6 +9,7 @@ import teacherIcon from "/images/teacherIcon.svg";
 
 function SupervisorsLinks() {
   const { t } = useTranslation();
+
   const buttons = useMemo(
     () => [
       {
@@ -30,7 +31,7 @@ function SupervisorsLinks() {
         immediateLink: false,
       },
       {
-        title: "TimeTables",
+        title: t("sidebar.timeTables"),
         value: "timetables",
         icon: <HiOutlineCalendarDays className="h-7 w-7" />,
         immediateLink: false,
@@ -42,13 +43,13 @@ function SupervisorsLinks() {
         immediateLink: false,
       },
       {
-        title: "Subjects",
+        title: t("sidebar.subjects"),
         value: "subjects",
         icon: <BookOpen className="h-6.5 w-7.5" />,
         immediateLink: false,
       },
       {
-        title: "News & Adds",
+        title: t("sidebar.newsAndAdds"),
         value: "news&adds",
         icon: <Newspaper className="h-6.5 w-6.5" />,
         immediateLink: true,

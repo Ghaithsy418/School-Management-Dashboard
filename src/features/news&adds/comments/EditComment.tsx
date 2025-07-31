@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useEditComment } from "./useEditComment";
 import { changeUi } from "@/slices/commentsSlice";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 function EditComment({
   commentId,
@@ -13,6 +14,7 @@ function EditComment({
   eventId: number;
 }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation("newsAndAdds");
   const { editCommentMutation, isEditing } = useEditComment(eventId);
   const { handleSubmit, register } = useForm<{ content: string }>();
 
@@ -43,13 +45,13 @@ function EditComment({
           onClick={() => dispatch(changeUi(""))}
           className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400"
         >
-          Cancel
+          {t("reply.cancel")}
         </button>
         <button
           type="submit"
           className="rounded bg-indigo-600 px-2 py-1 text-[13px] text-white transition-colors hover:bg-indigo-700"
         >
-          {isEditing ? "Editing..." : "Edit"}
+          {isEditing ? t("main.loadingEdit") : t("main.edit")}
         </button>
       </div>
     </form>

@@ -4,8 +4,8 @@ import { gpaLevel } from "@/utils/marksCalculations";
 import { SpecificStudentTypes } from "@/utils/types";
 import { motion, Variants } from "framer-motion";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
-  HiOutlineAcademicCap,
   HiOutlineClipboardCheck,
   HiOutlineMail,
   HiOutlinePhone,
@@ -17,23 +17,9 @@ interface StudentProfileTypes {
 }
 
 function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
-  const { full_name, email, phone, gpa, school_graduated_from, class_name } =
-    student;
-
-  const { className: gpaClassName, message: gpaMessage } = gpaLevel(gpa);
-
-  const listVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const { full_name, email, phone, gpa, class_name } = student;
+  const { t } = useTranslation("students");
+  const { className: gpaClassName, message: gpaMessage } = gpaLevel(gpa, t);
 
   return (
     <div
@@ -76,17 +62,17 @@ function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
           animate="visible"
         >
           <h2 className="mb-6 text-3xl font-bold text-slate-800">
-            Student Information
+            {t("profile.title")}
           </h2>
 
           <motion.div
             className="rounded-xl bg-white p-4 shadow-sm sm:p-6"
             variants={itemVariants}
           >
-            <div className="divide-y divide-slate-200">
+            <div className="space-y-2 divide-y divide-slate-200">
               <InfoItem
                 icon={<HiOutlineClipboardCheck />}
-                label="Current GPA"
+                label={t("profile.currentGpa")}
                 isHighlight
                 badge={
                   <span
@@ -98,14 +84,11 @@ function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
               >
                 {gpa}
               </InfoItem>
-              <InfoItem icon={<HiOutlineMail />} label="Email Address">
+              <InfoItem icon={<HiOutlineMail />} label={t("profile.email")}>
                 {email}
               </InfoItem>
-              <InfoItem icon={<HiOutlinePhone />} label="Phone Number">
+              <InfoItem icon={<HiOutlinePhone />} label={t("profile.phone")}>
                 {phone}
-              </InfoItem>
-              <InfoItem icon={<HiOutlineAcademicCap />} label="Graduated From">
-                {school_graduated_from}
               </InfoItem>
             </div>
           </motion.div>
@@ -114,5 +97,18 @@ function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
     </div>
   );
 }
+
+const listVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default StudentProfile;

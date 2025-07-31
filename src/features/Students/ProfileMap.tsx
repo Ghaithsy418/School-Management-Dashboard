@@ -5,12 +5,15 @@ import {
 } from "@/components/ui/tooltip";
 import { Award, ClipboardCheck, User } from "lucide-react";
 import React, { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ProfileMapTypes {
   informationsRef: React.RefObject<HTMLDivElement | null>;
   marksRef: React.RefObject<HTMLDivElement | null>;
 }
 function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
+  const { t } = useTranslation("students");
+
   function handleScroll(ref: React.RefObject<HTMLDivElement | null>) {
     if (ref.current) {
       ref.current.scrollIntoView({
@@ -30,7 +33,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
           />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Profile</p>
+          <p>{t("profileMap.profile")}</p>
         </TooltipContent>
       </Tooltip>
       <div className="h-28 w-0.5 rounded-full bg-slate-400/70" />
@@ -42,7 +45,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
           />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Marks</p>
+          <p>{t("profileMap.marks")}</p>
         </TooltipContent>
       </Tooltip>
       <div className="h-28 w-0.5 rounded-full bg-slate-400/70" />
@@ -51,7 +54,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
           <Location icon={<ClipboardCheck className="h-6 w-6" />} />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Attendance</p>
+          <p>{t("profileMap.attendance")}</p>
         </TooltipContent>
       </Tooltip>
     </div>

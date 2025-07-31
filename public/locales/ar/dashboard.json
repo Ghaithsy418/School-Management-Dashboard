@@ -7,7 +7,51 @@
     "supervisors": "الموجهين",
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج",
-    "classes": "الصفوف المدرسية"
+    "classes": "الصفوف المدرسية",
+    "timeTables": "الجداول الزمنية",
+    "subjects": "المواد الدراسية",
+    "newsAndAdds": "الأخبار والإعلانات",
+    "marks": "العلامات",
+    "attendance": "الحضور"
+  },
+  "cards": {
+    "cardButton": "عرض الملف الشخصي"
+  },
+  "controls": {
+    "search": "ابحث عن..."
+  },
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "of": "من",
+    "results": "نتيجة"
+  },
+  "menuButtons": {
+    "profile": "الملف الشخصي",
+    "delete": "حذف",
+    "increaseAbsence": "زيادة عدد الغيابات",
+    "decreaseAbsence": "إنقاص عدد الغيابات",
+    "report": "إبلاغ",
+    "edit": "تعديل"
+  },
+  "empty": {
+    "no": "لا يوجد",
+    "message": "هنا."
+  },
+  "error": {
+    "message": "حدث خطأ غير متوقع!",
+    "tryAgain": "حاول مجدداً"
+  },
+  "notFound": {
+    "message": "الصفحة التي تبحث عنها قد تكون اختفت!",
+    "goBack": "عُد للوراء"
+  },
+  "clearAll": {
+    "clearAllButton": "حذف الكل",
+    "title": "حذف جميع البيانات",
+    "warning": "هل أنت متأكد من حذف البيانات كلياً؟",
+    "undoneAction": "هذا الفعل لا عودة منه!",
+    "yesButton": "نعم, احذف البيانات"
   },
   "settings": {
     "title": "الإعدادات"

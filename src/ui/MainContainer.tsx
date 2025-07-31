@@ -1,9 +1,10 @@
 import { useUser } from "@/slices/userSlice";
 import { ReactNode } from "react";
-import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import Search from "./Search";
+import { useTranslation } from "react-i18next";
 
 function MainContainer({
   children,
@@ -12,6 +13,7 @@ function MainContainer({
   toPage = "",
 }: MainContainerTypes) {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
 
   return (
     <div className="flex flex-col justify-center gap-5 px-10 pb-6">
@@ -20,7 +22,11 @@ function MainContainer({
           <button
             onClick={() => (toPage !== "" ? navigate(toPage) : navigate(-1))}
           >
-            <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+            {i18n.language === "en" ? (
+              <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+            ) : (
+              <IoIosArrowRoundForward className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+            )}
           </button>
         )}
         <h2 className="text-4xl font-bold">{title}</h2>

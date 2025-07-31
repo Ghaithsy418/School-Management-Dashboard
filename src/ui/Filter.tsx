@@ -44,10 +44,10 @@ function Filter({ options, width = "w-45" }: FilterTypes) {
     <div className={`relative ${width}`} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full cursor-pointer rounded-md px-3 py-2 text-left outline-1 outline-gray-300 hover:outline-violet-400"
+        className="w-full cursor-pointer rounded-md px-3 py-2 outline-1 outline-gray-300 hover:outline-violet-400 ltr:text-left rtl:text-right"
       >
         {currentFilter?.title}
-        <span className="absolute top-1/2 right-2 -translate-y-1/2">
+        <span className="absolute top-1/2 -translate-y-1/2 ltr:right-2 rtl:left-2">
           <svg
             className={`h-4 w-4 transition-all duration-250 ${isOpen ? "rotate-180" : ""}`}
             fill="currentColor"
@@ -65,7 +65,7 @@ function Filter({ options, width = "w-45" }: FilterTypes) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute z-10 mt-1 w-full rounded-md bg-white py-1 shadow-lg"
+            className="absolute z-20 mt-1 w-full rounded-md bg-white py-1 shadow-lg"
           >
             {options.map((option) => (
               <li

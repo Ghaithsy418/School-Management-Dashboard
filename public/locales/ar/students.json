@@ -1,0 +1,71 @@
+{
+  "main": {
+    "mainTitle": "الطلاب",
+    "addStudentsButton": "إضافة طالب",
+    "name": "الاسم",
+    "id": "المعرف الشخصي",
+    "class": "الصف",
+    "gpa": "المجموع",
+    "contact": "التواصل",
+    "sortBy": "الترتيب حسب",
+    "asc": "ترتيب الاسم تصاعدياً",
+    "desc": "ترتيب الاسم تنازلياً",
+    "gpaAsc": "ترتيب المجموع (الأقل أولاً)",
+    "gpaDesc": "ترتيب المجموع (الأعلى أولاً)"
+  },
+  "addStudents": {
+    "title": "إضافة طالب",
+    "studentsData": "بيانات الطالب:",
+    "parentData": "بيانات ولي الأمر",
+    "firstName": "الاسم الأول",
+    "middleName": "الاسم الأوسط",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "class": "الصف",
+    "photo": "الصورة",
+    "previousCertification": "شهادة سابقة",
+    "parentFirstName": "الاسم الأول",
+    "parentMiddleName": "الاسم الأوسط",
+    "parentLastName": "الاسم الأخير",
+    "parentEmail": "البريد الإلكتروني",
+    "parentPhone": "رقم الجوال",
+    "parentJob": "العمل",
+    "addStudentButton": "إضافة الطالب",
+    "phoneValidation": "رقم الجوال مطلوب",
+    "phoneNumsValidation": "رقم الجوال لا يجب أن يكون أقل من 10 أرقام"
+  },
+  "profile": {
+    "title": "معلومات الطالب",
+    "currentGpa": "المجموع الحالي",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "excellent": "ممتاز",
+    "good": "جيد",
+    "needsImprovements": "بحاجة تحسين"
+  },
+  "profileMap": {
+    "profile": "الملف الشخصي",
+    "marks": "العلامات",
+    "attendance": "الحضور"
+  },
+  "profileMarks": {
+    "title": "علامات الطالب",
+    "selectSemester": "اختر فصلاً دراسياً",
+    "firstSemester": "الفصل الأول",
+    "secondSemester": "الفصل الثاني",
+    "noSemester": "لم يتم اختيار أي فصل",
+    "chooseSemester": "اختر فصلاً لترى أداء الطالب الدراسي",
+    "loading": "جارٍ تحميل العلامات...",
+    "midTerm": "منتصف الفصل",
+    "midTermExams": "امتحان منتصف الفصل",
+    "final": "نهاية الفصل",
+    "finalExams": "امتحان نهاية الفصل",
+    "average": "متوسط علامات",
+    "emptyResourceMarks": "علامات"
+  },
+  "attendance": {
+    "tooltipDailyReport": "رفع تقرير الحضور اليومي",
+    "tooltipCheckAbsence": "التحقق من غيابات الطلاب"
+  }
+}

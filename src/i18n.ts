@@ -9,7 +9,15 @@ i18n
   .use(LanguageDetector)
   .init({
     fallbackLng: "en",
-    ns: ["dashboard", "auth"],
+    ns: [
+      "dashboard",
+      "auth",
+      "students",
+      "teachers",
+      "supervisors",
+      "newsAndAdds",
+      "classes",
+    ],
     defaultNS: "dashboard",
     supportedLngs: ["ar", "en"],
     nonExplicitSupportedLngs: true,
