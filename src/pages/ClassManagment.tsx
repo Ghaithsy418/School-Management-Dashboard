@@ -1,15 +1,28 @@
 import Classes from "@/features/supervisors/classesManagement/Classes";
 import MainContainer from "@/ui/MainContainer";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function ClassManagment() {
+  const { t } = useTranslation("classes");
+
   useEffect(function () {
     document.title = "Classes";
   }, []);
 
+  const options = [
+    { title: t("main.sortBy"), value: "" },
+    { title: t("main.classNameAsc"), value: "asc-className" },
+    { title: t("main.classNameDesc"), value: "desc-className" },
+    { title: t("main.maxSizeAsc"), value: "asc-studentsNum" },
+    { title: t("main.maxSizeDesc"), value: "desc-studentsNum" },
+    { title: t("main.studentsNoAsc"), value: "desc-currentStudentNumber" },
+    { title: t("main.studentsNoDesc"), value: "asc-currentStudentNumber" },
+  ];
+
   return (
-    <MainContainer title="Classes Management">
-      <div className="pr-6">
+    <MainContainer title={t("main.mainTitle")}>
+      <div className="ltr:pr-6 rtl:pl-7">
         <MainContainer.MainPageHeader>
           <MainContainer.Controls options={options} width="w-56" />
         </MainContainer.MainPageHeader>
@@ -18,15 +31,5 @@ function ClassManagment() {
     </MainContainer>
   );
 }
-
-const options = [
-  { title: "Sort By", value: "" },
-  { title: "Class Name (A-Z)", value: "asc-className" },
-  { title: "Class Name (Z-A)", value: "desc-className" },
-  { title: "Max Size (Low First)", value: "asc-studentsNum" },
-  { title: "Max Size (Many First)", value: "desc-studentsNum" },
-  { title: "Students No. (Low First)", value: "desc-currentStudentNumber" },
-  { title: "Students No. (Many First)", value: "asc-currentStudentNumber" },
-];
 
 export default ClassManagment;

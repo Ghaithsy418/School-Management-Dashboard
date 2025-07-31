@@ -5,10 +5,12 @@ import Spinner from "@/ui/Spinner";
 import Table from "@/ui/Table";
 import ClassesRow from "./ClassesRow";
 import { useGetClasses } from "./useGetClasses";
+import { useTranslation } from "react-i18next";
 
 function ClassesTable() {
   const { classes, isGettingClasses } = useGetClasses();
   const filteredData = usePaginate(classes, 7);
+  const { t } = useTranslation("classes");
 
   if (isGettingClasses) return <Spinner />;
   if (!classes || classes?.length === 0)
@@ -17,10 +19,10 @@ function ClassesTable() {
   return (
     <Table columns="2fr 2fr 2fr 1fr">
       <Table.Header>
-        <span>Name</span>
-        <span>Max Students</span>
-        <span>Current Students</span>
-        <span>Options</span>
+        <span>{t("table.name")}</span>
+        <span>{t("table.maxStudents")}</span>
+        <span>{t("table.currentStudents")}</span>
+        <span>{t("table.options")}</span>
       </Table.Header>
       <Table.Body
         data={filteredData}

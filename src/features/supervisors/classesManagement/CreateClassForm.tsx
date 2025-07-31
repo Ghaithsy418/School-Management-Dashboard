@@ -6,18 +6,19 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { HiPlus } from "react-icons/hi2";
 import { useCreateClass } from "./useCreateClass";
+import { useTranslation } from "react-i18next";
 
 interface CreateClassTypes {
   onCloseModal?: () => void;
 }
 
 function CreateClassForm({ onCloseModal }: CreateClassTypes) {
+  const { t } = useTranslation("classes");
   const { register, handleSubmit, formState } = useForm<ClassTypes>();
   const { createClassMutation, isCreatingClass } = useCreateClass();
   const queryClient = useQueryClient();
 
   const { errors } = formState;
-  console.log(errors);
 
   function onSubmit(data: { className: string; studentsNum: number }) {
     createClassMutation(data, {
@@ -36,10 +37,8 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-8 rounded-2xl bg-gray-50 p-6"
     >
-      {/* Title */}
       <h2 className="text-2xl font-bold text-slate-800">Create New Class</h2>
 
-      {/* Input Fields */}
       <div className="space-y-8">
         <InputField<ClassTypes>
           error={errors?.className?.message?.toString() || ""}
@@ -57,7 +56,6 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
         />
       </div>
 
-      {/* Create button */}
       <div className="flex justify-center pt-2">
         <motion.button
           whileHover={{ scale: 1.05 }}

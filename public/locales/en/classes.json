@@ -1,0 +1,33 @@
+{
+  "main": {
+    "mainTitle": "Classes Management",
+    "sortBy": "Sort by",
+    "classNameAsc": "Class Name (A-Z)",
+    "classNameDesc": "Class Name (Z-A)",
+    "maxSizeAsc": "Max Size (Low First)",
+    "maxSizeDesc": "Max Size (Many First)",
+    "studentsNoAsc": "Students No. (Low First)",
+    "studentsNoDesc": "Students No. (Many First)",
+    "totalClasses": "Total Classes",
+    "fullClasses": "Full Classes",
+    "createClassMessage": "😊 Try creating a new Class",
+    "createButton": "Create",
+    "assignStudentMessage1": "🧑‍🎓 Or let's",
+    "assignStudentMessage2": "a Student to a Class",
+    "assignStudentMessage3": "Now Choose a Class or",
+    "assignStudentMessage4": "has been selected now choose a",
+    "assignTeacherMessage": "👨‍🏫 You can just assign a ",
+    "assignTeacherMessage2": "to classes",
+    "assign": "Assign",
+    "teacher": "Teacher",
+    "student": "Student",
+    "class": "Class",
+    "back": "Back"
+  },
+  "table": {
+    "name": "Name",
+    "maxStudents": "Max Students",
+    "currentStudents": "Current Students",
+    "options": "Options"
+  }
+}

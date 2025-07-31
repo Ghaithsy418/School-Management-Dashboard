@@ -6,6 +6,7 @@ import Modal from "@/ui/Modal";
 import ChooseTeacherToAssign from "./ChooseTeacherToAssign";
 import { changeUi, clearAll, useClassesUi } from "@/slices/classesUiSlice";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 function AssignTeacherToClasses() {
   const { ui } = useClassesUi();
@@ -25,6 +26,7 @@ function AssignTeacherToClasses() {
 function FirstUi() {
   const { classes, isGettingClasses } = useGetClasses();
   const dispatch = useDispatch();
+  const { t } = useTranslation("classes");
 
   function handleClick() {
     dispatch(clearAll());
@@ -38,20 +40,22 @@ function FirstUi() {
       animate="visible"
       className="text-lg font-semibold"
     >
-      You can just assign a{" "}
+      {t("main.assignTeacherMessage")}
+      {"  "}
       <button
         disabled={!classes?.length || isGettingClasses}
         onClick={handleClick}
         className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
       >
-        Teacher
+        {t("main.teacher")}
       </button>{" "}
-      to classes <span className="text-2xl">👨‍🏫</span>
+      {t("main.assignTeacherMessage2")} <span className="text-2xl">👨‍🏫</span>
     </motion.h3>
   );
 }
 
 function SecondUi() {
+  const { t } = useTranslation("classes");
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
 
@@ -67,12 +71,12 @@ function SecondUi() {
       animate="visible"
       className="text-lg font-semibold text-rose-600"
     >
-      Now Choose a Class or{" "}
+      {t("main.assignStudentMessage3")}{" "}
       <button
         onClick={handleBack}
         className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
       >
-        Back
+        {t("main.back")}
       </button>
     </motion.h3>
   );
@@ -80,6 +84,7 @@ function SecondUi() {
 
 function ThirdUi() {
   const { className } = useClassesUi();
+  const { t } = useTranslation("classes");
 
   return (
     <Modal>
@@ -89,10 +94,10 @@ function ThirdUi() {
         animate="visible"
         className="font-semibold text-rose-600"
       >
-        Class ({className}) has been selected now choose a{" "}
+        {t("main.class")} ({className}) {t("main.assignStudentMessage4")}{" "}
         <Modal.Open name="assignStudent">
           <button className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed">
-            Teacher
+            {t("main.teacher")}
           </button>
         </Modal.Open>
       </motion.h3>
