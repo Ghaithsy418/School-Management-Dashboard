@@ -9,8 +9,11 @@ import DeleteClass from "./DeleteClass";
 import EditClassForm from "./EditClassForm";
 import ShowClassStudents from "./ShowStudentsForClass/ShowClassStudents";
 import teacherIcon from "/images/teacherIcon.svg";
+import { useTranslation } from "react-i18next";
 
 function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
+  const { t } = useTranslation();
+
   return (
     <Modal>
       <Menus>
@@ -20,7 +23,7 @@ function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
         <Menus.List id="classesMenus">
           <Modal.Open name="studentsClass">
             <Menus.Button icon={<PiStudent className="h-5 w-5" />}>
-              Students
+              {t("menuButtons.students")}
             </Menus.Button>
           </Modal.Open>
           <Modal.Open name="teachersClass">
@@ -29,17 +32,17 @@ function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
                 <img className="h-5 w-5" src={teacherIcon} alt="teacher icon" />
               }
             >
-              Teachers
+              {t("menuButtons.teachers")}
             </Menus.Button>
           </Modal.Open>
           <Modal.Open name="editClass">
             <Menus.Button icon={<MdOutlineModeEdit className="h-5 w-5" />}>
-              Edit
+              {t("menuButtons.edit")}
             </Menus.Button>
           </Modal.Open>
           <Modal.Open name="deleteClass">
             <Menus.Button icon={<MdDeleteOutline className="h-5 w-5" />}>
-              Delete
+              {t("menuButtons.delete")}
             </Menus.Button>
           </Modal.Open>
         </Menus.List>

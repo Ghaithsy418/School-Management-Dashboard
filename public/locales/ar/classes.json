@@ -19,15 +19,45 @@
     "assignTeacherMessage": " يمكنك فقط إسناد",
     "assignTeacherMessage2": "لصف",
     "assign": "نسند",
-    "teacher": "أستاذ",
+    "assign2": "إسناد",
+    "unAssign": "إلغاء الإسناد",
+    "teacher": " أستاذ ",
+    "teachers": "أساتذة",
     "student": "طالب",
+    "students": "طلاب",
     "class": "الصف",
-    "back": "عُد للوراء"
+    "classes": "صفوف",
+    "back": "عُد للوراء",
+    "loadingTeachers": "جارٍ تحميل الأساتذة",
+    "loading": "جارٍ التحميل...",
+    "assignStudent": "إسناد طالب للصف",
+    "assignTeacher": "إسناد استاذ للصف",
+    "noClass": "بلا صف"
   },
   "table": {
     "name": "الاسم",
     "maxStudents": "حجم الصف الكلي",
     "currentStudents": "عدد الطلاب الحالي",
     "options": "الخيارات"
+  },
+  "createClass": {
+    "title": "إنشاء صف جديد",
+    "className": "اسم الصف (مثال 10-A)",
+    "studentsNum": "العدد الممكن من الطلاب",
+    "createButton": "إنشاء الصف",
+    "loadingClass": "يتم إنشاء الصف..."
+  },
+  "editClass": {
+    "title": "تعديل الصف",
+    "className": "اسم الصف",
+    "studentsNum": "عدد الطلاب الأقصى",
+    "editButton": "حفظ التغييرات"
+  },
+  "deleteClass": {
+    "title": "حذف الصف",
+    "warning": "هل أنت متأكد من الحذف الدائم للصف",
+    "undoneAction": "هذا الفعل لا يمكن العودة منه!",
+    "yesButton": "نعم قم بحذف الصف",
+    "question": "؟"
   }
 }

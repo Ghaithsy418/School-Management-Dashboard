@@ -24,7 +24,8 @@
     "previous": "السابق",
     "next": "التالي",
     "of": "من",
-    "results": "نتيجة"
+    "results": "نتيجة",
+    "page": "الصفحة"
   },
   "menuButtons": {
     "profile": "الملف الشخصي",
@@ -32,7 +33,9 @@
     "increaseAbsence": "زيادة عدد الغيابات",
     "decreaseAbsence": "إنقاص عدد الغيابات",
     "report": "إبلاغ",
-    "edit": "تعديل"
+    "edit": "تعديل",
+    "students": "الطلاب",
+    "teachers": "الأساتذة"
   },
   "empty": {
     "no": "لا يوجد",

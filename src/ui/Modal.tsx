@@ -57,14 +57,14 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-indigo-900/90 to-purple-900/95 backdrop-blur-xl"
+        className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-indigo-900/90 to-purple-900/95 backdrop-blur-xl dark:from-slate-800/95 dark:via-indigo-800/90 dark:to-purple-900/95"
       />
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-20"
+            className="absolute h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-20 dark:from-blue-300 dark:to-purple-300"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -91,11 +91,11 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
         ref={ref}
         className={`relative flex flex-col gap-6 shadow-2xl ${
           mode === "sheet"
-            ? "no-scrollbar absolute top-0 right-0 h-full w-[42rem] overflow-y-auto rounded-l-3xl border-l-2 border-indigo-200/50 bg-gradient-to-br from-white via-slate-50 to-indigo-50"
-            : "w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-white via-slate-50 to-blue-50"
+            ? "no-scrollbar absolute top-0 right-0 h-full w-[42rem] overflow-y-auto rounded-l-3xl border-l-2 border-indigo-200/50 bg-gradient-to-br from-white via-slate-50 to-indigo-50 dark:border-indigo-700/50 dark:from-gray-900 dark:via-slate-900 dark:to-blue-900"
+            : "w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:border-gray-600 dark:from-gray-900 dark:via-slate-900 dark:to-blue-900"
         }`}
       >
-        <div className="absolute inset-0 rounded-3xl bg-white/60 backdrop-blur-sm" />
+        <div className="absolute inset-0 rounded-3xl bg-white/60 backdrop-blur-sm dark:bg-gray-900/5" />
 
         <div className="relative z-10 p-8">
           <div className="mb-6 flex items-center justify-between">
@@ -143,8 +143,8 @@ function Window({ children, name, icon, mode = "" }: WindowOpenTypes) {
             transition={{ delay: 0.5 }}
             className="relative"
           >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 opacity-30 blur-sm" />
-            <div className="relative rounded-2xl border border-white/50 bg-white/80 p-6 shadow-inner backdrop-blur-sm">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 opacity-30 blur-sm dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900" />
+            <div className="relative rounded-2xl border border-white/50 bg-white/80 p-6 shadow-inner backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
               {cloneElement(
                 children as React.ReactElement<{ onCloseModal: () => void }>,
                 {

@@ -33,7 +33,7 @@ function EditSubject() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full gap-6 space-y-7 rounded-xl px-5 pt-8 pb-6 shadow-md ring-1 ring-gray-900/5 transition-shadow duration-300 hover:shadow-lg"
+      className="w-full gap-6 space-y-7 rounded-xl px-5 pt-8 pb-6 shadow-md ring-1 ring-gray-900/5 transition-shadow duration-300 hover:shadow-lg dark:border dark:border-gray-700"
     >
       <div className="flex items-center justify-start gap-3">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500/20">
@@ -62,7 +62,7 @@ function EditSubject() {
           </SubmitButton>
           <button
             onClick={() => dispatch(changeUi("create"))}
-            className="w-full cursor-pointer text-sm text-slate-600 underline transition-all duration-300 hover:text-slate-700 hover:no-underline"
+            className="w-full cursor-pointer text-sm text-slate-600 underline transition-all duration-300 hover:text-slate-700 hover:no-underline dark:text-slate-400 dark:hover:text-slate-600"
           >
             Or create a subject
           </button>

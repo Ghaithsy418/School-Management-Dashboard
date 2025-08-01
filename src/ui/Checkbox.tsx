@@ -12,7 +12,7 @@ function Checkbox({ isChecked, handleChange }: CheckboxTypes) {
         name="dummy"
         type="checkbox"
       />
-      <span className="checkmark"></span>
+      <span className="checkmark dark:border dark:border-gray-600 dark:bg-gray-700"></span>
     </label>
   );
 }

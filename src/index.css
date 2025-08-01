@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: National Park;
@@ -206,7 +206,7 @@
       transform: translate(100px, 100px) rotate(112deg);
     }
   }
-  /* From Uiverse.io by KhaledMatalkah */
+
   .custom-checkbox {
     display: inline-flex;
     align-items: center;

@@ -12,7 +12,7 @@ function AvatarGenerator({
   const newName = name.split(" ");
   return (
     <div
-      className={`flex items-center ${size > 44 ? "text-2xl" : "text-base"} justify-center rounded-full bg-gray-800 text-slate-50 ${className}`}
+      className={`flex items-center ${size > 44 ? "text-2xl" : "text-base"} justify-center rounded-full bg-gray-800 text-slate-50 dark:bg-gray-300 dark:text-slate-900 ${className}`}
       style={{
         width: size,
         height: size,

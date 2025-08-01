@@ -25,10 +25,12 @@ function DeleteSubject({
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">Delete Subject</h3>
-        <p className="max-w-md text-slate-500">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-50">
+          Delete Subject
+        </h3>
+        <p className="max-w-md text-slate-500 dark:text-slate-300">
           Are you sure you want to permanently delete the{" "}
-          <strong className="font-semibold text-slate-700 capitalize">
+          <strong className="font-semibold text-slate-700 capitalize dark:text-slate-100">
             {subjectName}
           </strong>
           ?

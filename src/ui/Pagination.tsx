@@ -71,14 +71,20 @@ function Pagination({
   const pageNumbers = totalPages > 1 ? getPageNumbers() : [];
 
   return (
-    <div className="flex w-full flex-col items-center justify-between gap-4 bg-white px-6 py-4 sm:flex-row">
+    <div className="flex w-full flex-col items-center justify-between gap-4 bg-white px-6 py-4 sm:flex-row dark:bg-gray-950/40">
       <div className="flex items-center">
-        <p className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-700">
-          <span className="font-semibold text-indigo-600">{firstNumber}</span>
+        <p className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-50">
+          <span className="font-semibold text-indigo-600 dark:font-bold dark:text-indigo-300">
+            {firstNumber}
+          </span>
           {" - "}
-          <span className="font-semibold text-indigo-600">{secondNumber}</span>
+          <span className="font-semibold text-indigo-600 dark:font-bold dark:text-indigo-300">
+            {secondNumber}
+          </span>
           {` ${t("pagination.of")} `}
-          <span className="font-semibold text-gray-900">{dataLength}</span>
+          <span className="font-semibold text-gray-900 dark:font-bold dark:text-gray-950">
+            {dataLength}
+          </span>
           {` ${t("pagination.results")} `}
         </p>
       </div>
@@ -87,7 +93,7 @@ function Pagination({
         <button
           disabled={page <= 1}
           onClick={handlePrevious}
-          className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm"
+          className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm dark:border-gray-700 dark:bg-gray-600 dark:text-gray-50 dark:disabled:bg-gray-700 dark:disabled:hover:bg-gray-400 dark:disabled:hover:text-gray-50"
         >
           {i18n.language === "en" ? (
             <HiChevronLeft className="h-4 w-4" />
@@ -104,7 +110,7 @@ function Pagination({
                 return (
                   <span
                     key={`dots-${index}`}
-                    className="px-3 py-2 text-sm text-gray-400 select-none"
+                    className="px-3 py-2 text-sm text-gray-400 select-none dark:text-gray-50"
                   >
                     ...
                   </span>
@@ -119,7 +125,7 @@ function Pagination({
                   className={`rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
                     isCurrentPage
                       ? "bg-indigo-500 text-white shadow-md ring-2 ring-indigo-200"
-                      : "border border-gray-300 bg-white text-gray-600 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
+                      : "border border-gray-300 bg-white text-gray-600 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 dark:border-gray-700 dark:bg-gray-600 dark:text-gray-50"
                   } shadow-sm`}
                 >
                   {pageNum}
@@ -138,7 +144,7 @@ function Pagination({
         <button
           disabled={page >= totalPages}
           onClick={handleNext}
-          className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm"
+          className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-600 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:text-gray-600 disabled:hover:shadow-sm dark:border-gray-700 dark:bg-gray-600 dark:text-gray-50 dark:disabled:hover:bg-gray-700 dark:disabled:hover:text-gray-50"
         >
           <span className="hidden sm:inline">{t("pagination.next")}</span>
           {i18n.language === "en" ? (

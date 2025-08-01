@@ -24,7 +24,8 @@
     "previous": "Previous",
     "next": "Next",
     "of": "of",
-    "results": "results"
+    "results": "results",
+    "page": "Page"
   },
   "menuButtons": {
     "profile": "Profile",
@@ -32,7 +33,9 @@
     "increaseAbsence": "Increase Absence",
     "decreaseAbsence": "Decrease Absence",
     "report": "Report",
-    "edit": "Edit"
+    "edit": "Edit",
+    "students": "Students",
+    "teachers": "Teachers"
   },
   "empty": {
     "no": "No",

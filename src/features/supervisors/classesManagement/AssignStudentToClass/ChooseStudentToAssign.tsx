@@ -6,12 +6,14 @@ import SubmitButton from "@/ui/SubmitButton";
 import { HiPlus } from "react-icons/hi2";
 import StudentsClasses from "./StudentsClasses";
 import { useAssignStudentToClass } from "./useAssignStudentToClass";
+import { useTranslation } from "react-i18next";
 
 function ChooseStudentToAssign({
   onCloseModal,
 }: {
   onCloseModal?: () => void;
 }) {
+  const { t } = useTranslation("classes");
   const { className, studentId } = useClassesUi();
   const { students, isGettingStudents } = useGetStudents();
   const { assignStudentMutation, isAssigningStudent } =
@@ -31,7 +33,9 @@ function ChooseStudentToAssign({
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
-        <p className="text-lg font-semibold text-slate-600">Loading...</p>
+        <p className="text-lg font-semibold text-slate-600">
+          {t("main.loading")}
+        </p>
       </div>
     );
 
@@ -39,7 +43,7 @@ function ChooseStudentToAssign({
     <div>
       <div className="py-4">
         <h3 className="text-xl font-bold text-slate-800">
-          Assign Student to: {className}
+          {t("main.assignStudent")}: {className}
         </h3>
       </div>
       <div>
@@ -57,7 +61,7 @@ function ChooseStudentToAssign({
             ) : (
               <div className="flex items-center gap-2">
                 <HiPlus className="h-5 w-5" />
-                <span>Assign</span>
+                <span className="rtl:text-lg">{t("main.assign2")}</span>
               </div>
             )}
           </SubmitButton>

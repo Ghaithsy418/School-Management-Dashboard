@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function MiniPagination({
   pageName = "page",
 }: MiniPaginationTypes) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t, i18n } = useTranslation();
 
   const page = Number(searchParams.get(pageName)) || 1;
   const totalPages = Math.ceil(dataLength / numberOfElements);
@@ -39,24 +41,37 @@ function MiniPagination({
         disabled={page <= 1}
         onClick={handlePrevious}
         aria-label="Go to previous page"
-        className="rounded-md border border-slate-300 p-1.5 text-slate-600 transition-colors duration-200 enabled:hover:bg-indigo-50 enabled:hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-md border border-slate-300 p-1.5 text-slate-600 transition-colors duration-200 enabled:hover:bg-indigo-50 enabled:hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-100"
       >
-        <HiChevronLeft className="h-5 w-5" />
+        {i18n.language === "en" ? (
+          <HiChevronLeft className="h-5 w-5" />
+        ) : (
+          <HiChevronRight className="h-5 w-5" />
+        )}
       </button>
 
-      <p className="text-sm text-slate-600">
-        Page <span className="font-semibold text-slate-800">{page}</span>
-        <span className="text-slate-400"> / </span>
-        <span className="font-semibold text-slate-800">{totalPages}</span>
+      <p className="text-sm text-slate-600 dark:text-slate-100">
+        {t("pagination.page")}{" "}
+        <span className="font-semibold text-slate-800 dark:text-slate-200">
+          {page}
+        </span>
+        <span className="text-slate-400 dark:text-slate-50"> / </span>
+        <span className="font-semibold text-slate-800 dark:text-slate-200">
+          {totalPages}
+        </span>
       </p>
 
       <button
         disabled={page >= totalPages}
         onClick={handleNext}
         aria-label="Go to next page"
-        className="rounded-md border border-slate-300 p-1.5 text-slate-600 transition-colors duration-200 enabled:hover:bg-indigo-50 enabled:hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-md border border-slate-300 p-1.5 text-slate-600 transition-colors duration-200 enabled:hover:bg-indigo-50 enabled:hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-100"
       >
-        <HiChevronRight className="h-5 w-5" />
+        {i18n.language === "en" ? (
+          <HiChevronRight className="h-5 w-5" />
+        ) : (
+          <HiChevronLeft className="h-5 w-5" />
+        )}
       </button>
     </div>
   );

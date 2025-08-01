@@ -19,15 +19,45 @@
     "assignTeacherMessage": "👨‍🏫 You can just assign a ",
     "assignTeacherMessage2": "to classes",
     "assign": "Assign",
+    "assign2": "Assign",
+    "unAssign": "UnAssign",
     "teacher": "Teacher",
+    "teachers": "Teachers",
     "student": "Student",
+    "students": "Students",
     "class": "Class",
-    "back": "Back"
+    "classes": "Classes",
+    "back": "Back",
+    "loadingTeachers": "Loading Teachers...",
+    "loading": "Loading...",
+    "assignStudent": "Assign Student To",
+    "assignTeacher": "Assign Teacher To",
+    "noClass": "No Class"
   },
   "table": {
     "name": "Name",
     "maxStudents": "Max Students",
     "currentStudents": "Current Students",
     "options": "Options"
+  },
+  "createClass": {
+    "title": "Create New Class",
+    "className": "Class Name (Example: 10-A)",
+    "studentsNum": "Students Number",
+    "createButton": "Create Class",
+    "loadingClass": "Creating Class..."
+  },
+  "editClass": {
+    "title": "Edit Class",
+    "className": "Class Name",
+    "studentsNum": "Maximum Students",
+    "editButton": "Save Changes"
+  },
+  "deleteClass": {
+    "title": "Delete Class",
+    "warning": "Are you sure you want to permanently delete the class",
+    "undoneAction": "This action cannot be undone",
+    "yesButton": "Yes, delete class",
+    "question": "?"
   }
 }

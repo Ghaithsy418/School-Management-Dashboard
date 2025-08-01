@@ -20,8 +20,10 @@ function LogoutForm() {
       }}
       className="flex flex-col items-center gap-6 p-6"
     >
-      <h2 className="text-2xl font-bold text-slate-800">{t("logout.title")}</h2>
-      <p className="text-center leading-relaxed text-slate-600">
+      <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
+        {t("logout.title")}
+      </h2>
+      <p className="text-center leading-relaxed text-slate-600 dark:text-slate-300">
         {t("logout.message")}
       </p>
 

@@ -12,7 +12,7 @@ function Empty({
 
   return (
     <div
-      className={`flex flex-col items-center gap-4 rounded-lg border-2 border-dashed border-slate-200 p-12 text-center ${className}`}
+      className={`flex flex-col items-center gap-4 rounded-lg border-2 border-dashed border-slate-200 p-12 text-center dark:border-slate-600 ${className}`}
     >
       <HiOutlineInbox className="h-16 w-16 text-slate-400" />
 

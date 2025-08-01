@@ -65,13 +65,13 @@ function Filter({ options, width = "w-45" }: FilterTypes) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute z-20 mt-1 w-full rounded-md bg-white py-1 shadow-lg"
+            className="absolute z-20 mt-1 w-full rounded-md bg-white py-1 shadow-lg dark:bg-gray-800"
           >
             {options.map((option) => (
               <li
                 key={option.value}
                 onClick={() => handleClick(option.value)}
-                className="cursor-pointer px-3 py-1.5 hover:bg-violet-100"
+                className="cursor-pointer px-3 py-1.5 hover:bg-violet-100 dark:hover:bg-violet-600"
               >
                 {option.title}
               </li>

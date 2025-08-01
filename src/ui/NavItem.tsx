@@ -24,7 +24,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
             : `/${role}/${button.value.toLowerCase()}`
         }
         className={({ isActive }) =>
-          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2.5 ${isActive ? "bg-indigo-200/50" : ""}`
+          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2.5 ${isActive ? "bg-indigo-200/50 dark:bg-indigo-900/80" : ""}`
         }
       >
         <span
@@ -37,7 +37,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
           style={{
             transform: isHover ? "scaleX(1)" : "scaleX(0)",
           }}
-          className="absolute left-0 -z-10 h-full w-full origin-left rounded-lg bg-indigo-200 px-4 py-2 transition-transform duration-300 ease-out"
+          className="absolute left-0 -z-10 h-full w-full origin-left rounded-lg bg-indigo-200 px-4 py-2 transition-transform duration-300 ease-out dark:bg-indigo-900"
         ></span>
       </NavLink>
     </li>

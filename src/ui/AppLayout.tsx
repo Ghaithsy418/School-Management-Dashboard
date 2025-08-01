@@ -1,9 +1,9 @@
+import { useDirection } from "@/hooks/useDirection";
 import { regularOpacityVariants } from "@/utils/variants";
 import { AnimatePresence, motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
-import { useDirection } from "@/hooks/useDirection";
 
 function AppLayout() {
   useDirection();

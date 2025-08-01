@@ -37,7 +37,9 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-8 rounded-2xl bg-gray-50 p-6"
     >
-      <h2 className="text-2xl font-bold text-slate-800">Create New Class</h2>
+      <h2 className="text-2xl font-bold text-slate-800">
+        {t("createClass.title")}
+      </h2>
 
       <div className="space-y-8">
         <InputField<ClassTypes>
@@ -45,14 +47,14 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
           register={register}
           name="className"
           type="text"
-          label="Class Name (example: 10-A)"
+          label={t("createClass.className")}
         />
         <InputField<ClassTypes>
           error={errors?.studentsNum?.message?.toString() || ""}
           register={register}
           name="studentsNum"
           type="text"
-          label="Students Number"
+          label={t("createClass.studentsNum")}
         />
       </div>
 
@@ -65,7 +67,11 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
           className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-violet-600 to-violet-700 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-violet-700 hover:to-violet-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isCreatingClass ? <SmallSpinner /> : <HiPlus className="text-lg" />}
-          <span>{isCreatingClass ? "Creating..." : "Create Class"}</span>
+          <span>
+            {isCreatingClass
+              ? t("createClass.loadingClass")
+              : t("createClass.createButton")}
+          </span>
         </motion.button>
       </div>
     </motion.form>

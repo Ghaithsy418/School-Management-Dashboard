@@ -2,6 +2,7 @@ import Button from "@/ui/Button";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { HiOutlineExclamationTriangle, HiOutlineTrash } from "react-icons/hi2";
 import { useDeleteClass } from "./useDeleteClass";
+import { useTranslation } from "react-i18next";
 
 interface DeleteClassTypes {
   className: string;
@@ -10,6 +11,7 @@ interface DeleteClassTypes {
 }
 
 function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
+  const { t } = useTranslation("classes");
   const { deleteClassMutation, isDeletingClass } = useDeleteClass();
 
   const handleDelete = () => {
@@ -23,12 +25,15 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">Delete Class</h3>
+        <h3 className="text-xl font-bold text-slate-800">
+          {t("deleteClass.title")}
+        </h3>
         <p className="max-w-md text-slate-500">
-          Are you sure you want to permanently delete the class{" "}
-          <strong className="font-semibold text-slate-700">{className}</strong>?
+          {t("deleteClass.warning")}{" "}
+          <strong className="font-semibold text-slate-700">{className}</strong>
+          {t("deleteClass.question")}
           <br />
-          This action cannot be undone.
+          {t("deleteClass.undoneAction")}
         </p>
       </div>
 
@@ -46,7 +51,7 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
           ) : (
             <div className="flex items-center gap-2">
               <HiOutlineTrash className="h-5 w-5" />
-              <span>Yes, delete class</span>
+              <span>{t("deleteClass.yesButton")}</span>
             </div>
           )}
         </Button>

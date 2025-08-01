@@ -27,6 +27,7 @@ import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import { useChangeTheme } from "./hooks/useChangeTheme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,7 @@ function App() {
   const {
     user: { role },
   } = useUser();
+  useChangeTheme();
 
   return (
     <QueryClientProvider client={queryClient}>

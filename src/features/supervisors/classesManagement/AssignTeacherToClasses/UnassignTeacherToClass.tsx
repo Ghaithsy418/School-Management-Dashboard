@@ -2,6 +2,7 @@ import Spinner from "@/ui/Spinner";
 import TeacherClassesRow from "./TeacherClassesRow";
 import { useGetClassTeachers } from "./useGetClassTeachers";
 import Empty from "@/ui/Empty";
+import { useTranslation } from "react-i18next";
 
 function UnassignTeacherToClass({
   className,
@@ -11,19 +12,20 @@ function UnassignTeacherToClass({
   classId: number;
 }) {
   const { teachers, isGettingTeachers } = useGetClassTeachers(classId);
+  const { t } = useTranslation("classes");
 
   if (isGettingTeachers)
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3">
         <Spinner />
-        <p className="text-lg font-semibold">Loading Teachers...</p>
+        <p className="text-lg font-semibold">{t("main.loadingTeachers")}</p>
       </div>
     );
 
   return (
     <div className="flex w-full flex-col gap-8">
       <h3 className="place-self-start text-2xl font-semibold">
-        ({className}) teachers:
+        {t("main.teachers")}: ({className})
       </h3>
       {teachers?.length ? (
         <div className="flex w-full flex-col items-center justify-center gap-3 divide-y-1 divide-gray-600/30">
@@ -43,7 +45,7 @@ function UnassignTeacherToClass({
           )}
         </div>
       ) : (
-        <Empty resource="teachers" />
+        <Empty resource={t("main.teachers")} />
       )}
     </div>
   );

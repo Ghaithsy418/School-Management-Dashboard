@@ -1,5 +1,6 @@
 import { changeStudentId, useClassesUi } from "@/slices/classesUiSlice";
 import Checkbox from "@/ui/Checkbox";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 function StudentClassesRow({
@@ -7,6 +8,7 @@ function StudentClassesRow({
 }: {
   student: { full_name: string; student_id: number; class_name: string };
 }) {
+  const { t } = useTranslation("classes");
   const { studentId } = useClassesUi();
   const dispatch = useDispatch();
   const { full_name, student_id: id, class_name } = student;
@@ -33,7 +35,7 @@ function StudentClassesRow({
               : "bg-slate-200 text-slate-600"
           } `}
         >
-          {class_name || "No Class"}
+          {class_name || t("main.noClass")}
         </span>
         <p className="font-medium text-slate-800">{full_name}</p>
       </div>

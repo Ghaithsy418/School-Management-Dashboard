@@ -6,12 +6,14 @@ import SubmitButton from "@/ui/SubmitButton";
 import { HiPlus } from "react-icons/hi2";
 import TeachersClasses from "./TeachersClasses";
 import { useAssignTeacherToClass } from "./useAssignTeacherToClass";
+import { useTranslation } from "react-i18next";
 
 function ChooseTeacherToAssign({
   onCloseModal,
 }: {
   onCloseModal?: () => void;
 }) {
+  const { t } = useTranslation("classes");
   const { className, teacherId } = useClassesUi();
   const { teachers, isGettingTeachers } = useGetTeachers();
   const { assignTeacherMutation, isAssigningTeacher } =
@@ -28,7 +30,7 @@ function ChooseTeacherToAssign({
       <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
         <p className="text-lg font-semibold text-slate-600">
-          Loading Teachers...
+          {t("main.loadingTeacher")}
         </p>
       </div>
     );
@@ -36,7 +38,7 @@ function ChooseTeacherToAssign({
   return (
     <div>
       <h3 className="truncate text-xl font-bold text-slate-800">
-        Assign Teacher to: {className}
+        {t("main.assignTeacher")}: {className}
       </h3>
       <TeachersClasses teachers={teachers as Teacher[]} />
       {teachers && teachers.length > 0 && (
@@ -51,7 +53,7 @@ function ChooseTeacherToAssign({
             ) : (
               <div className="flex items-center gap-2">
                 <HiPlus className="h-5 w-5" />
-                <span>Assign Teacher</span>
+                <span>{t("main.assign2")}</span>
               </div>
             )}
           </SubmitButton>

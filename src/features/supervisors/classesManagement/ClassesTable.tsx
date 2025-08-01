@@ -14,7 +14,7 @@ function ClassesTable() {
 
   if (isGettingClasses) return <Spinner />;
   if (!classes || classes?.length === 0)
-    return <Empty className="text-center" resource="Class" />;
+    return <Empty className="text-center" resource={t("main.classes")} />;
 
   return (
     <Table columns="2fr 2fr 2fr 1fr">

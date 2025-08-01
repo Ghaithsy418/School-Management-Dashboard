@@ -38,16 +38,15 @@ function FirstUi() {
       variants={regularOpacityVariants}
       initial="hidden"
       animate="visible"
-      className="text-lg font-semibold"
+      className="flex items-center justify-center gap-1 text-lg font-semibold"
     >
       {t("main.assignTeacherMessage")}
-      {"  "}
       <button
         disabled={!classes?.length || isGettingClasses}
         onClick={handleClick}
         className="cursor-pointer text-violet-600 underline transition-all duration-300 hover:text-violet-700 disabled:cursor-not-allowed"
       >
-        {t("main.teacher")}
+        {t("main.teacher")}{" "}
       </button>{" "}
       {t("main.assignTeacherMessage2")} <span className="text-2xl">👨‍🏫</span>
     </motion.h3>

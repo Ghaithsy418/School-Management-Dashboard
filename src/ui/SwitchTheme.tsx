@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Sun, Moon, Monitor } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useChangeTheme } from "@/hooks/useChangeTheme";
+import { Monitor, Moon, Sun } from "lucide-react";
 
 function SwitchTheme() {
-  const [selectedOption, setSelectedOption] = useState("system");
-
+  const { theme: currentTheme, setTheme } = useChangeTheme();
+  console.log(window.matchMedia("(prefers-color-scheme: dark)").matches);
   const themes = [
     { title: "Light", value: "light", icon: Sun },
     { title: "Dark", value: "dark", icon: Moon },
@@ -50,13 +50,13 @@ function SwitchTheme() {
                 {themes.map((theme) => {
                   const IconComponent = theme.icon;
                   return (
-                    <Tooltip>
+                    <Tooltip key={theme.value}>
                       <TooltipTrigger>
-                        <button
-                          key={theme.value}
-                          onClick={() => setSelectedOption(theme.value)}
+                        <div
+                          role="button"
+                          onClick={() => setTheme(theme.value)}
                           className={`group relative flex h-11 w-18 items-center justify-center rounded-lg transition-all duration-300 ${
-                            selectedOption === theme.value
+                            currentTheme === theme.value
                               ? "scale-105 transform bg-white text-gray-900 shadow-lg ring-2 ring-gray-200 dark:bg-gray-700 dark:text-white dark:ring-gray-600"
                               : "border border-gray-200 bg-gray-50 text-gray-600 hover:scale-105 hover:transform hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-200"
                           } `}
@@ -65,17 +65,15 @@ function SwitchTheme() {
                           <IconComponent
                             size={16}
                             className={`transition-transform duration-300 ${
-                              selectedOption === theme.value
+                              currentTheme === theme.value
                                 ? "animate-pulse"
                                 : "group-hover:scale-110"
                             }`}
                           />
-
-                          {/* Active state subtle highlight */}
-                          {selectedOption === theme.value && (
+                          {currentTheme === theme.value && (
                             <div className="absolute inset-0 -z-10 rounded-lg bg-gray-100 opacity-50 blur-sm dark:bg-gray-600" />
                           )}
-                        </button>
+                        </div>
                       </TooltipTrigger>
                       <TooltipContent>
                         <p className="pb-1">{theme.title}</p>

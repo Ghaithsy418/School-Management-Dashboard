@@ -2,6 +2,7 @@ import Empty from "@/ui/Empty";
 import Search from "@/ui/Search";
 import Spinner from "@/ui/Spinner";
 import { useGetStudentsForClass } from "./useGetStudentsForClass";
+import { useTranslation } from "react-i18next";
 
 interface StudentsClassTypes {
   student_id: number;
@@ -10,12 +11,15 @@ interface StudentsClassTypes {
 
 function ShowClassStudents({ className }: { className: string }) {
   const { students, isGettingStudents } = useGetStudentsForClass(className);
+  const { t } = useTranslation("classes");
 
   if (isGettingStudents) return <Spinner />;
 
   return (
     <div className="flex w-full flex-col items-start gap-8 pb-4">
-      <h3 className="text-2xl font-semibold">{className} students:</h3>
+      <h3 className="text-2xl font-semibold">
+        {t("main.students")} ({className}):
+      </h3>
       {students?.length ? (
         <div className="flex w-full flex-col gap-5">
           <Search size="w-68" />
@@ -30,7 +34,9 @@ function ShowClassStudents({ className }: { className: string }) {
           </div>
         </div>
       ) : (
-        <Empty resource="students" />
+        <div className="w-full">
+          <Empty resource={t("main.students")} />
+        </div>
       )}
     </div>
   );

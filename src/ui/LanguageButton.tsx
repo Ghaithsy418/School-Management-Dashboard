@@ -17,7 +17,7 @@ function LanguageButton() {
 
   return (
     <button
-      className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-gray-200/60 transition-all duration-300 hover:scale-110 hover:bg-gray-200 active:scale-95 dark:bg-gray-800 dark:hover:bg-gray-700"
+      className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-gray-200/60 transition-all duration-300 hover:scale-110 hover:bg-gray-200 active:scale-95 dark:border dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
       onClick={() =>
         setSelectedLanguage(selectedLanguage === "ar" ? "en" : "ar")
       }

@@ -20,7 +20,7 @@ function CreateSubject() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full gap-6 space-y-7 rounded-xl px-5 py-8 shadow-md ring-1 ring-gray-900/5 transition-shadow duration-300 hover:shadow-lg"
+      className="w-full gap-6 space-y-7 rounded-xl px-5 py-8 shadow-md ring-1 ring-gray-900/5 transition-shadow duration-300 hover:shadow-lg dark:border-1 dark:border-gray-700"
     >
       <div className="flex items-center justify-start gap-3">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
