@@ -14,7 +14,7 @@ function CommentList({ id }: { id: number }) {
       <div className="fixed bottom-0 w-full place-self-center">
         <AddComment
           bgColor="bg-transparent"
-          inputBgColor="bg-gray-300/50"
+          inputBgColor="bg-gray-300/50 dark:bg-gray-700/90"
           hoverInputBgColor="hover:bg-gray-300/70"
           borderColor="border-transparent"
           isRounded={true}

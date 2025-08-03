@@ -8,9 +8,13 @@ import StudentsRow from "./StudentsRow";
 import { useGetStudents } from "./useGetStudents";
 import { useClientTransform } from "@/hooks/useClientTransform";
 import { useTranslation } from "react-i18next";
+import { useUser } from "@/slices/userSlice";
 
 function StudentsTable() {
   const { t } = useTranslation("students");
+  const {
+    user: { role },
+  } = useUser();
   const { students, isGettingStudents } = useGetStudents();
   const finalStudents = useClientTransform(students, "full_name");
   const filteredStudents = usePaginate(finalStudents, 10);
@@ -19,7 +23,7 @@ function StudentsTable() {
     t("main.name"),
     t("main.id"),
     t("main.class"),
-    t("main.gpa"),
+    role === "supervisor" ? t("main.absenceNumber") : t("main.gpa"),
     t("main.contact"),
   ];
 

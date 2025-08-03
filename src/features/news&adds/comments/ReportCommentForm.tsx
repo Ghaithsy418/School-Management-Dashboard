@@ -52,13 +52,13 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-8 text-slate-700"
+      className="flex flex-col gap-8 text-slate-700 dark:text-slate-100"
     >
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-slate-800">
+        <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-50">
           {t("reportForm.title")}
         </h3>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">
           {t("reportForm.description")}
         </p>
       </div>
@@ -72,7 +72,7 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
             className={`rounded-lg border px-4 py-2 text-left text-sm font-semibold transition-all duration-200 ${
               selectedReason === reason
                 ? "border-indigo-500 bg-indigo-100 text-indigo-800 shadow-md ring-2 ring-indigo-300"
-                : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100"
+                : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-500 dark:bg-slate-700 dark:hover:bg-slate-800"
             }`}
           >
             {reason}
@@ -85,7 +85,7 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
         placeholder={t("reportForm.additional")}
         value={additionalInfo}
         onChange={(e) => setAdditionalInfo(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300"
+        className="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300 dark:bg-slate-700"
         rows={3}
       />
 
@@ -96,7 +96,7 @@ function ReportCommentForm({ commentId }: ReportFormTypes) {
             dispatch(changeUi(""));
             dispatch(setCommentId(0));
           }}
-          className="rounded-lg bg-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition-colors hover:bg-slate-300"
+          className="rounded-lg bg-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition-colors hover:bg-slate-300 dark:bg-slate-300"
         >
           {t("reportForm.cancel")}
         </button>

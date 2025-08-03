@@ -1,7 +1,10 @@
 import SwitchTheme from "@/ui/SwitchTheme";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function Settings() {
+  const { t } = useTranslation("settings");
+
   useEffect(function () {
     document.title = "Settings";
   }, []);
@@ -35,15 +38,13 @@ function Settings() {
                   </svg>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-gray-900 lg:text-3xl dark:text-white">
-                  Settings
+                  {t("main.title")}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Customize your experience
+                  {t("main.subTitle")}
                 </p>
               </div>
-
               <SwitchTheme />
-
               <div className="rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
                   <svg
@@ -61,11 +62,10 @@ function Settings() {
                   </svg>
                 </div>
                 <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                  More Features Coming Soon
+                  {t("moreFeatures.title")}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We're working on additional settings and customization options
-                  to enhance your experience.
+                  {t("moreFeatures.subTitle")}
                 </p>
               </div>
             </div>

@@ -10,7 +10,7 @@ function LoginIcons() {
         variants={variants}
         initial="hidden"
         animate="icon2"
-        className="absolute top-[15%] rotate-[-10deg] text-xl text-amber-600/70 ltr:left-[-25px] rtl:right-[-25px]"
+        className="absolute top-[15%] rotate-[-10deg] text-xl text-amber-600/70 ltr:left-[-25px] rtl:right-[-25px] dark:text-amber-700/70"
       >
         <LuBookHeart className="h-14 w-14" />
       </motion.span>
@@ -18,7 +18,7 @@ function LoginIcons() {
         variants={variants}
         initial="hidden"
         animate="icon1"
-        className="absolute top-[45%] text-xl text-amber-600/70 ltr:left-[-28px] rtl:right-[-28px]"
+        className="absolute top-[45%] text-xl text-amber-600/70 ltr:left-[-28px] rtl:right-[-28px] dark:text-amber-700/70"
       >
         <LiaPencilRulerSolid className="h-14 w-14" />
       </motion.span>
@@ -26,7 +26,7 @@ function LoginIcons() {
         variants={variants}
         initial="hidden"
         animate="icon3"
-        className="absolute top-[75%] rotate-[5deg] text-xl text-amber-600/70 ltr:left-[-28px] rtl:right-[-28px]"
+        className="absolute top-[75%] rotate-[5deg] text-xl text-amber-600/70 ltr:left-[-28px] rtl:right-[-28px] dark:text-amber-700/70"
       >
         <BiBusSchool className="h-14 w-14" />
       </motion.span>

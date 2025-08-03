@@ -46,7 +46,7 @@ function AddComment({
       />
       <button
         type="submit"
-        className={`flex cursor-pointer items-center justify-center rounded-full ${inputBgColor} p-2.5 text-gray-800 transition-all duration-300 ${hoverInputBgColor} ${isAddingComment ? "cursor-progress" : ""}`}
+        className={`flex cursor-pointer items-center justify-center rounded-full ${inputBgColor} p-2.5 text-gray-800 transition-all duration-300 dark:text-gray-300 ${hoverInputBgColor} ${isAddingComment ? "cursor-progress" : ""}`}
       >
         <GrSend className="h-5 w-5" />
       </button>

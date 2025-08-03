@@ -25,12 +25,14 @@ function DeleteClass({ className, classId, onCloseModal }: DeleteClassTypes) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-50">
           {t("deleteClass.title")}
         </h3>
-        <p className="max-w-md text-slate-500">
+        <p className="max-w-md text-slate-500 dark:text-slate-300">
           {t("deleteClass.warning")}{" "}
-          <strong className="font-semibold text-slate-700">{className}</strong>
+          <strong className="font-semibold text-slate-700 dark:text-slate-100">
+            {className}
+          </strong>
           {t("deleteClass.question")}
           <br />
           {t("deleteClass.undoneAction")}

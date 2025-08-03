@@ -33,7 +33,7 @@ function ChooseStudentToAssign({
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
-        <p className="text-lg font-semibold text-slate-600">
+        <p className="text-lg font-semibold text-slate-600 dark:text-slate-200">
           {t("main.loading")}
         </p>
       </div>
@@ -42,7 +42,7 @@ function ChooseStudentToAssign({
   return (
     <div>
       <div className="py-4">
-        <h3 className="text-xl font-bold text-slate-800">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">
           {t("main.assignStudent")}: {className}
         </h3>
       </div>
@@ -50,7 +50,7 @@ function ChooseStudentToAssign({
         <StudentsClasses students={filteredStudents} />
       </div>
       {filteredStudents && filteredStudents.length > 0 && (
-        <div className="sticky bottom-0 bg-white/90 p-3 backdrop-blur-sm">
+        <div className="sticky bottom-0 bg-inherit p-3">
           <SubmitButton
             disabled={!studentId || isAssigningStudent}
             onClick={handleClick}

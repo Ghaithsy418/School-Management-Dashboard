@@ -27,7 +27,7 @@ function PostMenus({ event }: PostMenusTypes) {
       <Menus>
         <Menus.Toggle id="postMenu">
           <span>
-            <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
+            <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300 dark:hover:bg-slate-800" />
           </span>
         </Menus.Toggle>
         <Menus.List id="postMenu">

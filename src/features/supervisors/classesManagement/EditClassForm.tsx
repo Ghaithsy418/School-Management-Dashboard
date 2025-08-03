@@ -43,9 +43,9 @@ function EditClassForm({ classData, onCloseModal }: EditFormTypes) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col">
       <div className="mb-8 text-center">
-        <h3 className="text-2xl font-bold text-slate-800 rtl:flex rtl:items-center rtl:justify-center rtl:gap-2">
+        <h3 className="text-2xl font-bold text-slate-800 rtl:flex rtl:items-center rtl:justify-center rtl:gap-2 dark:text-slate-100">
           {t("editClass.title")}
-          <span className="ml-3 inline-block rounded-lg bg-indigo-100 px-2.5 py-1.5 align-middle text-sm font-semibold text-indigo-800">
+          <span className="ml-3 inline-block rounded-lg bg-indigo-100 px-2.5 py-1.5 align-middle text-sm font-semibold text-indigo-800 dark:bg-indigo-200">
             #{classData.id}
           </span>
         </h3>

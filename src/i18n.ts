@@ -17,6 +17,7 @@ i18n
       "supervisors",
       "newsAndAdds",
       "classes",
+      "settings",
     ],
     defaultNS: "dashboard",
     supportedLngs: ["ar", "en"],

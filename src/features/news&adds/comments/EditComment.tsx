@@ -43,7 +43,7 @@ function EditComment({
         <button
           type="button"
           onClick={() => dispatch(changeUi(""))}
-          className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400"
+          className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
         >
           {t("reply.cancel")}
         </button>

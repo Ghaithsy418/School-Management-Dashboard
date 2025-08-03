@@ -35,7 +35,8 @@
     "report": "Report",
     "edit": "Edit",
     "students": "Students",
-    "teachers": "Teachers"
+    "teachers": "Teachers",
+    "studentWarnings": "Check Absence Warnings"
   },
   "empty": {
     "no": "No",
@@ -55,8 +56,5 @@
     "warning": "Are you sure you want to permanently clear the data?",
     "undoneAction": "This action cannot be undone",
     "yesButton": "Yes, Clear Data"
-  },
-  "settings": {
-    "title": "Settings"
   }
 }

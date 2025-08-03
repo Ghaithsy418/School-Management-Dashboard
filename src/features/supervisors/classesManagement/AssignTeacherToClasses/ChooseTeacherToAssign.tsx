@@ -29,20 +29,20 @@ function ChooseTeacherToAssign({
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
         <Spinner />
-        <p className="text-lg font-semibold text-slate-600">
-          {t("main.loadingTeacher")}
+        <p className="text-lg font-semibold text-slate-600 dark:text-slate-200">
+          {t("main.loadingTeachers")}
         </p>
       </div>
     );
 
   return (
     <div>
-      <h3 className="truncate text-xl font-bold text-slate-800">
+      <h3 className="truncate text-xl font-bold text-slate-800 dark:text-slate-100">
         {t("main.assignTeacher")}: {className}
       </h3>
       <TeachersClasses teachers={teachers as Teacher[]} />
       {teachers && teachers.length > 0 && (
-        <div className="sticky bottom-0 bg-white/90 p-3 backdrop-blur-sm">
+        <div className="sticky bottom-0 bg-inherit p-3">
           <SubmitButton
             disabled={teacherId === 0 || isAssigningTeacher}
             onClick={handleClick}

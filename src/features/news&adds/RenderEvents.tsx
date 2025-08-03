@@ -18,7 +18,7 @@ function RenderEvents({ events }: { events: EventTypes[] }) {
 
   if (!events?.length)
     return (
-      <div className="w-full bg-gray-50">
+      <div className="w-full bg-gray-50 dark:bg-gray-900">
         <Empty resource="Posts" className="rounded-none border-none" />
       </div>
     );

@@ -34,3 +34,7 @@ export async function checkStudentsAbsence(body: {
     body,
   });
 }
+
+export async function checkStudentWarnings(body: { studentId: number }) {
+  return fetcher({ url: "/api/checkStudentWarnings", method: "POST", body });
+}

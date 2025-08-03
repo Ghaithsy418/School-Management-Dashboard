@@ -14,7 +14,7 @@ interface TeachersListProps {
 
 function TeachersList({ teachers }: TeachersListProps) {
   return (
-    <div className="flex w-full flex-col gap-2 divide-y divide-slate-100">
+    <div className="flex w-full flex-col gap-2 divide-y divide-slate-100 dark:divide-slate-500/60">
       {teachers?.map((teacher) => (
         <TeacherClassesRow teacher={teacher} key={teacher.teacher_id} />
       ))}

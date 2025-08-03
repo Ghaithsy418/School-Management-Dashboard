@@ -13,21 +13,26 @@ import { useIncreaseAbsence } from "../supervisors/attendanceAndAbsence/useIncre
 import { useDecreaseAbsence } from "../supervisors/attendanceAndAbsence/useDeacreseAbsence";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { IoWarningOutline } from "react-icons/io5";
+import { useCheckStudentWarnings } from "../supervisors/attendanceAndAbsence/useCheckStudentWarnings";
 
 function StudentsTableMenus({
   name,
   user_id,
+  student_id,
 }: {
   name: string;
   user_id: number;
+  student_id: number;
 }) {
   const { t } = useTranslation();
   const role = useSelector((state: RootState) => state.user.user.role);
   const { increaseAbsenceMutation } = useIncreaseAbsence();
   const { decreaseAbsenceMutation } = useDecreaseAbsence();
+  const { refetch } = useCheckStudentWarnings(student_id);
 
   function handleIncreaseAbsence() {
-    const promise = increaseAbsenceMutation({ studentId: user_id });
+    const promise = decreaseAbsenceMutation({ studentId: student_id });
     toast.promise(promise, {
       loading: "Is Increasing...",
       success: "Absence Increased Successfully!",
@@ -36,11 +41,21 @@ function StudentsTableMenus({
   }
 
   function handleDecreaseAbsence() {
-    const promise = decreaseAbsenceMutation({ studentId: user_id });
+    const promise = increaseAbsenceMutation({ studentId: student_id });
     toast.promise(promise, {
       loading: "Is Increasing...",
       success: "Absence Increased Successfully!",
       error: (err: Error) => err.message,
+    });
+  }
+
+  function handleCheckWarnings() {
+    const promise = refetch();
+    toast.promise(promise, {
+      loading: "Getting Warnings...",
+      success: ({ data }) =>
+        `Student with id ${data?.data.student_id} has ${data?.data.warning} ${data?.data.warning && data?.data.warning > 1 ? "Warnings" : "Warning"}`,
+      error: (err: Error) => toast.error(err.message),
     });
   }
 
@@ -66,20 +81,26 @@ function StudentsTableMenus({
                 </Modal.Open>
               )}
               {role === "supervisor" && (
-                <Menus.Button
-                  onClick={handleIncreaseAbsence}
-                  icon={<CalendarPlus className="h-5 w-5" />}
-                >
-                  {t("menuButtons.increaseAbsence")}
-                </Menus.Button>
-              )}
-              {role === "supervisor" && (
-                <Menus.Button
-                  onClick={handleDecreaseAbsence}
-                  icon={<CalendarMinus className="h-5 w-5" />}
-                >
-                  {t("menuButtons.decreaseAbsence")}
-                </Menus.Button>
+                <>
+                  <Menus.Button
+                    onClick={handleIncreaseAbsence}
+                    icon={<CalendarPlus className="h-5 w-5" />}
+                  >
+                    {t("menuButtons.increaseAbsence")}
+                  </Menus.Button>
+                  <Menus.Button
+                    onClick={handleDecreaseAbsence}
+                    icon={<CalendarMinus className="h-5 w-5" />}
+                  >
+                    {t("menuButtons.decreaseAbsence")}
+                  </Menus.Button>
+                  <Menus.Button
+                    onClick={handleCheckWarnings}
+                    icon={<IoWarningOutline className="h-5 w-5" />}
+                  >
+                    {t("menuButtons.studentWarnings")}
+                  </Menus.Button>
+                </>
               )}
             </Menus.List>
           </Menus.Menu>

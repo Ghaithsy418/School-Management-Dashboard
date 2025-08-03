@@ -1,0 +1,17 @@
+{
+  "main": {
+    "title": "Settings",
+    "subTitle": "Customize your experience",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "theme": {
+    "title": "Theme",
+    "subTitle": "Choose your preferred appearance"
+  },
+  "moreFeatures": {
+    "title": "More Features Coming Soon",
+    "subTitle": "We're working on additional settings and customization options to enhance your experience."
+  }
+}

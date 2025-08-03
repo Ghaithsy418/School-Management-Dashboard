@@ -45,13 +45,15 @@ function ImagesContainer({ media, createdAt, id }: ImageContainerTypes) {
         <PhotoModal.Window
           createdAt={createdAt}
           addComment={
-            <AddComment
-              event_id={id}
-              bgColor="bg-gray-300"
-              inputBgColor="bg-gray-400/20"
-              hoverInputBgColor="hover:bg-gray-400/50"
-              borderColor="border-gray-700/40"
-            />
+            ui === "report" ? null : (
+              <AddComment
+                event_id={id}
+                bgColor="bg-gray-300 dark:bg-gray-900"
+                inputBgColor="bg-gray-400/20"
+                hoverInputBgColor="hover:bg-gray-400/50"
+                borderColor="border-gray-700/40 dark:border-gray-500/60"
+              />
+            )
           }
         >
           {ui === "report" ? (

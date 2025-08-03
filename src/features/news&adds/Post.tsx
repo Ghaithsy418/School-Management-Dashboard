@@ -10,7 +10,7 @@ interface PostTypes {
 
 function Post({ event }: PostTypes) {
   return (
-    <div className="flex w-[38rem] flex-col bg-gray-50 pt-4">
+    <div className="flex w-[38rem] flex-col bg-gray-50 pt-4 dark:bg-gray-900">
       <PostHead event={event} />
       <PostBody event={event} />
       <PostFooter event={event} />

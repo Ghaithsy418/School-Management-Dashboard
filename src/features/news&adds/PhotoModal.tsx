@@ -134,7 +134,7 @@ function Window({
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           onClick={close}
-          className="absolute top-4 z-20 text-gray-800 hover:opacity-70 ltr:right-4 rtl:left-4"
+          className="absolute top-4 z-20 text-gray-800 hover:opacity-70 ltr:right-4 rtl:left-4 dark:text-gray-100"
         >
           <HiX className="h-10 w-10" />
         </motion.button>
@@ -148,13 +148,13 @@ function Window({
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 35 }}
-          className="flex h-full w-1/3 flex-col bg-[#242526] text-gray-950"
+          className="flex h-full w-1/3 flex-col bg-[#242526] text-gray-950 dark:text-gray-50"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex-1 overflow-y-auto bg-gray-300 p-6">
+          <div className="flex-1 overflow-y-auto bg-gray-300 p-6 dark:bg-gray-900">
             <div className="mb-4 flex items-center">
               <div>
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   {format(createdAt, "dd/MM/yyyy | hh:mm")}
                 </p>
               </div>

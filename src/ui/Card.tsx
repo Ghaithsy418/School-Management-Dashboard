@@ -48,7 +48,9 @@ function Card({ data, userType }: CardTypes) {
             <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">
               {full_name}
             </h3>
-            <p className="text-sm text-slate-500">{email}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-300">
+              {email}
+            </p>
           </div>
           <div className="h-6">
             {subject && (

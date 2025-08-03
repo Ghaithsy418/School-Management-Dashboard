@@ -35,9 +35,9 @@ function CreateClassForm({ onCloseModal }: CreateClassTypes) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-8 rounded-2xl bg-gray-50 p-6"
+      className="flex flex-col gap-8 rounded-2xl p-6"
     >
-      <h2 className="text-2xl font-bold text-slate-800">
+      <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
         {t("createClass.title")}
       </h2>
 

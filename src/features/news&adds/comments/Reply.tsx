@@ -39,19 +39,19 @@ function Reply({ setIsReplying, eventId, parentId }: ReplyTypes) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-2 ml-10 rounded-md border border-gray-300 bg-gray-100 p-3"
+      className="mt-2 ml-10 rounded-md border border-gray-300 bg-gray-100 p-3 dark:border-gray-500 dark:bg-gray-800"
     >
       <input
         {...register("content", { required: "don't let it empty" })}
         placeholder={t("reply.replyNow")}
-        className="mb-2 w-full text-sm text-gray-900 focus:outline-0"
+        className="mb-2 w-full text-sm text-gray-900 focus:outline-0 dark:text-gray-100"
         autoComplete="off"
       />
       <div className="flex gap-2">
         <button
           type="button"
           onClick={() => setIsReplying(false)}
-          className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400"
+          className="rounded bg-gray-300 px-3 py-1 text-[13px] transition-colors hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
         >
           {t("reply.cancel")}
         </button>

@@ -1,12 +1,12 @@
-import { useAttendance } from "@/slices/AttendanceSlice";
+import { useMarks } from "@/slices/MarksManagementSlice";
 import ChooseAttendanceClass from "./ChooseAttendanceClass";
 import ChooseSession from "./ChooseSession";
+import SelectClassFirst from "./SelectClassFirst";
 import StudentsAttendanceTable from "./StudentsAttendanceTable";
 import SubmitAttendance from "./SubmitAttendance";
-import SelectClassFirst from "./SelectClassFirst";
 
 function AttendanceLayout() {
-  const { className } = useAttendance();
+  const { className } = useMarks();
 
   return (
     <div className="grid grid-cols-[0.8fr_1fr] grid-rows-[200px_200px_200px] gap-8 pt-6">

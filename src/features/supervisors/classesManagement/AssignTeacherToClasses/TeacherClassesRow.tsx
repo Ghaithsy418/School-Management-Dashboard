@@ -35,12 +35,14 @@ function TeacherClassesRow({
 
   return (
     <div
-      className={`flex w-full items-center justify-between gap-4 rounded-lg p-3 transition-colors duration-200 ${isChecked ? "bg-indigo-100" : "hover:bg-indigo-50"} `}
+      className={`flex w-full items-center justify-between gap-4 rounded-lg p-3 transition-colors duration-200 ${isChecked ? "bg-indigo-100 dark:bg-slate-600/80" : "hover:bg-indigo-50 dark:hover:bg-slate-600"} `}
     >
-      <p className="font-semibold text-slate-800">{user_info ?? full_name}</p>
+      <p className="font-semibold text-slate-800 dark:text-slate-100">
+        {user_info ?? full_name}
+      </p>
 
       <div className="flex items-center justify-center gap-4">
-        <span className="hidden rounded-full bg-slate-200 px-2.5 py-1 text-xs font-medium text-slate-700 capitalize sm:block">
+        <span className="hidden rounded-full bg-slate-200 px-2.5 py-1 text-xs font-medium text-slate-700 capitalize sm:block dark:bg-slate-400">
           {subject}
         </span>
 

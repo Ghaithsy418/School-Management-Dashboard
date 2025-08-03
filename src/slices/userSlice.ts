@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 interface UserDataTypes {
   token: string;
   user: UserTypes;
+  detectTheme: boolean;
 }
 
 const initialUser = {
@@ -24,6 +25,7 @@ const initialState = {
   user: Cookies.get("userData")
     ? JSON.parse(Cookies.get("userData")!)
     : initialUser,
+  detectTheme: document.documentElement.classList.contains("dark"),
 };
 
 const userSlice = createSlice({
@@ -34,6 +36,9 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
     },
+    setDetectTheme(state, action: PayloadAction<boolean>) {
+      state.detectTheme = action.payload;
+    },
     clearAll(state) {
       state.token = "";
       state.user = initialState.user;
@@ -41,7 +46,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserData, clearAll } = userSlice.actions;
+export const { setUserData, clearAll, setDetectTheme } = userSlice.actions;
 
 export default userSlice.reducer;
 

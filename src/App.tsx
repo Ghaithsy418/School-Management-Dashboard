@@ -43,6 +43,7 @@ function App() {
     user: { role },
   } = useUser();
   useChangeTheme();
+  const { detectTheme } = useUser();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -133,8 +134,12 @@ function App() {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "var(--color-violet-50)",
-            color: "var(--color-gray-950)",
+            backgroundColor: detectTheme
+              ? "var(--color-gray-700)"
+              : "var(--color-gray-50)",
+            color: detectTheme
+              ? "var(--color-gray-100)"
+              : "var(--color-gray-950)",
           },
         }}
       />

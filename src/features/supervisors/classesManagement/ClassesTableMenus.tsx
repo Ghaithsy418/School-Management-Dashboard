@@ -1,6 +1,8 @@
 import Menus from "@/ui/Menus";
 import Modal from "@/ui/Modal";
+import TeacherSvg from "@/ui/TeacherSvg";
 import { ClassTypes } from "@/utils/types";
+import { useTranslation } from "react-i18next";
 import { HiMiniEllipsisVertical } from "react-icons/hi2";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { PiStudent } from "react-icons/pi";
@@ -8,8 +10,6 @@ import UnassignTeacherToClass from "./AssignTeacherToClasses/UnassignTeacherToCl
 import DeleteClass from "./DeleteClass";
 import EditClassForm from "./EditClassForm";
 import ShowClassStudents from "./ShowStudentsForClass/ShowClassStudents";
-import teacherIcon from "/images/teacherIcon.svg";
-import { useTranslation } from "react-i18next";
 
 function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
   const { t } = useTranslation();
@@ -27,11 +27,7 @@ function ClassesTableMenus({ classData }: { classData: ClassTypes }) {
             </Menus.Button>
           </Modal.Open>
           <Modal.Open name="teachersClass">
-            <Menus.Button
-              icon={
-                <img className="h-5 w-5" src={teacherIcon} alt="teacher icon" />
-              }
-            >
+            <Menus.Button icon={<TeacherSvg width="20" height="20" />}>
               {t("menuButtons.teachers")}
             </Menus.Button>
           </Modal.Open>

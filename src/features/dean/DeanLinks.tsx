@@ -1,3 +1,4 @@
+import TeacherSvg from "@/ui/TeacherSvg";
 import { Newspaper } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -5,7 +6,6 @@ import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
-import teacherIcon from "/images/teacherIcon.svg";
 
 function DeanLinks() {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ function DeanLinks() {
       {
         title: t("sidebar.teachers"),
         value: "teachers",
-        icon: <img src={teacherIcon} className="h-7 w-7" alt="teacher icon" />,
+        icon: <TeacherSvg width="28" height="28" />,
         immediateLink: false,
       },
       {

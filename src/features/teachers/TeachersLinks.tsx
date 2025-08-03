@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
-import MarksIcon from "/images/MarksIcon.svg";
 
 function TeachersLinks() {
   const { t } = useTranslation();
@@ -32,7 +31,36 @@ function TeachersLinks() {
         title: t("sidebar.marks"),
         value: "marks",
         icon: (
-          <img src={MarksIcon} alt="marks icon" className="h-[30px] w-[29px]" />
+          <svg
+            viewBox="6 0 90 90"
+            width="28"
+            height="32"
+            className="fill-gray-950 stroke-gray-950 dark:fill-gray-50 dark:stroke-gray-50"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="15"
+              y="10"
+              width="70"
+              height="80"
+              rx="4"
+              ry="4"
+              fill="none"
+              strokeWidth="5"
+            />
+            <text
+              x="30"
+              y="42"
+              fontFamily="Arial, Helvetica, sans-serif"
+              fontSize="28"
+              fontWeight="bold"
+            >
+              A+
+            </text>
+            <line x1="25" y1="60" x2="75" y2="60" strokeWidth="5" />
+            <line x1="25" y1="70" x2="75" y2="70" strokeWidth="5" />
+            <line x1="25" y1="80" x2="55" y2="80" strokeWidth="5" />
+          </svg>
         ),
         immediateLink: false,
       },

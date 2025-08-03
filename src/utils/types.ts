@@ -5,6 +5,7 @@ export interface StudentTypes {
   class_name: string;
   class_id: number;
   gpa: number;
+  absences_number: number;
   email: string;
   phone: string;
   photo: string;

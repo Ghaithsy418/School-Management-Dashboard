@@ -6,6 +6,7 @@
     "id": "ID",
     "class": "Class",
     "gpa": "GPA",
+    "absenceNumber": "Absences Number",
     "contact": "Contact",
     "sortBy": "Sort by",
     "asc": "Ascending (A-Z)",
