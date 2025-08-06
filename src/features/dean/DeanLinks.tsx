@@ -7,9 +7,14 @@ import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import { VscFeedback } from "react-icons/vsc";
 import NavList from "../../ui/NavList";
+import IconNumber from "@/ui/IconNumber";
+import { useGetUnSeenComplaints } from "./complaints/useGetUnSeenComplaints";
 
 function DeanLinks() {
   const { t } = useTranslation();
+  const { unSeenComplaints } = useGetUnSeenComplaints();
+  console.log(unSeenComplaints);
+
   const buttons = useMemo(
     () => [
       {
@@ -39,7 +44,15 @@ function DeanLinks() {
       {
         title: t("sidebar.complaints"),
         value: "complaints",
-        icon: <VscFeedback className="h-6 w-6" />,
+        icon: (
+          <IconNumber
+            number={unSeenComplaints || 0}
+            className="h-6 w-6"
+            numberOffset="-right-2 -top-1.5"
+          >
+            <VscFeedback className="h-6 w-6" />
+          </IconNumber>
+        ),
         immediateLink: false,
       },
       {
@@ -55,7 +68,7 @@ function DeanLinks() {
         immediateLink: false,
       },
     ],
-    [t],
+    [t, unSeenComplaints],
   );
 
   return <NavList buttons={buttons} role="dean" />;

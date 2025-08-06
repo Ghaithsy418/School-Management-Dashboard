@@ -23,3 +23,27 @@ export async function updateComplaint(body: {
 }) {
   return fetcher({ url: "/api/updateComplaint", method: "POST", body });
 }
+
+export async function getUnSeenComplaints() {
+  return fetcher({ url: "/api/getUnSeenComplaints", method: "GET" });
+}
+
+export async function getAllComplaints(body: { withTrash: boolean }) {
+  return fetcher({ url: "/api/getAllComplaints", method: "POST", body });
+}
+
+export async function markComplaintAsSeen(body: { id: number }) {
+  return fetcher({
+    url: "/api/seenAt",
+    method: "POST",
+    body: { ids: [body.id] },
+  });
+}
+
+export async function modifyComplaint(body: {
+  complaint_id: number;
+  status?: string;
+  priority?: string;
+}) {
+  return fetcher({ url: "/api/modifyComplaint", method: "POST", body });
+}

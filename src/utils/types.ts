@@ -146,3 +146,14 @@ export interface ComplaintTypes {
   category: string;
   complaint: string;
 }
+
+export interface AllComplaintTypes {
+  complaint_id: number;
+  category: string;
+  complaint: string;
+  status: string;
+  priority: string;
+  seen_at: string | null;
+  full_name: string;
+  created_at: string;
+}
