@@ -12,7 +12,8 @@
     "subjects": "Subjects",
     "newsAndAdds": "News & Adds",
     "marks": "Marks",
-    "attendance": "Attendance"
+    "attendance": "Attendance",
+    "complaints": "Complaints"
   },
   "cards": {
     "cardButton": "View Profile"

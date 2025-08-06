@@ -140,3 +140,9 @@ export interface StudentMarksBranchesTypes<T> {
   "mid-term": T[];
   final: T[];
 }
+
+export interface ComplaintTypes {
+  id?: number;
+  category: string;
+  complaint: string;
+}

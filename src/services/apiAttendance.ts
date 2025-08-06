@@ -8,11 +8,11 @@ export async function submitDailyReports() {
   return fetcher({ url: "/api/submitDailyReports", method: "POST" });
 }
 
-export async function studentsAttendanceForm(body: { className: string }) {
+export async function studentsAttendanceForm(body: { class: string }) {
   return fetcher({
     url: "/api/studentsAttendanceForm",
     method: "POST",
-    body: { class: body.className },
+    body: { class: body.class },
   });
 }
 

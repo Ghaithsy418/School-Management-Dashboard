@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
+import { VscFeedback } from "react-icons/vsc";
 import NavList from "../../ui/NavList";
 
 function DeanLinks() {
@@ -33,6 +34,12 @@ function DeanLinks() {
         title: t("sidebar.supervisors"),
         value: "supervisors",
         icon: <MdOutlineSupervisorAccount className="h-7 w-7" />,
+        immediateLink: false,
+      },
+      {
+        title: t("sidebar.complaints"),
+        value: "complaints",
+        icon: <VscFeedback className="h-6 w-6" />,
         immediateLink: false,
       },
       {

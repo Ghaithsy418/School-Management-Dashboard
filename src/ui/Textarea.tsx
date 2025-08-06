@@ -53,7 +53,7 @@ function Textarea<T extends FieldValues>({
         {label}
       </label>
       {error && (
-        <div className="absolute -bottom-6 flex items-center gap-1 text-xs text-red-600 ltr:right-3 rtl:left-3">
+        <div className="absolute -bottom-4 flex items-center gap-1 text-xs text-red-600 ltr:right-3 rtl:left-3">
           <HiExclamationCircle className="h-4 w-4" />
           <span>{error}</span>
         </div>

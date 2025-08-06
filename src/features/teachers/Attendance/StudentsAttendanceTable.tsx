@@ -10,9 +10,11 @@ import StudentAttendanceRow from "./StudentAttendanceRow";
 import { useGetStudentsAttendanceForm } from "./useGetStudentsAttendanceForm";
 import { useDispatch } from "react-redux";
 import Empty from "@/ui/Empty";
+import { useMarks } from "@/slices/MarksManagementSlice";
 
 function StudentsAttendanceTable() {
-  const { className, selectAll } = useAttendance();
+  const { selectAll } = useAttendance();
+  const { className } = useMarks();
   const dispatch = useDispatch();
   const { studentsAttendanceForm, isGettingAttendanceForm } =
     useGetStudentsAttendanceForm(className);

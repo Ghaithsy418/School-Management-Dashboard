@@ -28,6 +28,7 @@ import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import { useChangeTheme } from "./hooks/useChangeTheme";
+import Complaints from "./pages/Complaints";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -76,6 +77,7 @@ function App() {
                   <Route path="add-a-student" element={<AddStudents />} />
                   <Route path=":id" element={<Student />} />
                 </Route>
+                <Route path="complaints" element={<Complaints />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
             )}

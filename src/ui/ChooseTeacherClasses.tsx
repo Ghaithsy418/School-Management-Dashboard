@@ -9,10 +9,12 @@ import {
 } from "@/components/ui/select";
 import { useGetTeacherClasses } from "@/features/teachers/attendance/useGetTeacherClasses";
 import { setClassName } from "@/slices/AttendanceSlice";
+import { useMarks } from "@/slices/MarksManagementSlice";
 import { useDispatch } from "react-redux";
 
 function ChooseTeacherClasses() {
   const dispatch = useDispatch();
+  const { className } = useMarks();
   const { classes, isGettingClasses } = useGetTeacherClasses();
 
   return (
@@ -25,7 +27,7 @@ function ChooseTeacherClasses() {
           placeholder={
             isGettingClasses
               ? `Loading Classes...`
-              : "Click to select a class..."
+              : (className ?? "Click to select a class...")
           }
         />
       </SelectTrigger>

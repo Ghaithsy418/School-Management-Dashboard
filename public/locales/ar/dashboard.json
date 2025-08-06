@@ -12,7 +12,8 @@
     "subjects": "المواد الدراسية",
     "newsAndAdds": "الأخبار والإعلانات",
     "marks": "العلامات",
-    "attendance": "الحضور"
+    "attendance": "الحضور",
+    "complaints": "الشكاوي"
   },
   "cards": {
     "cardButton": "عرض الملف الشخصي"
