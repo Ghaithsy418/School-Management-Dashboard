@@ -56,9 +56,16 @@ function ClassesMarksLayout({ semester }: { semester: string }) {
       <div className="flex w-full flex-col items-start justify-center gap-5">
         {((marks?.final && activeTab === "final") ||
           (marks?.["mid-term"] && activeTab === "mid-term")) && (
-          <h3 className="ml-4 text-4xl font-bold capitalize">
-            📚 {currentUser?.profile_data?.subject}
-          </h3>
+          <div className="flex w-full items-center justify-between">
+            <h3 className="ml-4 text-4xl font-bold capitalize">
+              📚 {currentUser?.profile_data?.subject}
+            </h3>
+            {marks?.[activeTab as keyof typeof marks]?.[0]?.max_mark && (
+              <p className="mr-2 font-semibold text-indigo-600">
+                Out Of {marks?.[activeTab as keyof typeof marks]?.[0].max_mark}
+              </p>
+            )}
+          </div>
         )}
         <div className="w-full space-y-3">
           {marks?.[activeTab as keyof typeof marks] ? (

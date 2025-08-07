@@ -41,7 +41,7 @@ function StudentsTable() {
       <Table.Body
         data={filteredStudents}
         render={(student: StudentTypes) => (
-          <Table.Row key={student?.student_id}>
+          <Table.Row key={student?.user_id}>
             <StudentsRow student={student} />
           </Table.Row>
         )}

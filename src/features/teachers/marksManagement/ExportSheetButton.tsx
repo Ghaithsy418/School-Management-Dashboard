@@ -1,11 +1,27 @@
+import SmallSpinner from "@/ui/SmallSpinner";
 import SubmitButton from "@/ui/SubmitButton";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
+import { useUploadExcelSheet } from "./useUploadExcelSheet";
 
 function ExportSheetButton() {
   const ref = useRef<HTMLInputElement | null>(null);
+  const { uploadExcelMutation, isUploadingExcel } = useUploadExcelSheet();
+
+  function handleSelect(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.files?.[0])
+      uploadExcelMutation({ excel_file: e.target.files?.[0] });
+    e.target.value = "";
+  }
+
   return (
     <>
-      <input ref={ref} hidden type="file" accept=".xlsx" />
+      <input
+        onChange={(e) => handleSelect(e)}
+        ref={ref}
+        hidden
+        type="file"
+        accept=".xlsx"
+      />
       <SubmitButton
         colorFrom="from-rose-600"
         colorTo="to-rose-700"
@@ -16,7 +32,7 @@ function ExportSheetButton() {
         className="font-medium"
         onClick={() => ref?.current?.click()}
       >
-        Upload Excel Sheet
+        {isUploadingExcel ? <SmallSpinner /> : "Upload Excel Sheet"}
       </SubmitButton>
     </>
   );
