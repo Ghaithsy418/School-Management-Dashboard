@@ -1,6 +1,8 @@
 import { getAllComplaints } from "@/services/apiComplaints";
 import { AllComplaintTypes } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
+import { useFilterComplaintsStatus } from "./useFilterComplaintsStatus";
+import { useFilterComplaintsPriority } from "./useFilterComplaintsPriority";
 
 interface AllComplaintsTypes {
   data: {
@@ -10,7 +12,7 @@ interface AllComplaintsTypes {
   };
 }
 
-export const useGetAllComplaints = function (withTrash: boolean) {
+export const useGetAllComplaints = function (withTrash: string) {
   const { data, isLoading: isGettingComplaints } = useQuery<AllComplaintsTypes>(
     {
       queryKey: ["allComplaints", withTrash],
@@ -18,8 +20,14 @@ export const useGetAllComplaints = function (withTrash: boolean) {
     },
   );
 
+  const complaints = data?.data ? Object.values(data.data).flat() : [];
+  const filteredStatusComplaints = useFilterComplaintsStatus(complaints);
+  const filteredPriorityComplaints = useFilterComplaintsPriority(
+    filteredStatusComplaints,
+  );
+
   return {
-    complaints: data?.data ? Object.values(data.data).flat() : [],
+    complaints: filteredPriorityComplaints,
     isGettingComplaints,
   };
 };

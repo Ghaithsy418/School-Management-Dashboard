@@ -1,15 +1,19 @@
+import Spinner from "@/ui/Spinner";
 import { useState } from "react";
 import ComplaintItem from "./ComplaintItem";
-import { useGetUnSeenComplaints } from "./useGetUnSeenComplaints";
+import FilterComplaints from "./FilterComplaints";
 import { useGetAllComplaints } from "./useGetAllComplaints";
-import Spinner from "@/ui/Spinner";
 import { useMarkAsSeen } from "./useMarkAsSeen";
+import Empty from "@/ui/Empty";
+import { useComplaints } from "@/slices/complaintsSlice";
 
 const ComplaintLayout = () => {
+  const { ui } = useComplaints();
   const [expandedId, setExpandedId] = useState(0);
-  const { unSeenComplaints } = useGetUnSeenComplaints();
   const { markSeenComplaintMutation } = useMarkAsSeen();
-  const { complaints, isGettingComplaints } = useGetAllComplaints(false);
+  const { complaints, isGettingComplaints } = useGetAllComplaints(
+    ui === "withoutTrash" ? "no" : "yes",
+  );
 
   const handleToggle = (id: number) => {
     const newExpandedId = expandedId === id ? 0 : id;
@@ -27,25 +31,21 @@ const ComplaintLayout = () => {
 
   return (
     <div className="mx-auto my-10 w-full overflow-hidden rounded-xl border border-slate-200 bg-white font-sans shadow-sm">
-      <header className="flex items-center justify-between border-b border-slate-200 p-5">
-        <h1 className="text-xl font-bold text-slate-800">
-          Complaint Management
-        </h1>
-        <div className="rounded-full bg-blue-600 px-3 py-1 text-sm font-semibold text-white">
-          New ({unSeenComplaints})
-        </div>
-      </header>
-
-      <main className="p-2">
-        {complaints?.map((complaint) => (
-          <ComplaintItem
-            key={complaint.complaint_id}
-            complaint={complaint}
-            isExpanded={expandedId === complaint.complaint_id}
-            onToggle={() => handleToggle(complaint.complaint_id)}
-          />
-        ))}
-      </main>
+      {ui === "withoutTrash" && <FilterComplaints />}
+      <section className="p-2">
+        {complaints && complaints?.length !== 0 ? (
+          complaints?.map((complaint) => (
+            <ComplaintItem
+              key={complaint.complaint_id}
+              complaint={complaint}
+              isExpanded={expandedId === complaint.complaint_id}
+              onToggle={() => handleToggle(complaint.complaint_id)}
+            />
+          ))
+        ) : (
+          <Empty resource="complaints" className="border-white" />
+        )}
+      </section>
     </div>
   );
 };

@@ -28,7 +28,7 @@ export async function getUnSeenComplaints() {
   return fetcher({ url: "/api/getUnSeenComplaints", method: "GET" });
 }
 
-export async function getAllComplaints(body: { withTrash: boolean }) {
+export async function getAllComplaints(body: { withTrash: string }) {
   return fetcher({ url: "/api/getAllComplaints", method: "POST", body });
 }
 
@@ -46,4 +46,21 @@ export async function modifyComplaint(body: {
   priority?: string;
 }) {
   return fetcher({ url: "/api/modifyComplaint", method: "POST", body });
+}
+
+export async function restoreComplaint(body: { complaint_id: number }) {
+  console.log(body);
+  return fetcher({
+    url: "/api/restore",
+    method: "POST",
+    body,
+  });
+}
+
+export async function deleteComplaintDean(body: { complaint_id: number }) {
+  return fetcher({
+    url: "/api/softDeleteComplaint",
+    method: "DELETE",
+    body: { complaint_ids: [body.complaint_id] },
+  });
 }

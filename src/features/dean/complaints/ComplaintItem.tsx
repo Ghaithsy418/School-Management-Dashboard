@@ -1,9 +1,13 @@
 import { detectStatus } from "@/utils/detectStatus";
 import { AllComplaintTypes } from "@/utils/types";
-import { AnimatePresence, motion } from "framer-motion";
-import { Check, ChevronDown, X } from "lucide-react";
 import { format } from "date-fns";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import MarkAsButtons from "./MarkAsButtons";
 import Priorities from "./Priorities";
+import { useComplaints } from "@/slices/complaintsSlice";
+import RestoreComplaint from "./RestoreComplaint";
+import DeleteComplaintDean from "./DeleteComplaintDean";
 
 interface ComplaintItemTypes {
   complaint: AllComplaintTypes;
@@ -16,6 +20,7 @@ const ComplaintItem = ({
   isExpanded,
   onToggle,
 }: ComplaintItemTypes) => {
+  const { ui } = useComplaints();
   const {
     category,
     seen_at,
@@ -31,35 +36,30 @@ const ComplaintItem = ({
   const statusObject = detectStatus(status);
 
   return (
-    <div className="border-b border-slate-200/80 last:border-b-0">
+    <div className="rounded-lg border border-slate-200/80 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-800/20">
       <header
-        className={`flex cursor-pointer items-center justify-between p-4 transition-colors ${isExpanded ? "bg-slate-100/80 dark:bg-slate-800" : "bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/60"}`}
+        className={`flex cursor-pointer items-center justify-between p-4 transition-colors duration-200 ${isExpanded ? "bg-slate-100 dark:bg-slate-800" : "bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/60"} ${isUnseen && !isExpanded ? "border-l-4 border-blue-500 pl-3" : "border-l-4 border-transparent"} `}
         onClick={onToggle}
       >
-        <div className="flex flex-grow items-center gap-4">
-          {isUnseen && (
-            <div
-              className="h-2.5 w-2.5 flex-shrink-0 rounded-full bg-blue-500"
-              title="New Complaint"
-            />
-          )}
-          <span
-            className={`text-lg font-semibold text-slate-900 dark:text-slate-100 ${!isUnseen && "ml-[26px]"}`}
-          >
+        <div className="flex flex-grow items-center gap-3">
+          <span className="text-lg font-semibold text-slate-800 dark:text-slate-100">
             {category}
           </span>
         </div>
-        <div className="flex items-center gap-4 pr-4">
-          <div
-            className={`rounded-md px-2.5 py-1 text-xs font-medium capitalize ${statusObject?.color} ${statusObject?.bgColor}`}
-          >
-            {status}
-          </div>
+
+        <div className="flex items-center gap-4">
+          {ui === "withoutTrash" && (
+            <div
+              className={`rounded-full px-3 py-1 text-xs font-medium capitalize ${statusObject?.color} ${statusObject?.bgColor}`}
+            >
+              {status}
+            </div>
+          )}
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
-            className="flex-shrink-0"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <ChevronDown className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+            <ChevronDown className="h-5 w-5 text-slate-500 dark:text-slate-400" />
           </motion.div>
         </div>
       </header>
@@ -76,43 +76,44 @@ const ComplaintItem = ({
               collapsed: { opacity: 0, height: 0 },
             }}
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="overflow-hidden bg-slate-50 dark:bg-slate-800/50"
+            className="overflow-hidden border-t border-slate-200/90 bg-slate-50/80 dark:border-slate-700/80 dark:bg-slate-800/50"
           >
-            <div className="space-y-6 p-6 pl-12 text-slate-700 dark:text-slate-300">
-              <p className="leading-relaxed">{complaintDescription}</p>
+            <div className="space-y-5 p-6">
+              <p className="leading-relaxed text-slate-700 dark:text-slate-300">
+                {complaintDescription}
+              </p>
 
-              <div className="border-t border-dashed border-slate-300 pt-4 text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                Submitted by:{" "}
-                <strong className="font-semibold text-slate-600 dark:text-slate-300">
+              <div className="text-sm text-slate-500 dark:text-slate-400">
+                Submitted by{" "}
+                <strong className="font-semibold text-slate-700 dark:text-slate-300">
                   {full_name}
                 </strong>{" "}
-                <span className="text-xs">
-                  at {format(created_at, "dd/MM/yyyy")}
-                </span>
+                on{" "}
+                <time dateTime={new Date(created_at).toISOString()}>
+                  {format(new Date(created_at), "MMMM d, yyyy hh:mm a")}
+                </time>
               </div>
 
-              {status !== "resolved" && status !== "rejected" && (
-                <div className="space-y-3">
-                  <p className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-                    Actions
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <button className="flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none">
-                      <Check className="h-4 w-4" />
-                      Mark as Resolved
-                    </button>
-                    <button className="flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none">
-                      <X className="h-4 w-4" />
-                      Mark as Rejected
-                    </button>
-                  </div>
-                </div>
-              )}
-              <Priorities
-                priority={priority}
-                complaint_id={complaint_id}
-                status={status}
-              />
+              <div className="flex flex-wrap items-center justify-around gap-3 border-t border-dashed border-slate-300 pt-4 dark:border-slate-700">
+                {status !== "resolved" &&
+                  status !== "rejected" &&
+                  ui === "withoutTrash" && (
+                    <MarkAsButtons complaint_id={complaint_id} />
+                  )}
+                {ui === "withoutTrash" && (
+                  <Priorities
+                    priority={priority}
+                    complaint_id={complaint_id}
+                    status={status}
+                  />
+                )}
+                {ui === "withoutTrash" && (
+                  <DeleteComplaintDean complaint_id={complaint_id} />
+                )}
+                {ui === "trashedOnly" && (
+                  <RestoreComplaint complaint_id={complaint_id} />
+                )}
+              </div>
             </div>
           </motion.section>
         )}

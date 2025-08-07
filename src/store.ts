@@ -7,6 +7,7 @@ import attendanceReducer from "@/slices/AttendanceSlice";
 import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
 import marksReducer from "@/slices/MarksManagementSlice";
 import commentsReducer from "@/slices/commentsSlice";
+import complaintsReducer from "@/slices/complaintsSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     supervisorAttendace: supervisorAttendanceReducer,
     marks: marksReducer,
     comments: commentsReducer,
+    complaints: complaintsReducer,
   },
 });
 

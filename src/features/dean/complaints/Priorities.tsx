@@ -11,7 +11,8 @@ interface PrioritiesTypes {
 function Priorities({ priority, complaint_id, status }: PrioritiesTypes) {
   const [thePriority, setThePriority] = useState(priority);
   const queryClient = useQueryClient();
-  const { modifyComplaintMutation } = useModifyComplaint();
+  const { modifyComplaintMutation, isModifyingComplaint } =
+    useModifyComplaint();
 
   function handleClick(p: string) {
     setThePriority(p);
@@ -37,7 +38,8 @@ function Priorities({ priority, complaint_id, status }: PrioritiesTypes) {
           <button
             key={p}
             onClick={() => handleClick(p)}
-            className={`rounded-md px-4 py-2 text-sm font-semibold capitalize transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none ${
+            disabled={isModifyingComplaint}
+            className={`rounded-md px-4 py-2 text-sm font-semibold capitalize transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed ${
               thePriority === p
                 ? "bg-slate-800 text-white shadow-sm dark:bg-blue-600"
                 : "bg-white text-slate-700 ring-1 ring-slate-300 ring-inset hover:bg-slate-100 dark:bg-slate-700 dark:text-slate-200 dark:ring-slate-600 dark:hover:bg-slate-600"

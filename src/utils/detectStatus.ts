@@ -1,8 +1,8 @@
 export function detectStatus(status: string) {
   if (status === "pending")
     return {
-      color: "text-slate-100",
-      bgColor: "bg-slate-600",
+      color: "text-blue-100",
+      bgColor: "bg-blue-600",
     };
   if (status === "processing")
     return {
