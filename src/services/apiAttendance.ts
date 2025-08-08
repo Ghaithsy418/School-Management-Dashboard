@@ -16,6 +16,17 @@ export async function studentsAttendanceForm(body: { class: string }) {
   });
 }
 
+export async function submitStudentsAttendance(body: {
+  session: number;
+  students: { studentId: number }[];
+}) {
+  return fetcher({
+    url: "/api/studentsAttendanceSubmit",
+    method: "POST",
+    body,
+  });
+}
+
 export async function increaseAbsence(body: { studentId: number }) {
   return fetcher({ url: "/api/incrementStudentAbsence", method: "POST", body });
 }

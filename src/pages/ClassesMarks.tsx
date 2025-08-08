@@ -1,6 +1,6 @@
 import MarksProfile from "@/features/students/MarksProfile";
 import SelectClassFirst from "@/features/teachers/attendance/SelectClassFirst";
-import ChooseTeacherClass from "@/features/teachers/marksManagement/ChooseTeacherClass";
+import ChooseClassMarks from "@/features/teachers/marksManagement/ChooseClassMarks";
 import ClassesMarksLayout from "@/features/teachers/marksManagement/classesMarks/ClassesMarksLayout";
 import { useMarks } from "@/slices/MarksManagementSlice";
 import { useState } from "react";
@@ -22,7 +22,7 @@ function ClassesMarks() {
           <h2 className="text-4xl font-bold">Classes Marks</h2>
         </div>
         <div className="mt-2 w-72">
-          <ChooseTeacherClass />
+          <ChooseClassMarks />
         </div>
       </div>
       <div className="py-6">

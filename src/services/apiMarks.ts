@@ -13,6 +13,14 @@ export async function getEmptySheet(body: {
   });
 }
 
+export async function getPreviousExcel(body: { classId: number }) {
+  return fetcher({
+    url: "/api/browseOldExcelFiles",
+    method: "POST",
+    body: { class_id: body.classId },
+  });
+}
+
 export async function uploadExcelSheet(
   body: { excel_file: File },
   token: string,

@@ -1,8 +1,9 @@
 import { PiMicrosoftExcelLogoLight } from "react-icons/pi";
+import ChooseClassEmptyExcel from "./ChooseClassMarks";
 import ChooseSemester from "./ChooseSemester";
-import ChooseTeacherClass from "./ChooseTeacherClass";
 import ChooseType from "./ChooseType";
 import GetEmptySheetButton from "./GetEmptySheetButton";
+import GetPreviousExcelFiles from "./GetPreviousExcelFiles";
 
 function GetEmptySheet() {
   return (
@@ -20,10 +21,13 @@ function GetEmptySheet() {
           </p>
         </div>
       </div>
-      <ChooseTeacherClass />
+      <ChooseClassEmptyExcel />
       <ChooseSemester />
       <ChooseType />
-      <GetEmptySheetButton />
+      <div className="flex w-full flex-col gap-4">
+        <GetEmptySheetButton />
+        <GetPreviousExcelFiles />
+      </div>
     </div>
   );
 }

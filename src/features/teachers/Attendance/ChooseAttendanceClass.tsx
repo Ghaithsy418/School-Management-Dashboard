@@ -1,20 +1,28 @@
 import UiCardSection from "@/ui/UiCardSection";
 import { HiSelector } from "react-icons/hi";
-import ChooseTeacherClass from "../marksManagement/ChooseTeacherClass";
+import ChooseTeacherClass from "../../../ui/ChooseTeacherClass";
+import { setClassName, useAttendance } from "@/slices/AttendanceSlice";
+import { useDispatch } from "react-redux";
 
 function ChooseAttendanceClass() {
+  const { className } = useAttendance();
+  const dispatch = useDispatch();
+
+  function defineClassName(value: string) {
+    const splitedValue = value.split("_");
+    dispatch(setClassName(splitedValue?.[1]));
+  }
+
   return (
-    <div className="col-start-2 col-end-3 row-start-1 row-end-2">
-      <UiCardSection
-        title="1. Choose Class"
-        subTitle="Select a Class to see Students"
-        icon={<HiSelector className="h-6 w-6" />}
-        iconColor="text-rose-600"
-        iconBackgroundColor="bg-rose-100"
-      >
-        <ChooseTeacherClass />
-      </UiCardSection>
-    </div>
+    <UiCardSection
+      title="1. Choose Class"
+      subTitle="Select a Class to see Students"
+      icon={<HiSelector className="h-6 w-6" />}
+      iconColor="text-rose-600"
+      iconBackgroundColor="bg-rose-100"
+    >
+      <ChooseTeacherClass className={className} defineClass={defineClassName} />
+    </UiCardSection>
   );
 }
 

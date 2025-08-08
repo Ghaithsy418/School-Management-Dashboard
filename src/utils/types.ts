@@ -157,3 +157,8 @@ export interface AllComplaintTypes {
   full_name: string;
   created_at: string;
 }
+
+export interface StudentAttendaceTypes {
+  studentName: string;
+  studentId: number;
+}

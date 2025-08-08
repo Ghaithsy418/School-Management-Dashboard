@@ -1,5 +1,6 @@
 import { getEmptySheet } from "@/services/apiMarks";
 import { useMarks } from "@/slices/MarksManagementSlice";
+import { downloadFile } from "@/utils/donwloadFile";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -16,17 +17,4 @@ export const useGetEmptySheet = function () {
     });
 
   return { getEmptySheetMutation, isGettingEmptySheet };
-};
-
-const downloadFile = function (url: string) {
-  //to Download a File via link
-  const link = document.createElement("a");
-  link.href = url;
-
-  const urlParts = url.split("/");
-  link.download = urlParts[urlParts.length - 1] || "ExcelSheetTemplate";
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 };

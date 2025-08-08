@@ -2,9 +2,12 @@ import { useAttendance } from "@/slices/AttendanceSlice";
 import Button from "@/ui/Button";
 import UiCardSection from "@/ui/UiCardSection";
 import { Send } from "lucide-react";
+import { useSubmitStudentsAttendance } from "./useSubmitStudentsAttendance";
 
 function SubmitAttendance() {
   const { className, session, students } = useAttendance();
+  const { submitAttendanceMutation, isSubmittingAttendance } =
+    useSubmitStudentsAttendance();
 
   return (
     <UiCardSection
@@ -16,12 +19,13 @@ function SubmitAttendance() {
     >
       <div className="place-self-end px-3">
         <Button
+          onClick={() => submitAttendanceMutation({ session, students })}
           disabled={!className || !session || students.length === 0}
           color="text-purple-50"
           backgroundColor="bg-purple-600"
           backgroundHover="hover:bg-purple-700"
         >
-          Submit
+          {isSubmittingAttendance ? "Submitting..." : "Submit"}
         </Button>
       </div>
     </UiCardSection>

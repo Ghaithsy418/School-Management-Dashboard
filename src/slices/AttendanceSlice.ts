@@ -21,10 +21,13 @@ const attendanceSlice = createSlice({
       (state.students as studentType[]).push(action.payload);
     },
     removeStudent(state, action: PayloadAction<number>) {
-      state.students.filter(
+      state.students = state.students.filter(
         (student: { studentId: number }) =>
           student.studentId !== action.payload,
       );
+    },
+    removeAllStudents(state) {
+      state.students = [];
     },
     setSession(state, action: PayloadAction<number>) {
       state.session = action.payload;
@@ -34,6 +37,12 @@ const attendanceSlice = createSlice({
     },
     changeSelectAll(state) {
       state.selectAll = !state.selectAll;
+    },
+    clearAll(state) {
+      state.className = initialState.className;
+      state.selectAll = initialState.selectAll;
+      state.session = initialState.session;
+      state.students = initialState.students;
     },
   },
 });
@@ -45,7 +54,9 @@ export const {
   setSession,
   pushStudent,
   removeStudent,
+  removeAllStudents,
   changeSelectAll,
+  clearAll,
 } = attendanceSlice.actions;
 
 export const useAttendance = () =>
