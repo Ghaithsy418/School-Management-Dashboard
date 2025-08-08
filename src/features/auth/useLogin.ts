@@ -19,7 +19,7 @@ export function useLogin() {
         secure: true,
         sameSite: "strict",
       });
-      dispatch(setUserData({ user: data.user, token }));
+      dispatch(setUserData({ user: data.user, token, detectTheme: false }));
       toast.success("You have loged in Successfully!");
       navigate("/", { replace: true });
     },
