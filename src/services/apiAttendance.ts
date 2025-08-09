@@ -49,3 +49,7 @@ export async function checkStudentsAbsence(body: {
 export async function checkStudentWarnings(body: { studentId: number }) {
   return fetcher({ url: "/api/checkStudentWarnings", method: "POST", body });
 }
+
+export async function checkJustifications() {
+  return fetcher({ url: "/api/checkJustifications", method: "GET" });
+}
