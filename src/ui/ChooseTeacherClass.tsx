@@ -17,21 +17,23 @@ interface ChooseClassTypes {
 function ChooseTeacherClass({ className, defineClass }: ChooseClassTypes) {
   const { classes, isGettingClasses } = useGetTeacherClasses();
 
+  function definePlaceholder() {
+    if (isGettingClasses) return "Loading Classes...";
+    else {
+      if (classes?.length === 0)
+        return "You are not teaching any class right now";
+      else if (className === "") return "Click to select a class...";
+      else return className;
+    }
+  }
+
   return (
     <Select onValueChange={(e) => defineClass(e)}>
       <SelectTrigger
         disabled={isGettingClasses}
         className="!h-12 w-full text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 disabled:cursor-not-allowed"
       >
-        <SelectValue
-          placeholder={
-            isGettingClasses
-              ? `Loading Classes...`
-              : className !== ""
-                ? className
-                : "Click to select a class..."
-          }
-        />
+        <SelectValue placeholder={definePlaceholder()} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

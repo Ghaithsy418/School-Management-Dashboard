@@ -162,3 +162,8 @@ export interface StudentAttendaceTypes {
   studentName: string;
   studentId: number;
 }
+
+export interface StudentsAbsenceTypes {
+  session: number;
+  students: { studentId: number; full_name: string }[];
+}

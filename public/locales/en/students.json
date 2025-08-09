@@ -43,7 +43,11 @@
     "phone": "Phone Number",
     "excellent": "Excellent",
     "good": "Good",
-    "needsImprovements": "Needs Improvements"
+    "needsImprovements": "Needs Improvements",
+    "role": "Role",
+    "subject": "Subject",
+    "salary": "Salary",
+    "myProfileTitle": "My Profile"
   },
   "profileMap": {
     "profile": "Profile",

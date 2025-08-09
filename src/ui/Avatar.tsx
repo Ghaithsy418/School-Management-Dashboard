@@ -1,9 +1,13 @@
 import { useGetCurrentUser } from "@/hooks/useGetCurrentUser";
 import AvatarGenerator from "./AvatarGenerator";
 import { Link } from "react-router-dom";
+import { useUser } from "@/slices/userSlice";
 
 function Avatar() {
   const { currentUser, isGettingCurrentUser } = useGetCurrentUser();
+  const {
+    user: { role },
+  } = useUser();
 
   if (isGettingCurrentUser)
     return <h3 className="font-semibold">Loading...</h3>;
@@ -13,7 +17,7 @@ function Avatar() {
 
   return (
     <Link
-      to="/profile"
+      to={`${role}/myProfile`}
       className="transition-all duration-300 hover:text-indigo-700"
     >
       <div className="flex items-center justify-center gap-3">

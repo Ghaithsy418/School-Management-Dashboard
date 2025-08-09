@@ -3,6 +3,7 @@ import { useCheckStudentsAbsence } from "./useCheckStudentsAbsence";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
 import { isToday } from "date-fns";
+import AbsenceDashboard from "./StudentsAbsenceItems";
 
 function AbsenceList() {
   const { className, day } = useSupervisorAttendance();
@@ -17,7 +18,7 @@ function AbsenceList() {
       <Empty resource={`absences ${isToday(day) ? "today" : `in ${day}`}`} />
     );
 
-  return <div>AbsenceList</div>;
+  return <AbsenceDashboard absences={studentsAbsence} />;
 }
 
 export default AbsenceList;

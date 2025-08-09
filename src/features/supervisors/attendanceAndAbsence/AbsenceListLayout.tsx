@@ -11,7 +11,7 @@ function AbsenceListLayout() {
   }
 
   return (
-    <div className="flex w-full flex-col items-start justify-center gap-8">
+    <div className="flex w-full flex-col items-start justify-center gap-4">
       <button onClick={handleClick}>
         <IoIosArrowRoundBack className="h-8 w-8 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
       </button>

@@ -29,6 +29,7 @@ import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import { useChangeTheme } from "./hooks/useChangeTheme";
 import Complaints from "./pages/Complaints";
+import MyProfilePage from "./pages/MyProfilePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -97,6 +98,7 @@ function App() {
                 <Route path="timetables" element={<TimeTablesManagement />} />
                 <Route path="classes" element={<ClassManagment />} />
                 <Route path="subjects" element={<Subjects />} />
+                <Route path="myProfile" element={<MyProfilePage />} />
               </Route>
             )}
             {role === "teacher" && (
@@ -113,6 +115,7 @@ function App() {
                   <Route path="classesMarks" element={<ClassesMarks />} />
                 </Route>
                 <Route path="settings" element={<Settings />} />
+                <Route path="myProfile" element={<MyProfilePage />} />
               </Route>
             )}
             <Route path="news&adds">

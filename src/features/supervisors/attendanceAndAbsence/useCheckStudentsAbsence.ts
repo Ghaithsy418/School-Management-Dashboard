@@ -11,9 +11,10 @@ export const useCheckStudentsAbsence = function ({
   date,
 }: StudentsAbsenceTypes) {
   const { data, isLoading: isCheckingAbsence } = useQuery({
-    queryKey: ["studentsAbsence", className],
+    queryKey: ["studentsAbsence", className, date],
     queryFn: () => checkStudentsAbsence({ class: className, date }),
   });
 
+  console.log(data?.data);
   return { studentsAbsence: data?.data, isCheckingAbsence };
 };

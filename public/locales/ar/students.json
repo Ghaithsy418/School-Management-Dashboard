@@ -43,7 +43,11 @@
     "phone": "رقم الجوال",
     "excellent": "ممتاز",
     "good": "جيد",
-    "needsImprovements": "بحاجة تحسين"
+    "needsImprovements": "بحاجة تحسين",
+    "role": "الدور",
+    "subject": "المادة",
+    "salary": "الراتب",
+    "myProfileTitle": "ملفي الشخصي"
   },
   "profileMap": {
     "profile": "الملف الشخصي",

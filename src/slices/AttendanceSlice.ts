@@ -39,7 +39,6 @@ const attendanceSlice = createSlice({
       state.selectAll = !state.selectAll;
     },
     clearAll(state) {
-      state.className = initialState.className;
       state.selectAll = initialState.selectAll;
       state.session = initialState.session;
       state.students = initialState.students;
