@@ -24,7 +24,7 @@ function ClearAll({ clearFunction }: ClearTypes) {
   );
 }
 
-function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
+export function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
   const { t } = useTranslation();
   return (
     <div className="flex w-full flex-col items-center gap-6 text-center">

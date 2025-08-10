@@ -7,21 +7,38 @@ interface OptionsTypes {
   value: string;
 }
 
-// 1. MODIFIED: The interface now accepts `value` instead of `defaultValue`.
 interface SelectTypes {
   options: OptionsTypes[];
   width?: string;
   placeholder?: string;
   onSelect: (value: string) => void;
-  value: string | null; // Use `value` for controlled behavior
+  value: string | null;
   disabled?: boolean;
 }
+
+// 1. ADDED: Define animation variants for the dropdown
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function Select({
   options,
   width = "w-45",
   placeholder = "Select an option",
-  value, // Use `value` from props
+  value,
   disabled = false,
   onSelect,
 }: SelectTypes) {
@@ -54,24 +71,30 @@ function Select({
       <button
         disabled={disabled}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full cursor-pointer rounded-md px-3 py-2 text-left outline-1 outline-gray-300 hover:outline-violet-400 disabled:cursor-not-allowed"
+        className="w-full cursor-pointer rounded-md border border-gray-300 px-3 py-2 text-left hover:border-violet-400 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
       >
         {selectedOption ? selectedOption.title : placeholder}
         <span className="absolute top-1/2 right-2 -translate-y-1/2">
           <IoIosArrowDown
-            className={`transition-all duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+            className={`transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
           />
         </span>
       </button>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="popLayout">
         {isOpen && (
-          <motion.ul className="no-scrollbar absolute z-10 mt-1 h-96 w-full overflow-auto rounded-md bg-white py-1 shadow-lg">
+          <motion.ul
+            variants={dropdownVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="no-scrollbar ring-opacity-5 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black/20"
+          >
             {options.map((option) => (
               <li
                 key={option.value}
                 onClick={() => handleClick(option)}
-                className="cursor-pointer px-3 py-1.5 hover:bg-violet-100"
+                className="cursor-pointer px-3 py-1.5 text-gray-900 hover:bg-violet-100"
               >
                 {option.title}
               </li>
@@ -82,7 +105,5 @@ function Select({
     </div>
   );
 }
-
-// ... variants export ...
 
 export default Select;

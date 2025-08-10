@@ -167,3 +167,9 @@ export interface StudentsAbsenceTypes {
   session: number;
   students: { studentId: number; full_name: string }[];
 }
+
+export interface ScheduleTypes {
+  day: string;
+  session: number;
+  subject: string;
+}
