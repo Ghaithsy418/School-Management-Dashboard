@@ -1,4 +1,4 @@
-export const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+export const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 export const SESSIONS = [
   { title: "1st", value: 1 },
   { title: "2nd", value: 2 },

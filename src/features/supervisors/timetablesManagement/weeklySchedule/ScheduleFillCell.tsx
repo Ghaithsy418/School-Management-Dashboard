@@ -26,8 +26,6 @@ function ScheduleFillCell() {
     dispatch(setCurrentCell({ day: "", session: 0 }));
   }
 
-  console.log("ggs");
-
   if (!currentCell.day || !currentCell.session) return null;
 
   return (

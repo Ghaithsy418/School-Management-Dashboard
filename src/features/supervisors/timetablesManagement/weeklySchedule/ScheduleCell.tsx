@@ -35,12 +35,12 @@ function ScheduleCell({ day, session, sessionIndex, dayIndex }: CellTypes) {
   return (
     <td
       key={`${day}-${session}`}
-      className={`border border-gray-200 p-0 ${sessionIndex === SESSIONS.length - 1 && dayIndex === DAYS.length - 1 ? "rounded-br-xl" : ""}`}
+      className={`overflow-hidden border border-gray-200 p-0 ${sessionIndex === SESSIONS.length - 1 && dayIndex === DAYS.length - 1 ? "rounded-br-xl" : ""}`}
     >
       <div
         className={`h-28 cursor-pointer p-4 transition-all duration-300 ${
           isSelected
-            ? "scale-105 border-2 border-indigo-400 bg-gradient-to-br from-indigo-100 to-purple-100 shadow-lg"
+            ? "scale-105 bg-gradient-to-br from-indigo-100 to-purple-100 shadow-lg"
             : hasContent
               ? "bg-gradient-to-br from-emerald-50 to-green-50 hover:from-emerald-100 hover:to-green-100 hover:shadow-md"
               : "bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-slate-50 hover:shadow-sm"

@@ -21,8 +21,8 @@ function ScheduleGridCreate() {
                   className={`min-w-48 border border-gray-200 bg-gradient-to-br from-slate-100 to-gray-100 p-4 font-bold text-gray-700 ${index === DAYS.length - 1 ? "rounded-tr-xl" : ""}`}
                 >
                   <div className="flex items-center justify-center space-x-2">
-                    <div className="h-3 w-3 rounded-full bg-indigo-500"></div>
-                    <span>{day}</span>
+                    <div className="h-3 w-3 rounded-full bg-indigo-500" />
+                    <span className="capitalize">{day}</span>
                   </div>
                 </th>
               ))}

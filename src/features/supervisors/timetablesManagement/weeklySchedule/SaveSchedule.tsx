@@ -9,6 +9,7 @@ function SaveSchedule() {
     useCreateWeeklySchedule();
 
   const cantSave = !classId || schedule.length !== 35;
+
   function handleSaveSchedule() {
     if (cantSave) return;
     else createScheduleMutation({ classId, schedule });

@@ -1,5 +1,10 @@
 import { ScheduleTypes } from "@/utils/types";
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  current,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 interface StateTypes {
@@ -40,8 +45,10 @@ const weeklyScheduleSlice = createSlice({
       state.currentCell.session = action.payload.session;
     },
     addSessionToSchedule(state, action: PayloadAction<ScheduleTypes>) {
+      const currentSchedule = current(state.schedule);
       const { day, session, subject } = action.payload;
-      const scheduleItemIndex = state.schedule.findIndex(
+
+      const scheduleItemIndex = currentSchedule.findIndex(
         (item) => item.day === day && item.session === session,
       );
       if (scheduleItemIndex !== -1) {
