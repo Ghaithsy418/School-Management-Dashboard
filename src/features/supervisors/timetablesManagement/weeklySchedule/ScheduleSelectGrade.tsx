@@ -1,4 +1,8 @@
-import { setGrade, useClassInfo } from "@/slices/weeklyScheduleSlice";
+import {
+  clearScheduleCompletely,
+  setGrade,
+  useClassInfo,
+} from "@/slices/weeklyScheduleSlice";
 import Select from "@/ui/Select";
 import UiCardSection from "@/ui/UiCardSection";
 import { HiOutlineNumberedList } from "react-icons/hi2";
@@ -10,6 +14,7 @@ function ScheduleSelectGrade() {
 
   function handleSelect(value: string) {
     dispatch(setGrade(Number(value)));
+    dispatch(clearScheduleCompletely());
   }
 
   return (

@@ -5,26 +5,51 @@ import {
   useCurrentCell,
 } from "@/slices/weeklyScheduleSlice";
 import { motion, Variants } from "framer-motion";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { PiNotePencil } from "react-icons/pi";
 import { useDispatch } from "react-redux";
+import ScheduleClassSubjects from "./ScheduleClassSubjects";
 
 function ScheduleFillCell() {
   const currentCell = useCurrentCell();
   const dispatch = useDispatch();
   const [subject, setSubject] = useState("");
 
-  function handleDone() {
-    if (subject !== "")
-      dispatch(addSessionToSchedule({ ...currentCell, subject }));
-    else
-      dispatch(
-        removeSessionFromSchedule({
-          day: currentCell.day,
-          session: currentCell.session,
-        }),
-      );
-    dispatch(setCurrentCell({ day: "", session: 0 }));
-  }
+  const handleDone = useCallback(
+    function handleDone() {
+      if (subject !== "" && subject !== "removeSubject")
+        dispatch(
+          addSessionToSchedule({
+            ...currentCell,
+            subject: `${subject.slice(0, 1).toLocaleUpperCase()}${subject.slice(1)}`,
+          }),
+        );
+      else
+        dispatch(
+          removeSessionFromSchedule({
+            day: currentCell.day,
+            session: currentCell.session,
+          }),
+        );
+      dispatch(setCurrentCell({ day: "", session: 0 }));
+    },
+    [dispatch, subject, currentCell],
+  );
+
+  useEffect(
+    function () {
+      function handleEnter(e: KeyboardEvent) {
+        if (e.key === "Enter" && currentCell.day && currentCell.session)
+          handleDone();
+        if (e.key === "Escape")
+          dispatch(setCurrentCell({ day: "", session: 0 }));
+      }
+
+      document.addEventListener("keydown", handleEnter);
+      return () => document.removeEventListener("keydown", handleEnter);
+    },
+    [currentCell, handleDone, dispatch],
+  );
 
   if (!currentCell.day || !currentCell.session) return null;
 
@@ -38,19 +63,7 @@ function ScheduleFillCell() {
       <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
         <div className="mb-6 flex items-center space-x-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
-            <svg
-              className="h-5 w-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-              />
-            </svg>
+            <PiNotePencil className="h-6 w-6 text-indigo-50" />
           </div>
           <div>
             <h3 className="text-xl font-bold text-gray-800">
@@ -61,40 +74,7 @@ function ScheduleFillCell() {
             </p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div>
-            <label className="mb-3 ml-2 block text-sm font-bold text-gray-700">
-              Subject
-            </label>
-            <select
-              value={subject ?? currentCell?.subject}
-              onChange={(e) => setSubject(e.target.value)}
-              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base transition-all duration-200 outline-none hover:border-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Select a subject...</option>
-              {SUBJECTS.map((subject) => (
-                <option key={subject} value={subject}>
-                  {subject}
-                </option>
-              ))}
-            </select>
-          </div>
-          {/* <div>
-            <label className="mb-3 block text-sm font-bold text-gray-700">
-              Instructor
-            </label>
-            <input
-              type="text"
-              value={
-                schedule[selectedCell.day][selectedCell.session].instructor
-              }
-              placeholder="e.g., Dr. Smith"
-              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base transition-all duration-200 outline-none hover:border-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
-            />
-          </div> */}
-        </div>
-
+        <ScheduleClassSubjects setSubject={setSubject} />
         <div className="mt-6 flex justify-end">
           <button
             onClick={handleDone}
@@ -107,23 +87,6 @@ function ScheduleFillCell() {
     </motion.div>
   );
 }
-
-const SUBJECTS = [
-  "Mathematics",
-  "Physics",
-  "Chemistry",
-  "Biology",
-  "English",
-  "History",
-  "Geography",
-  "Computer Science",
-  "Physical Education",
-  "Art",
-  "Music",
-  "Economics",
-  "Psychology",
-  "Philosophy",
-];
 
 const variants: Variants = {
   hidden: {

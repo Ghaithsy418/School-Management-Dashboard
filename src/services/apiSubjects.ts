@@ -10,7 +10,7 @@ export async function createSubject(body: {
   maxMark: number;
   grade: number;
 }) {
-  return fetcher({ url: "/api/createSubject", method: "PUT", body });
+  return fetcher({ url: "/api/createSubject", method: "POST", body });
 }
 
 export async function editSubject(body: {

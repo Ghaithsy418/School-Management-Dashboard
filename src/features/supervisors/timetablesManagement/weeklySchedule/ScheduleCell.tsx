@@ -1,10 +1,13 @@
 import {
   setCurrentCell,
+  useClassInfo,
   useCurrentCell,
   useSchedule,
 } from "@/slices/weeklyScheduleSlice";
 import { DAYS, SESSIONS } from "@/utils/constants";
 import { memo } from "react";
+import toast from "react-hot-toast";
+import { IoWarningOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 
 interface CellTypes {
@@ -17,6 +20,7 @@ interface CellTypes {
 function ScheduleCell({ day, session, sessionIndex, dayIndex }: CellTypes) {
   const schedule = useSchedule();
   const currentCell = useCurrentCell();
+  const { grade } = useClassInfo();
   const dispatch = useDispatch();
 
   const isSelected =
@@ -30,6 +34,15 @@ function ScheduleCell({ day, session, sessionIndex, dayIndex }: CellTypes) {
 
   function selectCell() {
     dispatch(setCurrentCell({ day, session: session.value }));
+    if (!grade)
+      toast(
+        "You must Select a Grade first to avoid deleting all the sessions!",
+        {
+          icon: (
+            <IoWarningOutline className="h-10 w-10 rounded-full bg-yellow-100 p-2 text-yellow-700" />
+          ),
+        },
+      );
   }
 
   return (
