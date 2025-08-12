@@ -74,7 +74,7 @@ function ScheduleFillCell() {
             </p>
           </div>
         </div>
-        <ScheduleClassSubjects setSubject={setSubject} />
+        <ScheduleClassSubjects setSubject={setSubject} subject={subject} />
         <div className="mt-6 flex justify-end">
           <button
             onClick={handleDone}

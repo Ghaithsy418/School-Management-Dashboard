@@ -13,9 +13,10 @@ import {
 
 interface ClassSubjectsTypes {
   setSubject: Dispatch<SetStateAction<string>>;
+  subject: string;
 }
 
-function ScheduleClassSubjects({ setSubject }: ClassSubjectsTypes) {
+function ScheduleClassSubjects({ setSubject, subject }: ClassSubjectsTypes) {
   const { subjects, isGettingSubjects } = useGetSubjects(true);
   const currentCell = useCurrentCell();
   const { grade, className } = useClassInfo();
@@ -35,7 +36,7 @@ function ScheduleClassSubjects({ setSubject }: ClassSubjectsTypes) {
       <label className="mb-3 ml-2 block text-sm font-bold text-gray-700">
         Subject
       </label>
-      <Select onValueChange={setSubject} value={currentCell?.subject}>
+      <Select onValueChange={setSubject} value={subject}>
         <SelectTrigger className="!h-12 w-full text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">
           <SelectValue placeholder={selectPlaceholder()} />
         </SelectTrigger>

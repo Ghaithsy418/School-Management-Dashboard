@@ -66,8 +66,18 @@ const weeklyScheduleSlice = createSlice({
         (item) => item.day !== day || item.session !== session,
       );
     },
+    pushMultiValuesToSchedule(state, action: PayloadAction<ScheduleTypes[]>) {
+      state.schedule = [];
+      state.schedule = [...action.payload];
+    },
     clearScheduleCompletely(state) {
       state.schedule = [];
+    },
+    clearAll(state) {
+      state.schedule = [];
+      state.className = "";
+      state.classId = 0;
+      state.grade = 0;
     },
   },
   selectors: {
@@ -86,6 +96,8 @@ export const {
   addSessionToSchedule,
   removeSessionFromSchedule,
   clearScheduleCompletely,
+  pushMultiValuesToSchedule,
+  clearAll,
 } = weeklyScheduleSlice.actions;
 
 export const {
