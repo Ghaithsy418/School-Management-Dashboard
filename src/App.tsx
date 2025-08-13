@@ -30,6 +30,9 @@ import ProtectedRoutes from "./ui/ProtectedRoutes";
 import { useChangeTheme } from "./hooks/useChangeTheme";
 import Complaints from "./pages/Complaints";
 import MyProfilePage from "./pages/MyProfilePage";
+import { useEffect } from "react";
+import { requestForToken } from "./services/fcm";
+import { useNotifcations } from "./hooks/useNotifications";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +49,11 @@ function App() {
   } = useUser();
   useChangeTheme();
   const { detectTheme } = useUser();
+
+  useEffect(function () {
+    requestForToken();
+  }, []);
+  useNotifcations();
 
   return (
     <QueryClientProvider client={queryClient}>

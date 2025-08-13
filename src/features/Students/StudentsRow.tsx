@@ -27,7 +27,7 @@ function StudentsRow({ student }: { student: StudentTypes }) {
         </span>
         {full_name}
       </h3>
-      <p>{student_id}</p>
+      <p>{user_id}</p>
       <p>{class_name === "" ? "-" : class_name}</p>
       {role !== "supervisor" && <p>{gpa ?? "-"}</p>}
       {role === "supervisor" && (
