@@ -1,8 +1,13 @@
 import { useClassInfo } from "@/slices/weeklyScheduleSlice";
 import AutoGenerateSchedule from "./AutoGenerateSchedule";
+import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
 
 function ScheduleStatus() {
   const { className } = useClassInfo();
+  const { scheduleExists } = useGetClassWeeklySchedule(className);
+
+  if (scheduleExists) return null;
+
   return (
     <div className="animate-in slide-in-from-top mt-6 rounded-xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-green-50 p-4 duration-300">
       <div className="flex w-full items-center justify-between">

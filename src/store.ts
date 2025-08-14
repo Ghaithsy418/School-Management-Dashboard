@@ -1,14 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "@/slices/userSlice";
-import classesUiReducer from "@/slices/classesUiSlice";
-import loginUiReducer from "@/slices/loginUiSlice";
-import subjectsUiReducer from "@/slices/SubjectUiSlice";
 import attendanceReducer from "@/slices/AttendanceSlice";
-import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
-import marksReducer from "@/slices/MarksManagementSlice";
+import classesUiReducer from "@/slices/classesUiSlice";
 import commentsReducer from "@/slices/commentsSlice";
 import complaintsReducer from "@/slices/complaintsSlice";
+import loginUiReducer from "@/slices/loginUiSlice";
+import marksReducer from "@/slices/MarksManagementSlice";
+import rootReducer from "@/slices/rootReducer";
+import subjectsUiReducer from "@/slices/SubjectUiSlice";
+import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
+import userReducer from "@/slices/userSlice";
 import weeklyScheduleReducer from "@/slices/weeklyScheduleSlice";
+import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     comments: commentsReducer,
     complaints: complaintsReducer,
     weeklySchedule: weeklyScheduleReducer,
+    root: rootReducer,
   },
 });
 

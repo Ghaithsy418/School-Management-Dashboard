@@ -8,9 +8,9 @@ import ScheduleFillCell from "./ScheduleFillCell";
 import ScheduleGridCreate from "./ScheduleGridCreate";
 
 export default function TimeTablesLayout() {
+  const ref = useRef<HTMLDivElement | null>(null);
   const { className } = useClassInfo();
   const [isMounted, setIsMounted] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(
     function () {

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 interface DataTypes {
   session: number;
   students: { studentId: number }[];
+  className: string;
 }
 
 export const useSubmitStudentsAttendance = function () {

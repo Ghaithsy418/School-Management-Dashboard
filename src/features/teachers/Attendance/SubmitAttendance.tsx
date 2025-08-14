@@ -19,8 +19,10 @@ function SubmitAttendance() {
     >
       <div className="place-self-end px-3">
         <Button
-          onClick={() => submitAttendanceMutation({ session, students })}
-          disabled={!className || !session || students.length === 0}
+          onClick={() =>
+            submitAttendanceMutation({ session, students, className })
+          }
+          disabled={!className || !session}
           color="text-purple-50"
           backgroundColor="bg-purple-600"
           backgroundHover="hover:bg-purple-700"

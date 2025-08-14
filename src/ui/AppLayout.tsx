@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
+import { useNotifcations } from "@/hooks/useNotifications";
 
 function AppLayout() {
   useDirection();
+  useNotifcations();
 
   return (
     <motion.div

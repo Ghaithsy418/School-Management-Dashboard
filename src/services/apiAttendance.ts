@@ -19,11 +19,16 @@ export async function studentsAttendanceForm(body: { class: string }) {
 export async function submitStudentsAttendance(body: {
   session: number;
   students: { studentId: number }[];
+  className: string;
 }) {
+  console.log(body, body.students.length === 0 ? true : false);
   return fetcher({
     url: "/api/studentsAttendanceSubmit",
     method: "POST",
-    body,
+    body: {
+      ...body,
+      fullAttendance: body.students.length === 0 ? true : false,
+    },
   });
 }
 

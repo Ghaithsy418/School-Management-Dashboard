@@ -39,14 +39,14 @@ const userSlice = createSlice({
     setDetectTheme(state, action: PayloadAction<boolean>) {
       state.detectTheme = action.payload;
     },
-    clearAll(state) {
+    logout(state) {
       state.token = "";
       state.user = initialState.user;
     },
   },
 });
 
-export const { setUserData, clearAll, setDetectTheme } = userSlice.actions;
+export const { setUserData, logout, setDetectTheme } = userSlice.actions;
 
 export default userSlice.reducer;
 

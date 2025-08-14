@@ -1,8 +1,16 @@
 import { BookOpen } from "lucide-react";
 import ClearScheduleInputs from "./ClearScheduleInputs";
 import SaveSchedule from "./SaveSchedule";
+import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
+import { useClassInfo } from "@/slices/weeklyScheduleSlice";
+import DeleteSchedule from "./DeleteSchedule";
+import EditSchedule from "./EditSchedule";
 
 function ScheduleHeader() {
+  const { className } = useClassInfo();
+  const { scheduleExists, isGettingSchedule } =
+    useGetClassWeeklySchedule(className);
+
   return (
     <header className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 p-8 text-white">
       <div className="absolute inset-0 bg-black/10" />
@@ -18,10 +26,18 @@ function ScheduleHeader() {
             </p>
           </div>
         </div>
-        <div className="flex space-x-3">
-          <ClearScheduleInputs />
-          <SaveSchedule />
-        </div>
+        {className !== "" && !isGettingSchedule && (
+          <div className="flex space-x-3">
+            <div>
+              {!scheduleExists && <ClearScheduleInputs />}
+              {scheduleExists && <DeleteSchedule />}
+            </div>
+            <div>
+              {!scheduleExists && <SaveSchedule />}{" "}
+              {scheduleExists && <EditSchedule />}
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

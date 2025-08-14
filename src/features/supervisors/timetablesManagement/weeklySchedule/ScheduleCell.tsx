@@ -27,7 +27,7 @@ function ScheduleCell({ day, session, sessionIndex, dayIndex }: CellTypes) {
     currentCell.day === day && currentCell.session === session.value;
 
   const currentCellContent = schedule.find(
-    (cell) => cell.day === day && cell.session === session.value,
+    (cell) => cell.day === day && Number(cell.session) === session.value,
   );
 
   const hasContent = currentCellContent?.subject ? true : false;

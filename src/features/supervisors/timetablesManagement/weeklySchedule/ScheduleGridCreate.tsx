@@ -1,8 +1,23 @@
 import { DAYS, SESSIONS } from "@/utils/constants";
-import ScheduleCell from "./ScheduleCell";
 import { Clock } from "lucide-react";
+import ScheduleCell from "./ScheduleCell";
+import { useClassInfo } from "@/slices/weeklyScheduleSlice";
+import { useGetTeachersAndSessions } from "./useGetTeachersAndSessions";
+import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
+import SelectClassNameFirst from "./SelectClassNameFirst";
 
 function ScheduleGridCreate() {
+  const { className } = useClassInfo();
+  const { teachersSessions } = useGetTeachersAndSessions(className);
+  const { isGettingSchedule } = useGetClassWeeklySchedule(className);
+
+  if (!className || isGettingSchedule)
+    return (
+      <div className="animate-pulse px-6 pb-8">
+        <SelectClassNameFirst isGettingSchedule={isGettingSchedule} />
+      </div>
+    );
+
   return (
     <div className="p-8">
       <div className="overflow-x-auto">
