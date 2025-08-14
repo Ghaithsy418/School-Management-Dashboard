@@ -1,7 +1,7 @@
 import { CreateWeeklySchedule } from "@/services/apiTimeTables";
 import { clearAll } from "@/slices/weeklyScheduleSlice";
 import { ScheduleTypes } from "@/utils/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
@@ -11,6 +11,7 @@ interface DataTypes {
 }
 
 export const useCreateWeeklySchedule = function () {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { mutate: createScheduleMutation, isPending: isCreatingSchedule } =
     useMutation({
@@ -18,6 +19,8 @@ export const useCreateWeeklySchedule = function () {
       onSuccess: () => {
         toast.success("Schedule has been created Successfully!");
         dispatch(clearAll());
+        queryClient.invalidateQueries({ queryKey: ["teachersAndSessions"] });
+        queryClient.invalidateQueries({ queryKey: ["weeklySchedule"] });
       },
       onError: (err: Error) => toast.error(err.message),
     });

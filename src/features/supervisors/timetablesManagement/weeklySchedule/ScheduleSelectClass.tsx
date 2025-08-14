@@ -1,6 +1,7 @@
 import {
+  clearScheduleCompletely,
   setClass,
-  useClassInfo
+  useClassInfo,
 } from "@/slices/weeklyScheduleSlice";
 import Select from "@/ui/Select";
 import UiCardSection from "@/ui/UiCardSection";
@@ -31,6 +32,7 @@ function ScheduleSelectClass() {
           classId: choosenClass.id,
         }),
       );
+    dispatch(clearScheduleCompletely());
   }
 
   return (

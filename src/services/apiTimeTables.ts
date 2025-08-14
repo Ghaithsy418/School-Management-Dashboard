@@ -28,5 +28,5 @@ export async function autoGenerateWeeklySchedule(body: { className: string }) {
 
 export async function deleteWeeklySchedule(body: { className: string }) {
   if (!body.className) return null;
-  return fetcher({ url: "/api/deleteWeeklySchecdule", method: "POST", body });
+  return fetcher({ url: "/api/deleteWeeklySchecdule", method: "DELETE", body });
 }

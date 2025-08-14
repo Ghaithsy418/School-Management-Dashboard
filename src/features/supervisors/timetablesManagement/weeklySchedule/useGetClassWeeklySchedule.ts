@@ -25,7 +25,7 @@ export const useGetClassWeeklySchedule = function (className: string) {
     },
     [scheduleExists, dispatch, data?.schedule],
   );
-  console.log(data);
+
   return {
     weeklySchedule: data?.schedule,
     isGettingSchedule,

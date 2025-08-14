@@ -5,11 +5,14 @@ import { useClassInfo } from "@/slices/weeklyScheduleSlice";
 import { useGetTeachersAndSessions } from "./useGetTeachersAndSessions";
 import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
 import SelectClassNameFirst from "./SelectClassNameFirst";
+import { ScheduleTypes } from "@/utils/types";
 
 function ScheduleGridCreate() {
   const { className } = useClassInfo();
-  const { teachersSessions } = useGetTeachersAndSessions(className);
-  const { isGettingSchedule } = useGetClassWeeklySchedule(className);
+  const { teachersSessions, isGettingSessions } =
+    useGetTeachersAndSessions(className);
+  const { isGettingSchedule, scheduleExists } =
+    useGetClassWeeklySchedule(className);
 
   if (!className || isGettingSchedule)
     return (
@@ -60,6 +63,11 @@ function ScheduleGridCreate() {
                     session={session}
                     dayIndex={dayIndex}
                     sessionIndex={sessionIndex}
+                    teachersSessions={
+                      teachersSessions as [Record<string, ScheduleTypes[]>]
+                    }
+                    isGettingSessions={isGettingSessions}
+                    scheduleExists={scheduleExists}
                   />
                 ))}
               </tr>

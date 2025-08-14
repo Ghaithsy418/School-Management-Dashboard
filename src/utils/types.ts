@@ -172,4 +172,5 @@ export interface ScheduleTypes {
   day: string;
   session: number;
   subject: string;
+  className?: string;
 }
