@@ -12,9 +12,12 @@ function CreateSubject() {
   const { errors } = formState;
 
   function onSubmit(data: SubjectTypes) {
-    return createSubjectMutation(data, {
-      onSuccess: () => reset(),
-    });
+    return createSubjectMutation(
+      { ...data, grade: Number(data.grade) },
+      {
+        onSuccess: () => reset(),
+      },
+    );
   }
 
   return (
