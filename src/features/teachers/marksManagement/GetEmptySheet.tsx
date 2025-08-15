@@ -1,11 +1,20 @@
 import { PiMicrosoftExcelLogoLight } from "react-icons/pi";
 import ChooseClassEmptyExcel from "./ChooseClassMarks";
 import ChooseSemester from "./ChooseSemester";
-import ChooseType from "./ChooseType";
+import ChooseType from "./ChooseExamType";
 import GetEmptySheetButton from "./GetEmptySheetButton";
 import GetPreviousExcelFiles from "./GetPreviousExcelFiles";
+import { setType, useMarks } from "@/slices/MarksManagementSlice";
+import { useDispatch } from "react-redux";
 
 function GetEmptySheet() {
+  const { type } = useMarks();
+  const dispatch = useDispatch();
+
+  function onClick(examType: string) {
+    dispatch(setType(examType));
+  }
+
   return (
     <div className="row-start-1 row-end-3 flex h-full flex-col items-start justify-center gap-8 rounded-xl border border-gray-200 bg-white px-6 py-10 shadow-lg transition-all duration-300 hover:shadow-xl">
       <div className="mb-3 flex items-center gap-5">
@@ -23,7 +32,7 @@ function GetEmptySheet() {
       </div>
       <ChooseClassEmptyExcel />
       <ChooseSemester />
-      <ChooseType />
+      <ChooseType onClick={onClick} type={type} />
       <div className="flex w-full flex-col gap-4">
         <GetEmptySheetButton />
         <GetPreviousExcelFiles />

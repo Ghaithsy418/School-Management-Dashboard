@@ -16,9 +16,7 @@ interface CellTypes {
   session: { title: string; value: number };
   sessionIndex: number;
   dayIndex: number;
-  isGettingSessions: boolean;
   teachersSessions: [Record<string, ScheduleTypes[]>];
-  scheduleExists: boolean;
 }
 
 function ScheduleCell({
@@ -26,9 +24,7 @@ function ScheduleCell({
   session,
   sessionIndex,
   dayIndex,
-  isGettingSessions,
   teachersSessions,
-  scheduleExists,
 }: CellTypes) {
   const schedule = useSchedule();
   const currentCell = useCurrentCell();
@@ -94,7 +90,9 @@ function ScheduleCell({
         {hasError() ? (
           <div className="flex items-center justify-center gap-1">
             <IoWarningOutline className="h-4 w-4 text-red-700" />
-            <p className="text-xs text-red-500">Teacher is busy now</p>
+            <p className="text-xs text-red-500">
+              {currentCellContent?.subject}'s Teacher is busy
+            </p>
           </div>
         ) : (
           <div className="flex h-full flex-col justify-center space-y-2">

@@ -5,7 +5,11 @@ export async function CreateWeeklySchedule(body: {
   classId: number;
   schedule: ScheduleTypes[];
 }) {
-  return fetcher({ url: "/api/createWeeklySchedule", method: "PUT", body });
+  return fetcher({
+    url: "/api/createWeeklySchedule",
+    method: "PUT",
+    body: { classId: body.classId, schedule: body.schedule },
+  });
 }
 
 export async function getTeachersAndSessions(body: { className: string }) {

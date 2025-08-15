@@ -9,10 +9,8 @@ import { ScheduleTypes } from "@/utils/types";
 
 function ScheduleGridCreate() {
   const { className } = useClassInfo();
-  const { teachersSessions, isGettingSessions } =
-    useGetTeachersAndSessions(className);
-  const { isGettingSchedule, scheduleExists } =
-    useGetClassWeeklySchedule(className);
+  const { teachersSessions } = useGetTeachersAndSessions(className);
+  const { isGettingSchedule } = useGetClassWeeklySchedule(className);
 
   if (!className || isGettingSchedule)
     return (
@@ -66,8 +64,6 @@ function ScheduleGridCreate() {
                     teachersSessions={
                       teachersSessions as [Record<string, ScheduleTypes[]>]
                     }
-                    isGettingSessions={isGettingSessions}
-                    scheduleExists={scheduleExists}
                   />
                 ))}
               </tr>

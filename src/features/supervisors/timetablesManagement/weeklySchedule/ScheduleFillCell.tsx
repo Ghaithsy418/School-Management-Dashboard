@@ -21,7 +21,7 @@ function ScheduleFillCell() {
         dispatch(
           addSessionToSchedule({
             ...currentCell,
-            subject: `${subject.slice(0, 1).toLocaleUpperCase()}${subject.slice(1)}`,
+            subject: `${subject.slice(0, 1).toUpperCase()}${subject.slice(1)}`,
           }),
         );
       else

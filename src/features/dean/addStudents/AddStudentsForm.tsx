@@ -34,7 +34,9 @@ function AddStudentsForm() {
       method="post"
       className="mt-6 flex flex-col justify-center gap-8"
     >
-      <h3 className="text-3xl font-semibold">{t("addStudents.studentData")}</h3>
+      <h3 className="text-3xl font-semibold">
+        {t("addStudents.studentsData")}
+      </h3>
       <div className="grid grid-cols-3 grid-rows-4 items-center justify-center gap-12">
         <InputField<AddStudentTypes>
           name="name"

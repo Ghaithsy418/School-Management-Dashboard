@@ -32,6 +32,7 @@ import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import ExamSchedules from "./pages/ExamSchedules";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -84,6 +85,9 @@ function App() {
                   <Route path="add-a-student" element={<AddStudents />} />
                   <Route path=":id" element={<Student />} />
                 </Route>
+                <Route path="timetables">
+                  <Route path="examSchedules" element={<ExamSchedules />} />
+                </Route>
                 <Route path="complaints" element={<Complaints />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
@@ -101,7 +105,10 @@ function App() {
                   <Route path=":id" element={<Student />} />
                 </Route>
                 <Route path="settings" element={<Settings />} />
-                <Route path="timetables" element={<TimeTablesManagement />} />
+                <Route path="timetables">
+                  <Route index element={<TimeTablesManagement />} />
+                  <Route path="examSchedules" element={<ExamSchedules />} />
+                </Route>
                 <Route path="classes" element={<ClassManagment />} />
                 <Route path="subjects" element={<Subjects />} />
                 <Route path="myProfile" element={<MyProfilePage />} />
@@ -119,6 +126,9 @@ function App() {
                 <Route path="marks">
                   <Route index element={<MarksManagement />} />
                   <Route path="classesMarks" element={<ClassesMarks />} />
+                </Route>
+                <Route path="timetables">
+                  <Route path="examSchedules" element={<ExamSchedules />} />
                 </Route>
                 <Route path="settings" element={<Settings />} />
                 <Route path="myProfile" element={<MyProfilePage />} />

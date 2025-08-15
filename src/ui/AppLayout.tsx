@@ -1,10 +1,10 @@
 import { useDirection } from "@/hooks/useDirection";
+import { useNotifcations } from "@/hooks/useNotifications";
 import { regularOpacityVariants } from "@/utils/variants";
 import { AnimatePresence, motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
-import { useNotifcations } from "@/hooks/useNotifications";
 
 function AppLayout() {
   useDirection();

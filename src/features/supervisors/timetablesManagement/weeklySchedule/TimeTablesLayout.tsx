@@ -6,11 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import ScheduleFillCell from "./ScheduleFillCell";
 import ScheduleGridCreate from "./ScheduleGridCreate";
+import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
 
 export default function TimeTablesLayout() {
   const ref = useRef<HTMLDivElement | null>(null);
   const { className } = useClassInfo();
   const [isMounted, setIsMounted] = useState(false);
+  const { scheduleExists } = useGetClassWeeklySchedule(className);
 
   useEffect(
     function () {
@@ -22,7 +24,7 @@ export default function TimeTablesLayout() {
   return (
     <div
       ref={ref}
-      className="mx-auto max-w-7xl rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-6 pt-6"
+      className="w-full rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
     >
       <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm">
         <ScheduleHeader description="Create and manage teaching schedules" />
@@ -31,6 +33,7 @@ export default function TimeTablesLayout() {
         <ScheduleGridCreate />
         {isMounted &&
           ref.current &&
+          !scheduleExists &&
           createPortal(<ScheduleFillCell />, ref.current)}
       </div>
     </div>

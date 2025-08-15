@@ -11,25 +11,29 @@ function MainContainer({
   title,
   needsBackArrow = false,
   toPage = "",
+  parallelChild,
 }: MainContainerTypes) {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
   return (
     <div className="flex flex-col justify-center gap-5 px-10 pb-6">
-      <div className="flex items-center justify-start gap-5">
-        {needsBackArrow && (
-          <button
-            onClick={() => (toPage !== "" ? navigate(toPage) : navigate(-1))}
-          >
-            {i18n.language === "en" ? (
-              <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
-            ) : (
-              <IoIosArrowRoundForward className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
-            )}
-          </button>
-        )}
-        <h2 className="text-4xl font-bold">{title}</h2>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-start gap-5">
+          {needsBackArrow && (
+            <button
+              onClick={() => (toPage !== "" ? navigate(toPage) : navigate(-1))}
+            >
+              {i18n.language === "en" ? (
+                <IoIosArrowRoundBack className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+              ) : (
+                <IoIosArrowRoundForward className="h-10 w-10 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
+              )}
+            </button>
+          )}
+          <h2 className="text-4xl font-bold">{title}</h2>
+        </div>
+        {parallelChild}
       </div>
       {children}
     </div>
@@ -80,6 +84,7 @@ interface MainContainerTypes {
   title?: string;
   needsBackArrow?: boolean;
   toPage?: string;
+  parallelChild?: ReactNode;
 }
 
 interface OptionsTypes {
