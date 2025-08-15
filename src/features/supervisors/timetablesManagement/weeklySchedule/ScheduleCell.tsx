@@ -85,7 +85,6 @@ function ScheduleCell({
 
   return (
     <td
-      key={`${day}-${session}`}
       className={`overflow-hidden border border-gray-200 p-0 ${sessionIndex === SESSIONS.length - 1 && dayIndex === DAYS.length - 1 ? "rounded-br-xl" : ""}`}
     >
       <div

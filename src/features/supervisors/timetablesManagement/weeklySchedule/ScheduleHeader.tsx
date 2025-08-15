@@ -6,13 +6,20 @@ import { useClassInfo } from "@/slices/weeklyScheduleSlice";
 import DeleteSchedule from "./DeleteSchedule";
 import EditSchedule from "./EditSchedule";
 
-function ScheduleHeader() {
+interface ScheduleHeaderTypes {
+  description: string;
+  colors?: string;
+}
+
+function ScheduleHeader({ description, colors }: ScheduleHeaderTypes) {
   const { className } = useClassInfo();
   const { scheduleExists, isGettingSchedule } =
     useGetClassWeeklySchedule(className);
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 p-8 text-white">
+    <header
+      className={`relative overflow-hidden bg-gradient-to-r ${colors ?? "from-indigo-600 via-purple-600 to-pink-600"} p-8 text-white`}
+    >
       <div className="absolute inset-0 bg-black/10" />
       <div className="relative flex items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -21,9 +28,7 @@ function ScheduleHeader() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Weekly Class Schedule</h1>
-            <p className="text-sm text-white/80">
-              Create and manage your teaching schedule
-            </p>
+            <p className="text-sm text-white/80">{description}</p>
           </div>
         </div>
         {className !== "" && !isGettingSchedule && (

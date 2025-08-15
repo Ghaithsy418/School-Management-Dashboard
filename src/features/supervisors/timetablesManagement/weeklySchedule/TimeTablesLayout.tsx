@@ -25,7 +25,7 @@ export default function TimeTablesLayout() {
       className="mx-auto max-w-7xl rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-6 pt-6"
     >
       <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm">
-        <ScheduleHeader />
+        <ScheduleHeader description="Create and manage teaching schedules" />
         <ScheduleSelections />
         <div className="px-8 py-4">{className && <ScheduleStatus />}</div>
         <ScheduleGridCreate />

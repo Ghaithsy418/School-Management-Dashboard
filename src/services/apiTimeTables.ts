@@ -30,3 +30,7 @@ export async function deleteWeeklySchedule(body: { className: string }) {
   if (!body.className) return null;
   return fetcher({ url: "/api/deleteWeeklySchecdule", method: "DELETE", body });
 }
+
+export async function getTeacherWeeklySchedule() {
+  return fetcher({ url: "/api/getTeacherWeeklySchedule", method: "GET" });
+}
