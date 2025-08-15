@@ -38,3 +38,10 @@ export async function deleteWeeklySchedule(body: { className: string }) {
 export async function getTeacherWeeklySchedule() {
   return fetcher({ url: "/api/getTeacherWeeklySchedule", method: "GET" });
 }
+
+export async function updateSchedule(body: {
+  clasId: number;
+  schedule: ScheduleTypes[];
+}) {
+  return fetcher({ url: "/api/updateWeeklySchedule", method: "POST", body });
+}

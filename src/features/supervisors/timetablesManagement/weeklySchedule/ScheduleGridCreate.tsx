@@ -1,16 +1,61 @@
+import { useEffect, useMemo } from "react";
+import { useDispatch } from "react-redux";
 import { DAYS, SESSIONS } from "@/utils/constants";
 import { Clock } from "lucide-react";
 import ScheduleCell from "./ScheduleCell";
-import { useClassInfo } from "@/slices/weeklyScheduleSlice";
+import {
+  setConflicts,
+  useClassInfo,
+  useConflicts,
+  useSchedule,
+} from "@/slices/weeklyScheduleSlice";
 import { useGetTeachersAndSessions } from "./useGetTeachersAndSessions";
 import { useGetClassWeeklySchedule } from "./useGetClassWeeklySchedule";
 import SelectClassNameFirst from "./SelectClassNameFirst";
-import { ScheduleTypes } from "@/utils/types";
 
 function ScheduleGridCreate() {
+  const dispatch = useDispatch();
   const { className } = useClassInfo();
+  const schedule = useSchedule();
+  const conflictingCells = useConflicts();
+
   const { teachersSessions } = useGetTeachersAndSessions(className);
   const { isGettingSchedule } = useGetClassWeeklySchedule(className);
+
+  const conflictsSet = useMemo(
+    () => new Set(conflictingCells),
+    [conflictingCells],
+  );
+
+  useEffect(() => {
+    if (!schedule || !teachersSessions || !className) {
+      dispatch(setConflicts([]));
+      return;
+    }
+
+    const conflicts = [];
+    const scheduleObject = teachersSessions?.[0];
+
+    for (const cell of schedule) {
+      if (!cell.subject) continue;
+
+      const subjectKey = cell.subject.toLowerCase();
+      const sessionsForSubject = scheduleObject?.[subjectKey];
+
+      const hasConflict = sessionsForSubject?.some(
+        (teacherSession) =>
+          teacherSession.day === cell.day &&
+          Number(teacherSession.session) === Number(cell.session) &&
+          teacherSession.className !== className,
+      );
+
+      if (hasConflict) {
+        conflicts.push(`${cell.day}-${cell.session}`);
+      }
+    }
+
+    dispatch(setConflicts(conflicts));
+  }, [schedule, teachersSessions, className, dispatch]);
 
   if (!className || isGettingSchedule)
     return (
@@ -54,18 +99,21 @@ function ScheduleGridCreate() {
                     <span className="text-sm font-bold">{session.title}</span>
                   </div>
                 </td>
-                {DAYS.map((day, dayIndex) => (
-                  <ScheduleCell
-                    key={`${dayIndex}-${sessionIndex}`}
-                    day={day}
-                    session={session}
-                    dayIndex={dayIndex}
-                    sessionIndex={sessionIndex}
-                    teachersSessions={
-                      teachersSessions as [Record<string, ScheduleTypes[]>]
-                    }
-                  />
-                ))}
+                {DAYS.map((day, dayIndex) => {
+                  const cellKey = `${day}-${session.value}`;
+                  const hasConflict = conflictsSet.has(cellKey);
+
+                  return (
+                    <ScheduleCell
+                      key={`${dayIndex}-${sessionIndex}`}
+                      day={day}
+                      session={session}
+                      dayIndex={dayIndex}
+                      sessionIndex={sessionIndex}
+                      hasConflict={hasConflict}
+                    />
+                  );
+                })}
               </tr>
             ))}
           </tbody>

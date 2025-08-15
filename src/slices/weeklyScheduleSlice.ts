@@ -13,6 +13,7 @@ interface StateTypes {
   grade: number;
   schedule: ScheduleTypes[];
   currentCell: { day: string; session: number; subject?: string };
+  confilctingCells: string[];
 }
 
 const initialState: StateTypes = {
@@ -20,7 +21,8 @@ const initialState: StateTypes = {
   className: "",
   grade: 0,
   schedule: [],
-  currentCell: { day: "", session: 0 },
+  currentCell: { day: "", session: 0, subject: "" },
+  confilctingCells: [],
 };
 
 const weeklyScheduleSlice = createSlice({
@@ -49,7 +51,7 @@ const weeklyScheduleSlice = createSlice({
       const { day, session, subject } = action.payload;
 
       const scheduleItemIndex = currentSchedule.findIndex(
-        (item) => item.day === day && item.session === session,
+        (item) => item.day === day && Number(item.session) === session,
       );
       if (scheduleItemIndex !== -1) {
         state.schedule[scheduleItemIndex].subject = subject;
@@ -79,6 +81,9 @@ const weeklyScheduleSlice = createSlice({
       state.classId = 0;
       state.grade = 0;
     },
+    setConflicts(state, action: PayloadAction<string[]>) {
+      state.confilctingCells = action.payload;
+    },
   },
   selectors: {
     selectClassId: (state) => state.classId,
@@ -86,6 +91,7 @@ const weeklyScheduleSlice = createSlice({
     selectGrade: (state) => state.grade,
     selectSchedule: (state) => state.schedule,
     selectCurrentCell: (state) => state.currentCell,
+    selectConflict: (state) => state.confilctingCells,
   },
 });
 
@@ -98,6 +104,7 @@ export const {
   clearScheduleCompletely,
   pushMultiValuesToSchedule,
   clearAll,
+  setConflicts,
 } = weeklyScheduleSlice.actions;
 
 export const {
@@ -106,6 +113,7 @@ export const {
   selectGrade,
   selectSchedule,
   selectCurrentCell,
+  selectConflict,
 } = weeklyScheduleSlice.selectors;
 
 export const selectClassInfo = createSelector(
@@ -120,5 +128,6 @@ export const selectClassInfo = createSelector(
 export const useClassInfo = () => useSelector(selectClassInfo);
 export const useSchedule = () => useSelector(selectSchedule);
 export const useCurrentCell = () => useSelector(selectCurrentCell);
+export const useConflicts = () => useSelector(selectConflict);
 
 export default weeklyScheduleSlice.reducer;

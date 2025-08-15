@@ -1,10 +1,15 @@
-import { useClassInfo, useSchedule } from "@/slices/weeklyScheduleSlice";
+import {
+  useClassInfo,
+  useConflicts,
+  useSchedule,
+} from "@/slices/weeklyScheduleSlice";
 import { LuSave, LuSaveOff } from "react-icons/lu";
 import { useCreateWeeklySchedule } from "./useCreateWeeklySchedule";
 
 function SaveSchedule() {
   const { classId } = useClassInfo();
   const schedule = useSchedule();
+  const conflictingCells = useConflicts();
   const { createScheduleMutation, isCreatingSchedule } =
     useCreateWeeklySchedule();
 
@@ -18,7 +23,7 @@ function SaveSchedule() {
   return (
     <button
       onClick={handleSaveSchedule}
-      disabled={cantSave}
+      disabled={cantSave || conflictingCells.length > 0}
       className="flex items-center space-x-2 rounded-xl bg-emerald-500 px-6 py-3 shadow-lg transition-all duration-200 hover:bg-emerald-600 hover:shadow-emerald-500/25 disabled:cursor-not-allowed"
     >
       {cantSave ? (
@@ -30,7 +35,9 @@ function SaveSchedule() {
         <span className="font-medium">Saving...</span>
       ) : (
         <span className="font-medium">
-          {cantSave ? "Can't Save" : "Save Schedule"}
+          {cantSave || conflictingCells.length > 0
+            ? "Can't Save"
+            : "Save Schedule"}
         </span>
       )}
     </button>
