@@ -1,6 +1,7 @@
 import { AddStudentTypes, TeacherSupervisorTypes } from "@/utils/types";
 import { fetcher } from "./fetcher";
 import Cookies from "js-cookie";
+import { generatePassword } from "@/utils/generatePassword";
 
 export async function login(body: { email: string; password: string }) {
   return fetcher({
@@ -51,7 +52,6 @@ export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
     "middleName",
     "lastName",
     "email",
-    "password",
     "phoneNumber",
     "subject",
     "salary",
@@ -62,6 +62,7 @@ export async function addTeacher(body: TeacherSupervisorTypes, token: string) {
       formData.append(bd, body[bd as keyof TeacherSupervisorTypes] as string);
   });
   formData.append("role", "teacher");
+  formData.append("password", generatePassword());
 
   // Files
   if (body.certification?.[0]) {
@@ -115,7 +116,6 @@ export async function addSupervisor(
     "middleName",
     "lastName",
     "email",
-    "password",
     "phoneNumber",
     "salary",
   ];
@@ -126,6 +126,7 @@ export async function addSupervisor(
     }
   });
   formData.append("role", "supervisor");
+  formData.append("password", generatePassword());
 
   // Files
   if (body.certification?.[0]) {
@@ -177,7 +178,6 @@ export async function addStudent(body: AddStudentTypes, token: string) {
     "middleName",
     "lastName",
     "email",
-    "password",
     "phoneNumber",
     "class",
     "parentName",
@@ -185,7 +185,6 @@ export async function addStudent(body: AddStudentTypes, token: string) {
     "parentLastName",
     "parentPhoneNumber",
     "parentEmail",
-    "parentPassword",
     "parentJob",
   ];
 
@@ -194,6 +193,8 @@ export async function addStudent(body: AddStudentTypes, token: string) {
       formData.append(bd, body[bd as keyof AddStudentTypes] as string);
   });
   formData.append("role", "student");
+  formData.append("password", generatePassword());
+  formData.append("parentPassword", generatePassword());
 
   // Files
   if (body.previousCertification?.[0]) {
@@ -238,4 +239,62 @@ export async function deleteUser(body: { user_id: number }) {
 
 export async function getCurrentUser() {
   return fetcher({ url: "/api/getUserInfo", method: "GET" });
+}
+
+export async function addOthers(body: TeacherSupervisorTypes, token: string) {
+  const formData = new FormData();
+  const bodyData = [
+    "name",
+    "middleName",
+    "lastName",
+    "email",
+    "phoneNumber",
+    "salary",
+  ];
+
+  bodyData.forEach((bd) => {
+    if (bd as keyof TeacherSupervisorTypes)
+      formData.append(bd, body[bd as keyof TeacherSupervisorTypes] as string);
+  });
+  formData.append("role", "other");
+  formData.append("password", generatePassword());
+
+  // Files
+  if (body.certification?.[0]) {
+    formData.append("certification", body.certification[0]);
+  }
+  if (body.photo?.[0]) {
+    formData.append("photo", body.photo[0]);
+  }
+
+  try {
+    const res = await fetch(import.meta.env.VITE_APP_URL + "/api/createOther", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message ||
+            "Something went wrong with adding an other user",
+        );
+      }
+    }
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

@@ -1,4 +1,4 @@
-import ChooseExamType from "@/features/teachers/marksManagement/ChooseExamType";
+import ChooseExamType from "@/ui/ChooseExamType";
 
 function GetExamSchedule() {
   return (

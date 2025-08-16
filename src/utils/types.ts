@@ -36,7 +36,6 @@ export interface TeacherSupervisorTypes {
   lastName: string;
   middleName: string;
   email: string;
-  password: string;
   phoneNumber: string;
   certification: FileList;
   photo: FileList;
@@ -46,7 +45,6 @@ export interface TeacherSupervisorTypes {
 
 export interface AddStudentTypes {
   email: string;
-  password: string;
   name: string;
   middleName: string;
   lastName: string;
@@ -59,7 +57,6 @@ export interface AddStudentTypes {
   parentLastName: string;
   parentPhoneNumber: string;
   parentEmail: string;
-  parentPassword: string;
   parentJob: string;
 }
 

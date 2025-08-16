@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useAddSupervisor } from "./useAddSupervisor";
 import { useAddTeacher } from "./useAddTeacher";
 import { useTranslation } from "react-i18next";
+import { useAddOtherUser } from "./othersRole/useAddOtherUser";
 
 interface CsvDataTypes {
   name: string;
@@ -25,6 +26,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
   const { t } = useTranslation("supervisors");
   const { addSupervisorMutation, isAddingSupervisor } = useAddSupervisor();
   const { addTeacherMutation, isAddingTeacher } = useAddTeacher();
+  const { addOtherUserMutation, isAddingOtherUser } = useAddOtherUser();
 
   const {
     register,
@@ -37,7 +39,6 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
     if (csvData) {
       reset({
         ...csvData,
-        password: "",
         salary: 0,
         subject: "",
         certification: null as unknown as FileList,
@@ -51,6 +52,8 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
       return addTeacherMutation(data, { onSuccess: () => reset() });
     if (role === "supervisor")
       return addSupervisorMutation(data, { onSuccess: () => reset() });
+    if (role === "others")
+      return addOtherUserMutation(data, { onSuccess: () => reset() });
   }
 
   return (
@@ -89,15 +92,6 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
           register={register}
           error={errors.email?.message || ""}
         />
-        <InputField<TeacherSupervisorTypes>
-          name="password"
-          label="Password"
-          type="text"
-          autoComplete="off"
-          register={register}
-          error={errors.password?.message || ""}
-        />
-
         <InputField<TeacherSupervisorTypes>
           name="phoneNumber"
           label={t("addSupervisor.phone")}
@@ -162,13 +156,15 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
           backgroundColor="bg-violet-600"
           backgroundHover="hover:bg-violet-700"
         >
-          {isAddingSupervisor || isAddingTeacher ? (
+          {isAddingSupervisor || isAddingTeacher || isAddingOtherUser ? (
             <SmallSpinner />
           ) : role === "supervisor" ? (
             t("addSupervisor.addSupervisorButton") +
             t("addSupervisor.supervisor")
-          ) : (
+          ) : role === "teacher" ? (
             t("addSupervisor.addSupervisorButton") + t("addSupervisor.teacher")
+          ) : (
+            "Add User"
           )}
         </Button>
         <ClearAll clearFunction={reset} />

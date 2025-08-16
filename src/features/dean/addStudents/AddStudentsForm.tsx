@@ -68,15 +68,6 @@ function AddStudentsForm() {
           error={errors.email?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
-          name="password"
-          label="Password"
-          type="text"
-          autoComplete="off"
-          register={register}
-          error={errors.password?.message?.toString() || ""}
-        />
-
-        <InputField<AddStudentTypes>
           name="phoneNumber"
           label={t("addStudents.phone")}
           inputValidation={{
@@ -155,15 +146,6 @@ function AddStudentsForm() {
           type="email"
           register={register}
           error={errors.parentEmail?.message?.toString() || ""}
-        />
-        <InputField<AddStudentTypes>
-          name="password"
-          id="parentPassword"
-          label="Parent Password"
-          type="text"
-          autoComplete="off"
-          register={register}
-          error={errors.parentPassword?.message?.toString() || ""}
         />
         <InputField<AddStudentTypes>
           name="parentJob"

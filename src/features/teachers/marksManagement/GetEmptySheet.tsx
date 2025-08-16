@@ -1,7 +1,7 @@
 import { PiMicrosoftExcelLogoLight } from "react-icons/pi";
 import ChooseClassEmptyExcel from "./ChooseClassMarks";
 import ChooseSemester from "./ChooseSemester";
-import ChooseType from "./ChooseExamType";
+import ChooseType from "../../../ui/ChooseExamType";
 import GetEmptySheetButton from "./GetEmptySheetButton";
 import GetPreviousExcelFiles from "./GetPreviousExcelFiles";
 import { setType, useMarks } from "@/slices/MarksManagementSlice";
