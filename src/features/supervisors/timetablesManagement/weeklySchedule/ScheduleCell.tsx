@@ -87,6 +87,11 @@ function ScheduleCell({
             >
               {currentCellContent?.subject || "Click to add"}
             </div>
+            {currentCellContent?.teacher_name && (
+              <div className="rounded-md bg-gray-100 px-2 py-1 text-sm text-gray-700">
+                <span>👨‍🏫 {currentCellContent.teacher_name}</span>
+              </div>
+            )}
           </div>
         )}
       </div>

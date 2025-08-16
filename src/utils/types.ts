@@ -173,4 +173,5 @@ export interface ScheduleTypes {
   session: number;
   subject: string;
   className?: string;
+  teacher_name?: string;
 }

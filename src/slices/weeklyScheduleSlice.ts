@@ -55,6 +55,7 @@ const weeklyScheduleSlice = createSlice({
       );
       if (scheduleItemIndex !== -1) {
         state.schedule[scheduleItemIndex].subject = subject;
+        state.schedule[scheduleItemIndex].teacher_name = "";
       } else {
         state.schedule.push(action.payload);
       }

@@ -13,7 +13,8 @@
     "newsAndAdds": "News & Adds",
     "marks": "Marks",
     "attendance": "Attendance",
-    "complaints": "Complaints"
+    "complaints": "Complaints",
+    "others": "Other Roles"
   },
   "cards": {
     "cardButton": "View Profile"

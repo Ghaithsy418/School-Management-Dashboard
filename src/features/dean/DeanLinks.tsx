@@ -1,13 +1,14 @@
+import IconNumber from "@/ui/IconNumber";
 import TeacherSvg from "@/ui/TeacherSvg";
 import { Newspaper } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { HiOutlineUserGroup } from "react-icons/hi";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import { VscFeedback } from "react-icons/vsc";
 import NavList from "../../ui/NavList";
-import IconNumber from "@/ui/IconNumber";
 import { useGetUnSeenComplaints } from "./complaints/useGetUnSeenComplaints";
 
 function DeanLinks() {
@@ -39,6 +40,12 @@ function DeanLinks() {
         title: t("sidebar.supervisors"),
         value: "supervisors",
         icon: <MdOutlineSupervisorAccount className="h-7 w-7" />,
+        immediateLink: false,
+      },
+      {
+        title: t("sidebar.others"),
+        value: "others",
+        icon: <HiOutlineUserGroup className="h-7 w-7" />,
         immediateLink: false,
       },
       {

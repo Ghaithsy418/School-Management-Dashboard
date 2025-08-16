@@ -33,6 +33,7 @@ import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import ExamSchedules from "./pages/ExamSchedules";
+import Others from "./pages/Others";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,6 +89,7 @@ function App() {
                 <Route path="timetables">
                   <Route path="examSchedules" element={<ExamSchedules />} />
                 </Route>
+                <Route path="others" element={<Others />} />
                 <Route path="complaints" element={<Complaints />} />
                 <Route path="settings" element={<Settings />} />
               </Route>

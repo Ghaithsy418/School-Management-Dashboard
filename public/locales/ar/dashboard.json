@@ -13,7 +13,8 @@
     "newsAndAdds": "الأخبار والإعلانات",
     "marks": "العلامات",
     "attendance": "الحضور",
-    "complaints": "الشكاوي"
+    "complaints": "الشكاوي",
+    "others": "أدوار أخرى"
   },
   "cards": {
     "cardButton": "عرض الملف الشخصي"

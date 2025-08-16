@@ -40,7 +40,7 @@ export async function getTeacherWeeklySchedule() {
 }
 
 export async function updateSchedule(body: {
-  clasId: number;
+  classId: number;
   schedule: ScheduleTypes[];
 }) {
   return fetcher({ url: "/api/updateWeeklySchedule", method: "POST", body });
