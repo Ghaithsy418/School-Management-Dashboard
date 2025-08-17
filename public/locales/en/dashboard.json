@@ -14,7 +14,8 @@
     "marks": "Marks",
     "attendance": "Attendance",
     "complaints": "Complaints",
-    "others": "Other Roles"
+    "others": "Other Roles",
+    "exam": "Exams Schedules"
   },
   "cards": {
     "cardButton": "View Profile"

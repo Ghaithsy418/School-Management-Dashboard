@@ -1,5 +1,6 @@
 import { ScheduleTypes } from "@/utils/types";
 import { fetcher } from "./fetcher";
+import Cookies from "js-cookie";
 
 export async function CreateWeeklySchedule(body: {
   classId: number;
@@ -44,4 +45,52 @@ export async function updateSchedule(body: {
   schedule: ScheduleTypes[];
 }) {
   return fetcher({ url: "/api/updateWeeklySchedule", method: "POST", body });
+}
+
+export async function uploadExamFile(
+  body: { schedule: File; semester: string; type: string; grade: number },
+  token: string,
+) {
+  const { grade, semester, type } = body;
+
+  const formData = new FormData();
+
+  formData.append("grade", String(grade));
+  formData.append("type", type);
+  formData.append("semester", semester.toLowerCase());
+
+  if (body.schedule) {
+    formData.append("schedule", body.schedule);
+  }
+
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_APP_URL + "/api/uploadExamSchedule",
+      {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      },
+    );
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message || "Something went wrong with uploading the file",
+        );
+      }
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

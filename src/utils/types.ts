@@ -172,3 +172,13 @@ export interface ScheduleTypes {
   className?: string;
   teacher_name?: string;
 }
+
+export interface OtherUsersTypes {
+  user_id: number;
+  other_id: number;
+  full_name: string;
+  email: string;
+  phone: number;
+  salary: number;
+  permission: string[];
+}

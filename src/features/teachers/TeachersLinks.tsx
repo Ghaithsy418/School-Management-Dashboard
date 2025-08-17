@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineCog8Tooth } from "react-icons/hi2";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
+import { GrSchedule } from "react-icons/gr";
 
 function TeachersLinks() {
   const { t } = useTranslation();
@@ -62,6 +63,12 @@ function TeachersLinks() {
             <line x1="25" y1="80" x2="55" y2="80" strokeWidth="5" />
           </svg>
         ),
+        immediateLink: false,
+      },
+      {
+        title: t("sidebar.exam"),
+        value: "timetables/examSchedules",
+        icon: <GrSchedule className="h-6 w-6" />,
         immediateLink: false,
       },
       {

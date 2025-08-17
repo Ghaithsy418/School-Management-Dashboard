@@ -10,6 +10,7 @@ import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import { VscFeedback } from "react-icons/vsc";
 import NavList from "../../ui/NavList";
 import { useGetUnSeenComplaints } from "./complaints/useGetUnSeenComplaints";
+import { GrSchedule } from "react-icons/gr";
 
 function DeanLinks() {
   const { t } = useTranslation();
@@ -46,6 +47,12 @@ function DeanLinks() {
         title: t("sidebar.others"),
         value: "others",
         icon: <HiOutlineUserGroup className="h-7 w-7" />,
+        immediateLink: false,
+      },
+      {
+        title: t("sidebar.exam"),
+        value: "timetables/examSchedules",
+        icon: <GrSchedule className="h-6 w-6" />,
         immediateLink: false,
       },
       {

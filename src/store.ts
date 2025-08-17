@@ -9,6 +9,7 @@ import subjectsUiReducer from "@/slices/SubjectUiSlice";
 import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
 import userReducer from "@/slices/userSlice";
 import weeklyScheduleReducer from "@/slices/weeklyScheduleSlice";
+import examReducer from "@/slices/examSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
     comments: commentsReducer,
     complaints: complaintsReducer,
     weeklySchedule: weeklyScheduleReducer,
+    exam: examReducer,
     root: rootReducer,
   },
 });

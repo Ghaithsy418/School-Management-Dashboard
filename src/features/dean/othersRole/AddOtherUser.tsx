@@ -20,7 +20,7 @@ function AddOtherUser() {
       toPage="/dean/others"
     >
       <AddByCSV setCsvData={setCsvData} />
-      <AddTeachersSupervisorsForm role="others" csvData={csvData} />
+      <AddTeachersSupervisorsForm role="other" csvData={csvData} />
     </MainContainer>
   );
 }

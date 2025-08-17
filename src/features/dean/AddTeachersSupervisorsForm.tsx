@@ -52,7 +52,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
       return addTeacherMutation(data, { onSuccess: () => reset() });
     if (role === "supervisor")
       return addSupervisorMutation(data, { onSuccess: () => reset() });
-    if (role === "others")
+    if (role === "other")
       return addOtherUserMutation(data, { onSuccess: () => reset() });
   }
 

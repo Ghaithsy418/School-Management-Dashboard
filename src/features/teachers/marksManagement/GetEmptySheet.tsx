@@ -4,11 +4,11 @@ import ChooseSemester from "./ChooseSemester";
 import ChooseType from "../../../ui/ChooseExamType";
 import GetEmptySheetButton from "./GetEmptySheetButton";
 import GetPreviousExcelFiles from "./GetPreviousExcelFiles";
-import { setType, useMarks } from "@/slices/MarksManagementSlice";
+import { setSemester, setType, useMarks } from "@/slices/MarksManagementSlice";
 import { useDispatch } from "react-redux";
 
 function GetEmptySheet() {
-  const { type } = useMarks();
+  const { type, semester } = useMarks();
   const dispatch = useDispatch();
 
   function onClick(examType: string) {
@@ -31,7 +31,10 @@ function GetEmptySheet() {
         </div>
       </div>
       <ChooseClassEmptyExcel />
-      <ChooseSemester />
+      <ChooseSemester
+        semester={semester}
+        onSelect={(sem: string) => dispatch(setSemester(sem))}
+      />
       <ChooseType onClick={onClick} type={type} />
       <div className="flex w-full flex-col gap-4">
         <GetEmptySheetButton />
