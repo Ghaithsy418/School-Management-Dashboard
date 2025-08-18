@@ -1,3 +1,4 @@
+import { useClientTransform } from "@/hooks/useClientTransform";
 import { getUsersPermisions } from "@/services/apiOthers";
 import { OtherUsersTypes } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
@@ -12,5 +13,7 @@ export const useGetUsersPermisions = function () {
     queryFn: getUsersPermisions,
   });
 
-  return { others: data?.data, isGettingOthers };
+  const others = useClientTransform(data?.data || [], "full_name");
+
+  return { others, isGettingOthers };
 };

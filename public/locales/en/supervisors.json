@@ -28,6 +28,7 @@
     "title": "Supervisor Informations",
     "email": "Email Address",
     "phone": "Phone Number",
-    "salary": "Salary"
+    "salary": "Salary",
+    "permissions": "Permissions"
   }
 }

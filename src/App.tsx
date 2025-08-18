@@ -35,6 +35,7 @@ import ProtectedRoutes from "./ui/ProtectedRoutes";
 import ExamSchedules from "./pages/ExamSchedules";
 import Others from "./pages/Others";
 import AddOtherUser from "./features/dean/othersRole/AddOtherUser";
+import OthersProfile from "./features/dean/othersRole/OthersProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -92,6 +93,7 @@ function App() {
                 </Route>
                 <Route path="others">
                   <Route index element={<Others />} />
+                  <Route path=":id" element={<OthersProfile />} />
                   <Route path="add-other-user" element={<AddOtherUser />} />
                 </Route>
                 <Route path="complaints" element={<Complaints />} />

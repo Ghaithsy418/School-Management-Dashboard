@@ -43,7 +43,7 @@ function OthersCard({ user }: CardTypes) {
               {email}
             </p>
           </div>
-          <div className="h-6">
+          <div className="flex h-6 flex-wrap items-center justify-center gap-3">
             {permission.length > 0 ? (
               permission.map((per) => (
                 <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-800 capitalize dark:bg-indigo-800 dark:text-indigo-50">
@@ -58,14 +58,18 @@ function OthersCard({ user }: CardTypes) {
           </div>
         </div>
         <div className="mt-8 flex w-full flex-col items-center justify-center gap-3">
-          <ManagePermissions />
-          <Linkf
+          <ManagePermissions
+            currentPermissions={permission}
+            full_name={full_name}
+            user_id={user_id}
+          />
+          <Link
             to={`/${role}/others/${user_id}`}
             className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors duration-200 group-hover:border-indigo-400 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-slate-100"
           >
             <FaRegUser className="h-4 w-4" />
             {t("cards.cardButton")}
-          </Linkf>
+          </Link>
         </div>
       </div>
     </motion.div>

@@ -182,3 +182,9 @@ export interface OtherUsersTypes {
   salary: number;
   permission: string[];
 }
+
+export interface PermissionTypes {
+  id: number;
+  permission: string;
+  description: string;
+}

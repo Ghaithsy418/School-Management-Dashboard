@@ -1,10 +1,12 @@
+import Empty from "@/ui/Empty";
 import Spinner from "@/ui/Spinner";
 import OthersCard from "./OthersCard";
 import { useGetUsersPermisions } from "./useGetUsersPermisions";
-import Empty from "@/ui/Empty";
+import { useShowPermissions } from "./useShowPermissions";
 
 function OthersLayout() {
   const { others, isGettingOthers } = useGetUsersPermisions();
+  useShowPermissions();
 
   if (isGettingOthers) return <Spinner />;
 
