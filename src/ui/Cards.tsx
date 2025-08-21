@@ -7,7 +7,11 @@ interface CardsTypes {
 }
 
 function Cards({ data, render }: CardsTypes) {
-  return <div className="grid grid-cols-4 gap-8">{data.map(render)}</div>;
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-8">
+      {data.map(render)}
+    </div>
+  );
 }
 
 export default Cards;

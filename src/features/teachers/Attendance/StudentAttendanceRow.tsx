@@ -10,15 +10,16 @@ import { useDispatch } from "react-redux";
 function StudentAttendanceRow({ student }: { student: StudentAttendaceTypes }) {
   const { students } = useAttendance();
   const dispatch = useDispatch();
+  console.log(students);
 
   const { studentId, studentName } = student;
-  const isChecked = students.some(
+  const isChecked = !students.some(
     (s: { studentId: number }) => s.studentId === studentId,
   );
 
   function handleChange() {
-    if (isChecked) dispatch(removeStudent(studentId));
-    if (!isChecked) dispatch(pushStudent({ studentId }));
+    if (!isChecked) dispatch(removeStudent(studentId));
+    if (isChecked) dispatch(pushStudent({ studentId }));
   }
 
   return (

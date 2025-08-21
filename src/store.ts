@@ -2,6 +2,7 @@ import attendanceReducer from "@/slices/AttendanceSlice";
 import classesUiReducer from "@/slices/classesUiSlice";
 import commentsReducer from "@/slices/commentsSlice";
 import complaintsReducer from "@/slices/complaintsSlice";
+import examReducer from "@/slices/examSlice";
 import loginUiReducer from "@/slices/loginUiSlice";
 import marksReducer from "@/slices/MarksManagementSlice";
 import rootReducer from "@/slices/rootReducer";
@@ -9,7 +10,6 @@ import subjectsUiReducer from "@/slices/SubjectUiSlice";
 import supervisorAttendanceReducer from "@/slices/supervisorAttendanceSlice";
 import userReducer from "@/slices/userSlice";
 import weeklyScheduleReducer from "@/slices/weeklyScheduleSlice";
-import examReducer from "@/slices/examSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({

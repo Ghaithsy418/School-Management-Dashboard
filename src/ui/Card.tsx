@@ -29,7 +29,7 @@ function Card({ data, userType }: CardTypes) {
 
   return (
     <motion.div
-      className="group relative flex w-full max-w-xs flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-200/40 dark:border-slate-600 dark:bg-gray-800 dark:shadow-xs dark:hover:shadow-sm"
+      className="group relative flex h-[22rem] w-[16.5rem] max-w-xs flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-200/40 dark:border-slate-600 dark:bg-gray-800 dark:shadow-xs dark:hover:shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20 }}

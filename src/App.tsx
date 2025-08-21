@@ -174,7 +174,7 @@ function App() {
       />
       <ReactQueryDevtools
         initialIsOpen={false}
-        buttonPosition="bottom-left"
+        buttonPosition="bottom-right"
         position="bottom"
       />
     </QueryClientProvider>

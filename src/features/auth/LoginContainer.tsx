@@ -8,6 +8,7 @@ import { useLoginUi } from "@/slices/loginUiSlice";
 function LoginContainer() {
   const { ui } = useLoginUi();
   const CurrentComponent = components[ui as keyof typeof components];
+
   return (
     <div className="flex h-full flex-2/5 items-center justify-center">
       <AnimatePresence mode="wait">

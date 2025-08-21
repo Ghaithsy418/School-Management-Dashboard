@@ -15,7 +15,7 @@ function AppLayout() {
       variants={regularOpacityVariants}
       initial="hidden"
       animate="visible"
-      className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[4.5rem_1fr]"
+      className="grid h-screen grid-cols-[auto_1fr] grid-rows-[4.5rem_1fr]"
     >
       <SideBar />
       <NavBar />

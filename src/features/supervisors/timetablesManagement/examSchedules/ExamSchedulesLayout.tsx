@@ -9,7 +9,7 @@ function ExamSchedulesLayout() {
 
   return (
     <div
-      className={`grid w-full ${role === "supervisor" ? "grid-cols-2" : "grid-cols-[32rem]"} items-center justify-center gap-12 py-6`}
+      className={`grid w-full ${role === "supervisor" ? "grid-cols-[560px_560px]" : "grid-cols-[32rem]"} items-center justify-center gap-12 py-6`}
     >
       <GetExamSchedule />
       {role === "supervisor" && <UploadExamSchedule />}

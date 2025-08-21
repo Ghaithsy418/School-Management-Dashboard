@@ -11,6 +11,7 @@ interface buttonsTypes {
 //Responsible: for rendering a single sidebar link
 function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
   const [isHover, setIsHover] = useState(false);
+
   return (
     <li
       className="group z-0 w-full"
@@ -24,7 +25,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
             : `/${role}/${button.value.toLowerCase()}`
         }
         className={({ isActive }) =>
-          `relative flex cursor-pointer items-center gap-5 rounded-lg px-4 py-2.5 ${isActive ? "bg-indigo-200/50 dark:bg-indigo-900/80" : ""}`
+          `relative flex cursor-pointer items-center gap-5 rounded-lg px-2.5 py-2.5 ${isActive ? "bg-indigo-200/50 dark:bg-indigo-900/80" : ""}`
         }
       >
         <span
@@ -32,7 +33,7 @@ function NavItem({ button, role }: { button: buttonsTypes; role: string }) {
         >
           {button.icon}
         </span>
-        {button.title}
+        <span className="truncate text-nowrap">{button.title}</span>
         <span
           style={{
             transform: isHover ? "scaleX(1)" : "scaleX(0)",

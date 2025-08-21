@@ -14,7 +14,7 @@ function OthersLayout() {
     return <Empty resource="users" />;
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="flex flex-wrap items-center justify-center gap-8">
       {others?.map((user) => (
         <OthersCard key={user.user_id} user={user} />
       ))}

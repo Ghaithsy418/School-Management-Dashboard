@@ -46,7 +46,7 @@ function StudentsAttendanceTable() {
     <div className="flex flex-col items-start justify-start gap-4">
       <h3 className="flex items-center gap-2 text-lg text-red-700">
         <MessageSquareWarning className="h-5 w-5" />
-        <span>Make sure to choose the Absent Students only!!</span>
+        <span>unCheck the Absent Students or just submit if no absences</span>
       </h3>
       <div className="w-full">
         <Table columns="1.5fr 0.9fr">
