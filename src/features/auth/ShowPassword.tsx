@@ -23,7 +23,7 @@ function ShowPassword({
   const { t } = useTranslation("auth");
   const [isShown, setIsShown] = useState(false);
   return (
-    <div className="relative w-96">
+    <div className="relative w-full">
       <InputField
         name="password"
         type={isShown ? "text" : "password"}

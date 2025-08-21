@@ -10,7 +10,7 @@ interface TitleTypes {
 
 function Title({
   children,
-  size = "text-7xl",
+  size = "text-6xl sm:text-7xl",
   secondaryTitle,
   importantWord = "",
 }: TitleTypes) {

@@ -64,7 +64,7 @@ function InputField<T extends FieldValues>({
   const defaultRingColor = "focus:ring-violet-500/40 focus:border-violet-500";
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full text-sm sm:text-base ${className}`}>
       <div className="relative">
         <input
           id={id || name}

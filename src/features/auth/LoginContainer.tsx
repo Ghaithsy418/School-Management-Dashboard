@@ -10,7 +10,7 @@ function LoginContainer() {
   const CurrentComponent = components[ui as keyof typeof components];
 
   return (
-    <div className="flex h-full flex-2/5 items-center justify-center">
+    <div className="flex flex-2/5 items-center justify-center">
       <AnimatePresence mode="wait">
         {CurrentComponent && <CurrentComponent key={ui} />}
       </AnimatePresence>

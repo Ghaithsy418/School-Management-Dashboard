@@ -30,7 +30,7 @@ function LoginForm() {
       <Title secondaryTitle={t("login.subTitle")}>{t("login.title")}</Title>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center gap-8"
+        className="flex w-[23rem] flex-col items-center justify-center gap-6 px-6 sm:w-[24rem] sm:gap-8 lg:px-0"
       >
         <InputField
           name="email"
@@ -43,7 +43,7 @@ function LoginForm() {
           register={register}
           error={passwordError?.message?.toString() || ""}
         />
-        <SubmitButton marginTop="mt-3">
+        <SubmitButton marginTop="mt-3" size="w-full">
           {isLoggingIn ? <SmallSpinner /> : t("login.button")}
         </SubmitButton>
       </form>
