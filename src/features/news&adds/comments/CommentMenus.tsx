@@ -22,7 +22,7 @@ function CommentMenus({
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const {
-    user: { id },
+    user: { id, role },
   } = useUser();
 
   function handleDelete() {
@@ -55,20 +55,20 @@ function CommentMenus({
           </Menus.Button>
         )}
         {id === user_id && (
-          <>
-            <Menus.Button
-              onClick={() => dispatch(changeUi(`edit${commentId}`))}
-              icon={<MdOutlineModeEdit className="h-5 w-5" />}
-            >
-              {t("menuButtons.edit")}
-            </Menus.Button>
-            <Menus.Button
-              onClick={handleDelete}
-              icon={<MdDeleteOutline className="h-5 w-5" />}
-            >
-              {t("menuButtons.delete")}
-            </Menus.Button>
-          </>
+          <Menus.Button
+            onClick={() => dispatch(changeUi(`edit${commentId}`))}
+            icon={<MdOutlineModeEdit className="h-5 w-5" />}
+          >
+            {t("menuButtons.edit")}
+          </Menus.Button>
+        )}
+        {(id === user_id || role === "supervisor") && (
+          <Menus.Button
+            onClick={handleDelete}
+            icon={<MdDeleteOutline className="h-5 w-5" />}
+          >
+            {t("menuButtons.delete")}
+          </Menus.Button>
         )}
       </Menus.List>
     </Menus>

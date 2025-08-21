@@ -188,3 +188,7 @@ export async function editPost(body: {
     throw error;
   }
 }
+
+export async function showReportedComments() {
+  return fetcher({ url: "/api/showReportedComments", method: "GET" });
+}

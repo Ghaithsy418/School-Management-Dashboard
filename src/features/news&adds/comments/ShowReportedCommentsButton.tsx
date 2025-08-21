@@ -1,8 +1,15 @@
 import Modal from "@/ui/Modal";
 import { LuMegaphone } from "react-icons/lu";
 import ReportedCommentsLayout from "./ReportedCommentsLayout";
+import { useUser } from "@/slices/userSlice";
 
 function ShowReportedCommentsButton() {
+  const {
+    user: { role },
+  } = useUser();
+
+  if (role !== "supervisor") return null;
+
   return (
     <Modal>
       <Modal.Open name="reportedComments">
