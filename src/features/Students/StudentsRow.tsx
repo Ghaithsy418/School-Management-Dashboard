@@ -3,6 +3,8 @@ import AvatarGenerator from "../../ui/AvatarGenerator";
 import Contact from "../../ui/Contact";
 import { StudentTypes } from "../../utils/types";
 import StudentsTableMenus from "./StudentsTableMenus";
+import StudentsAbsences from "./StudentsAbsences";
+import StudentsGpa from "./StudentsGpa";
 
 function StudentsRow({ student }: { student: StudentTypes }) {
   const {
@@ -29,9 +31,9 @@ function StudentsRow({ student }: { student: StudentTypes }) {
       </h3>
       <p>{user_id}</p>
       <p>{class_name === "" ? "-" : class_name}</p>
-      {role !== "supervisor" && <p>{gpa ?? "-"}</p>}
+      {role !== "supervisor" && <StudentsGpa gpa={gpa} />}
       {role === "supervisor" && (
-        <p>{absences_number ? 5 - absences_number : "-"}</p>
+        <StudentsAbsences absences_number={absences_number} />
       )}
       <Contact phone={phone} email={email} />
       <StudentsTableMenus

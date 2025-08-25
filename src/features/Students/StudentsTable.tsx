@@ -23,7 +23,13 @@ function StudentsTable() {
     t("main.name"),
     t("main.id"),
     t("main.class"),
-    role === "supervisor" ? t("main.absenceNumber") : t("main.gpa"),
+    role === "supervisor"
+      ? t("main.currentAbsences")
+      : t("main.firstSemesterGpa"),
+    role === "supervisor"
+      ? t("main.totalAbsences")
+      : t("main.secondSemesterGpa"),
+    role === "supervisor" ? t("main.warnings") : t("main.totalGpa"),
     t("main.contact"),
   ];
 
@@ -31,7 +37,7 @@ function StudentsTable() {
   if (!students?.length) return <Empty resource="students" />;
 
   return (
-    <Table columns="0.8fr 0.4fr 0.4fr 0.4fr 0.3fr 0.3fr">
+    <Table columns="0.7fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr">
       <Table.Header>
         {HeaderTitles.map((title) => (
           <div key={title}>{title}</div>

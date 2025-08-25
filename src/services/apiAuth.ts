@@ -2,12 +2,15 @@ import { AddStudentTypes, TeacherSupervisorTypes } from "@/utils/types";
 import { fetcher } from "./fetcher";
 import Cookies from "js-cookie";
 import { generatePassword } from "@/utils/generatePassword";
+import { requestForToken } from "./fcm";
 
 export async function login(body: { email: string; password: string }) {
+  const fcmToken = await requestForToken();
+
   return fetcher({
     url: "/api/login",
     method: "POST",
-    body: { ...body, deviceType: "web" },
+    body: { ...body, deviceType: "web", fcmToken },
   });
 }
 

@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import AddStudents from "./features/dean/addStudents/AddStudents";
 import AddSupervisors from "./features/dean/AddSupervisors";
 import AddTeachers from "./features/dean/AddTeachers";
+import AddOtherUser from "./features/dean/othersRole/AddOtherUser";
+import OthersProfile from "./features/dean/othersRole/OthersProfile";
 import { useChangeTheme } from "./hooks/useChangeTheme";
 import Attendance from "./pages/Attendance";
 import ClassesMarks from "./pages/ClassesMarks";
@@ -13,10 +14,12 @@ import ClassManagment from "./pages/ClassManagment";
 import Complaints from "./pages/Complaints";
 import Dashboard from "./pages/Dashboard";
 import Event from "./pages/Event";
+import ExamSchedules from "./pages/ExamSchedules";
 import Login from "./pages/Login";
 import MarksManagement from "./pages/MarksManagement";
 import MyProfilePage from "./pages/MyProfilePage";
 import NewsAndEvents from "./pages/NewsAndEvents";
+import Others from "./pages/Others";
 import Settings from "./pages/Settings";
 import Student from "./pages/Student";
 import Students from "./pages/Students";
@@ -27,15 +30,10 @@ import Teacher from "./pages/Teacher";
 import Teachers from "./pages/Teachers";
 import TimeTablesManagement from "./pages/TimeTablesManagement";
 import UserEvents from "./pages/UserEvents";
-import { requestForToken } from "./services/fcm";
 import { useUser } from "./slices/userSlice";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./ui/NotFound";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import ExamSchedules from "./pages/ExamSchedules";
-import Others from "./pages/Others";
-import AddOtherUser from "./features/dean/othersRole/AddOtherUser";
-import OthersProfile from "./features/dean/othersRole/OthersProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,10 +50,6 @@ function App() {
   } = useUser();
   useChangeTheme();
   const { detectTheme } = useUser();
-
-  useEffect(function () {
-    requestForToken();
-  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,6 +1,17 @@
+import { useGetExam } from "@/slices/examSlice";
 import SubmitButton from "@/ui/SubmitButton";
+import { useGetExamSchedule } from "./useGetExamSchedule";
 
 function GetExamFileButton() {
+  const { grade, type, semester } = useGetExam();
+  const { getExamScheduleMutation, isGettingExamSchedule } =
+    useGetExamSchedule();
+
+  function handleClick() {
+    if (!grade || !type || semester)
+      getExamScheduleMutation({ grade, type, semester });
+  }
+
   return (
     <SubmitButton
       colorFrom="from-purple-600"
@@ -10,6 +21,7 @@ function GetExamFileButton() {
       textColor="text-white"
       size="w-full"
       className="font-medium"
+      onClick={handleClick}
     >
       Get Exam File
     </SubmitButton>
