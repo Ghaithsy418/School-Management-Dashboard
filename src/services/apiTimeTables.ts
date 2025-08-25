@@ -52,7 +52,6 @@ export async function uploadExamFile(
   token: string,
 ) {
   const { grade, semester, type } = body;
-  console.log(body);
   const formData = new FormData();
 
   formData.append("grade", String(grade));
@@ -67,28 +66,27 @@ export async function uploadExamFile(
     const res = await fetch(
       import.meta.env.VITE_APP_URL + "/api/uploadExamSchedule",
       {
-        method: "PUT",
+        method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
       },
     );
 
-    // if (!res.ok) {
-    //   const errorData = await res.json().catch(() => null);
-    //   if (errorData?.error === "Unauthorized") {
-    //     Cookies.remove("token");
-    //     Cookies.remove("userData");
-    //     window.location.href = "/login";
-    //     throw new Error("Unauthorized");
-    //   } else {
-    //     throw new Error(
-    //       errorData?.message || "Something went wrong with uploading the file",
-    //     );
-    //   }
-    // }
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      if (errorData?.error === "Unauthorized") {
+        Cookies.remove("token");
+        Cookies.remove("userData");
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error(
+          errorData?.message || "Something went wrong with uploading the file",
+        );
+      }
+    }
 
     const data = await res.json();
-    console.log(data, res);
     return data;
   } catch (error) {
     console.error(error);
@@ -97,9 +95,17 @@ export async function uploadExamFile(
 }
 
 export async function getExamSchedule(body: {
-  className: string;
+  grade: number;
   type: string;
   semester: string;
 }) {
-  return fetcher({ url: "/api/getExamSchedule", method: "POST", body });
+  return fetcher({
+    url: "/api/getExamSchedule",
+    method: "POST",
+    body: {
+      ...body,
+      grade: String(body.grade),
+      semester: body.semester.toLowerCase(),
+    },
+  });
 }

@@ -8,8 +8,8 @@ function GetExamFileButton() {
     useGetExamSchedule();
 
   function handleClick() {
-    if (!grade || !type || semester)
-      getExamScheduleMutation({ grade, type, semester });
+    if (!grade || !type || !semester) return;
+    getExamScheduleMutation({ grade, type, semester });
   }
 
   return (
@@ -23,7 +23,7 @@ function GetExamFileButton() {
       className="font-medium"
       onClick={handleClick}
     >
-      Get Exam File
+      {isGettingExamSchedule ? "Getting File..." : "Get Exam File"}
     </SubmitButton>
   );
 }

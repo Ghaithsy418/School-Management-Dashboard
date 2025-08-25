@@ -1,13 +1,13 @@
+import { useComplaints } from "@/slices/complaintsSlice";
 import { detectStatus } from "@/utils/detectStatus";
 import { AllComplaintTypes } from "@/utils/types";
 import { format } from "date-fns";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import DeleteComplaintDean from "./DeleteComplaintDean";
 import MarkAsButtons from "./MarkAsButtons";
 import Priorities from "./Priorities";
-import { useComplaints } from "@/slices/complaintsSlice";
 import RestoreComplaint from "./RestoreComplaint";
-import DeleteComplaintDean from "./DeleteComplaintDean";
 
 interface ComplaintItemTypes {
   complaint: AllComplaintTypes;
@@ -71,11 +71,8 @@ const ComplaintItem = ({
             initial="collapsed"
             animate="open"
             exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 },
-            }}
-            transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+            variants={variants}
+            transition={{ duration: 0.4, ease: easeInOut }}
             className="overflow-hidden border-t border-slate-200/90 bg-slate-50/80 dark:border-slate-700/80 dark:bg-slate-800/50"
           >
             <div className="space-y-5 p-6">
@@ -120,6 +117,11 @@ const ComplaintItem = ({
       </AnimatePresence>
     </div>
   );
+};
+
+const variants = {
+  open: { opacity: 1, height: "auto" },
+  collapsed: { opacity: 0, height: 0 },
 };
 
 export default ComplaintItem;

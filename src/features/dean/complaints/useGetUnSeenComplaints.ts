@@ -9,6 +9,7 @@ export const useGetUnSeenComplaints = function () {
   const { data } = useQuery<UnSeenComplaintsTypes>({
     queryKey: ["unseenComplaintsNumber"],
     queryFn: getUnSeenComplaints,
+    staleTime: 20 * 1000,
   });
 
   return { unSeenComplaints: data?.count };

@@ -17,6 +17,7 @@ export const useGetAllComplaints = function (withTrash: string) {
     {
       queryKey: ["allComplaints", withTrash],
       queryFn: () => getAllComplaints({ withTrash }),
+      staleTime: 20 * 1000,
     },
   );
 
