@@ -14,10 +14,15 @@ export function useLogin() {
     mutationFn: ({ email, password }: mutateFnTypes) =>
       login({ email, password }),
     onSuccess: ({ token, data }: LoginResponse) => {
-      Cookies.set("token", token, { secure: true, sameSite: "strict" });
+      Cookies.set("token", token, {
+        secure: true,
+        sameSite: "strict",
+        expires: 30,
+      });
       Cookies.set("userData", JSON.stringify(data.user), {
         secure: true,
         sameSite: "strict",
+        expires: 30,
       });
       dispatch(setUserData({ user: data.user, token, detectTheme: false }));
       toast.success("You have loged in Successfully!");

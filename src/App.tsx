@@ -20,7 +20,6 @@ import MarksManagement from "./pages/MarksManagement";
 import MyProfilePage from "./pages/MyProfilePage";
 import NewsAndEvents from "./pages/NewsAndEvents";
 import Others from "./pages/Others";
-import PdfViewer from "./pages/PdfViewer";
 import Settings from "./pages/Settings";
 import Student from "./pages/Student";
 import Students from "./pages/Students";
@@ -143,14 +142,14 @@ function App() {
               <Route path="user_events/:userId" element={<UserEvents />} />
             </Route>
           </Route>
-          <Route
+          {/* <Route
             path="pdfViewer/:encodedUrl"
             element={
               <ProtectedRoutes>
                 <PdfViewer />
               </ProtectedRoutes>
             }
-          />
+          /> */}
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

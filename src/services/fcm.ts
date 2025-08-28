@@ -7,7 +7,7 @@ export const requestForToken = async (): Promise<string | null> => {
       vapidKey:
         "BGHrkWNNvomrQ2o5zWae_w53e48Q3XPeziHXapGxMInbZMEWfgHbzmB8kS8xvoCTMA29-1hZaYltcIXefyBUPXs",
     });
-
+    console.log(currentToken);
     return currentToken;
   } catch (err) {
     console.error("An error occurred while retrieving token. ", err);

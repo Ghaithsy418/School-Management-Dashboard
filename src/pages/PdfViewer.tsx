@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 // Best practice: Store the base URL in an environment variable (.env file)
