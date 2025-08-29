@@ -15,7 +15,6 @@ import { GrSchedule } from "react-icons/gr";
 function DeanLinks() {
   const { t } = useTranslation();
   const { unSeenComplaints } = useGetUnSeenComplaints();
-  console.log(unSeenComplaints);
 
   const buttons = useMemo(
     () => [

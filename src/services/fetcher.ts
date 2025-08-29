@@ -1,11 +1,19 @@
 import Cookies from "js-cookie";
-export const fetcher = async ({ url, method, body }: FetcherTypes) => {
+export const fetcher = async ({
+  url,
+  method,
+  body,
+  contentType,
+  accept,
+  pdfFile,
+}: FetcherTypes) => {
   const token = Cookies.get("token") || "";
 
   const res = await fetch(`${import.meta.env.VITE_APP_URL}${url}`, {
     method,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": contentType ?? "application/json",
+      Accept: accept ?? "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: body ? JSON.stringify(body) : undefined,
@@ -29,6 +37,9 @@ export const fetcher = async ({ url, method, body }: FetcherTypes) => {
       throw new Error(finalErrorMessage);
     }
   }
+
+  if (pdfFile) return res.blob();
+
   const data = await res.json();
 
   return data;
@@ -38,4 +49,7 @@ interface FetcherTypes {
   url: string;
   method: string;
   body?: unknown;
+  contentType?: string;
+  accept?: string;
+  pdfFile?: boolean;
 }

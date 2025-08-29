@@ -1,6 +1,6 @@
 import { useUser } from "@/slices/userSlice";
 import Avatar from "./Avatar";
-import NotificationButton from "./NotificationButton";
+import NotificationButton from "../features/notifications/NotificationButton";
 import LanguageButton from "./LanguageButton";
 import CreateComplaint from "@/features/dean/complaints/CreateComplaint";
 import {
@@ -18,14 +18,7 @@ function NavBar() {
       <div
         className={`flex items-center justify-center gap-3 ${role !== "dean" ? "px-5 ltr:border-r-1 ltr:border-r-gray-300 rtl:border-l-1 rtl:border-l-gray-300" : ""}`}
       >
-        <Tooltip>
-          <TooltipTrigger>
-            <NotificationButton />
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Notifications</p>
-          </TooltipContent>
-        </Tooltip>
+        <NotificationButton />
         {role !== "dean" && <CreateComplaint />}
         <Tooltip>
           <TooltipTrigger>

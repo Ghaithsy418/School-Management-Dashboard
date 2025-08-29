@@ -22,6 +22,7 @@ function GetExamFileButton() {
       size="w-full"
       className="font-medium"
       onClick={handleClick}
+      disabled={!grade || !type || !semester}
     >
       {isGettingExamSchedule ? "Getting File..." : "Get Exam File"}
     </SubmitButton>

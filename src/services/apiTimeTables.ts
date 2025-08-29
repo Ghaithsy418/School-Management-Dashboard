@@ -107,5 +107,7 @@ export async function getExamSchedule(body: {
       grade: String(body.grade),
       semester: body.semester.toLowerCase(),
     },
+    accept: "application/pdf",
+    pdfFile: true,
   });
 }

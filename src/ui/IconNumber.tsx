@@ -1,18 +1,26 @@
 import { ReactNode } from "react";
 
+interface IconNumberTypes {
+  children: ReactNode;
+  number?: number;
+  className?: string;
+  numberOffset: string;
+  onClick?: () => void;
+}
+
 function IconNumber({
   children,
   number,
   className,
   numberOffset,
-}: {
-  children: ReactNode;
-  number?: number;
-  className?: string;
-  numberOffset: string;
-}) {
+  onClick,
+}: IconNumberTypes) {
   return (
-    <div role="button" className={`relative flex ${className}`}>
+    <div
+      role="button"
+      onClick={onClick}
+      className={`relative flex ${className}`}
+    >
       {children}
       {number !== 0 && (
         <span
