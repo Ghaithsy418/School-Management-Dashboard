@@ -1,6 +1,6 @@
-import ClassSvg from "@/ui/ClassSvg";
+import ClassSvg from "@/utils/ClassSvg";
 import InformationCard from "@/ui/InformationCard";
-import TeacherSvg from "@/ui/TeacherSvg";
+import TeacherSvg from "@/utils/TeacherSvg";
 import { formatDistanceToNow } from "date-fns";
 import { Variants, motion } from "framer-motion";
 import { GrWorkshop } from "react-icons/gr";

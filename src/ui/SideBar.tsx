@@ -18,9 +18,9 @@ function SideBar() {
     <nav
       onMouseEnter={() => setIsExpanded(false)}
       onMouseLeave={() => setIsExpanded(true)}
-      className={`row-start-1 row-end-3 flex transition-all duration-300 ${!isExpanded ? "w-[16rem]" : "w-[5rem]"} flex-col justify-between border-r-1 border-r-gray-300/30 bg-gray-100/20 p-4 pt-2 font-semibold dark:border-r-gray-500/30 dark:bg-gray-950/20`}
+      className={`row-start-1 row-end-3 flex transition-all duration-300 ${!isExpanded ? "w-[16rem]" : "w-[5rem]"} flex-col justify-between border-r-1 border-r-gray-300/30 bg-gray-100/20 p-4 pt-0 font-semibold dark:border-r-gray-500/30 dark:bg-gray-950/20`}
     >
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div className="flex flex-col items-center justify-start -space-y-2">
           <Logo />
           <h1 className="text-center text-lg font-bold text-indigo-900/80">

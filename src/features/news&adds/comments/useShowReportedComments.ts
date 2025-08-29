@@ -7,5 +7,11 @@ export const useShowReportedComments = function () {
     queryFn: showReportedComments,
   });
 
-  return { reportedComments: data?.message, isLoading };
+  let reportedComments;
+  if (data?.message) {
+    const values = Object.values(data?.message);
+    reportedComments = values.flat();
+  }
+
+  return { reportedComments: reportedComments ?? [], isLoading };
 };

@@ -43,7 +43,7 @@ function CommentMenus({
         </span>
       </Menus.Toggle>
       <Menus.List id="commentMenus">
-        {id !== user_id && (
+        {id !== user_id && role !== "supervisor" && (
           <Menus.Button
             onClick={() => {
               dispatch(changeUi("report"));

@@ -18,6 +18,7 @@ i18n
       "newsAndAdds",
       "classes",
       "settings",
+      "timetables",
     ],
     defaultNS: "dashboard",
     supportedLngs: ["ar", "en"],

@@ -1,6 +1,6 @@
 import { PiStudent } from "react-icons/pi";
 import { useGetDeanStatistics } from "./useGetDeanStatistics";
-import TeacherSvg from "@/ui/TeacherSvg";
+import TeacherSvg from "@/utils/TeacherSvg";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import InformationCard from "@/ui/InformationCard";

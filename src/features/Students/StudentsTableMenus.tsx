@@ -1,5 +1,7 @@
 import { RootState } from "@/store";
 import { CalendarMinus, CalendarPlus } from "lucide-react";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { CgProfile } from "react-icons/cg";
 import { HiMiniEllipsisVertical } from "react-icons/hi2";
 import { MdDeleteOutline } from "react-icons/md";
@@ -9,12 +11,8 @@ import { Link } from "react-router-dom";
 import Menus from "../../ui/Menus";
 import Modal from "../../ui/Modal";
 import DeleteUser from "../dean/DeleteUser";
-import { useIncreaseAbsence } from "../supervisors/attendanceAndAbsence/useIncreaseAbsence";
 import { useDecreaseAbsence } from "../supervisors/attendanceAndAbsence/useDeacreseAbsence";
-import toast from "react-hot-toast";
-import { useTranslation } from "react-i18next";
-import { IoWarningOutline } from "react-icons/io5";
-import { useCheckStudentWarnings } from "../supervisors/attendanceAndAbsence/useCheckStudentWarnings";
+import { useIncreaseAbsence } from "../supervisors/attendanceAndAbsence/useIncreaseAbsence";
 
 function StudentsTableMenus({
   name,
@@ -29,7 +27,6 @@ function StudentsTableMenus({
   const role = useSelector((state: RootState) => state.user.user.role);
   const { increaseAbsenceMutation } = useIncreaseAbsence();
   const { decreaseAbsenceMutation } = useDecreaseAbsence();
-  const { refetch } = useCheckStudentWarnings(student_id);
 
   function handleIncreaseAbsence() {
     const promise = decreaseAbsenceMutation({ studentId: student_id });
@@ -43,19 +40,9 @@ function StudentsTableMenus({
   function handleDecreaseAbsence() {
     const promise = increaseAbsenceMutation({ studentId: student_id });
     toast.promise(promise, {
-      loading: "Is Increasing...",
-      success: "Absence Increased Successfully!",
+      loading: "Is Decreasing...",
+      success: "Absence Decreased Successfully!",
       error: (err: Error) => err.message,
-    });
-  }
-
-  function handleCheckWarnings() {
-    const promise = refetch();
-    toast.promise(promise, {
-      loading: "Getting Warnings...",
-      success: ({ data }) =>
-        `Student with id ${data?.data.student_id} has ${data?.data.warning} ${data?.data.warning && data?.data.warning > 1 ? "Warnings" : "Warning"}`,
-      error: (err: Error) => toast.error(err.message),
     });
   }
 
@@ -93,12 +80,6 @@ function StudentsTableMenus({
                     icon={<CalendarMinus className="h-5 w-5" />}
                   >
                     {t("menuButtons.decreaseAbsence")}
-                  </Menus.Button>
-                  <Menus.Button
-                    onClick={handleCheckWarnings}
-                    icon={<IoWarningOutline className="h-5 w-5" />}
-                  >
-                    {t("menuButtons.studentWarnings")}
                   </Menus.Button>
                 </>
               )}

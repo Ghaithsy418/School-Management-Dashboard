@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineCalendarDays, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { PiHouseLineBold, PiStudent } from "react-icons/pi";
 import NavList from "../../ui/NavList";
-import TeacherSvg from "@/ui/TeacherSvg";
-import ClassSvg from "@/ui/ClassSvg";
+import TeacherSvg from "@/utils/TeacherSvg";
+import ClassSvg from "@/utils/ClassSvg";
 
 function SupervisorsLinks() {
   const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import Menus from "@/ui/Menus";
 import Modal from "@/ui/Modal";
-import TeacherSvg from "@/ui/TeacherSvg";
+import TeacherSvg from "@/utils/TeacherSvg";
 import { ClassTypes } from "@/utils/types";
 import { useTranslation } from "react-i18next";
 import { HiMiniEllipsisVertical } from "react-icons/hi2";

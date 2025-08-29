@@ -1,6 +1,6 @@
 import { LuCalendarHeart } from "react-icons/lu";
 import { useGetTeacherStatistics } from "./useGetTeacherStatistics";
-import ClassSvg from "@/ui/ClassSvg";
+import ClassSvg from "@/utils/ClassSvg";
 import { PiStudent } from "react-icons/pi";
 import { GrWorkshop } from "react-icons/gr";
 import { Variants, motion } from "framer-motion";

@@ -1,0 +1,9 @@
+{
+  "deleteSchedule": {
+    "title": "Delete Schedule",
+    "warning": "Are you sure you want to permanently delete the schedule",
+    "undoneAction": "This action cannot be undone",
+    "yesButton": "Yes, delete schedule",
+    "question": "?"
+  }
+}

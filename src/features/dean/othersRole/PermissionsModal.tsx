@@ -5,6 +5,7 @@ import Permission from "./Permission";
 import { useState } from "react";
 import SubmitButton from "@/ui/SubmitButton";
 import { useAssignPermission } from "./useAssignPermission";
+import { useUnassignPermission } from "./useUnassignPermission";
 
 interface ModalTypes {
   currentPermissions: string[];
@@ -22,6 +23,8 @@ function PermissionsModal({
   const { permissions, isGettingPermissions } = useShowPermissions();
   const { assignPermissionMutation, isAssigningPermission } =
     useAssignPermission();
+  const { unassignPermissionMutation, isUnassigningPermission } =
+    useUnassignPermission();
   const [choosenPermission, setChoosenPermission] = useState({
     permission: "",
     choosenBefore: false,
@@ -37,7 +40,22 @@ function PermissionsModal({
         },
         { onSuccess: () => onCloseModal?.() },
       );
+    else
+      unassignPermissionMutation(
+        {
+          permission: choosenPermission.permission,
+          user_id,
+        },
+        { onSuccess: () => onCloseModal?.() },
+      );
   }
+
+  const assignButtonText = isAssigningPermission
+    ? "Assigning..."
+    : "Assining the Permission";
+  const unassignButtonText = isUnassigningPermission
+    ? "Unassigning..."
+    : "Unassining the Permission";
 
   if (isGettingPermissions) return <Spinner />;
 
@@ -81,9 +99,9 @@ function PermissionsModal({
                 : "hover:to-violet-700"
             }
           >
-            {/* {!choosenPermission.choosenBefore */}
-            {isAssigningPermission ? "Assigning..." : "Assing the Permission"}
-            {/* : "UnAssign the Permission" */}
+            {!choosenPermission.choosenBefore
+              ? assignButtonText
+              : unassignButtonText}
           </SubmitButton>
         )}
       </div>

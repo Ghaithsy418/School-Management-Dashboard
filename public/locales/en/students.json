@@ -42,7 +42,9 @@
   },
   "profile": {
     "title": "Student Informations",
-    "currentGpa": "Current GPA",
+    "totalGpa": "Total GPA",
+    "firstGpa": "1st Semester GPA",
+    "secondGpa": "2nd Semester GPA",
     "email": "Email Address",
     "phone": "Phone Number",
     "excellent": "Excellent",

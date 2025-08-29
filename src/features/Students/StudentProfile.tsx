@@ -17,14 +17,25 @@ interface StudentProfileTypes {
 }
 
 function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
-  const { full_name, email, phone, gpa, class_name } = student;
+  const { full_name, email, phone, GPA, class_name } = student;
   const { t } = useTranslation("students");
-  const { className: gpaClassName, message: gpaMessage } = gpaLevel(gpa, t);
+  const { className: totalGpaClassName, message: totalGpaMessage } = gpaLevel(
+    GPA?.GPA_final,
+    t,
+  );
+  const { className: firstGpaClassName, message: firstGpaMessage } = gpaLevel(
+    GPA?.GPA_1,
+    t,
+  );
+  const { className: secondGpaClassName, message: secondGpaMessage } = gpaLevel(
+    GPA?.GPA_2,
+    t,
+  );
 
   return (
     <div
       ref={informationsRef}
-      className="col-start-1 col-end-2 flex h-[34rem] w-full overflow-hidden rounded-md bg-slate-100 font-sans shadow-md transition-all duration-300 hover:shadow-lg"
+      className="col-start-1 col-end-2 flex h-[40rem] w-full overflow-hidden rounded-md bg-slate-100 font-sans shadow-md transition-all duration-300 hover:shadow-lg"
     >
       <motion.div
         className="hidden w-[23rem] flex-col items-center justify-center gap-8 bg-gradient-to-b from-slate-800 to-slate-900 p-8 text-white lg:flex"
@@ -70,25 +81,59 @@ function StudentProfile({ student, informationsRef }: StudentProfileTypes) {
             variants={itemVariants}
           >
             <div className="space-y-2 divide-y divide-slate-200">
-              <InfoItem
-                icon={<HiOutlineClipboardCheck />}
-                label={t("profile.currentGpa")}
-                isHighlight
-                badge={
-                  <span
-                    className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${gpaClassName}`}
-                  >
-                    {gpaMessage}
-                  </span>
-                }
-              >
-                {gpa}
-              </InfoItem>
               <InfoItem icon={<HiOutlineMail />} label={t("profile.email")}>
                 {email}
               </InfoItem>
               <InfoItem icon={<HiOutlinePhone />} label={t("profile.phone")}>
                 {phone}
+              </InfoItem>
+              <InfoItem
+                icon={<HiOutlineClipboardCheck />}
+                label={t("profile.totalGpa")}
+                isHighlight
+                badge={
+                  GPA?.GPA_final && (
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${totalGpaClassName}`}
+                    >
+                      {totalGpaMessage}
+                    </span>
+                  )
+                }
+              >
+                {GPA?.GPA_final ?? "-"}
+              </InfoItem>
+              <InfoItem
+                icon={<HiOutlineClipboardCheck />}
+                label={t("profile.firstGpa")}
+                isHighlight
+                badge={
+                  GPA?.GPA_1 && (
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${firstGpaClassName}`}
+                    >
+                      {firstGpaMessage}
+                    </span>
+                  )
+                }
+              >
+                {GPA?.GPA_1 ?? "-"}
+              </InfoItem>
+              <InfoItem
+                icon={<HiOutlineClipboardCheck />}
+                label={t("profile.secondGpa")}
+                isHighlight
+                badge={
+                  GPA?.GPA_2 && (
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${secondGpaClassName}`}
+                    >
+                      {secondGpaMessage}
+                    </span>
+                  )
+                }
+              >
+                {GPA?.GPA_2 ?? "-"}
               </InfoItem>
             </div>
           </motion.div>

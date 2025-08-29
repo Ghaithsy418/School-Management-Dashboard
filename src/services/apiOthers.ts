@@ -15,6 +15,17 @@ export async function assignPermission(body: {
   return fetcher({ url: "/api/assignPermission", method: "POST", body });
 }
 
+export async function unassignPermission(body: {
+  user_id: number;
+  permission: string;
+}) {
+  return fetcher({
+    url: "/api/deleteAssignPermission",
+    method: "DELETE",
+    body,
+  });
+}
+
 export async function getSpecificOther(body: { other_id: number }) {
   return fetcher({ url: "/api/getSpecificOther", method: "POST", body });
 }

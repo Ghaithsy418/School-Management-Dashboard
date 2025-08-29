@@ -1,5 +1,5 @@
 import IconNumber from "@/ui/IconNumber";
-import TeacherSvg from "@/ui/TeacherSvg";
+import TeacherSvg from "@/utils/TeacherSvg";
 import { Newspaper } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";

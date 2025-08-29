@@ -18,7 +18,7 @@ export interface SpecificStudentTypes {
   email: string;
   phone: string;
   school_graduated_from: string;
-  gpa: number;
+  GPA: { GPA_1: number; GPA_2: number; GPA_final: number };
   class_name: string;
 }
 
