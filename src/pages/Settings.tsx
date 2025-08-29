@@ -1,9 +1,17 @@
+import EndOfTheFirstSemester from "@/features/dean/acadimecButtons/EndOfTheFirstSemester";
+import EndOfYear from "@/features/dean/acadimecButtons/EndOfYear";
+import StartOfTheSecondSemester from "@/features/dean/acadimecButtons/StartOfTheSecondSemester";
+import StartOfYear from "@/features/dean/acadimecButtons/StartOfYear";
+import { useUser } from "@/slices/userSlice";
 import SwitchTheme from "@/ui/SwitchTheme";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 function Settings() {
   const { t } = useTranslation("settings");
+  const {
+    user: { role },
+  } = useUser();
 
   useEffect(function () {
     document.title = "Settings";
@@ -45,6 +53,10 @@ function Settings() {
                 </p>
               </div>
               <SwitchTheme />
+              {role === "dean" && <EndOfTheFirstSemester />}
+              {role === "dean" && <EndOfYear />}
+              {role === "dean" && <StartOfTheSecondSemester />}
+              {role === "dean" && <StartOfYear />}
               <div className="rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
                   <svg
