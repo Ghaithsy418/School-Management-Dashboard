@@ -1,4 +1,12 @@
-function TeacherSvg({ width, height }: { width: string; height: string }) {
+function TeacherSvg({
+  width,
+  height,
+  color,
+}: {
+  width: string;
+  height: string;
+  color?: string;
+}) {
   return (
     <svg
       height={width}
@@ -9,7 +17,7 @@ function TeacherSvg({ width, height }: { width: string; height: string }) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 511.999 511.999"
       xmlSpace="preserve"
-      className="fill-gray-950 dark:fill-gray-50"
+      className={`dark:fill-gray-50 ${color ?? "fill-gray-950"}`}
     >
       <g>
         <g>

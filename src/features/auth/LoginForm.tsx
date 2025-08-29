@@ -7,6 +7,7 @@ import Title from "../../ui/Title";
 import SubmitButton from "../../ui/SubmitButton";
 import SmallSpinner from "@/ui/SmallSpinner";
 import { useTranslation } from "react-i18next";
+import Logo from "@/utils/Logo";
 
 function LoginForm() {
   const { register, handleSubmit, formState } = useForm();
@@ -27,7 +28,10 @@ function LoginForm() {
       exit="exit"
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
-      <Title secondaryTitle={t("login.subTitle")}>{t("login.title")}</Title>
+      <div className="flex flex-col items-center justify-center -space-y-2">
+        <Logo size="100" firstColor="#4F46E5" secondColor="#4F46E5" />
+        <Title secondaryTitle={t("login.subTitle")}>{t("login.title")}</Title>
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-[23rem] flex-col items-center justify-center gap-6 px-6 sm:w-[24rem] sm:gap-8 lg:px-0"

@@ -13,12 +13,13 @@ function StudentsRow({ student }: { student: StudentTypes }) {
   const {
     full_name,
     student_id,
-    gpa,
+    GPA,
     class_name,
     phone,
     email,
     user_id,
     absences_number,
+    warnings,
   } = student;
 
   return (
@@ -31,9 +32,12 @@ function StudentsRow({ student }: { student: StudentTypes }) {
       </h3>
       <p>{user_id}</p>
       <p>{class_name === "" ? "-" : class_name}</p>
-      {role !== "supervisor" && <StudentsGpa gpa={gpa} />}
+      {role !== "supervisor" && <StudentsGpa gpa={GPA} />}
       {role === "supervisor" && (
-        <StudentsAbsences absences_number={absences_number} />
+        <StudentsAbsences
+          absences_number={absences_number}
+          warnings={warnings}
+        />
       )}
       <Contact phone={phone} email={email} />
       <StudentsTableMenus

@@ -19,17 +19,20 @@ function StudentsTable() {
   const finalStudents = useClientTransform(students, "full_name");
   const filteredStudents = usePaginate(finalStudents, 10);
 
+  const HeaderTitlesSupervisor = [
+    t("main.name"),
+    t("main.id"),
+    t("main.class"),
+    t("main.totalAbsences"),
+    t("main.warnings"),
+    t("main.contact"),
+  ];
+
   const HeaderTitles = [
     t("main.name"),
     t("main.id"),
     t("main.class"),
-    role === "supervisor"
-      ? t("main.currentAbsences")
-      : t("main.firstSemesterGpa"),
-    role === "supervisor"
-      ? t("main.totalAbsences")
-      : t("main.secondSemesterGpa"),
-    role === "supervisor" ? t("main.warnings") : t("main.totalGpa"),
+    t("main.totalGpa"),
     t("main.contact"),
   ];
 
@@ -37,11 +40,19 @@ function StudentsTable() {
   if (!students?.length) return <Empty resource="students" />;
 
   return (
-    <Table columns="0.7fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr">
+    <Table
+      columns={
+        role === "supervisor"
+          ? "0.7fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr"
+          : "0.7fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr"
+      }
+    >
       <Table.Header>
-        {HeaderTitles.map((title) => (
-          <div key={title}>{title}</div>
-        ))}
+        {role === "supervisor"
+          ? HeaderTitlesSupervisor.map((title) => (
+              <div key={title}>{title}</div>
+            ))
+          : HeaderTitles.map((title) => <div key={title}>{title}</div>)}
       </Table.Header>
 
       <Table.Body

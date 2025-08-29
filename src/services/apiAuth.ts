@@ -7,6 +7,13 @@ import { requestForToken } from "./fcm";
 export async function login(body: { email: string; password: string }) {
   const fcmToken = await requestForToken();
 
+  if (!fcmToken)
+    return fetcher({
+      url: "/api/login",
+      method: "POST",
+      body: { ...body, deviceType: "web" },
+    });
+
   return fetcher({
     url: "/api/login",
     method: "POST",

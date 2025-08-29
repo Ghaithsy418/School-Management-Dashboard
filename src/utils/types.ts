@@ -4,8 +4,9 @@ export interface StudentTypes {
   student_id: number;
   class_name: string;
   class_id: number;
-  gpa: number;
+  GPA: { GPA_1: number; GPA_2: number; GPA_final: number };
   absences_number: number;
+  warnings: number;
   email: string;
   phone: string;
   photo: string;
