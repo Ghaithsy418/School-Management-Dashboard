@@ -30,9 +30,9 @@ const ComplaintLayout = () => {
     );
 
   return (
-    <div className="mx-auto my-10 w-full overflow-hidden rounded-xl border border-slate-200 bg-white font-sans shadow-sm">
+    <div className="mx-auto my-10 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-gray-900">
       {ui === "withoutTrash" && <FilterComplaints />}
-      <section className="p-2">
+      <section className="flex flex-col gap-2 p-2">
         {complaints && complaints?.length !== 0 ? (
           complaints?.map((complaint) => (
             <ComplaintItem

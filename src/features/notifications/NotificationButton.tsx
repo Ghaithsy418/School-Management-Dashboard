@@ -1,13 +1,14 @@
-import { GoBell } from "react-icons/go";
-import IconNumber from "../../ui/IconNumber";
-import { useState } from "react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import FloatingList from "@/pages/FloatingList";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { GoBell } from "react-icons/go";
+import IconNumber from "../../ui/IconNumber";
 import NotificationsList from "./NotificationsList";
 
 function NotificationButton() {
@@ -37,41 +38,15 @@ function NotificationButton() {
       </Tooltip>
       <AnimatePresence mode="wait">
         {isOpen && (
-          <motion.div
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={`no-scrollbar absolute top-[4rem] ${NotificationListToWindow > 85 ? "-right-10" : "left-[50%] -translate-x-[50%]"} z-30 min-h-[24rem] w-[24rem] overflow-y-auto rounded-md border border-gray-700/20 bg-white shadow-lg shadow-gray-700/30`}
+          <FloatingList
+            className={`${NotificationListToWindow > 85 ? "-right-10" : "left-[50%] -translate-x-[50%]"}`}
           >
             <NotificationsList />
-          </motion.div>
+          </FloatingList>
         )}
       </AnimatePresence>
     </div>
   );
 }
-
-const variants: Variants = {
-  hidden: {
-    scale: 0.9,
-    top: "2rem",
-  },
-  visible: {
-    scale: 1,
-    top: "4rem",
-    transition: {
-      duration: 0.35,
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-    top: "2rem",
-    transition: {
-      duration: 0.35,
-    },
-  },
-};
 
 export default NotificationButton;

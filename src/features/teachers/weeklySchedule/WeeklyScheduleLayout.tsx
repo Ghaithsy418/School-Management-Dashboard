@@ -24,8 +24,8 @@ function WeeklyScheduleLayout() {
     );
 
   return (
-    <div className="w-full rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm">
+    <div className="w-full rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:rounded-sm dark:bg-gray-800">
+      <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm dark:rounded-md dark:bg-gray-800">
         <ScheduleHeader
           colors="from-indigo-600 via-purple-700 to-pink-700"
           description="Take a look at your teaching schedule"

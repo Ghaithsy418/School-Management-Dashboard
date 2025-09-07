@@ -10,6 +10,7 @@ interface AddCommentTypes {
   hoverInputBgColor: string;
   borderColor: string;
   isRounded?: boolean;
+  autoFocus?: boolean;
 }
 
 function AddComment({
@@ -19,6 +20,7 @@ function AddComment({
   hoverInputBgColor,
   borderColor,
   isRounded = false,
+  autoFocus,
 }: AddCommentTypes) {
   const { handleSubmit, register, reset } = useForm<{ content: string }>();
   const { addCommentMutation, isAddingComment } = useAddComment(event_id);
@@ -42,6 +44,7 @@ function AddComment({
           isAddingComment ? t("main.loadingComment") : t("main.addComment")
         }
         autoComplete="off"
+        autoFocus={autoFocus}
         className={`h-10 w-full resize-none rounded-full ${inputBgColor} px-4 py-2 transition-all duration-300 outline-none ${hoverInputBgColor} hover:ring hover:ring-gray-800 focus:ring focus:ring-gray-800 ${isAddingComment ? "cursor-progress" : ""}`}
       />
       <button

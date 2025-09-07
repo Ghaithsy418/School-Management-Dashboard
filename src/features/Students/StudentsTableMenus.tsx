@@ -51,7 +51,7 @@ function StudentsTableMenus({
       <Menus>
         <Menus.Menu>
           <Menus.Toggle id={name}>
-            <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300" />
+            <HiMiniEllipsisVertical className="h-9 w-9 cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-300 hover:dark:bg-slate-800" />
           </Menus.Toggle>
           <Menus.Menu>
             <Menus.List id={name}>

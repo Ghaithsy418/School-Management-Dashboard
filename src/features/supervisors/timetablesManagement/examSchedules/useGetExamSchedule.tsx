@@ -37,7 +37,7 @@ export const useGetExamSchedule = function () {
               </a>
               <button
                 onClick={() => downloadFile(pdfUrl)}
-                className="cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 shadow-sm transition-all duration-300 hover:bg-gray-100"
+                className="cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 shadow-sm transition-all duration-300 hover:bg-gray-100 dark:border-gray-500 hover:dark:bg-gray-500"
               >
                 Download
               </button>

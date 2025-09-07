@@ -22,7 +22,7 @@ function MarksProfile({
   return (
     <div
       ref={marksRef}
-      className="no-scrollbar w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md"
+      className="no-scrollbar w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-500 dark:bg-gray-900"
     >
       {needTitle && (
         <div className="bg-gradient-to-r from-slate-800 to-slate-900 px-10 py-6">
@@ -46,7 +46,7 @@ function MarksProfile({
               className={`flex-1 rounded-lg px-4 py-3 font-medium transition-all ${
                 selectedSemester === "First"
                   ? "bg-gradient-to-tr from-indigo-700 to-violet-700 text-white shadow-md hover:from-indigo-800 hover:to-violet-800"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 hover:dark:bg-slate-700"
               }`}
             >
               {t("profileMarks.firstSemester")}
@@ -56,7 +56,7 @@ function MarksProfile({
               className={`flex-1 rounded-lg px-4 py-3 font-medium transition-all ${
                 selectedSemester === "Second"
                   ? "bg-indigo-500 text-white shadow-md"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 hover:dark:bg-slate-700"
               }`}
             >
               {t("profileMarks.secondSemester")}

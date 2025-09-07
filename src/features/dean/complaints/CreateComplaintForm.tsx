@@ -62,10 +62,10 @@ function CreateComplaintForm({
           </SubmitButton>
         </div>
       </form>
-      <div className="w-full border-t border-t-gray-700/20 pt-2">
+      <div className="w-full border-t border-t-gray-700/20 pt-2 dark:border-t-gray-200/20">
         <button
           onClick={() => setUi("previousComplaints")}
-          className="cursor-pointer text-xs font-light underline transition-all duration-300 hover:text-sky-700 hover:no-underline"
+          className="cursor-pointer text-xs font-light underline transition-all duration-300 hover:text-sky-700 hover:no-underline hover:dark:text-sky-500"
         >
           Show previous complaints
         </button>

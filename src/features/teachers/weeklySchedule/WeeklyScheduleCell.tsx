@@ -20,7 +20,7 @@ function WeeklyScheduleCell({ day, session, weeklySchedule }: CellTypes) {
 
   return (
     <td
-      className={`overflow-hidden border border-gray-200 p-0 transition-colors hover:bg-gray-200`}
+      className={`overflow-hidden border border-gray-200 p-0 transition-colors hover:bg-gray-200 dark:border-gray-600 hover:dark:bg-gray-900`}
     >
       <div className={`h-28 p-3`}>
         <div className="h-full">

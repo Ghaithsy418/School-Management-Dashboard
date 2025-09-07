@@ -27,7 +27,7 @@ function StartOfTheSecondSemester() {
               onClick={() => startOfSecondSemesterMutation()}
               className="w-[12rem] cursor-pointer rounded-md bg-slate-500 px-3 py-2 text-gray-50 transition-colors duration-300 hover:bg-slate-600"
             >
-              {isPending ? "Starting" : "Click to start it"}
+              {isPending ? "Starting..." : "Click to start it"}
             </button>
           </div>
         </div>

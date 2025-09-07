@@ -24,7 +24,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
   }
 
   return (
-    <div className="sticky top-0 col-start-2 col-end-3 row-start-1 row-end-2 flex h-[34rem] flex-col items-center justify-center gap-4 rounded-xl bg-slate-100 px-1 py-6 shadow-md transition-all duration-300 hover:shadow-lg">
+    <div className="sticky top-0 col-start-2 col-end-3 row-start-1 row-end-2 flex h-[34rem] flex-col items-center justify-center gap-4 rounded-xl bg-slate-100 px-1 py-6 shadow-md transition-all duration-300 hover:shadow-lg dark:border dark:border-gray-500/40 dark:bg-slate-900">
       <Tooltip>
         <TooltipTrigger>
           <Location
@@ -36,7 +36,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
           <p>{t("profileMap.profile")}</p>
         </TooltipContent>
       </Tooltip>
-      <div className="h-28 w-0.5 rounded-full bg-slate-400/70" />
+      <div className="h-28 w-0.5 rounded-full bg-slate-400/70 dark:bg-slate-400/70" />
       <Tooltip>
         <TooltipTrigger>
           <Location
@@ -48,7 +48,7 @@ function ProfileMap({ informationsRef, marksRef }: ProfileMapTypes) {
           <p>{t("profileMap.marks")}</p>
         </TooltipContent>
       </Tooltip>
-      <div className="h-28 w-0.5 rounded-full bg-slate-400/70" />
+      <div className="h-28 w-0.5 rounded-full bg-slate-400/70 dark:bg-slate-400/70" />
       <Tooltip>
         <TooltipTrigger>
           <Location icon={<ClipboardCheck className="h-6 w-6" />} />

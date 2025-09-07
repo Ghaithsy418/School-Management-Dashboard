@@ -13,7 +13,7 @@ function SelectClassNameFirst({
       ) : (
         <MessageSquareWarning className="h-16 w-16 text-slate-400" />
       )}
-      <p className="text-lg font-semibold text-slate-600">
+      <p className="text-lg font-semibold text-slate-600 dark:text-slate-100">
         Choose a grade and a className so you can create or see any Schedule
       </p>
     </div>

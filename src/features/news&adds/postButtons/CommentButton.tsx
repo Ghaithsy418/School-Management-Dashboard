@@ -25,7 +25,7 @@ function CommentButton({ eventId }: { eventId: number }) {
         {ui === "report" ? (
           <ReportCommentForm commentId={commentId} />
         ) : (
-          <CommentList id={eventId} />
+          <CommentList id={eventId} autoFocus={true} />
         )}
       </Modal.Window>
     </Modal>

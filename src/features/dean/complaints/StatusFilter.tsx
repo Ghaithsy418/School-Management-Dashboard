@@ -17,7 +17,7 @@ function StatusFilter() {
       {buttons.map((button) => (
         <button
           onClick={() => handleClick(button.title)}
-          className={`rounded-sm border border-gray-700/40 transition-all duration-300 ${currentSearchParams === button.title ? `${button.color} text-white` : "bg-transparent text-gray-900 hover:bg-gray-200"} cursor-pointer px-3 py-1.5 text-xs font-semibold capitalize`}
+          className={`rounded-sm border border-slate-700/40 transition-all duration-300 dark:border-slate-500/40 ${currentSearchParams === button.title ? `${button.color} text-white dark:bg-slate-200 dark:text-slate-600 hover:dark:bg-slate-400` : "bg-transparent text-slate-900 hover:bg-slate-200 dark:text-gray-200 hover:dark:bg-slate-600"} cursor-pointer px-3 py-1.5 text-xs font-semibold capitalize`}
         >
           {button.title === "pending"
             ? `New (${unSeenComplaints})`

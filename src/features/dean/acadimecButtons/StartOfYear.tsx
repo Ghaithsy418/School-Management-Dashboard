@@ -26,7 +26,7 @@ function StartOfYear() {
               onClick={() => startOfYearMutation()}
               className="w-[12rem] cursor-pointer rounded-md bg-green-500 px-3 py-2 text-gray-50 transition-colors duration-300 hover:bg-green-600"
             >
-              {isPending ? "Ending..." : "Click to begin now"}
+              {isPending ? "Starting..." : "Click to begin now"}
             </button>
           </div>
         </div>

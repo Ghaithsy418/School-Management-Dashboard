@@ -29,7 +29,11 @@ function LoginForm() {
       className="flex w-full flex-col items-center justify-center gap-16 rounded-md px-4 py-3"
     >
       <div className="flex flex-col items-center justify-center -space-y-2">
-        <Logo size="100" firstColor="#4F46E5" secondColor="#4F46E5" />
+        <Logo
+          size="100"
+          firstColor="fill-[#4F46E5] dark:fill-[#6278b9]"
+          secondColor="fill-[#4F46E5] dark:fill-[#505298]"
+        />
         <Title secondaryTitle={t("login.subTitle")}>{t("login.title")}</Title>
       </div>
       <form

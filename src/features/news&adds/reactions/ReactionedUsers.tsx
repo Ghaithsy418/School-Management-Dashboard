@@ -24,13 +24,18 @@ function ReactionedUsers({ eventId }: { eventId: number }) {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      <h2 className="text-2xl font-bold text-slate-800">Recent Reactions</h2>
-      <p className="text-slate-500">
+      <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+        Recent Reactions
+      </h2>
+      <p className="text-slate-500 dark:text-slate-300">
         Here are the latest reactions from users.
       </p>
 
       <div className="mt-2 flow-root">
-        <ul role="list" className="-my-4 divide-y divide-slate-200/80">
+        <ul
+          role="list"
+          className="-my-4 divide-y divide-slate-200/80 dark:divide-slate-500/80"
+        >
           {reactions?.map((reaction, i) => {
             const currentReaction = detectedReactions[i];
             const IconComponent = currentReaction?.icon;
@@ -49,11 +54,10 @@ function ReactionedUsers({ eventId }: { eventId: number }) {
                   {reaction.user.lastName.charAt(0).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate font-semibold text-slate-800">
-                    {/* ✅ UPDATED: Using camelCase properties */}
+                  <p className="truncate font-semibold text-slate-800 dark:text-slate-200">
                     {reaction.user.name} {reaction.user.lastName}
                   </p>
-                  <p className="truncate text-sm text-slate-500">
+                  <p className="truncate text-sm text-slate-500 dark:text-slate-300">
                     {reaction.user.email}
                   </p>
                 </div>

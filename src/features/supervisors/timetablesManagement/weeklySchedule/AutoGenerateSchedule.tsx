@@ -11,7 +11,7 @@ function AutoGenerateSchedule() {
   return (
     <button
       onClick={() => autoGenerateMutation({ className })}
-      className="flex cursor-pointer items-center justify-center gap-3 rounded-lg bg-emerald-600 px-4 py-2 text-emerald-50 transition-colors duration-300 hover:bg-emerald-700"
+      className="flex cursor-pointer items-center justify-center gap-3 rounded-lg bg-emerald-600 px-4 py-2 text-emerald-50 transition-colors duration-300 hover:bg-emerald-700 dark:bg-emerald-100 dark:text-emerald-900 hover:dark:bg-emerald-50"
     >
       {isGeneratingSchedule ? (
         <SmallSpinner />

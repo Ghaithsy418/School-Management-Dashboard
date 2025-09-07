@@ -23,7 +23,7 @@ function SideBar() {
       <div className="space-y-8">
         <div className="flex flex-col items-center justify-start -space-y-2">
           <Logo />
-          <h1 className="text-center text-lg font-bold text-indigo-900/80">
+          <h1 className="text-center text-lg font-bold text-indigo-900/80 dark:text-[#505298]">
             {t("sidebar.title")}
           </h1>
         </div>

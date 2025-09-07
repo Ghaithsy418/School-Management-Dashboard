@@ -2,7 +2,12 @@ import { useTranslation } from "react-i18next";
 import AddComment from "./AddComment";
 import PhotoModalComments from "./PhotoModalComments";
 
-function CommentList({ id }: { id: number }) {
+interface CommentList {
+  id: number;
+  autoFocus?: boolean;
+}
+
+function CommentList({ id, autoFocus }: CommentList) {
   const { t } = useTranslation("newsAndAdds");
 
   return (
@@ -19,6 +24,7 @@ function CommentList({ id }: { id: number }) {
           borderColor="border-transparent"
           isRounded={true}
           event_id={id}
+          autoFocus={autoFocus}
         />
       </div>
     </div>

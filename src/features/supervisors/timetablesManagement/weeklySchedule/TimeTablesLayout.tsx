@@ -24,7 +24,7 @@ export default function TimeTablesLayout() {
       ref={ref}
       className="w-full rounded-md bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
     >
-      <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm">
+      <div className="overflow-hidden rounded-t-2xl bg-white/80 shadow-xl backdrop-blur-sm dark:rounded-md dark:bg-gray-900">
         <ScheduleHeader description="Create and manage teaching schedules" />
         <ScheduleSelections />
         <div className="px-8 py-4">{className && <ScheduleStatus />}</div>

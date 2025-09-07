@@ -15,7 +15,9 @@ function ClassesMarksLayout({ semester }: { semester: string }) {
     return (
       <div className="flex flex-col items-center justify-center gap-3 py-12">
         <Spinner />
-        <span className="ml-3 text-gray-600">Loading marks...</span>
+        <span className="dark:tex-gray-200 ml-3 text-gray-600 dark:text-gray-200">
+          Loading marks...
+        </span>
       </div>
     );
 
@@ -23,14 +25,14 @@ function ClassesMarksLayout({ semester }: { semester: string }) {
 
   return (
     <div className="space-y-6">
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-200 dark:border-gray-500">
         <nav className="flex space-x-8">
           <button
             onClick={() => setActiveTab("mid-term")}
             className={`border-b-2 px-1 py-2 text-sm font-medium transition-colors ${
               activeTab === "mid-term"
                 ? "border-indigo-500 text-indigo-600"
-                : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 hover:dark:text-gray-200"
             }`}
           >
             <div className="flex items-center space-x-2">
@@ -43,7 +45,7 @@ function ClassesMarksLayout({ semester }: { semester: string }) {
             className={`border-b-2 px-1 py-2 text-sm font-medium transition-colors ${
               activeTab === "final"
                 ? "border-indigo-500 text-indigo-600"
-                : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 hover:dark:text-gray-200"
             }`}
           >
             <div className="flex items-center space-x-2">

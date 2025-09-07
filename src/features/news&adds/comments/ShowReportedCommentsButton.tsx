@@ -21,7 +21,7 @@ function ShowReportedCommentsButton() {
       <Modal.Window mode="sheet" name="reportedComments">
         <div className="flex flex-col gap-8">
           <div className="flex items-center justify-center gap-3 px-3">
-            <LuMegaphone className="h-8 w-8 text-gray-900" />
+            <LuMegaphone className="h-8 w-8 text-gray-900 dark:text-gray-100" />
             <h3 className="text-xl">Reported Comments</h3>
           </div>
           <ReportedCommentsLayout />

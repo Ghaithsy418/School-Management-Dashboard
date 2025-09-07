@@ -19,7 +19,9 @@ function InfoItem({
     <div className="flex items-center gap-5 py-4">
       <div
         className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ${
-          isHighlight ? "bg-indigo-100" : "bg-slate-100"
+          isHighlight
+            ? "bg-indigo-100 dark:bg-indigo-200"
+            : "bg-slate-100 dark:bg-slate-200"
         }`}
       >
         <span
@@ -31,7 +33,9 @@ function InfoItem({
         </span>
       </div>
       <div className="w-full">
-        <p className="text-sm font-medium text-slate-500">{label}</p>
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-700">
+          {label}
+        </p>
         <div className="flex items-end gap-3">
           <p
             className={`font-semibold ${

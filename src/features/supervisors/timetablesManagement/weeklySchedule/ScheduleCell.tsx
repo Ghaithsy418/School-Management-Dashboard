@@ -41,13 +41,13 @@ function ScheduleCell({
 
   function detectCellColor() {
     if (isSelected)
-      return "scale-105 bg-gradient-to-br from-indigo-200 to-purple-200 shadow-lg";
+      return "scale-105 bg-gradient-to-br from-indigo-200 to-purple-200 dark:from-indigo-300 dark:to-purple-300 shadow-lg";
     if (hasConflict)
-      return "bg-gradient-to-br from-rose-100 to-red-100 hover:from-rose-200 hover:to-red-200 hover:shadow-md";
+      return "bg-gradient-to-br from-rose-100 to-red-100 dark:from-rose-300 dark:to-red-300 hover:dark:from-rose-400 hover:dark:to-red-400 hover:from-rose-200 hover:to-red-200 hover:shadow-md";
     if (hasContent)
-      return "bg-gradient-to-br from-emerald-100 to-green-100 hover:from-emerald-200 hover:to-green-200 hover:shadow-md";
+      return "bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-300 dark:to-green-300 hover:dark:from-emerald-400 hover:dark:to-green-400 hover:from-emerald-200 hover:to-green-200 hover:shadow-md";
     else
-      return "bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-slate-50 hover:shadow-sm";
+      return "bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-slate-50 dark:bg-gray-900 hover:dark:from-gray-950 hover:dark:to-slate-950 hover:shadow-sm";
   }
 
   function selectCell() {
@@ -65,7 +65,7 @@ function ScheduleCell({
 
   return (
     <td
-      className={`overflow-hidden border border-gray-200 p-0 ${sessionIndex === SESSIONS.length - 1 && dayIndex === DAYS.length - 1 ? "rounded-br-xl" : ""}`}
+      className={`overflow-hidden border border-gray-200 p-0 dark:border-gray-600 ${sessionIndex === SESSIONS.length - 1 && dayIndex === DAYS.length - 1 ? "rounded-br-xl" : ""}`}
     >
       <div
         className={`h-28 cursor-pointer p-4 transition-all ${hasConflict ? "flex items-center" : ""} duration-300 ${detectCellColor()}`}
@@ -73,8 +73,8 @@ function ScheduleCell({
       >
         {hasConflict ? (
           <div className="flex items-center justify-center gap-1">
-            <IoWarningOutline className="h-4 w-4 text-red-700" />
-            <p className="text-xs text-red-500">
+            <IoWarningOutline className="h-4 w-4 text-red-700 dark:text-red-900" />
+            <p className="text-xs text-red-500 dark:text-red-800">
               {currentCellContent?.subject}'s Teacher is busy
             </p>
           </div>
@@ -88,7 +88,7 @@ function ScheduleCell({
               {currentCellContent?.subject || "Click to add"}
             </div>
             {currentCellContent?.teacher_name && (
-              <div className="rounded-md bg-gray-100 px-2 py-1 text-sm text-gray-700">
+              <div className="rounded-md bg-gray-100 px-2 py-1 text-sm text-gray-700 dark:bg-gray-600 dark:text-gray-200">
                 <span>👨‍🏫 {currentCellContent.teacher_name}</span>
               </div>
             )}

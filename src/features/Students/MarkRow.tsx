@@ -3,13 +3,13 @@ import { StudentMarkTypes } from "@/utils/types";
 
 function MarkRow({ subject }: { subject: StudentMarkTypes }) {
   return (
-    <div className="rounded-lg bg-gray-50 p-4 transition-colors hover:bg-gray-100">
+    <div className="rounded-lg bg-gray-50 p-4 transition-colors hover:bg-gray-100 dark:bg-gray-800 hover:dark:bg-gray-700">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-medium text-gray-900 capitalize">
+          <h3 className="font-medium text-gray-900 capitalize dark:text-gray-100">
             {subject.subject_name}
           </h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Out of {subject.max_mark} marks
           </p>
         </div>

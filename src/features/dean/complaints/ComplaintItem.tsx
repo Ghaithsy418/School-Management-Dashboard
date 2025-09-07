@@ -36,7 +36,7 @@ const ComplaintItem = ({
   const statusObject = detectStatus(status);
 
   return (
-    <div className="rounded-lg border border-slate-200/80 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-800/20">
+    <div className="rounded-sm border border-slate-200/80 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-800/20">
       <header
         className={`flex cursor-pointer items-center justify-between p-4 transition-colors duration-200 ${isExpanded ? "bg-slate-100 dark:bg-slate-800" : "bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/60"} ${isUnseen && !isExpanded ? "border-l-4 border-blue-500 pl-3" : "border-l-4 border-transparent"} `}
         onClick={onToggle}

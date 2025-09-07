@@ -15,7 +15,7 @@ function ShowPreviousExcel({ file }: PreviousExcelTypes) {
     <div className="flex w-full items-center justify-between gap-10">
       <div className="flex items-end gap-2">
         <p className="font-semibold">{file_name}</p>
-        <span className="text-xs font-light text-gray-800/80">
+        <span className="text-xs font-light text-gray-800/80 dark:text-gray-300/80">
           {format(uploaded_at, "dd/MM/yyyy")}
         </span>
       </div>

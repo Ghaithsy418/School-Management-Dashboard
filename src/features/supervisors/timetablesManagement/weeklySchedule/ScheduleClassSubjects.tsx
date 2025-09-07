@@ -33,7 +33,7 @@ function ScheduleClassSubjects({ setSubject, subject }: ClassSubjectsTypes) {
 
   return (
     <div>
-      <label className="mb-3 ml-2 block text-sm font-bold text-gray-700">
+      <label className="mb-3 ml-2 block text-sm font-bold text-gray-700 dark:text-gray-300">
         Subject
       </label>
       <Select onValueChange={setSubject} value={subject}>

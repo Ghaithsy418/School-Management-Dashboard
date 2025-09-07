@@ -22,7 +22,7 @@ function OthersProfile() {
 
   return (
     <MainContainer needsBackArrow toPage="/dean/others">
-      <div className="flex w-full overflow-hidden rounded-md bg-slate-100 font-sans shadow-md transition-all duration-300 hover:shadow-lg">
+      <div className="flex w-full overflow-hidden rounded-md bg-slate-100 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-900">
         <motion.div
           className="hidden w-[23rem] flex-col items-center justify-center gap-8 bg-gradient-to-b from-slate-800 to-slate-900 p-8 text-white lg:flex"
           initial={{ x: "-100%" }}
@@ -47,7 +47,9 @@ function OthersProfile() {
 
         <div className="w-full overflow-y-auto px-4 py-6 lg:w-2/3 lg:px-6 lg:py-12">
           <div className="mb-8 text-center lg:hidden">
-            <h1 className="text-3xl font-bold text-slate-800">{full_name}</h1>
+            <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-200">
+              {full_name}
+            </h1>
           </div>
 
           <motion.div
@@ -56,15 +58,15 @@ function OthersProfile() {
             initial="hidden"
             animate="visible"
           >
-            <h2 className="mb-6 text-3xl font-bold text-slate-800">
+            <h2 className="mb-6 text-3xl font-bold text-slate-800 dark:text-slate-200">
               User Profile
             </h2>
 
             <motion.div
-              className="rounded-xl bg-white p-4 shadow-sm sm:p-6"
+              className="rounded-xl bg-white p-4 shadow-sm sm:p-6 dark:bg-gray-400"
               variants={itemVariants}
             >
-              <div className="divide-y divide-slate-200">
+              <div className="divide-y divide-slate-200 dark:divide-slate-600">
                 <InfoItem icon={<HiOutlineMail />} label={t("profile.email")}>
                   {email}
                 </InfoItem>

@@ -33,10 +33,10 @@ export function ClearAllUi({ clearFunction, onCloseModal }: ClearTypes) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-800">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">
           {t("clearAll.title")}
         </h3>
-        <p className="max-w-md text-slate-500">
+        <p className="max-w-md text-slate-500 dark:text-slate-300">
           {t("clearAll.warning")}
           <br />
           {t("clearAll.undoneAction")}

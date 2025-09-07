@@ -58,18 +58,18 @@ function ScheduleFillCell() {
       variants={variants}
       initial="hidden"
       animate="visible"
-      className="sticky -bottom-8 border-t border-gray-100 bg-white"
+      className="sticky -bottom-8 border-t border-gray-100 bg-white dark:border-0 dark:bg-gray-900"
     >
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-900">
         <div className="mb-6 flex items-center space-x-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
             <PiNotePencil className="h-6 w-6 text-indigo-50" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-gray-800">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
               Edit Class Details
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               {currentCell.day} at session {currentCell.session}
             </p>
           </div>

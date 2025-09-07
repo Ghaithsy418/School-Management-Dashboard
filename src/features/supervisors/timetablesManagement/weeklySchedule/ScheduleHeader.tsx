@@ -18,7 +18,7 @@ function ScheduleHeader({ description, colors }: ScheduleHeaderTypes) {
 
   return (
     <header
-      className={`relative overflow-hidden bg-gradient-to-r ${colors ?? "from-indigo-600 via-purple-600 to-pink-600"} p-8 text-white`}
+      className={`relative overflow-hidden bg-gradient-to-r ${colors ?? "from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-800 dark:via-purple-800 dark:to-pink-800"} p-8 text-white`}
     >
       <div className="absolute inset-0 bg-black/10" />
       <div className="relative flex items-center justify-between">

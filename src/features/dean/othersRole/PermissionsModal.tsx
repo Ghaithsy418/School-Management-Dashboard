@@ -55,7 +55,7 @@ function PermissionsModal({
     : "Assining the Permission";
   const unassignButtonText = isUnassigningPermission
     ? "Unassigning..."
-    : "Unassining the Permission";
+    : "Unassign the Permission";
 
   if (isGettingPermissions) return <Spinner />;
 

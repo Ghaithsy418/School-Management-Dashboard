@@ -38,7 +38,7 @@ function UpdateComplaint({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex items-center justify-center bg-gray-50"
+      className="fixed inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-800"
       onClick={handleCloseModal}
     >
       <motion.div
@@ -49,14 +49,14 @@ function UpdateComplaint({
         className="w-full px-4 py-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="mb-4 text-lg font-bold text-gray-950">
+        <h2 className="mb-4 text-lg font-bold text-gray-950 dark:text-gray-50">
           Update Complaint
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label
               htmlFor="title"
-              className="mb-1 block text-sm font-medium text-gray-800"
+              className="mb-1 block text-sm font-medium text-gray-800 dark:text-gray-200"
             >
               Title
             </label>
@@ -65,13 +65,13 @@ function UpdateComplaint({
               type="text"
               id="title"
               defaultValue={category}
-              className="w-full rounded-md p-2 text-gray-950 ring-1 ring-gray-700/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              className="w-full rounded-md p-2 text-gray-950 ring-1 ring-gray-700/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:text-gray-100 dark:ring-gray-400/20"
             />
           </div>
           <div className="mb-6">
             <label
               htmlFor="description"
-              className="mb-1 block text-sm font-medium text-gray-800"
+              className="mb-1 block text-sm font-medium text-gray-800 dark:text-gray-200"
             >
               Description
             </label>
@@ -80,7 +80,7 @@ function UpdateComplaint({
               id="description"
               defaultValue={complaintDescription}
               rows={4}
-              className="w-full rounded-md p-2 text-slate-950 ring-1 ring-gray-700/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              className="w-full rounded-md p-2 text-slate-950 ring-1 ring-gray-700/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:text-slate-50 dark:ring-gray-400/20"
             />
           </div>
           <div className="flex justify-end gap-3">

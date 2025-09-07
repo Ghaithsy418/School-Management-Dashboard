@@ -27,7 +27,7 @@ const ShowPreviousComplaints = ({
 
   if (isGettingComplaints)
     return (
-      <div className="flex h-[20rem] w-full flex-col items-center justify-center gap-2 py-8">
+      <div className="flex h-[20rem] w-full flex-col items-center justify-center gap-2 py-8 dark:bg-gray-800">
         <Spinner size="90" />
         <p className="text-sm font-light">Loading Complaints...</p>
       </div>
@@ -39,7 +39,7 @@ const ShowPreviousComplaints = ({
         variants={listContainerVariants}
         initial="hidden"
         animate="visible"
-        className="no-scrollbar flex h-full w-full flex-col divide-y divide-slate-700/50 rounded-lg"
+        className="no-scrollbar flex h-full w-full flex-col divide-y divide-slate-700/50 rounded-lg dark:divide-slate-400/50"
       >
         <div className="flex items-center justify-start gap-2 px-4 pt-4 pb-2">
           <button onClick={() => setUi("addComplaint")}>
@@ -49,11 +49,11 @@ const ShowPreviousComplaints = ({
               <IoIosArrowRoundForward className="h-7 w-7 cursor-pointer transition-all duration-300 hover:text-indigo-600" />
             )}
           </button>
-          <h2 className="text-lg font-bold text-gray-950">
+          <h2 className="text-lg font-bold text-gray-950 dark:text-gray-50">
             Previous Complaints
           </h2>
         </div>
-        <div className="divide-y-gray-700/30 flex flex-col divide-y">
+        <div className="flex flex-col divide-y divide-gray-700/30 dark:divide-gray-300/30">
           <AnimatePresence>
             {complaints && complaints?.length !== 0 ? (
               complaints?.map((complaint) => (
@@ -62,13 +62,13 @@ const ShowPreviousComplaints = ({
                   variants={listItemVariants}
                   layout
                   exit="exit"
-                  className={`flex items-center justify-between gap-4 px-4 py-3 transition-all duration-300 hover:bg-gray-100/90 ${isDeletingComplaint && complaint.id === deletedItem ? "bg-gray-200/40 grayscale-50" : ""}`}
+                  className={`flex items-center justify-between gap-4 px-4 py-3 transition-all duration-300 hover:bg-gray-100/90 hover:dark:bg-gray-700/90 ${isDeletingComplaint && complaint.id === deletedItem ? "bg-gray-200/40 grayscale-50 dark:bg-gray-400/40" : ""}`}
                 >
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-950">
+                    <h3 className="font-semibold text-gray-950 dark:text-gray-50">
                       {complaint.category}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-800">
+                    <p className="mt-1 text-sm text-gray-800 dark:text-gray-200">
                       {complaint.complaint}
                     </p>
                   </div>
@@ -96,7 +96,7 @@ const ShowPreviousComplaints = ({
                 </motion.div>
               ))
             ) : (
-              <p className="py-8 text-center text-sm text-gray-900">
+              <p className="py-8 text-center text-sm text-gray-900 dark:text-gray-100">
                 No previous complaints found.
               </p>
             )}
