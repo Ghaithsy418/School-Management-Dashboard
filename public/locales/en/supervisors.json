@@ -22,7 +22,8 @@
     "phoneValidation": "Phone Number is required",
     "phoneNumsValidation": "Phone number can't be lower than 10 number",
     "teacher": "Teacher",
-    "supervisor": "Supervisor"
+    "supervisor": "Supervisor",
+    "user": "Add User"
   },
   "profile": {
     "title": "Supervisor Informations",

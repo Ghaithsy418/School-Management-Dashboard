@@ -1,13 +1,16 @@
 import OthersLayout from "@/features/dean/othersRole/OthersLayout";
 import MainContainer from "@/ui/MainContainer";
+import { useTranslation } from "react-i18next";
 
 function Others() {
+  const { t } = useTranslation("others");
+
   const options = [
-    { title: "Sort by", value: "" },
-    { title: "Name (A-Z)", value: "asc-full_name" },
-    { title: "Name (Z-A)", value: "desc-full_name" },
-    { title: "Less Permissions", value: "asc-permission" },
-    { title: "More Permissions", value: "desc-permission" },
+    { title: t("filters.sortBy"), value: "" },
+    { title: t("filters.nameAsc"), value: "asc-full_name" },
+    { title: t("filters.nameDesc"), value: "desc-full_name" },
+    { title: t("filters.permissionLess"), value: "asc-permission" },
+    { title: t("filters.permissionMore"), value: "desc-permission" },
   ];
 
   return (
@@ -16,7 +19,7 @@ function Others() {
         <MainContainer.Controls
           options={options}
           linkTo="add-other-user"
-          linkTitle="Add Other User"
+          linkTitle={t("main.AddButton")}
         />
       </MainContainer.MainPageHeader>
       <OthersLayout />

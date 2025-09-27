@@ -2,6 +2,7 @@ import MainContainer from "@/ui/MainContainer";
 import { useState } from "react";
 import AddByCSV from "../AddByCSV";
 import AddTeachersSupervisorsForm from "../AddTeachersSupervisorsForm";
+import { useTranslation } from "react-i18next";
 
 interface CsvDataTypes {
   name: string;
@@ -12,10 +13,12 @@ interface CsvDataTypes {
 }
 
 function AddOtherUser() {
+  const { t } = useTranslation("others");
   const [csvData, setCsvData] = useState<CsvDataTypes>(initialCsvData);
+
   return (
     <MainContainer
-      title="Add Other User"
+      title={t("addOther.title")}
       needsBackArrow={true}
       toPage="/dean/others"
     >

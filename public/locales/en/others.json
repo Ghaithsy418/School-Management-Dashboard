@@ -1,0 +1,31 @@
+{
+  "main": {
+    "title": "Other Roles",
+    "AddButton": "Add Other User",
+    "managePermissionsButton": "Manage Permissions",
+    "cardButton": "Show Profile",
+    "noPermissions": "No Permissions Yet",
+    "oversee": "Oversee",
+    "overseeDescription": "Access to oversee the attendance of the employees",
+    "nurse": "Nurse",
+    "nurseDescription": "Access to student medical records and nurse logs",
+    "library": "Library",
+    "libraryDescription": "Access to manage library resources and activity",
+    "permissions": "Permissions",
+    "'s": "'s",
+    "assignPermissionButton": "Assign the Permission",
+    "assignPermissionsLoading": "Assigning...",
+    "unassignPermissionButton": "UnAssign the Permission",
+    "unassignPermissionsLoading": "UnAssigning..."
+  },
+  "filters": {
+    "sortBy": "Sort by",
+    "nameAsc": "Name (A-Z)",
+    "nameDesc": "Name (Z-A)",
+    "permissionLess": "Less Permissions",
+    "permissionMore": "More Permissions"
+  },
+  "addOther": {
+    "title": "Add Other User"
+  }
+}

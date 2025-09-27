@@ -12,7 +12,7 @@ interface CardTypes {
 }
 
 function OthersCard({ user }: CardTypes) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("others");
   const { full_name, email, user_id, permission } = user;
   const {
     user: { role },
@@ -47,12 +47,12 @@ function OthersCard({ user }: CardTypes) {
             {permission.length > 0 ? (
               permission.map((per) => (
                 <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-800 capitalize dark:bg-indigo-800 dark:text-indigo-50">
-                  {per}
+                  {t(`main.${per.toLowerCase()}`)}
                 </span>
               ))
             ) : (
               <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-800 capitalize dark:bg-indigo-800 dark:text-indigo-50">
-                no permissions yet
+                {t("main.noPermissions")}
               </span>
             )}
           </div>
@@ -68,7 +68,7 @@ function OthersCard({ user }: CardTypes) {
             className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors duration-200 group-hover:border-indigo-400 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-slate-100"
           >
             <FaRegUser className="h-4 w-4" />
-            {t("cards.cardButton")}
+            {t("main.cardButton")}
           </Link>
         </div>
       </div>

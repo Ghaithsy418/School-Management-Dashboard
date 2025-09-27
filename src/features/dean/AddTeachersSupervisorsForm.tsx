@@ -164,7 +164,7 @@ function AddTeachersSupervisorsForm({ role, csvData }: AddTypes) {
           ) : role === "teacher" ? (
             t("addSupervisor.addSupervisorButton") + t("addSupervisor.teacher")
           ) : (
-            "Add User"
+            t("addSupervisor.user")
           )}
         </Button>
         <ClearAll clearFunction={reset} />

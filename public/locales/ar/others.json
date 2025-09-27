@@ -1,0 +1,32 @@
+{
+  "main": {
+    "title": "أدوار أخرى",
+    "AddButton": "إضافة مستخدم آخر",
+    "managePermissionsButton": "إدارة الصلاحيات",
+    "cardButton": "عرض الملف الشخصي",
+    "noPermissions": "لا يوجد صلاحيات بعد",
+    "oversee": "مراقب الدوام",
+    "overseeDescription": "إمكانية مراقبة حضور الموظفين العاملين في المدرسة",
+    "nurse": "ممرض",
+    "nurseDescription": "الوصول إلى سجلات الطلاب الطبية وسجلات التمريض",
+    "library": "المكتبة",
+    "libraryDescription": "إدراة المكتبة الدراسية وتنظيمها",
+    "permissions": "صلاحيات",
+    "'s": "",
+    "assignPermissionButton": "إضافة الصلاحية",
+    "assignPermissionsLoading": "يتم الإضافة...",
+    "unassignPermissionButton": "إلغاء الصلاحية",
+    "unassignPermissionsLoading": "يتم الإلغاء..."
+  },
+  "filters": {
+    "sortBy": "ترتيب حسب",
+    "nameAsc": "الاسم (أ-ي)",
+    "nameDesc": "الاسم (ي-أ)",
+    "permissionLess": "أقل الصلاحيات أولاً",
+    "permissionMore": "أكثر صلاحيات أولاً"
+  },
+  "addOther": {
+    "title": "إضافة مستخدم آخر",
+    "AddButton": "إضافة مستخدم"
+  }
+}

@@ -19,6 +19,7 @@ i18n
       "classes",
       "settings",
       "timetables",
+      "othres",
     ],
     defaultNS: "dashboard",
     supportedLngs: ["ar", "en"],

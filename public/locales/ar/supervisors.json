@@ -22,7 +22,8 @@
     "phoneValidation": "رقم الجوال مطلوب",
     "phoneNumsValidation": "رقم الجوال لا يجب أن يكون أقل من 10 أرقام",
     "teacher": "استاذ",
-    "supervisor": "موجه"
+    "supervisor": "موجه",
+    "user": "إضافة مستخدم"
   },
   "profile": {
     "title": "معلومات الموجه",

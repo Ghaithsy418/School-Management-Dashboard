@@ -1,4 +1,25 @@
 {
+  "examSchedules": {
+    "title": "جداول الامتحانات",
+    "getExamTitle": "إحضار ملف جدول الامتحان",
+    "getExamDescription": "اختر صفاً وفصلاً ونوع الامتحان لإحضار جدوله الامتحاني",
+    "getExamToastTitle": "الجدول جاهز للصف",
+    "getExamToastDescription": "Your exam schedule for First is ready to view.",
+    "previewButton": "Preview",
+    "downloadButton": "Download",
+    "selectGrade": "Select a grade",
+    "semester": "Semester:",
+    "first": "First",
+    "second": "Second",
+    "type": "Type:",
+    "final": "Final",
+    "mid-term": "Mid-term",
+    "getExamButton": "Get Exam File",
+    "uploadExamTitle": "Upload Exam Schedule",
+    "uploadExamDescription": "Choose Class, Semester and type then Upload your file.",
+    "uploadExamButton": "Upload Exam Schedule File"
+  },
+
   "deleteSchedule": {
     "title": "حذف جدول زمني",
     "warning": "هل أنت متأكد من حذف الجدول دائماً",
